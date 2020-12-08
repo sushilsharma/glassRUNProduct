@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="PageTopContainer">
+        <ul class="nav nav-tabs">
+            <li id="Viewform"><a onclick="ShowGrid()" data-toggle="tab" id="lnkViewAll">View All</a></li>
+            <li id="Addform" class="active"><a onclick="ShowForm()" data-toggle="tab" id="lnkAddNew">Add New</a></li>
+        </ul>
+        <div class="row-fluid">
+            <div class="uk-tab uk-tab-flip">
+                <div class="md-card">
+                    <div class="md-card-content">
+
+                        <div class="tab-content">
+
+
+                            <div class="tab-pane active" id="formTab">
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-2">
+                                        <div class="uk-form-row">
+                                            <div class="uk-full-width" show-errors>
+                                                <div class="uk-width-medium-3-10 ">
+                                                    <label class="control-label">Role Name :</label>
+                                                </div>
+                                                <div class="uk-width-medium-7-10">
+                                                    <input id="txtRoleName" type="text" name="Input" ng-model="RoleName" class="md-input" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="uk-grid">
+                                    <div class="uk-width-large-1-4 uk-width-medium-1-2">
+                                        <div class="uk-input-group">
+                                            <input id="buttonSave" ng-click="save()" type="button" class="md-btn md-btn-danger" value="Save" />
+                                            <input id="buttonBack" ng-click="reset()" type="button" class="md-btn" value="Reset" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="gridTab">
+
+                                <h2>{{ title }}</h2>
+                                <div>
+                                    <br />
+                                    <button ng-click="setPageSize()">Set page size</button>
+                                    <br />
+                                    <br />
+                                    <div kendo-grid="mainGrid" k-options="mainGridOptions" k-rebind="mainGridOptions"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div kendo-window="modal" k-title="'Title'" style="display:none" k-visible="false" k-modal="true">
+                            Are you sure you want to delete: {{ RoleName }}
+                            <button ng-click="deleteRole(roleMasterId)">OK</button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

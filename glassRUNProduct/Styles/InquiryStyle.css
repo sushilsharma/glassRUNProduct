@@ -1,0 +1,2293 @@
+﻿.no_margin {
+    margin: 0px !important
+}
+
+.SOPOCollectionInfo {
+    float: left;
+    width: 100%;
+    border-top: 1px dashed #d5d5d5;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.editprice .currency_code {
+    top: 7px;
+    position: relative;
+    float: left;
+}
+
+.editprice .editable_price_box {
+    width: 72%;
+    float: left;
+    margin-left: 10px;
+}
+
+
+.edit_productList_price {
+    float: left;
+    padding-top: 6px;
+}
+
+.edittable_table_price_box {
+    float: left;
+    width: 110px !important;
+}
+
+.date_icon_select {
+    float: right;
+    right: 0;
+    left: auto;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    border-left: 1px solid #d5d5d5;
+    padding-left: 8px;
+    padding-top: 10px;
+    height: 34px;
+}
+
+.Create_Inquiry_View ion-modal-view .bar.bar-positive .fa {
+    color: #a9a7a7 !important;
+    font-weight: normal;
+}
+
+.disable_button.disabled, .disable_button[disabled], fieldset[disabled] .disable_button {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+    filter: alpha(opacity=65) !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    opacity: .65 !important;
+}
+
+.disable_button[disabled] {
+    background-color: #bdc3c7;
+    border: 1px solid #bdc3c7;
+    color: rgba(255, 255, 255, 0.75);
+    color: #ffffff;
+    filter: alpha(opacity=100);
+    filter: alpha(opacity=70);
+    opacity: .7;
+    opacity: 1;
+}
+
+.ion-datetime-picker .row {
+    display: flex !important;
+}
+
+.selected_green_border {
+    border: 1px solid #39b54a !important
+}
+
+.float_Text_right {
+    float: right;
+    text-align: right;
+}
+
+.autocompltedropdown {
+    width: 100%;
+    padding: 0px;
+    cursor: pointer;
+    z-index: 9999;
+    position: absolute;
+    top: 39px;
+    left: 0px;
+    margin-top: -5px;
+    background-color: #ffffff;
+    border: 1px solid #39b54a !important;
+    border-top: 0px !important;
+    max-height: 280px;
+    overflow-y: auto;
+    height: 280px;
+    border-radius: 0px 0px 16px 16px;
+}
+
+.angucomplete-title {
+    padding: 8px !important;
+    font-size: 13px !important;
+}
+
+
+.visiblehiddentxt {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    right: 0px;
+    left: 0px;
+    top: 8px;
+    background-color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+.image_ui {
+    height: 100%;
+    width: 100%;
+}
+
+.ribbon {
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    text-align: right;
+    text-transform: capitalize
+}
+
+    .ribbon span {
+        font-size: 14px;
+        font-weight: bold;
+        color: #FFF;
+        text-transform: capitalize;
+        text-align: center;
+        line-height: 20px;
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        width: 100px;
+        display: block;
+        background: #79A70A;
+        background: linear-gradient(#9BC90D 0%, #79A70A 100%);
+        box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+        position: absolute;
+        top: 19px;
+        left: -21px;
+    }
+
+        .ribbon span::before {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 100%;
+            z-index: -1;
+            border-left: 3px solid #79A70A;
+            border-right: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #79A70A;
+        }
+
+        .ribbon span::after {
+            content: "";
+            position: absolute;
+            right: 0px;
+            top: 100%;
+            z-index: -1;
+            border-left: 3px solid transparent;
+            border-right: 3px solid #79A70A;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #79A70A;
+        }
+
+.QuantityControl .green_border_textbox {
+    text-align: right;
+    position: relative;
+    right: -15px;
+    margin-bottom: 1px;
+}
+
+.show_allocation {
+    position: absolute;
+    right: 100px;
+    top: 6px;
+}
+
+.itemquantitybox .green_border_textbox {
+    text-align: right
+}
+
+.IonicPopupHeight {
+    margin-bottom: 0px;
+}
+
+.CreateInquiryPage a {
+    cursor: pointer
+}
+
+.fontsize_12 {
+    font-size: 12px
+}
+
+.aling_float_left {
+    float: left !important
+}
+
+.aling_float_right {
+    float: right !important
+}
+
+.section_width_100 {
+    float: left;
+    width: 100%;
+}
+
+
+.section_width_40 {
+    float: left;
+    width: 40%;
+}
+
+
+.section_width_50 {
+    float: left;
+    width: 50%;
+}
+
+
+.section_width_60 {
+    float: left;
+    width: 60%;
+}
+
+
+.section_width_right_50 {
+    float: right;
+    width: 50%;
+    text-align: right
+}
+
+
+.space_left {
+    margin-left: 10px
+}
+
+
+.space_left_20 {
+    margin-left: 20px
+}
+
+
+.space_right {
+    margin-right: 10px
+}
+
+.space_left_right {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.space_bottom {
+    margin-bottom: 10px;
+}
+
+.UseFull_Space {
+    float: left;
+    width: 100%;
+    padding: 5px 0px;
+}
+
+.CreateInquiryPage .row {
+    margin: 0px;
+}
+
+.topheaderbalancerow {
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #d7f6d7;
+    color: #000;
+}
+
+.mtbalance {
+    margin-top: 2px !important;
+    padding-top: 8px !important;
+    background-color: #d7f6d7;
+    padding-bottom: 10px;
+}
+
+
+
+.red-bg {
+    background-color: #518c7d;
+}
+
+
+.icon_text {
+    margin-left: 5px;
+}
+
+.textbold_300 {
+    font-weight: 300
+}
+
+.textbold_600 {
+    font-weight: 600
+}
+
+.textbold_900 {
+    font-weight: 900;
+}
+
+.space_icon_text {
+    margin-left: 10px
+}
+
+.textcolor_green {
+    color: green;
+    font-weight: 600
+}
+
+.FirstSection {
+    float: left;
+    width: 100%;
+}
+
+#CreateInquiryFirstView {
+    position: absolute;
+    bottom: 0px;
+    top: 40px;
+    float: left;
+    width: 100%;
+}
+
+.FullTopPedding {
+    top: 80px !important;
+}
+
+.NoTopPedding {
+    top: 0px !important;
+}
+
+
+#AddItemSection {
+    position: absolute;
+    bottom: 0px;
+    top: 80px
+}
+
+
+.CreateInquiryLeftView {
+    float: left;
+    width: 100%;
+    height: calc(100% - 56px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 15px;
+}
+
+    .CreateInquiryLeftView:hover {
+        overflow-y: auto;
+    }
+
+
+.AddItemLeftView {
+    float: left;
+    width: 100%;
+    height: calc(100% - 27px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 15px;
+    margin-top: 25px;
+}
+
+
+
+.card_Section {
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.1);
+    color: #4d4d4d;
+    border: 1px solid #d5d5d5;
+}
+
+
+.Selected_Card_Selection {
+    background-color: #39b54a !important;
+}
+
+
+.createinquirybtn_solidbg {
+    padding: 7.5px 10px;
+    border-radius: 17px;
+}
+
+.info_card {
+    float: left;
+    width: 100%;
+    padding: 8px 15px;
+    border-radius: 5px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.rowsection {
+    float: left;
+    width: 100%;
+    margin-bottom: 15px
+}
+
+.leftalingsection {
+    float: left;
+}
+
+
+.rightalingsection {
+    float: right;
+}
+
+.icon_heading {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-left: 3px;
+}
+
+.circlebg_icon {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    border-radius: 50%;
+    float: left;
+    text-align: center
+}
+
+.CreateInquiryPage .fa {
+    font-size: 16px;
+    margin-top: 2px;
+}
+
+    .CreateInquiryPage .fa.red {
+        color: #c1272d !important;
+    }
+
+    .CreateInquiryPage .fa.green {
+        color: #39b54a !important;
+        font-size: 16px;
+    }
+
+
+
+.CreateInquiryPage .fa_25 {
+    font-size: 23px;
+    margin-top: -2px;
+}
+
+
+
+    .CreateInquiryPage .fa_25.fa-angle-up {
+        margin-top: -3px;
+    }
+
+
+.card_selection_control {
+    position: absolute;
+    right: 12px;
+    top: 5px;
+}
+
+.topbtnrow {
+    margin-bottom: 30px;
+    margin-top: 25px;
+}
+
+
+    .topbtnrow .rightalingsection {
+        margin-top: 8px;
+    }
+
+
+#RightPanelView {
+    position: relative;
+    height: 100%;
+}
+
+#RightPanelFirstView, #LeftPanelFirstView {
+    height: calc(100% - 50px);
+}
+
+.FooterRightPanel {
+    position: absolute;
+    bottom: 10px;
+    float: left;
+    width: 100%;
+    padding-right: 45px;
+}
+
+    .FooterRightPanel .leftcontrol {
+        float: left;
+        width: 50%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .FooterRightPanel .rightcontrol {
+        float: left;
+        width: 50%;
+        margin: auto;
+        text-align: right;
+    }
+
+.ScrollbarUI::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.ScrollbarUI::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+.ScrollbarUI::-webkit-scrollbar-thumb {
+    background-color: #b4afaf;
+    border-radius: 10px;
+    border: 2px solid #cbc8c8;
+}
+
+.RightSideView {
+    float: left;
+    width: 100%;
+    border: 1px solid #736f6f;
+    position: relative;
+    height: 100%;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+
+.ProductCardView {
+    float: left;
+    width: 100%;
+    border: 1px solid #736f6f;
+    position: relative;
+    border-radius: 10px;
+    padding: 10px 15px;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.display_text_center {
+    text-align: center
+}
+
+
+.display_flex {
+    text-align: center;
+    position: relative;
+    display: inline-flex;
+}
+
+.small_circle {
+    border: 1px solid #d5d5d5;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+
+.image_ui_box {
+    float: left;
+    width: 75px;
+    height: 75px;
+    border: 3px solid #39b54a;
+    position: relative
+}
+
+
+.display_flex_center {
+    display: inline-flex;
+    text-align: center
+}
+
+.enquiry_number {
+    text-align: right;
+    font-size: 25px;
+    margin-top: -3px;
+}
+
+.Enquiry_SequenceNo {
+    float: left;
+    width: 12%;
+    padding-top: 0px;
+    padding-right: 15px;
+}
+
+
+.EnquiryCountSection {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.text_italic {
+    font-style: italic
+}
+
+
+.aling_text_right {
+    text-align: right
+}
+
+.TwoSection {
+    float: left;
+    width: 100%
+}
+
+
+    .TwoSection .RightAling {
+        float: left;
+        width: 50%;
+        text-align: left;
+        padding: 10px;
+    }
+
+
+    .TwoSection .LeftAling {
+        float: left;
+        width: 50%;
+        text-align: right;
+        padding: 10px;
+    }
+
+.EnquiryReceivingCapacityCheck_Info {
+    float: left;
+    width: 100%;
+    padding: 10px;
+}
+
+.EnquiryShipTo_Info {
+    float: left;
+    width: 100%;
+    border-bottom: 1px dotted #d5d5d5;
+    padding: 10px;
+}
+
+
+#LeftPanelFirstView .progress.progress-bar-large {
+    height: 8px;
+    background-color: #d8d8d8;
+}
+
+.control_view {
+    margin-top: 7px;
+}
+
+.EnquiryBasic_Info {
+    float: left;
+    width: 100%;
+    background-color: #f5f5f5;
+    border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.progressive_color {
+    background-image: linear-gradient(to right, #b9492c, #ceaa57) !important;
+}
+
+.progress.progress-bar-large {
+    text-align: center
+}
+
+.Enquiry_list {
+    height: calc(100% - 135px);
+    float: left;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.Enquiry_Item_list {
+    height: 71vh;
+    float: left;
+    width: 100%;
+    overflow-y: auto;
+}
+
+
+.Enquiry_data {
+    float: left;
+    width: 100%;
+    padding: 15px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.Enquiry_Info_top_Row {
+    float: left;
+    width: 100%
+}
+
+.Enquiry_Info_bottom_Row {
+    float: left;
+    width: 100%;
+    margin-top: 15px
+}
+
+.Enquiry_Total_Count_Price {
+    float: left;
+    width: 65%;
+    border-left: 1px solid #d5d5d5;
+    padding-left: 25px;
+}
+
+
+.Enquiry_Action_Control {
+    float: right;
+    width: auto
+}
+
+    .Enquiry_Action_Control .collapsepanel {
+        margin-left: 10px
+    }
+
+.Enquiry_Checked {
+    float: right;
+    width: 24%;
+    padding-top: 10px;
+}
+
+.Enquiry_Checked {
+    padding-top: 3px;
+}
+
+
+.TotalEnquiryActionBtn_Bottom {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: #f5f5f5;
+    border-top: 2px solid #d5d5d5;
+}
+
+.bottom_border {
+    border-bottom: 2px solid #d5d5d5;
+}
+
+.padding_top_bottom {
+    padding: 5px 0px;
+}
+
+.padding_top_bottom_10 {
+    padding: 10px 0px;
+}
+
+
+.margin_top_bottom_5 {
+    margin: 5px 0px;
+}
+
+
+.margin_top_bottom_10 {
+    margin: 10px 0px;
+}
+
+
+.textbox_down_angle {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
+
+.position_relative {
+    position: relative
+}
+
+.sepration_border {
+    border-top: 1px dashed #d5d5d5;
+    padding-top: 10px;
+}
+
+
+.sepration_border_bottom {
+    border-bottom: 1px dashed #d5d5d5;
+    padding-bottom: 10px;
+}
+
+
+.allocation_value {
+    margin-top: 7px;
+    margin-left: 5px;
+}
+
+.allocation_number {
+    margin-left: -5px;
+    margin-top: 2px;
+    float: left;
+    width: 100%;
+}
+
+.padding_left_rigth_10 {
+    padding: 0px 10px;
+}
+
+.padding_rigth_10 {
+    padding-right: 10px;
+}
+
+
+.light_blue {
+    background-color: #29abe2;
+    border: 1px solid #29abe2;
+}
+
+
+.light_orange {
+    background-color: #e2c703;
+    border: 1px solid #e2c703;
+}
+
+.textcolor_orange {
+    color: #e2c703
+}
+
+.white_text {
+    color: #fff
+}
+
+.dark_blue {
+    background-color: #0071bc;
+    border: 1px solid #0071bc;
+}
+
+.bg_red_color {
+    background-color: #c1272d;
+    border: 1px solid #c1272d;
+    color: #fff
+}
+
+.textcolor_red {
+    color: #c1272d !important
+}
+
+.bg_green_color {
+    background-color: #8cc63f;
+    border: 1px solid #8cc63f;
+    color: #fff
+}
+
+
+.bg_green {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #8cc63f;
+    float: right;
+    vertical-align: middle;
+    display: initial;
+    padding-top: 8px;
+    text-align: center;
+    position: relative;
+    right: 0px;
+}
+
+
+.fa.white {
+    color: #fff !important
+}
+
+.Enquiry_Action_btn {
+    float: left;
+    width: 60%
+}
+
+
+.border_icon_color_green {
+    border: 1px solid #39b54a
+}
+
+.border_icon_color_pink {
+    border: 1px solid #0071bc
+}
+
+.border_icon_color_orange {
+    border: 1px solid #ccb13b
+}
+
+.border_icon_color_red {
+    border: 1px solid #c1272d
+}
+
+.border_icon_color_blue {
+    border: 1px solid #0071bc
+}
+
+
+
+.border_icon_color_green > .fa {
+    color: #39b54a;
+}
+
+.border_icon_color_pink > .fa {
+    color: #0071bc;
+}
+
+
+.border_icon_color_blue > .fa {
+    color: #0071bc;
+}
+
+.border_icon_color_orange > .fa {
+    color: #ccb13b;
+}
+
+.border_icon_color_red > .fa {
+    color: #c1272d;
+}
+
+.Left_Third_Aling {
+    float: left;
+    width: 75%
+}
+
+
+.Right_One_Aling {
+    float: right;
+    width: 100%
+}
+
+.Enquiry_data .NumberConatiner {
+    width: 6%;
+    border-right: 0px;
+    padding: 0px 5px;
+}
+
+.Enquiry_data .ItemNameContainer {
+    width: 30%;
+    padding-bottom: 15px;
+    padding: 0px 5px;
+}
+
+
+.Enquiry_data .Edit_Remove_Item {
+    width: 14%;
+    float: left;
+    padding: 0px 5px;
+}
+
+.Enquiry_data .unitContainer {
+    width: 14%;
+    padding: 0px 5px;
+}
+
+.Enquiry_data .QuantityControl {
+    width: 15%;
+    padding: 0px 5px;
+}
+
+
+.Enquiry_data .TotalConatiner {
+    width: 22%;
+    border-right: 0px;
+    padding: 0px 5px;
+}
+
+
+.Enquiry_data .horiborder {
+    border-top: 1px solid #d5d5d5 !important;
+    border-bottom: none !important
+}
+
+.Enquiry_data .totalprice {
+    border-top: 1px solid #62e462;
+    border-bottom: 1px solid #62e462;
+}
+
+.Enquiry_data .conatinerheader {
+    height: auto;
+    padding-bottom: 0px;
+}
+
+
+.price_calculation .conatinerheader {
+    height: auto !important;
+    padding-bottom: 0px;
+}
+
+.ProductRow_Edited {
+    height: 75px !important;
+}
+
+
+.Enquiry_data .itemrowcontainer:nth-child(even) {
+    background: #f9f9f9;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+
+.Enquiry_data .no_padding {
+    padding: 0px;
+}
+
+
+.padding_bottom_10 {
+    padding-bottom: 10px !important
+}
+
+
+.margin_bottom_5 {
+    margin-bottom: 5px !important
+}
+
+
+.margin_bottom_10 {
+    margin-bottom: 10px !important
+}
+
+
+.margin_bottom_20 {
+    margin-bottom: 20px !important
+}
+
+.margin_top_25 {
+    padding-top: 25px
+}
+
+
+.margin_top_15 {
+    margin-top: 15px
+}
+
+.cardleftrigthspace {
+    padding: 7px 25px;
+    border-radius: 18px;
+}
+
+.circlebg_icon_36 {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    border-radius: 50%;
+    float: left;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.additem_view {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #d5d5d5;
+    border-right: 0px;
+    padding-bottom: 0px;
+}
+
+
+.gray_border_textbox {
+    float: left;
+    width: 100%;
+    height: 34px;
+    border-radius: 16px;
+    border: 1px solid #9e9d9d;
+    padding: 0px 15px;
+}
+
+.green_border_textbox {
+    float: left;
+    width: 100%;
+    height: 34px;
+    border-radius: 16px;
+    border: 1px solid #39b54a;
+    padding: 0px 15px;
+}
+
+.gray_border_selectbox {
+    float: left;
+    width: 100%;
+    height: 34px;
+    border-radius: 16px;
+    border: 1px solid #d5d5d5;
+    padding: 0px 15px;
+}
+
+.gray_border_box {
+    border: 1px solid #9e9d9d !important;
+}
+
+.remove_ion_icon {
+    right: 0px;
+    position: absolute;
+    top: 4px;
+}
+
+.green_border_textbox.open_panel {
+    border-radius: 16px 16px 0px 0px;
+}
+
+
+.green_border_textbox.open_panel_up {
+    border-radius: 0px 0px 16px 16px;
+}
+
+.totalamount_additemsection {
+    position: relative;
+    margin-top: 10px;
+}
+
+.icon_on_text {
+    position: relative;
+    float: left;
+    margin-left: -20px;
+    color: #a2a2a2;
+}
+
+.fa_icon_ontext {
+    color: #a5a3a3 !important;
+    font-weight: normal !important;
+}
+
+.normal_border {
+    border: 1px solid #d5d5d5;
+}
+
+.padding_left_15 {
+    padding-left: 15px;
+}
+
+.textbox_down_angle .icon_size_20 {
+    font-size: 20px
+}
+
+
+.itemcalculation_sepration {
+    border-top: 1px dashed #d5d5d5;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    margin-top: 8px;
+}
+
+.Enquiry_data .headerdataconatiner {
+    font-weight: 900;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.Enquiry_data .QuantityControl {
+    padding-top: 5px;
+    height: 36px;
+}
+
+.pallet_graph_info {
+    margin-bottom: 10px;
+    padding: 0px;
+    position: absolute;
+    bottom: 75px;
+    width: 35%;
+}
+
+.additem_ui {
+    float: left;
+    width: 100%;
+    margin-top: 1px;
+    margin-bottom: 15px;
+    padding-left: 5px;
+}
+
+.note_ui {
+    border-bottom: 1px dashed #d5d5d5;
+    padding-bottom: 10px;
+}
+
+
+.txt_quantity_control {
+    border: 0px;
+    height: 34px;
+    background-image: linear-gradient(to right, #fff, #e2e2e2, #fff);
+    width: 90%;
+    padding-right: 20px;
+    text-align: right;
+    margin: auto;
+}
+
+.linear_color_bg {
+    background-image: linear-gradient(to right, #fff, #d5d5d5, #fff);
+}
+
+
+.substract_quantity {
+    position: absolute;
+    top: 9px;
+    left: 0;
+}
+
+.add_quantity {
+    position: absolute;
+    top: 9px;
+    right: 0;
+}
+
+.enter_quauntity_btn {
+    border-top: 1px solid #ecebeb;
+    padding-top: 10px;
+}
+
+
+    .enter_quauntity_btn a {
+        color: #4d4d4d !important
+    }
+
+.col-md-3:nth-child(4n + 1) {
+    clear: both !important
+}
+
+.productcataloglist_ui {
+    position: absolute;
+    float: left;
+    width: 100%;
+    bottom: 0px;
+    top: 80px;
+}
+
+.IonicPopupHeight .productcataloglist_ui {
+    top: 0px !important;
+    height: calc(100% - 0px);
+}
+
+.IonicPopupHeight .productcatalogue_body {
+    height: calc(100% - 125px);
+}
+
+.productcatalogue_body {
+    float: left;
+    width: 100%;
+    overflow-y: auto
+}
+
+
+.productcatalogue_body {
+    height: 100%;
+}
+
+.ProductCatalog_Footer {
+    position: absolute;
+    bottom: 1px;
+    width: 100%;
+    padding: 10px 0px;
+}
+
+
+.IonicPopupHeight .ProductCatalog_Footer {
+    padding: 0px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.IonicPopupHeight .ProductCatalog_Confirmation {
+    border-radius: 0px 0px 10px 10px;
+}
+
+.ProductCatalog_Weight_Total {
+    padding: 0px 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #d2d1d1;
+    border-top: 1px solid #b1afaf;
+    float: left;
+    width: 100%;
+}
+
+.ProductCatalog_Confirmation {
+    float: left;
+    width: 100%;
+    border-top: 1px solid #b1afaf;
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+.ProductCatalog_Total {
+    margin-top: 6px;
+    margin-bottom: 1px;
+}
+
+.ProductCatalog_Weight .progress.progress-bar-large {
+    height: 10px;
+    background-color: #a9a8a8;
+}
+
+
+.SelectEnquiry_Count {
+    background-color: #39b54a;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    float: right;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    position: relative;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    position: absolute;
+    bottom: 125px;
+    right: 5px;
+}
+
+.Enquiry_Count {
+    font-size: 20px;
+    color: #fff;
+    float: left;
+    width: 100%;
+    text-align: center
+}
+
+.font_color_black {
+    color: #4d4d4d !important
+}
+
+.ion_modal_view_productcatalogue {
+    min-height: 90vh !important;
+    top: 5vh !important;
+    width: 80% !important;
+}
+
+.popup_scrollbar {
+    overflow: hidden;
+    padding: 0px !important
+}
+
+.portalbtnView {
+    display: block
+}
+
+.mobilebtnView {
+    display: none
+}
+
+.AddNewEnquiryControl {
+    border: 2px solid #39b54a;
+    height: 34px;
+    border-radius: 5px;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+.edit_delete_control {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+
+.mobileviewenquirydetails {
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.portal_viewscreen {
+    display: block
+}
+
+.mobile_viewscreen {
+    display: none
+}
+
+.productcatalog_dropdownicon {
+    margin-left: 5px;
+    border-left: 1px solid #ccc;
+    position: absolute;
+    left: 168px;
+    height: 36px;
+    padding-top: 8px;
+    width: 30px;
+    padding-left: 0px;
+    text-align: center;
+}
+
+.productcatalogpopover {
+    position: absolute;
+    bottom: 37px;
+    height: 110px;
+    width: 195px;
+    left: 10px;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 0px !important;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+    .productcatalogpopover .popovertextcontent {
+        position: relative;
+        padding: 8px 13px;
+        color: #4d4d4d !important;
+        border-bottom: 1px solid #d5d5d5;
+        float: left;
+        width: 100%;
+    }
+
+.opencatalog {
+    border-radius: 0px 0px 17px 17px !important;
+}
+
+.fontsize_20 {
+    font-size: 20px;
+}
+
+.progressbar_capacity_text {
+    position: relative;
+    top: -22px;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.MT_Text {
+    text-align: right;
+    float: right;
+}
+
+.AvailableCreaditLimit_Text {
+    text-align: right;
+    float: right;
+    padding-bottom: 0px !important
+}
+
+.Out_of_stock {
+    position: absolute;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    text-align: center;
+    padding-top: 100px;
+    left: 0px;
+    top: 0px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 25px;
+}
+
+.Image_Stock {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: left;
+    padding-left: 8px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+}
+
+.Image_Stock_text {
+    bottom: 18px;
+}
+
+
+
+.circlebg_icon_50 {
+    position: relative;
+    border-radius: 50%;
+    float: right;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 12px 16px;
+    margin-left: 10px;
+}
+
+    .circlebg_icon_50 .fa {
+        margin-left: -1px;
+        margin-top: 1px;
+        font-size: 22px;
+    }
+
+.item_top_section_75 {
+    float: left;
+    width: 75%
+}
+
+
+.item_top_section_25 {
+    float: right;
+    width: 25%;
+    text-align: right;
+    padding: 10px;
+    padding-right: 20px;
+}
+
+.shipto_fontsize {
+    font-size: 20px;
+}
+
+.requested_date {
+    font-size: 26px;
+    margin-top: 5px;
+}
+
+.add_new_item_btn {
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #d5d5d5;
+    text-decoration: underline;
+}
+
+.no_resultfound {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+
+.lable_name_text {
+    float: left;
+    width: 120px;
+    margin-right: 6px;
+    padding-top: 6px;
+}
+
+.label_control_action {
+    float: left;
+    width: 70%;
+    position: relative
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    /* Styles */
+    .portal_viewscreen {
+        display: none
+    }
+
+    .mobile_viewscreen {
+        display: block
+    }
+
+    .additemprogressbar {
+        width: 35%
+    }
+
+    .TwoSection .RightAling {
+        width: 100%;
+        padding: 5px 10px;
+    }
+
+    .TwoSection .LeftAling {
+        width: 100%;
+        text-align: left;
+        padding: 5px 10px;
+    }
+
+    .portalView {
+        display: none
+    }
+
+    .MT_Text {
+        text-align: left;
+        float: right;
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .RemovePaddingTopForCatalogue .productcataloglist_ui {
+        top: 0px;
+    }
+
+    .HideDataForMobile {
+        display: none;
+    }
+
+    .AvailableCreaditLimit_Text {
+        text-align: left;
+        float: left;
+        padding-bottom: 0px !important
+    }
+
+
+    .topheaderbalancerow {
+        padding-top: 0px;
+    }
+
+
+    .Enquiry_list {
+        height: calc(100% - 196px);
+    }
+
+    .mobileview {
+        display: block
+    }
+
+    .portalView.col-md-4 {
+        width: 100%;
+    }
+
+    .portalView.col-md-8 {
+        width: 100%;
+        padding: 0px
+    }
+
+
+    .portalbtnView {
+        display: none
+    }
+
+    .mobilebtnView {
+        display: block
+    }
+
+
+    #RightPanelView {
+        height: 100%;
+        padding: 0px 0px;
+    }
+
+    .Enquiry_SequenceNo {
+        width: 28%;
+    }
+
+    .Enquiry_Total_Count_Price {
+        width: 72%;
+        padding-left: 10px;
+    }
+
+    .CreateInquiryLeftView {
+        height: calc(100% - 56px);
+        padding-right: 0px;
+    }
+
+    .Enquiry_Item_list {
+        height: calc(100% - 240px);
+    }
+
+    .FooterRightPanel {
+        position: absolute;
+        bottom: 0px;
+        background-color: #fff;
+        padding: 10px 20px;
+        border-top: 1px solid #8c8c8c;
+    }
+
+
+    .topbtnrow {
+        display: none
+    }
+
+    .info_card {
+        padding: 10px 15px;
+    }
+
+    .UseFull_Space {
+        padding: 12px 0px;
+    }
+
+    .topheaderbalancerow .col-md-4 {
+        padding-bottom: 8px
+    }
+
+    .margin_top_8 {
+        padding-top: 8px
+    }
+
+    #CreateInquiryFirstView {
+        top: 150px;
+    }
+
+
+    .FullTopPedding {
+        top: 150px !important;
+    }
+
+    .NoTopPedding {
+        top: 0px !important;
+    }
+
+    #AddItemSection {
+        top: 142px;
+    }
+
+    .productcatalogue_body {
+        height: calc(100% - 170px);
+        padding: 0px;
+    }
+
+    .productcataloglist_ui .col-lg-4 {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .productcataloglist_ui {
+        top: 130px;
+    }
+
+    #RightPanelFirstView {
+        padding: 0px
+    }
+
+    .ScrollbarUI::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .ProductCatalog_Footer {
+        height: 172px;
+    }
+
+    .SelectEnquiry_Count {
+        bottom: 160px;
+    }
+
+    .Enquiry_Action_Control {
+        float: right;
+        width: auto
+    }
+
+    .hide_mobile_view {
+        display: none
+    }
+
+    .palletspace_view {
+        padding-top: 5px;
+    }
+
+    .card_selection_control {
+        top: 10px;
+    }
+
+    #LeftPanelFirstView {
+        padding: 10px 0px;
+    }
+
+    .mobileviewenquirydetails .Enquiry_data {
+        padding: 5px;
+    }
+
+    .CreateInquiryLeftView .rowsection {
+        margin-bottom: 0px;
+    }
+
+    .modaldialog {
+        width: 100% !important
+    }
+}
+
+
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+}
+
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .TwoSection .RightAling {
+        width: 50%;
+        padding: 10px;
+    }
+
+    .additemprogressbar {
+        width: 50%
+    }
+
+    .TwoSection .LeftAling {
+        width: 50%;
+        text-align: right;
+        padding: 10px;
+    }
+
+    .MT_Text {
+        text-align: right;
+        float: right;
+    }
+
+    .AvailableCreaditLimit_Text {
+        text-align: right;
+        float: right;
+        padding-bottom: 0px !important;
+    }
+
+    .topheaderbalancerow {
+        padding-top: 0px;
+    }
+
+    .card_selection_control {
+        top: 4px;
+    }
+
+    .portal_viewscreen {
+        display: none
+    }
+
+    .mobile_viewscreen {
+        display: block
+    }
+
+    .portalView {
+        display: none
+    }
+
+    .mobileview {
+        display: block
+    }
+
+    .portalView.col-md-4 {
+        width: 100%;
+    }
+
+    .portalView.col-md-8 {
+        width: 100%;
+        padding: 0px
+    }
+
+    .ProductCatalog_Footer {
+        height: 172px;
+    }
+
+    .SelectEnquiry_Count {
+        bottom: 160px;
+    }
+
+    .portalbtnView {
+        display: none
+    }
+
+    .mobilebtnView {
+        display: block
+    }
+
+    .image_ui_box {
+        height: 62px;
+        width: 150px;
+    }
+
+    #RightPanelView {
+        height: 100%;
+        padding: 0px 15px;
+    }
+
+    .CreateInquiryLeftView {
+        height: calc(100% - 55px);
+        padding-right: 0px;
+    }
+
+    .FooterRightPanel {
+        position: absolute;
+        bottom: 0px;
+        background-color: #fff;
+        padding: 10px 20px;
+        border-top: 1px solid #8c8c8c;
+    }
+
+
+    .col-md-4 {
+        width: 33.33333333%;
+        float: left
+    }
+
+    .topbtnrow {
+        display: none
+    }
+
+    .info_card {
+        width: 31%;
+        margin-right: 2%;
+        float: left
+    }
+
+    .Enquiry_list {
+        height: calc(100% - 135px);
+    }
+
+
+    .productcatalogue_body {
+        height: calc(100% - 170px);
+    }
+
+    .Enquiry_Item_list {
+        height: calc(100% - 200px);
+    }
+
+
+    #RightPanelFirstView {
+        padding: 0px
+    }
+
+    .ScrollbarUI::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .card_selection_control {
+        top: 5px;
+    }
+
+    #AddItemSection {
+        top: 80px;
+    }
+}
+
+
+
+
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+
+
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    #RightPanelView {
+        height: 100%;
+    }
+
+    .CreateInquiryLeftView {
+        height: calc(100% - 50px);
+    }
+
+    .RightSideView {
+        height: calc(100% - 0px);
+    }
+
+    .Enquiry_list {
+        height: calc(100% - 135px);
+    }
+
+    .Enquiry_Action_Control {
+        width: auto
+    }
+
+    .additem_view {
+        padding: 8px 8px;
+    }
+
+    .Left_Third_Aling {
+        width: 72%;
+    }
+
+    .Right_One_Aling {
+        width: 28%;
+    }
+
+    .Enquiry_Item_list {
+        height: calc(100% - 204px);
+    }
+
+    .Enquiry_SequenceNo {
+        width: 12%;
+    }
+
+    .createinquirybtn_solidbg {
+        font-size: 12px;
+    }
+
+    .cardleftrigthspace {
+        padding: 7px 10px;
+    }
+
+        .cardleftrigthspace .padding_rigth_10 {
+            padding-right: 2px
+        }
+
+    .image_ui_box {
+        height: 52px;
+    }
+
+
+    .Enquiry_Action_Control {
+        width: auto
+    }
+}
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+}
+
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1360px) {
+    /* STYLES GO HERE */
+    .createinquirybtn_solidbg {
+        font-size: 14px;
+    }
+
+    #RightPanelView {
+        height: 100%;
+    }
+
+    .CreateInquiryLeftView {
+        height: calc(100% - 54px);
+        margin-top: 8px;
+    }
+
+    .RightSideView {
+        height: calc(100% - 0px);
+    }
+
+
+    .Enquiry_list {
+        height: calc(100% - 135px);
+    }
+
+    .Enquiry_Action_Control {
+        width: auto
+    }
+
+
+    .productcataloglist_ui {
+        height: calc(100% - 120px);
+    }
+
+
+    .productcatalogue_body {
+        height: calc(100vh - 218px);
+    }
+
+    .Enquiry_data .ItemNameContainer {
+        width: 30%;
+        padding-top: 5px;
+    }
+
+    .Enquiry_data .TotalConatiner {
+        width: 21%;
+        padding-top: 5px;
+    }
+
+    .Enquiry_data .unitContainer {
+        width: 14%;
+        padding-top: 5px;
+    }
+
+    .Enquiry_data .NumberConatiner {
+        padding-top: 5px;
+    }
+
+    .Enquiry_Item_list {
+        height: 57vh;
+    }
+
+    .AddItemLeftView .margin_bottom_10 {
+        margin-bottom: 0px !important;
+    }
+
+    .image_ui_box {
+        height: 75px;
+    }
+
+    .cardleftrigthspace {
+        padding: 7px 25px;
+    }
+
+        .cardleftrigthspace .padding_rigth_10 {
+            padding-right: 10px;
+        }
+
+    .additem_view {
+        padding: 10px 15px;
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1600px) {
+    /* STYLES GO HERE */
+    #RightPanelView {
+        height: 100%;
+    }
+
+    .CreateInquiryLeftView {
+        height: calc(100% - 54px);
+    }
+
+    .RightSideView {
+        height: calc(100% - 0px);
+    }
+
+    .Enquiry_list {
+        height: calc(100% - 135px);
+    }
+
+    .Enquiry_Item_list {
+        height: calc(100% - 200px);
+    }
+
+    .Enquiry_Action_Control {
+        width: auto
+    }
+
+
+    .productcataloglist_ui {
+        height: calc(100% - 120px);
+    }
+
+
+    .productcatalogue_body {
+        height: calc(100vh - 218px);
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1680px) {
+    /* STYLES GO HERE */
+
+    .bg_color_test {
+        color: green
+    }
+
+    #RightPanelView {
+        height: 100%;
+    }
+
+    .CreateInquiryLeftView {
+        height: calc(100% - 54px);
+    }
+
+    .RightSideView {
+        height: calc(100% - 0px);
+    }
+
+    .Enquiry_list {
+        height: calc(100% - 135px);
+    }
+
+    .Enquiry_Item_list {
+        height: 71vh;
+    }
+
+    .Enquiry_Action_Control {
+        width: auto
+    }
+
+    .productcataloglist_ui {
+        height: calc(100vh - 80px);
+    }
+
+
+    .productcatalogue_body {
+        height: calc(100vh - 218px);
+    }
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+    /* STYLES GO HERE */
+
+
+    .productcataloglist_ui {
+        height: calc(100vh - 80px);
+    }
+
+
+    .productcatalogue_body {
+        height: calc(100vh - 218px);
+    }
+
+    .bg_color_test {
+        color: red
+    }
+}
+
+
+
+.topheaderbalancerow.ng-enter,
+.topheaderbalancerow.ng-leave {
+    -webkit-transition: opacity ease-in-out 1s;
+    -moz-transition: opacity ease-in-out 1s;
+    -ms-transition: opacity ease-in-out 1s;
+    -o-transition: opacity ease-in-out 1s;
+    transition: opacity ease-in-out 1s;
+}
+
+    .topheaderbalancerow.ng-enter,
+    .topheaderbalancerow.ng-leave.ng-leave-active {
+        opacity: 0;
+    }
+
+        .topheaderbalancerow.ng-leave,
+        .topheaderbalancerow.ng-enter.ng-enter-active {
+            opacity: 1;
+        }
+
+
+.visiblehiddentxt1 {
+    /*position: absolute !important;
+                width: 1px;*/
+    height: 1px;
+    right: 0px;
+    left: 0px;
+    top: 8px;
+    background-color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+
+
+.orderlist_page .dx-datagrid-rowsview .dx-row > td, .orderlist_page .dx-datagrid-rowsview .dx-row > tr > td {
+    overflow: visible !important;
+}
+
+.grid_searchbox_list {
+    border: 1px solid #d5d5d5 !important;
+    border-top: none !important;
+    height: auto !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    width: auto !important;
+    border-radius: 0px !important;
+    top: 33px !important;
+}
+
+.Item_list_box {
+    border-bottom: 1px solid #d5d5d5 !important;
+}
+
+.grid_dropdown_searchcontrol {
+    height: 28px !important;
+    border-radius: 0px !important;
+    padding: 5px !important;
+    padding-right: 15px !important;
+}
+
+
+.textbox_down_angle_grid {
+    right: 2px !important;
+    top: 4px !important;
+}
+
+.clear_control_input_cross {
+    color: #319DB5 !important;
+    opacity: 1 !important;
+    font-size: 10px;
+    position: relative;
+    top: -3px;
+    right: -4px;
+}

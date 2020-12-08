@@ -1,0 +1,171 @@
+﻿
+
+<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview" style="margin-bottom: 50px;">
+            <!--<div class="header">
+                <h2>{{Action}} <strong>{{resData.res_AddRoleAccess_RoleAccess}}</strong></h2>
+            </div>-->
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs tabscontainer" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_AddRoleAccess_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a ng-click="AddForm()">
+                                    <tab-heading>
+                                        <i class="fa fa-plus"></i>{{resData.res_AddRoleAccess_Add}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                                            <div class="fullwidth">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_AddRoleAccess_RoleName}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control form-white" ng-model="RoleField.RoleName" type="text" placeholder="Role Name" ng-disabled="EditRoleMasterId !==0">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+
+                                                        <label class="col-sm-3 control-label">{{resData.res_AddRoleAccess_Description}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control form-white" ng-model="RoleField.Description" type="text" placeholder="Description">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth" style="display:none">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_AddRoleAccess_Users}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control form-white" ng-model="RoleField.Users" type="text" placeholder="Role Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_AddRoleAccess_PolicyName}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control form-white" ng-model="RoleField.PolicyName" type="text" placeholder="Policy Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div ng-include="'AddPageAndControlAccess.html'" ng-controller="AddPageAndControlAccess"></div>
+
+                                            <div class="ActionButtons">
+
+                                                <div class="clearbtn">
+                                                    <button type="button" ng-click="Clear()" class="btn btn-default">{{resData.res_AddRoleAccess_Clear}}</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="Save()" class="btn btn-success">{{resData.res_AddRoleAccess_Save}}</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12">
+                                                <div kendo-grid="Grid" k-options="ViewRoleAccessGrid" k-rebind="ViewRoleAccessGrid"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <script id="templates/ControlLevelAccess.html" type="text/ng-template">
+                <ion-modal-view hide-back-button="true" class="confirmationmsgmodalview bgcolorheaderandfooter" style="height:600px !important;min-height:600px !important;width:75% !important">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Control Level Access</h1>
+                        <button class="button button-clear button-primary" ng-click="ClosePageControlAccessModalpopup()"><i class="icons-office-52"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="false">
+                        <div class="scrollview">
+                            <div class="col-md-12 padding">
+                                <div class="fullwidth">
+                                    <label class="control-label"> Set role permission to access read, write and delete. </label>
+                                </div>
+
+                                <div class="pageverticalconatiner">
+                                    <div class="labelheading">
+                                        <h2> {{PageName}}</h2>
+                                    </div>
+
+                                    <table class="table tablegrid table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Field Name</th>
+                                                <th style="text-align: center;">Read Only</th>
+                                                <th style="text-align: center;">Read & Write</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="pageControl in PageControlList">
+                                                <td>{{pageControl.DisplayName}}</td>
+                                                <td><input class="form-white" ng-click="SetEnabledControl(pageControl)" ng-model="pageControl.IsShowChecked"   type="checkbox" /></td>
+                                                <td><input class="form-white" ng-model="pageControl.IsEnableChecked"  ng-disabled="!pageControl.IsShowChecked" type="checkbox" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+
+                            <div class="buttons rightbtn resetbutton" ng-click="SavePageControlAccess()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <!--<div class="buttons rightbtn" ng-click="ResetPageControlAccess()">
+                                <button class="button btn btn-default">Reset</button>
+                            </div>-->
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+        </div>
+    </ion-content>
+</ion-view>

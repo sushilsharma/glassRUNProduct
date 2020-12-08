@@ -1,0 +1,494 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+            <div class="fixrighttopbutton">
+                <div class="col-sm-2 singlebtn col-md-2" style="float:right">
+                    <a class="btn btn-success btn-square" ng-click="RefreshGrid()">{{resData.res_OMOrderPage_Refresh}}</a>
+                    <a class="btn btn-success btn-square" ng-click="ExportToExcel()">Export To Excel</a>
+                    <a class="btn btn-success btn-square" ng-if="RoleId === 3" ng-hide="ViewControllerName === 'GratisOrderGrid'" ng-click="GetAllRecordToPrintPrintSlip()">{{resData.res_OMOrderPage_PrintPickSlipButton}}</a>
+                    <a class="btn btn-success btn-square" ng-if="RoleId === 6" ng-hide="ViewControllerName === 'GratisOrderGrid'" ng-click="GetAllRecordUpdate()">{{resData.res_WarehousePage_Update}}</a>
+                    <a class="btn btn-success btn-square" ng-if="RoleId === 3" ng-hide="ViewControllerName === 'GratisOrderGrid'" ng-click="UpdatePickUpDateAndShift(false)">
+                        Update Pickup
+                    </a>
+                    <a class="btn btn-success btn-square" ng-if="RoleId === 3" ng-hide="ViewControllerName === 'GratisOrderGrid'" ng-click="UpdateBulkPickUpDateAndShift()">
+                        Bulk Update Pickup
+                    </a>
+                    <a class="btn btn-success btn-square" ng-if="RoleId === 5" ng-hide="ViewControllerName === 'GratisOrderGrid'" ng-click="ClearTruckIn()">
+                        Clear Truck In
+                    </a>
+                    <a class="btn btn-success btn-square" ng-if="RoleId === 7" ng-hide="ViewControllerName === 'GratisOrderGrid'" ng-click="ChangeAllOrderDriver()">{{resData.res_CarrierPage_ChangeDriver}}</a>
+                    <a class="btn btn-success btn-square" ng-if="RoleId === 7" ng-hide="ViewControllerName === 'GratisOrderGrid'" ng-click="GetAllDriverPlateNumberUpdated()">Update Driver and Plate No.</a>
+                </div>
+
+            </div>
+
+            <div class="header">
+                <h2 ng-if="(RoleId === 3 || RoleId === 4) && ViewControllerName !== 'GratisOrderGrid'">{{resData.res_OMOrderPage_OrderList}}</h2>
+                <h2 ng-if="RoleId === 7">{{resData.res_CarrierPage_OrderAllocation}}</h2>
+                <h2 ng-if="RoleId === 5">{{resData.res_GateKeeperListPage_ShipConfirm}}</h2>
+                <h2 ng-if="RoleId === 6">{{resData.res_WarehousePage_OrderScheduling}}</h2>
+                <h2 ng-if="ViewControllerName === 'GratisOrderGrid'">{{resData.res_GratisOrderView_Gratisorderlist}}</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+                    <div id="portalview" class="PortalView">
+
+                        <div class="panel">
+                            <div class="MultiSelectControlRow">
+                                <div style="float:left;width:100%;margin-left: 20px;" ng-if="RoleId === 7">
+                                    <a class="btn btn-success btn-square" ng-click="GetSoDetails('SO')">SO Order</a>
+                                    <a class="btn btn-success btn-square" ng-click="GetSoDetails('ST')">ST Order</a>
+                                </div>
+                                <div ng-hide="RoleId === 5 || RoleId === 6 || RoleId === 7 || ViewControllerName === 'GratisOrderGrid'">
+                                    <div class="form-group MultiSelectControl">
+                                        <div ng-dropdown-multiselect="" options="ProductList" selected-model="ProductSelectedList" checkboxes="true" extra-settings="MultiSelectDropdownSetting"></div>
+
+                                    </div>
+                                    <a class="btn btn-success btn-square" ng-click="SearchEnquiryIncludeByProductName()">{{resData.res_CustomerOrderUI_Include}}</a>
+                                    <a class="btn btn-success btn-square" ng-click="SearchEnquiryExcludeByProductName()">{{resData.res_CustomerOrderUI_Exclude}}</a>
+                                    <a class="btn btn-success btn-square" ng-click="ClearProductSearch()">{{resData.res_CustomerOrderUI_Clear}}</a>
+                                </div>
+                            </div>
+                            <div class="panel-content">
+                                <div kendo-grid="Grid" id="InquiryDetailsGrid" k-options="OrderDetailsGrid" k-rebind="OrderDetailsGrid" k-on-change="onSelection(kendoEvent)"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-backdrop active" ng-if="ShowBulkChangePickupDateAndShift">
+                        <div class="modal-backdrop-bg"></div>
+                        <div class="modal-wrapper">
+                            <ion-modal-view class="confirmationmsgmodalview ShowBulkChangePickupDateAndShift bgcolorheaderandfooter modal fade-in-scale ng-enter active ng-enter-active" style="min-height:300px !important;z-index: 100000;">
+                                <ion-header-bar class="bar bar-header bar-positive">
+                                    <h1 class="title" style="left: 29px; right: 29px;">Change Pick-up</h1>
+                                    <button class="button button-clear button-primary" ng-click="CloseChangePickUpCodePopup()"><i class="fa fa-times"></i></button>
+                                </ion-header-bar>
+                                <ion-content scroll="hidden" class="padding IonicPopupHeight scroll-content ionic-scroll overflow-scroll  has-header has-footer">
+                                    <div class="scroll">
+                                        <div class="list">
+                                            <div class="customlistcontrolview">
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            {{resData.res_OMOrder_PickupDate}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <div class="prepend-icon">
+                                                                <input type="text" id="Pickupdate" ng-model="PickupInformation.PickupDate" name="datepicker" class="PickupDateControl form-control" placeholder="please select date">
+                                                                <i class="icon-calendar"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            {{resData.res_OMOrder_PickShift}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <select class="form-control" style="margin:0px !important" ng-model="PickupInformation.PickupShift" ng-options="obj.LookUpId as obj.Name for obj in ShiftList"><option value="" selected="selected">Select</option><option label="MorningShift" value="string:1106">MorningShift</option><option label="EveningShift" value="string:1107">EveningShift</option><option label="NightShift" value="string:1108">NightShift</option></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-content>
+
+                                <ion-footer-bar align-title="left" class="popupfooter bar bar-footer">
+
+                                    <div class="popupbtnstyle">
+
+                                        <div class="popupbuttonstyle">
+                                            <a class="btn btn-success btn-square" ng-click="SavePickUpInfoForSelectedEnquiry()">
+                                                Save
+                                            </a>
+                                        </div>
+                                        <div class="popupbuttonstyle">
+                                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseChangePickUpCodePopup()">
+                                                Close
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </ion-footer-bar>
+                            </ion-modal-view>
+                        </div>
+                    </div>
+
+                    <div class="modal-backdrop active" ng-if="ShowBulkChangeDriverPickupDateAndShift">
+                        <div class="modal-backdrop-bg"></div><div class="modal-wrapper" ng-transclude="">
+                            <ion-modal-view class="confirmationmsgmodalview ShowBulkChangeDriverPickupDateAndShift bgcolorheaderandfooter modal fade-in-scale ng-enter active ng-enter-active" style="min-height:300px !important;z-index: 100000;">
+                                <ion-header-bar class="bar bar-header bar-positive">
+                                    <h1 class="title" style="left: 29px; right: 29px;">{{resData.res_CarrierPage_UpdateInBulk}}</h1>
+                                    <button class="button button-clear button-primary" ng-click="ClosChangeDriverPopup()"><i class="fa fa-times"></i></button>
+                                </ion-header-bar>
+                                <ion-content scroll="hidden" class="padding IonicPopupHeight scroll-content ionic-scroll overflow-scroll  has-header has-footer">
+                                    <div class="scroll">
+                                        <div class="list">
+                                            <div class="customlistcontrolview">
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            {{resData.res_CarrierPage_Driver}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="SelectedDriver.DriverForSelectedOrder" ng-options="obj.DeliveryPersonnelId as obj.Name for obj in DriverList"><option value="" selected="selected">Select</option><option label="D3552" value="string:381">D3552</option></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            {{resData.res_CarrierPage_PlateNumber}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="SelectedDriver.PlateNumberForSelectedOrder" ng-options="obj.TransporterVehicleRegistrationNumber as obj.TransporterVehicleRegistrationNumber for obj in PlateNumberList"><option value="" selected="selected">Select</option><option label="XV 443R" value="string:XV 443R">XV 443R</option></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            {{resData.res_CarrierPage_ConfirmedPickShift}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="SelectedDriver.PickShiftForSelectedOrder" ng-options="obj.LookUpId as obj.Name for obj in ShiftList"><option value="" selected="selected">Select</option><option label="MorningShift" value="string:1106">MorningShift</option><option label="EveningShift" value="string:1107">EveningShift</option><option label="NightShift" value="string:1108">NightShift</option></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            {{resData.res_CarrierPage_ConfirmedPickDate}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <div class="prepend-icon">
+                                                                <input type="text" id="DriverPickupdate" ng-model="SelectedDriver.ExpectedTimeOfAction" name="datepicker" class="DriverPickupDateControl form-control" placeholder="please select date" style="">
+                                                                <i class="icon-calendar"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-content>
+
+                                <ion-footer-bar align-title="left" class="popupfooter bar bar-footer">
+
+                                    <div class="popupbtnstyle">
+
+                                        <div class="popupbuttonstyle">
+                                            <a class="btn btn-success btn-square" ng-click="SaveDriverForSelectedEnquiry()">
+                                                Save
+                                            </a>
+                                        </div>
+                                        <div class="popupbuttonstyle">
+                                            <a class="btn btn-success btn-square redclosebtn" ng-click="ClosChangeDriverPopup()">
+                                                Close
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </ion-footer-bar>
+                            </ion-modal-view>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-backdrop active" ng-if="NotesModalPopupControl">
+                        <div class="modal-backdrop-bg"></div>
+                        <div class="modal-wrapper">
+                            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:450px !important;z-index: 10000 !important;">
+                                <ion-header-bar class="bar bar-header bar-positive">
+                                    <h1 class="title">{{resData.res_ViewInquiryForCustomer_Note}}</h1>
+                                    <button class="button button-clear button-primary" ng-click="CloseAddNotesModalPopup()"><i class="fa fa-times"></i></button>
+                                </ion-header-bar>
+                                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                                    <div class="list">
+                                        <div class="customlistcontrolview">
+
+                                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                <div class="columnfulldata  margintopdata">
+
+                                                    <div class="labelname" style="width:70px;margin-top:0px;margin-right:10px">
+                                                        {{resData.res_ViewInquiryForCustomer_Note}} :
+                                                    </div>
+                                                    <div class="labelcontrol" style="width: 85%;text-align:justify">
+                                                        {{NoteVariable.NoteText}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;margin-top:5px" ng-hide="RoleId === 4">
+                                                <div class="columnfulldata  margintopdata">
+
+                                                    <div class="labelname" style="width:70px;margin-top:0px;margin-right:10px">
+                                                        {{resData.res_ViewInquiryForCustomer_AddNote}} :
+                                                    </div>
+                                                    <div class="labelcontrol" style="width: 85%;">
+                                                        <textarea type="text" class="form-control form-white" style="width:100%;height:140px" ng-model="NoteVariable.CustomerServiceNoteText"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </ion-content>
+
+                                <ion-footer-bar align-title="left" class="popupfooter">
+
+                                    <div class="popupbtnstyle">
+                                        <div class="popupbuttonstyle" ng-hide="RoleId === 4">
+                                            <a class="btn btn-success btn-square" ng-click="UpdateNote()">
+                                                Update
+                                            </a>
+                                        </div>
+                                        <div class="popupbuttonstyle">
+                                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseAddNotesModalPopup()">
+                                                Close
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </ion-footer-bar>
+                            </ion-modal-view>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script id="templates/reasoncodepopup.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Reason Code</h1>
+                    <button class="button button-clear button-primary" ng-click="ClosReasoncodepopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Please choose reason code :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="ReasonCodeJson.ReasonCode" ng-options="obj.ReasonCodeId as obj.ReasonName for obj in ReasonCodeList">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+
+                                    <div class="labelname reasonlable">
+                                        Description :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <textarea type="text" class="form-control form-white" rows="4" cols="50" ng-model="ReasonCodeJson.ReasonDescription"></textarea>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveReasonCode()">
+                                Save
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="ClosReasoncodepopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+        <script id="ViewGateKeeper.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalviewDriverDetail bgcolorheaderandfooter">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Driver Details</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseViewGratisOrderControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding">
+                    <div class="row">
+                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                            <div class="" style="float: left;    width: 100%;">
+                                <div class="panel-content">
+                                    <div style="float:left;width:20%">
+
+
+                                        <div class="md-card-content">
+                                            <div class="uk-margin-bottom uk-text-center campusVendorProduct uk-position-relative">
+                                                <div class="user_heading_avatar productImages fileinput fileinput-new" style="float: none" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail" style="margin-left: 14px;">
+                                                        <img class="" data-ng-src="{{UserImage.UserPhoto}}" ng-model="UserImage.UserPhoto" data-err-src="Images/download.jpg">
+                                                    </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div style="float:left;width:60%">
+                                        <div class="fullwidth">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    Driver Name :
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{DriverName}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="fullwidth">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    Mobile Number :
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{MobileNumber}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fullwidth">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    ID Number :
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{UserName}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="fullwidth">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    License Number :
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{LicenseNumber}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseViewGratisOrderControl()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+        <script id="templates/AddNotesForObject.html" type="text/ng-template">
+
+            
+        </script>
+
+
+        <script id="templates/ShowRPMQuantity.html" type="text/ng-template">
+            <ion-modal-view class="CreateInquirySmallModalView CreateInquiryModalView bgcolorheaderandfooter">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">View RPM Collection </h1>
+                    <button class="button button-clear button-primary" ng-click="CloseViewRPMQuantitypopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding">
+                    <div class="list">
+                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                            <div class="table-scrollable">
+                                <div class="col-lg-12">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="srno"> Sr. No. </th>
+                                                <th> Item Code </th>
+                                                <th> Item Name </th>
+                                                <th> UOM </th>
+                                                <th> RPM Quantity </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="product in ViewReturnPakageMaterialListData">
+                                                <td class="srno"> {{$index + 1}} </td>
+                                                <td> {{product.ProductCode}} </td>
+                                                <td> {{product.ItemName}} </td>
+                                                <td> {{product.PrimaryUnitOfMeasure}} </td>
+                                                <td> {{product.ProductQuantity | currency: CurrencyFormatCode}} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </ion-content>
+                <ion-footer-bar align-title="left" class="bar-assertive">
+
+                    <div style="float:left;width:100%">
+                        <div class="buttons rightbtn" ng-click="CloseViewRPMQuantitypopup()">
+                            <button class="button btn btn-default">Close</button>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+    </ion-content>
+</ion-view>

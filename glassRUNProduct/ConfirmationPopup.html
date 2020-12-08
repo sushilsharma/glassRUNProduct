@@ -1,0 +1,26 @@
+﻿<script id="ConfirmationPopuScreen.html" type="text/ng-template">
+    <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+        <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+
+            <h1 class="title">{{PopupVariables.Title}}</h1>
+            <button class="button button-clear button-primary" ng-click="CloseConfirmationPopup()"><i class="fa fa-times"></i></button>
+        </ion-header-bar>
+        <ion-content scroll="false" class="popioncontainer">
+            <div class="messagebody">
+                {{PopupVariables.Message}}
+            </div>
+        </ion-content>
+
+
+        <ion-footer-bar align-title="left" class="bar-assertive">
+            <div class="fullwidthrow">
+                <div class="buttons modalbtn" ng-click="CloseConfirmationPopup()">
+                    <button class="button btn btn-default">{{PopupVariables.Okbtn}}</button>
+                </div>
+
+            </div>
+        </ion-footer-bar>
+
+    </ion-modal-view>
+</script>

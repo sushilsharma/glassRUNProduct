@@ -1,0 +1,265 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div class="pageview">
+
+            <div class="gridview fullwithwithoutpadding">
+                <div class="header">
+                    <h2>{{resData.res_InquiryDetailsPage_Enquiry}}<strong>{{resData.res_InquiryDetailsPage_Details}}</strong></h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 15px;">
+
+                        <div id="portalview" class="PortalView">
+                            <div class="panel">
+                                <div class="MultiSelectControlRow">
+                                    <div class="form-group MultiSelectControl">
+                                        <div ng-dropdown-multiselect="" options="ProductList" selected-model="ProductSelectedList" checkboxes="true" extra-settings="MultiSelectDropdownSetting"></div>
+                                    </div>
+                                    <a class="btn btn-success btn-square" ng-click="SearchEnquiryIncludeByProductName()">{{resData.res_OMInquiryPage_Include}}</a>
+                                    <a class="btn btn-success btn-square" ng-click="SearchEnquiryExcludeByProductName()">{{resData.res_OMInquiryPage_Exclude}}</a>
+                                    <a class="btn btn-success btn-square" ng-click="ClearProductSearch()">{{resData.res_OMInquiryPage_Clear}}</a>
+                                    <a class="btn btn-success btn-square" ng-click="ExportToExcel()">Export To Excel</a>
+                                </div>
+                                <div class="panel-content">
+                                    <div id="InquiryDetailsGrid" kendo-grid="Grid" k-options="InquiryDetailsGrid" k-rebind="InquiryDetailsGrid"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <script id="templates/AddFeedback.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryMeadiumModalView CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Add Feedback</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseAddFeedbackpopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list" style="float:left;width:100%;border:1px solid #d5d5d5;border-bottom:none;margin-bottom:0px">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Inquiry Number :
+                                        </div>
+                                        <div class="labelcontrol" style="margin-top: 6px;">
+                                            INQ0007
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+
+                                        <button type="button" class="btn  btn-square" ng-class="{'btn-success' : FeedbackVariable.OverAll === true, 'btn-default' : FeedbackVariable.OverAll === false}" ng-click="setoverall()">Overall Feedback</button>
+
+                                        <button type="button" class="btn btn-default btn-square" ng-class="{'btn-success' : FeedbackVariable.Specific === true, 'btn-default' : FeedbackVariable.Specific === false}" ng-click="setspecific()">Specific Item</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Item :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Affligem Double 300x24B Ctn</option>
+                                                <option value="Tiger 330x24B Crt Unc">Tiger 330x24B Crt Unc</option>
+                                                <option value="Tiger Crystl 330x24B Crt">Tiger Crystl 330x24B Crt</option>
+                                                <option value="Tiger Crystl 330x24C Ctn">Tiger Crystl 330x24C Ctn</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Quantity :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" placeholder="Quantity" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Feedback :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Good, no complain !</option>
+                                                <option value="Tiger 330x24B Crt Unc">Wrong Invoice !</option>
+                                                <option value="Tiger 330x24B Crt Unc">Driver behavior is in appropriate</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Feedback :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Missing beer</option>
+                                                <option value="Tiger 330x24B Crt Unc">Damage</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Attachment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                <div class="form-control" data-trigger="fileinput">
+                                                    <i class="glyphicon glyphicon-file fileinput-exists"></i><span class="fileinput-filename"></span>
+                                                </div>
+                                                <span class="input-group-addon btn btn-default btn-file">
+                                                    <span class="fileinput-new">Choose...</span><span class="fileinput-exists">Change</span>
+                                                    <input type="file" name="...">
+                                                </span>
+                                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Comment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div style="float:left;width:100%;border:1px solid #d5d5d5;">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            HVBL Comment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="CloseAddFeedbackpopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="CloseAddFeedbackpopup()">
+                                <button class="button btn btn-default">Reset</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+
+            <script id="templates/AddNotesForObject.html" type="text/ng-template">
+                <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">{{resData.res_ViewInquiryForCustomer_Note}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseAddNotesModalPopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                        <div class="list">
+                            <div class="customlistcontrolview">
+
+                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+
+                                        <div class="labelname" style="width:70px">
+                                            {{resData.res_ViewInquiryForCustomer_Note}} :
+                                        </div>
+                                        <div class="labelcontrol" style="width: 85%;text-align:justify">
+                                            <div class="labelcontrol" style="width: 85%;">
+                                                <textarea type="text" ng-readonly="{{EnquiryCurrentState === '2'}}" class="form-control form-white" style="width:100%;height:140px" ng-model="NoteVariable.NoteText"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ion-content>
+
+                    <ion-footer-bar align-title="left" class="popupfooter">
+
+                        <div class="popupbtnstyle">
+                            <div class="popupbuttonstyle" ng-hide="EnquiryCurrentState === '2'">
+                                <a class="btn btn-success btn-square" ng-click="UpdateNote()">
+                                    Update
+                                </a>
+                            </div>
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square redclosebtn" ng-click="CloseAddNotesModalPopup()">
+                                    Close
+                                </a>
+                            </div>
+                        </div>
+
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        .mandatory {
+            border: 2px solid #F00;
+        }
+
+        .redexclamation {
+            color: #ee5354 !important;
+        }
+
+        .fa-check-circle {
+            color: #9cd159;
+            float: left;
+            font-size: 15px;
+            /*margin-left: 3%;*/
+            margin-top: 5%;
+        }
+
+        .questionicons {
+            color: #999 !important;
+            float: left !important;
+            font-size: 25px !important;
+            margin-right: 14% !important;
+            margin-top: 0% !important;
+        }
+
+        .questioniconscross {
+            font-size: 25px !important;
+            color: #999 !important;
+        }
+
+        .greencolor {
+            color: #9cd159 !important;
+            /*font-size: 25px !important;*/
+        }
+
+        .redcolor {
+            color: #ee5354 !important;
+            font-size: 25px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="PageTopContainer">
+        <div class="titlebar">
+            <div id="bottom_section">
+                <div class="uk-container uk-container-center">
+
+                    <h3 class="heading_b uk-margin-bottom">Resources</h3>
+                </div>
+            </div>
+        </div>
+        <div class="uk-container uk-container-center">
+            <div class="uk-width-large-10-10 uk-row-first uk-grid-margin">
+
+                <div class="headerAddButtons">
+                    <div id="AddButton" class="md-fab-wrapper md-fab-wrapperAdd">
+                        <a class="md-fab md-fab-accent md-fab-small md-fab-wave-light" ng-click="ResourcesAddForm()">
+                            <i class="material-icons"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="form">
+                    <!--<form novalidate>
+                        <table>
+                            <tr>
+                                <td>Firstname</td>
+                                <td><input type="text" id="Firstname" ng-model="Person.Firstname" /></td>
+                            </tr>
+                            <tr>
+                                <td>Firstname2</td>
+                                <td><input type="text" id="Firstname2" ng-model="Person.Firstname2" /></td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td><input type="text" id="Name" ng-model="Person.Name" /></td>
+                            </tr>
+                            <tr>
+                                <td>Age</td>
+                                <td><input type="text" id="Age" ng-model="Person.Age" /></td>
+                            </tr>
+                        </table>
+                        <button ng-click="Save(1)">Save - Context 1</button>
+                        <button ng-click="Save(2)">Save - Context 2</button>
+                    </form>-->
+                    <!--<form name="registrationForm" ng-submit="submitForm(registrationForm)" novalidate>-->
+                    <div class="md-card-content large-padding md-card  padding15px">
+
+                        <div class="uk-grid  large-padding" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2" id="divinputCultureId">
+                                <div class="parsley-row">
+                                    <label for="CultureId">{{resData.inputCultureId}}</label>
+                                    <input id="inputCultureId" type="text" ng-model="CultureId" name="CultureId" md-input="" class="md-input" />
+                                    <!--<i id="cultureId" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>-->
+                                    <!--<span ng-show="registrationForm.CultureId.$dirty && registrationForm.CultureId.$error.required">
+                                        Required.
+                                    </span>-->
+                                </div>
+                                <!--<div ng-show="loginForm.$submitted || loginForm.Input1.$touched">
+                                    <div ng-show="loginForm.Input1.$error.required">Tell us your name.</div>
+                                </div>-->
+                                <!--<i id="cultureId" ng-class="{'fa fa-exclamation-circle fa-6 requiredField':isMandotory,'':!isMandotory}"style="color: gray"></i>-->
+                            </div>
+                            <div class="uk-width-medium-1-2" id="divinputResourceType">
+                                <div class="parsley-row">
+                                    <label for="ResourceType">{{resData.inputResourceType}}</label>
+                                    <input id="inputResourceType" type="text" ng-model="ResourceType" name="Input" md-input="" class="md-input" />
+                                </div>
+                                <!--<i id="inputResourceType" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>-->
+                            </div>
+                        </div>
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2" id="divinputResourceKey">
+                                <div class="parsley-row">
+                                    <label for="ResourceKey">{{resData.inputResourceKey}}</label>
+                                    <input id="inputResourceKey" type="text" ng-model="ResourceKey" name="Input" md-input="" class="md-input" />
+                                </div>
+                                <!--<i id="inputResourceKey" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>-->
+                            </div>
+                            <div class="uk-width-medium-1-2" id="divinputResourceValue">
+                                <div class="parsley-row">
+                                    <label for="ResourceValue">{{resData.inputResourceValue}}</label>
+                                    <input id="inputResourceValue" type="text" ng-model="ResourceValue" name="Input" md-input="" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<button type="submit" value="Submit" class="md-fab md-fab-accent md-fab-small md-fab-wave-light">
+                        <i class="material-icons">&#xE161;</i>
+                        </button>-->
+
+                        <div id="SaveDetail" class="md-fab-wrapper left-md-Add-button">
+                            <button class="md-fab md-fab-accent md-fab-small md-fab-wave-light" id="resources_edit_submit" ng-click="Resourcessave()">
+                                <i class="material-icons">&#xE161;</i>
+                            </button>
+                        </div>
+
+                        <div ng-show="IsShowBackButton" class="md-fab-wrapper left-md-Refresh-button">
+                            <a class="md-fab md-fab-accent md-fab-small md-fab-wave-light" id="backbutton" ng-click="back()">
+                                <i class="fa fa-chevron-circle-left"></i>
+                            </a>
+                        </div>
+
+                        <div ng-show="IsShowButton" class="md-fab-wrapper left-md-back-button">
+                            <a class="md-fab md-fab-accent md-fab-small md-fab-wave-light" id="refresh" ng-click="reset()">
+                                <i class="uk-icon-refresh"></i>
+                            </a>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <!--</form>-->
+                </div>
+
+
+
+
+
+                <div id="grid" class="md-card uk-margin-medium-bottom">
+                    <div class="md-card-content">
+                        <div class="uk-overflow-container">
+                            <div kendo-grid="mainGrid" k-options="ResourcesmainGridOptions" k-rebind="ResourcesmainGridOptions"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="Scripts/jquery-ui.js"></script>
+
+
+</body>
+</html>
+
+
+
+
+<!--<ul class="nav nav-tabs">
+    <li id="Viewform"><a onclick="ShowGrid()" data-toggle="tab" id="lnkViewAll">View All</a></li>
+    <li id="Addform" class="active"><a onclick="ShowForm()" data-toggle="tab" id="lnkAddNew">Add New</a></li>
+</ul>
+<div class="row-fluid">
+    <div class="uk-tab uk-tab-flip">
+        <div class="md-card">
+            <div class="md-card-content">
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="formTab">
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="CultureId "> CultureId  </label>
+                                    <input id="inputCultureId" type="text" ng-model="CultureId" name="Input" ng-change="validatefield('CultureId','txt')" class="md-input" />
+                                </div>
+                                <i id="inputCultureId" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ResourceType "> ResourceType  </label>
+                                    <input id="inputResourceType" type="text" ng-model="ResourceType" name="Input" ng-change="validatefield('ResourceType','txt')" class="md-input" />
+                                </div>
+                                <i id="inputResourceType" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                            </div>
+                        </div>
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ResourceKey "> ResourceKey  </label>
+                                    <input id="inputResourceKey" type="text" ng-model="ResourceKey" name="Input" ng-change="validatefield('ResourceKey','txt')" class="md-input" />
+                                </div>
+                                <i id="inputResourceKey" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ResourceValue "> ResourceValue  </label>
+                                    <input id="inputResourceValue" type="text" ng-model="ResourceValue" name="Input" ng-change="validatefield('ResourceValue','txt')" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid">
+                            <div class="uk-width-large-1-4 uk-width-medium-1-2">
+                                <div class="uk-input-group">
+                                    <input id="buttonSave" ng-click="Resourcessave()" type="button" class="md-btn md-btn-danger" value="Save" />
+                                    <input id="buttonBack" ng-click="reset()" type="button" class="md-btn" value="Reset" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="gridTab">
+
+                        <h2>{{ title }}</h2>
+                        <div>
+                            <br />
+                            <button ng-click="setPageSize()">Set page size</button>
+                            <br />
+                            <br />
+                            <div kendo-grid="mainGrid" k-options="ResourcesmainGridOptions" k-rebind="ResourcesmainGridOptions"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div kendo-window="modal" k-title="'Title'" k-visible="false" k-modal="true">
+                    Are you sure you want to delete: {{ RoleName }}
+                    <button ng-click="deleteRole(roleMasterId)">OK</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>-->

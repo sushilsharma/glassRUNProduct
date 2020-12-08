@@ -1,0 +1,76 @@
+﻿<div class="row fixheaderbox" style="margin:auto !important">
+
+    <div class="fixheaderbackground">
+        <div class="col-md-6 col-sm-2 halfbox nopaddingleft">
+            <div class="widget widget-stats purple-bg">
+
+                <div class="col-lg-6">
+                    <div class="stats-title textalingcenter paddingfordetails">{{resData.res_UpdateOrder_TotalCreditLimit}}</div>
+                    <div class="stats-number textalingcenter paddingfordetails">
+                        <span class="bigcurrencyimg">
+                            ₫
+                        </span>{{CreditLimit  === null ? "0" : CreditLimit  | currency: CurrencyFormatCode}}
+                    </div>
+                </div>
+                <div class="sepratorline">
+                    &nbsp;
+                </div>
+                <div class="stats-desc paddingfordetails col-lg-6">
+                    <div class="stats-title textalingcenter">{{resData.res_UpdateOrder_AvailableCredit}}</div>
+                    <div class="stats-number textalingcenter">
+                        <span class="bigcurrencyimg">
+                            ₫
+                        </span>
+                        {{AvailableCreditLimit  === null ? "0" : AvailableCreditLimit-totalorderamount | currency: CurrencyFormatCode}}
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-2 halfbox secondbox nopaddingright">
+            <div class="widget widget-stats" style="min-height:55px;" ng-class="{'red-bg' : EmptiesLimitValidationColorCode === true, 'red-bgForEmpties' : EmptiesLimitValidationColorCode === false}">
+
+
+                <div class="col-lg-12">
+                    <div ng-show="EmptiesLimitValidationColorCode" style="text-transform: none !important;" class="stats-title textalingcenter paddingfordetails">
+                        <!--You can order for {{ActualEmpties.toString().replace("-", "") | currency: CurrencyFormatCode}} more empties before you exhaust your empties limit.-->
+
+                        <span ng-bind="LoadEmptiesMessage(resData.res_UpdateOrder_EmptiesLimit, (ActualEmpties.toString().replace('-', '') | currency: 'EUR'))">
+                        </span>
+                    </div>
+                    <div ng-hide="EmptiesLimitValidationColorCode" style="text-transform: none !important;" class="stats-title textalingcenter paddingfordetails">
+                        <!--You have {{ActualEmpties.toString().replace("-", "") | currency: CurrencyFormatCode}} empties overdue for returns. Please arrange to return the empties or deposit ( ₫ {{(ActualEmpties * EmptiesAmount).toString().replace("-", "") | currency: CurrencyFormatCode}} ) to ensure your order gets processed.-->
+
+                        <span ng-bind="LoadEmptiesMessage(resData.res_UpdateOrder_EmptiesOverdue, (ActualEmpties.toString().replace('-', '') | currency: 'EUR'),((ActualEmpties * EmptiesAmount).toString().replace('-', '') | currency: 'EUR'))">
+                        </span>
+                    </div>
+                </div>
+
+
+
+
+
+                <!--<div class="col-lg-6">
+                    <div class="stats-title textalingcenter paddingfordetails">{{resData.res_UpdateOrder_EmptiesLimit}}</div>
+                    <div class="stats-number textalingcenter paddingfordetails">{{resData.res_UpdateOrder_500}}</div>
+                </div>
+                <div class="sepratorline">
+                    &nbsp;
+                </div>
+                <div class="stats-desc paddingfordetails col-lg-6">
+                    <div class="stats-title textalingcenter">{{resData.res_UpdateOrder_ActualEmpties}}</div>
+                    <div class="stats-number textalingcenter">{{resData.res_UpdateOrder_10}}</div>
+                </div>
+
+                <div class="stats-progress progress" style="margin: auto !important;    width: 100%;    padding: 0px !important;">
+                    <div style="width: 100%;" class="progress-bar"></div>
+                </div>-->
+
+            </div>
+        </div>
+
+    </div>
+</div>

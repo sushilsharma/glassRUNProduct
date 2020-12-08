@@ -1,0 +1,173 @@
+﻿<ion-view id="SOListControllerHtml" class="solistviewpage" view-title="Sales Orders">
+    <ion-content has-bouncing="false" style="overflow-y: hidden;">
+        <!-- Add Resources on Page Added by Vinod Yadav 20192019 -->
+
+        <div class="pageview" style="overflow:hidden">
+
+
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+                    <link href="Styles/OnlineShopUI.css" rel="stylesheet">
+
+                    <!--<th-spinner theme="'spinner-section'" display="throbber" size="'size-md'"></th-spinner>-->
+
+                    <style type="text/css">
+                        ion-nav-bar {
+                            display: none
+                        }
+
+                        .has-header {
+                            top: 0px;
+                        }
+
+                        .productinfosectionview {
+                            height: 83vh;
+                            position: relative
+                        }
+                    </style>
+
+
+                    <div id="ItemProductCatalogue" style="width: 30%; margin: auto;margin-top: 18px;" class="ProductCatalogue ngIncludeItem ShowProductInfo">
+                        <div class="ProductCatalogueInnerView">
+                            <div class="ProductCatalogueHeader">
+                                <div class="HeaderBackButton" ng-click="BackScreenView()">
+                                    <i class="fa fa-angle-left"></i>
+                                </div>
+                                <div class="HeaderTitle">
+                                    <div class="HeaderTitleName">
+                                        {{searchTittle}}
+                                    </div>
+                                    <div class="HeaderTitleRemark">
+
+                                    </div>
+
+                                </div>
+                                <div class="HeaderShoppingCart" style="float:right" ng-click="NextScreenView()">
+                                    <!--<i class="fa fa-shopping-cart">
+
+                                    </i>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="CreateInquiryMainSection">
+
+                            <div class="ProductInformationSection" ng-if="SearchCriteria === 'PlateNumber'">
+                                <div class="ItemSearchControl">
+                                    <input id="txtPlateNumber" ng-change="changePlateNumber()" ng-model="SoListSearchValue.PlateNumberSearch" placeholder="Search" ng-model-options="{ debounce: 700 }" style="border: 2px solid #d5d5d5 !important;">
+                                    <span class="productsearchicon" style="top: 65px !important;">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+
+                                <div set-heightcustomcontainer="" class="productinfosectionview" style="overflow-y:auto;margin-top: 0px;">
+
+
+                                    <div class="ShipTOInfoList ngIncludeItem">
+                                        <div class="ShipToSection">
+                                            <div class="full_width_view" ng-class="completedso" ng-repeat="bindTransporterVehicle in TransporterVehicleList | filter : { TransporterVehicleRegistrationNumber: SoListSearchValue.PlateNumberSearch } | limitTo:10 track by $index" ng-click="GetPlateNumber(bindTransporterVehicle.TransporterVehicleRegistrationNumber,bindTransporterVehicle.PlateNumber)" style="margin-bottom: 10px;margin-right: 4%;">
+                                                <div class="trucksizecontainer">
+
+                                                    <div class="TruckSizeDetailInofrmation" style="width:100%;text-align:center">
+                                                        <div class="ShiptoNameSectionView no_padding_space no_margin_top">
+                                                            <div class="ShipToNameAtBottom green_color_text font_weight_normal truckinfospace">
+                                                                <span>
+                                                                    {{bindTransporterVehicle.TransporterVehicleRegistrationNumber}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="ProductInformationSection" ng-if="SearchCriteria === 'Driver'">
+                                <div class="ItemSearchControl">
+                                    <input id="txtDriver" ng-model="SoListSearchValue.DriverSearch" ng-change="changeDriver()" ng-model-options="{ debounce: 700 }" placeholder="Search" style="border: 2px solid #d5d5d5 !important;">
+                                    <span class="productsearchicon">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+
+                                <div set-heightcustomcontainer="" class="productinfosectionview" style="overflow-y:auto;margin-top: 0px;">
+
+
+                                    <div class="ShipTOInfoList ngIncludeItem">
+                                        <div class="ShipToSection">
+                                            <div class="full_width_view" ng-class="completedso" ng-repeat="bindDriver in DriverList | filter : { Name: SoListSearchValue.DriverSearch } | limitTo:10 track by $index" ng-click="GetDriver(bindDriver.DeliveryPersonnelId)" style="margin-bottom: 10px;margin-right: 4%;">
+                                                <div class="trucksizecontainer">
+
+                                                    <div class="TruckSizeDetailInofrmation" style="width:100%;text-align:center">
+                                                        <div class="ShiptoNameSectionView no_padding_space no_margin_top">
+                                                            <div class="ShipToNameAtBottom green_color_text font_weight_normal truckinfospace">
+                                                                <span>
+                                                                    {{bindDriver.Name}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="ProductInformationSection" ng-if="SearchCriteria === 'Carrier'">
+                                <div class="ItemSearchControl">
+                                    <input id="txtCarrier" ng-model="SoListSearchValue.CarrierSearch" placeholder="Search" style="border: 2px solid #d5d5d5 !important;">
+                                    <span class="productsearchicon">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+
+                                <div set-heightcustomcontainer="" class="productinfosectionview" style="overflow-y:auto;margin-top: 0px;">
+
+
+                                    <div class="ShipTOInfoList ngIncludeItem">
+                                        <div class="ShipToSection">
+                                            <div class="full_width_view" ng-class="completedso" ng-repeat="bindCarrier in TransporterList | filter : { Name: SoListSearchValue.CarrierSearch } | limitTo:10 track by $index" ng-click="GetCarrier(bindCarrier.CompanyId)" style="margin-bottom: 10px;margin-right: 4%;">
+                                                <div class="trucksizecontainer">
+
+                                                    <div class="TruckSizeDetailInofrmation" style="width:100%;text-align:center">
+                                                        <div class="ShiptoNameSectionView no_padding_space no_margin_top">
+                                                            <div class="ShipToNameAtBottom green_color_text font_weight_normal truckinfospace">
+                                                                <span>
+                                                                    {{bindCarrier.Name}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-view>
+
+
+

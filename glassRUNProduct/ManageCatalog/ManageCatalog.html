@@ -1,0 +1,398 @@
+﻿<ion-view>
+    <ion-content class="main-content" style="overflow-y:hidden">
+        <link href="ManageCustomer/style/style.css" rel="stylesheet" />
+        <style>
+            .treeSelection {
+                background-color: green;
+                color: #fff;
+            }
+
+            .highlighted {
+                background: yellow;
+                position: relative;
+                top: -3px;
+            }
+
+            .ob-right {
+                text-align: left;
+            }
+
+            .heading_searched_product {
+                font-weight: bold;
+                padding-left: 12px;
+                margin: 10px 0px 15px 0px;
+            }
+        </style>
+        <div class="pageview" style="margin-bottom: 60px;height:calc(100% - 50px)">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="col-md-12 rulesjs" style="min-height: 979px;">
+                        <div class="fullwidth">
+                            <div class="left_side_tab_icon left_filterdata_section" style="margin-top: 0px;">
+                                <div class="filter_section_ui">
+
+                                    <div class="actual_data_popup complex_actual_data_popup" ng-repeat="filter in FilterParameters track by $index">
+                                        <div class="heading_row_list_popup">
+                                            <div class="heading_sorting_section_data">
+                                                <div class="heading_data_label_popup">
+                                                    {{filter.FilterDescription}}
+                                                </div>
+                                                <div class="data_selection_popup">
+                                                    <i class="fa fa-caret-up"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data_row_list_popup" ng-repeat="childfilter in filter.ChildFilterList track by $index" ng-click="ChildSelectFilter(filter,childfilter)">
+                                            <div class="sorting_section_data">
+                                                <div class="data_label_popup">
+                                                    {{childfilter.FilterDescription}}
+                                                </div>
+                                                <div class="data_selection_popup" ng-if="childfilter.Selected==true">
+                                                    <img src="../Images/Asset 238.png" />
+                                                </div>
+                                                <div class="data_selection_popup" ng-if="childfilter.Selected==false || childfilter.Selected==undefined">
+                                                    <img src="../Images/Asset 237.png" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div id="ManageCustomer_Container" class="uk-width-large-10-10 uk-row-first uk-grid-margin">
+                        <div class="profile_details_scrollable_div no_bottom_buttons">
+                            <div class="nopaddingindesktop full_screen_width">
+
+
+                                <div class="filter_main_section_div filtersection">
+
+                                    <div class="sorting_section_div" ng-click="SortItemName()">
+                                        <div class="filter_icon_section">
+                                            <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="sorting_text_section" ng-if="IsSortByAsc === false">
+                                            {{resData.res_ManageCatalog_SortByAsending}}
+                                        </div>
+                                        <div class="sorting_text_section" ng-if="IsSortByAsc === true">
+                                            {{resData.res_ManageCatalog_SortByDescending}}
+                                        </div>
+                                    </div>
+                                    <div class="search_control_section">
+                                        <div class="searchbar_control" ng-if="pageContrlAcessData.SerchCustomerList !='0'">
+                                            <input class="app_text_white_bgcolor" type="text" placeholder="{{resData.res_ManageCustomer_SearchItemName}}" ng-keypress='SearchList()' ng-keydown='SearchList()' ng-keyup='SearchList()' ng-model="SearchValue.search">
+                                            <div class="productsearchicon_order" ng-if="SearchValue.search.length==0 || SearchValue.search.length==undefined">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="productsearchicon_order" ng-if="SearchValue.search.length > 0" ng-click="ClearSearch()">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="total_count_text_rightside">
+                                        <div class="total_count app_text_dark_color">
+                                            {{resData.res_ManageCustomer_TotalCount}}
+                                            <span class="app_text_whitebg_normal_color" ng-if="TotalFilteredItemCount > 0">{{TotalFilteredItemCount}} / </span> {{TotalItemCount}}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div ng-if="true" class="fullwidthcontainer setup_screen_paddingbottom_10_space" style="margin-top: 15px;">
+                                    <div class="customerlistheader_div">
+                                        <div class="fullwidthcontainer manage_catalogue_container">
+                                            <div class="customerlistheader_div viewcatalogue_item_ui managecatalogue_item_ui" ng-if="IsShowSellerCatalogSections === true">
+                                                <div class="heading_searched_product heading_manage_catalog_section">
+                                                    {{resData.res_ManageCatalog_NewlyAdded}}
+                                                </div>
+
+                                                <div class="product_catalog_container_card" ng-repeat="bindItem in SellerProductCatalogList | filter: { IsNewlyAdded : true }" ng-class="{'deactivate_item' : bindItem.IsActive === false}">
+                                                    <div class="product_catalog_card_ui app_text_white_bgcolor">
+
+                                                        <div class="card_left_text">
+                                                            <div class="OrderFlow_product_image_thumbnail" ng-class="{'product_image_hidden_adjust_ui' : pageContrlAcessData.CatalogProductImage === '0'}">
+                                                                <div class="orderflow_product_image product_image_without_badge">
+                                                                    <img ng-if="bindItem.ImageUrl != null && bindItem.ImageUrl != ''" src="{{bindItem.ImageUrl}}">
+                                                                    <img ng-if="bindItem.ImageUrl == null " src="img/CustomerAppIcons/heineken2.jpg">
+                                                                </div>
+                                                            </div>
+                                                            <div class="OrderFlow_createinquiry_productcard_ui manage_catalog_product_info">
+                                                                <div class="product_name_text_ui app_text_dark_color">
+                                                                    {{bindItem.ItemName}}
+                                                                </div>
+                                                                <div class="manage_catalog_catagory_name newlyadded_green_color">
+                                                                    ({{resData.res_ManageCatalog_NewlyAdded}})
+                                                                </div>
+                                                                <div class="product_price_ui">
+                                                                    <div class="selling_price_label">
+                                                                        {{resData.res_ManageCatalog_SellingPrice}}:
+                                                                    </div>
+                                                                    <div class="price_number product_price_style_ui app_text_dark_color">
+                                                                        {{bindItem.Price | currency: CurrencyFormatCode: DecimalValue}} <span class="current_code_icon">{{CurrencyCode}}</span>
+                                                                    </div>
+                                                                    <div class="price_uom app_text_dark_color"> / {{bindItem.UOM}} </div>
+                                                                </div>
+
+                                                                <div class="Quick_Action_Button">
+                                                                    <div class="call_quick_action_bar" ng-click="ShowQuickActionPopOver(bindItem); $event.stopPropagation();">
+                                                                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                                    </div>
+                                                                    <div class="quick_action_card" ng-if="bindItem.ShowQuickAction === true">
+                                                                        <div class="quick_action_card_row" ng-click="ManageItemPrice(bindItem); $event.stopPropagation();">
+                                                                            <div class="quick_action_icon_ui">
+                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                            </div>
+                                                                            <div class="quick_action_text_ui">
+                                                                                {{resData.res_ManageCatalog_ManagePricing}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="quick_action_card_row" ng-click="DeactiveAndActiveItem(bindItem); $event.stopPropagation();">
+                                                                            <div class="quick_action_icon_ui">
+                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                            </div>
+                                                                            <div class="quick_action_text_ui" ng-if="bindItem.IsActive === true">
+                                                                                {{resData.res_ManageCatalog_DeActivate}}
+                                                                            </div>
+                                                                            <div class="quick_action_text_ui" ng-if="bindItem.IsActive === false">
+                                                                                {{resData.res_ManageCatalog_Activate}}
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="Product_Variations">
+                                                            <div class="product_variations_modification">
+                                                                <div class="pricing_variation_count">
+                                                                    {{bindItem.NumberOfVariations}} {{resData.res_ManageCatalog_PricingVariations}}
+                                                                </div>
+                                                                <div class="pricing_modified_data">
+                                                                    {{resData.res_ManageCatalog_Modified}}: {{bindItem.ModifiedDate | date:'dd/MM/yyyy'}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="No_record_found_card" ng-if="NoRecordFound(1)">
+                                                    {{resData.res_ManageCatalog_NoRecordFound}}
+                                                </div>
+
+
+                                                <div class="heading_searched_product heading_manage_catalog_section">
+                                                    {{resData.res_ManageCatalog_Last3Month}}
+                                                </div>
+
+                                                <div class="product_catalog_container_card" ng-repeat="bindItem in SellerProductCatalogList | filter: { InLastThreeMonth : true }" ng-class="{'deactivate_item' : bindItem.IsActive === false}">
+                                                    <div class="product_catalog_card_ui app_text_white_bgcolor">
+
+                                                        <div class="card_left_text">
+                                                            <div class="OrderFlow_product_image_thumbnail" ng-class="{'product_image_hidden_adjust_ui' : pageContrlAcessData.CatalogProductImage === '0'}">
+                                                                <div class="orderflow_product_image product_image_without_badge">
+                                                                    <img ng-if="bindItem.ImageUrl != null && bindItem.ImageUrl != ''" src="{{bindItem.ImageUrl}}">
+                                                                    <img ng-if="bindItem.ImageUrl == null " src="img/CustomerAppIcons/heineken2.jpg">
+                                                                </div>
+                                                            </div>
+                                                            <div class="OrderFlow_createinquiry_productcard_ui manage_catalog_product_info">
+                                                                <div class="product_name_text_ui app_text_dark_color">
+                                                                    {{bindItem.ItemName}}
+                                                                </div>
+                                                                <div class="manage_catalog_catagory_name">
+                                                                    ({{resData.res_ManageCatalog_Last3Month}})
+                                                                </div>
+                                                                <div class="product_price_ui">
+                                                                    <div class="selling_price_label">
+                                                                        {{resData.res_ManageCatalog_SellingPrice}}:
+                                                                    </div>
+                                                                    <div class="price_number product_price_style_ui app_text_dark_color">
+                                                                        {{bindItem.Price | currency: CurrencyFormatCode: DecimalValue}} <span class="current_code_icon">{{CurrencyCode}}</span>
+                                                                    </div>
+                                                                    <div class="price_uom app_text_dark_color"> / {{bindItem.UOM}} </div>
+                                                                </div>
+
+                                                                <div class="Quick_Action_Button">
+                                                                    <div class="call_quick_action_bar" ng-click="ShowQuickActionPopOver(bindItem); $event.stopPropagation();">
+                                                                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                                    </div>
+                                                                    <div class="quick_action_card" ng-if="bindItem.ShowQuickAction === true">
+                                                                        <div class="quick_action_card_row" ng-click="ManageItemPrice(bindItem); $event.stopPropagation();">
+                                                                            <div class="quick_action_icon_ui">
+                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                            </div>
+                                                                            <div class="quick_action_text_ui">
+                                                                                {{resData.res_ManageCatalog_ManagePricing}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="quick_action_card_row" ng-click="DeactiveAndActiveItem(bindItem); $event.stopPropagation();">
+                                                                            <div class="quick_action_icon_ui">
+                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                            </div>
+                                                                            <div class="quick_action_text_ui" ng-if="bindItem.IsActive === true">
+                                                                                {{resData.res_ManageCatalog_DeActivate}}
+                                                                            </div>
+                                                                            <div class="quick_action_text_ui" ng-if="bindItem.IsActive === false">
+                                                                                {{resData.res_ManageCatalog_Activate}}
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="Product_Variations">
+                                                            <div class="product_variations_modification">
+                                                                <div class="pricing_variation_count">
+                                                                    {{bindItem.NumberOfVariations}} {{resData.res_ManageCatalog_PricingVariations}}
+                                                                </div>
+                                                                <div class="pricing_modified_data">
+                                                                    {{resData.res_ManageCatalog_Modified}}: {{bindItem.ModifiedDate | date:'dd/MM/yyyy'}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="No_record_found_card" ng-if="NoRecordFound(2)">
+                                                    {{resData.res_ManageCatalog_NoRecordFound}}
+                                                </div>
+
+                                                <div class="heading_searched_product heading_manage_catalog_section">
+                                                    {{resData.res_ManageCatalog_Before3Month}}
+                                                </div>
+
+                                                <div class="product_catalog_container_card" ng-repeat="bindItem in SellerProductCatalogList | filter: { InBeforeThreeMonth : true }" ng-class="{'deactivate_item' : bindItem.IsActive === false}">
+                                                    <div class="product_catalog_card_ui app_text_white_bgcolor">
+
+                                                        <div class="card_left_text">
+                                                            <div class="OrderFlow_product_image_thumbnail" ng-class="{'product_image_hidden_adjust_ui' : pageContrlAcessData.CatalogProductImage === '0'}">
+                                                                <div class="orderflow_product_image product_image_without_badge">
+                                                                    <img ng-if="bindItem.ImageUrl != null && bindItem.ImageUrl != ''" src="{{bindItem.ImageUrl}}">
+                                                                    <img ng-if="bindItem.ImageUrl == null " src="img/CustomerAppIcons/heineken2.jpg">
+                                                                </div>
+                                                            </div>
+                                                            <div class="OrderFlow_createinquiry_productcard_ui manage_catalog_product_info">
+                                                                <div class="product_name_text_ui app_text_dark_color">
+                                                                    {{bindItem.ItemName}}
+                                                                </div>
+                                                                <div class="manage_catalog_catagory_name">
+                                                                    ({{resData.res_ManageCatalog_Before3Month}})
+                                                                </div>
+                                                                <div class="product_price_ui">
+                                                                    <div class="selling_price_label">
+                                                                        {{resData.res_ManageCatalog_SellingPrice}}:
+                                                                    </div>
+                                                                    <div class="price_number product_price_style_ui app_text_dark_color">
+                                                                        {{bindItem.Price | currency: CurrencyFormatCode: DecimalValue}} <span class="current_code_icon">{{CurrencyCode}}</span>
+                                                                    </div>
+                                                                    <div class="price_uom app_text_dark_color"> / {{bindItem.UOM}} </div>
+                                                                </div>
+
+                                                                <div class="Quick_Action_Button">
+                                                                    <div class="call_quick_action_bar" ng-click="ShowQuickActionPopOver(bindItem); $event.stopPropagation();">
+                                                                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                                    </div>
+                                                                    <div class="quick_action_card" ng-if="bindItem.ShowQuickAction === true">
+                                                                        <div class="quick_action_card_row" ng-click="ManageItemPrice(bindItem); $event.stopPropagation();">
+                                                                            <div class="quick_action_icon_ui">
+                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                            </div>
+                                                                            <div class="quick_action_text_ui">
+                                                                                {{resData.res_ManageCatalog_ManagePricing}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="quick_action_card_row" ng-click="DeactiveAndActiveItem(bindItem); $event.stopPropagation();">
+                                                                            <div class="quick_action_icon_ui">
+                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                            </div>
+                                                                            <div class="quick_action_text_ui" ng-if="bindItem.IsActive === true">
+                                                                                {{resData.res_ManageCatalog_DeActivate}}
+                                                                            </div>
+                                                                            <div class="quick_action_text_ui" ng-if="bindItem.IsActive === false">
+                                                                                {{resData.res_ManageCatalog_Activate}}
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="Product_Variations">
+                                                            <div class="product_variations_modification">
+                                                                <div class="pricing_variation_count">
+                                                                    {{bindItem.NumberOfVariations}} {{resData.res_ManageCatalog_PricingVariations}}
+                                                                </div>
+                                                                <div class="pricing_modified_data">
+                                                                    {{resData.res_ManageCatalog_Modified}}: {{bindItem.ModifiedDate | date:'dd/MM/yyyy'}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="No_record_found_card" ng-if="NoRecordFound(3)">
+                                                    {{resData.res_ManageCatalog_NoRecordFound}}
+                                                </div>
+
+                                            </div>
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+    </ion-content>
+</ion-view>
+<div class="modal-backdrop active" ng-if="ConfirmationMessagePopup">
+    <div class="modal-backdrop-bg"></div>
+    <div class="modal-wrapper">
+        <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:100px !important;width:800px !important;z-index: 10000 !important;">
+            <ion-header-bar class="bar bar-header bar-positive" style="height: 50px;border: 0px;">
+                <div class="exclamation_icon RemovePromotionCarousel" style="padding-top: 5px;">
+                    <img src="../Images/Tick.png" style="height: 30px;" />
+                </div>
+            </ion-header-bar>
+            <ion-content scroll="hidden" class="padding IonicPopupHeight" style="top: 50px !important;min-height: 100px !important;">
+                <div class="message_content bottom_space_30">
+                    {{Alertmsg}}
+                </div>
+            </ion-content>
+
+            <ion-footer-bar align-title="left" class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="message_continue_ok_content">
+                        <a class="popupOKbtn app_button_dark_bgcolor white_button_bg" ng-click="CloseConfirmationMessagePopup()">
+                            <div class="button_text_ui_container" ng-if="true">{{resData.res_OrderReceiveConfirmation_OK}}</div>
+                            <div class="button_icon_ui_container bgbutton_icon_topspace" ng-if="false">
+                                <img class="button_icon_ui " src="../Images/Asset 299.png">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </ion-footer-bar>
+        </ion-modal-view>
+    </div>
+</div>

@@ -1,0 +1,841 @@
+﻿<ion-content class="main-content">
+
+    <div class="pageview" style="padding: 20px 30px 0;">
+        <div class="row">
+            <div class="col-md-12 pagecontainerdiv" style="margin-top:0px">
+                <div class="gridheaderactionbuttons">
+                    <div style="">
+                        <div ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" class="footerbuttons footerbtnrightborder">
+                            <a class="buttonstext drop-shadow bluecolorbtntext" ng-click="goBack()" style="">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+                            </a>
+                        </div>
+                    </div>
+                    <div style="float:right;margin-bottom: 24px;margin-right: 301px;">
+
+                        <div ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" class="footerbuttons footerbtnrightborder">
+                            <a class="buttonstext drop-shadow bluecolorbtntext" ng-click="SaveLorryReceipt()" style="">
+                                <i class="fa fa-check fa-icon" aria-hidden="true"></i> Save Lorry Receipt
+                            </a>
+                        </div>
+
+
+                        <div class="footerbuttons footerbtnrightborder" ng-if="pageContrlAcessData.DownloadLorryReportButton !='0'">
+                            <a class="buttonstext drop-shadow bluecolorbtntext" ng-click="DownloadLorryReceiptReport()" style="">
+                                <i class="fa fa-check fa-icon" aria-hidden="true"></i>Download Lorry  Report
+                            </a>
+                        </div>
+                        <div class="footerbuttons footerbtnrightborder" ng-if="pageContrlAcessData.PrintLorryReportButton !='0'">
+                            <a class="buttonstext drop-shadow bluecolorbtntext" ng-click="PrintLorryReceiptReport()" style="">
+                                <i class="fa fa-check fa-icon" aria-hidden="true"></i>Print Lorry  Report
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="portalview" class="PortalView">
+
+                    <div class="col-md-8 pagecontainerdiv" style="    margin-left: 204px;">
+                        <table cellspacing="0" border="0">
+
+                            <tbody>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" rowspan="3" height="70" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">
+                                            <br><img src="{{ImageUrl}}" width="157" height="66" hspace="52" vspace="3" style="    margin-top: -20px;width:157px!important">
+
+                                        </font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="4" rowspan="3" align="center" valign="middle" bgcolor="#ffffff"><b><font size="3" color="#000000">CONSIGNMENT NOTE</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" colspan="3" rowspan="3" align="center" valign="middle" bgcolor="#ffffff"><b><font color="#000000">Consignor Copy</font></b></td>
+
+                                </tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" height="23" align="left" valign="bottom" bgcolor="#ffffff"><font color="#000000">UCI Logistics Solutions Private Limited</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="left" valign="middle" bgcolor="#ffffff">Consignment Note No.</td>
+                                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="4" align="left" valign="bottom" bgcolor="#ffffff">
+                                        <span ng-if="OrderObject.ConsignmentNoteNo !== null">{{OrderObject.ConsignmentNoteNo}}  </span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" height="23" align="left" valign="bottom" bgcolor="#ffffff"><font color="#000000">CIN: U74999TN2018FTC125850</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="left" valign="middle" bgcolor="#ffffff">Vehicle No.</td>
+                                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="4" align="left" valign="bottom" bgcolor="#ffffff">
+                                        <span ng-if="OrderObject.VehicleNo !== null">{{OrderObject.VehicleNo}}  </span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" rowspan="3" height="70" align="left" valign="top" bgcolor="#ffffff"><font color="#000000">Registered Office:</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" rowspan="3" align="left" valign="top" bgcolor="#ffffff"><font color="#000000">170/2 APMS Gardens, East Coast Road,Injambakkam<br>Chennai 600097</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="left" valign="middle" bgcolor="#ffffff">Type</td>
+                                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="4" align="left" valign="bottom" bgcolor="#ffffff">
+                                        <span ng-if="OrderObject.Type !== null">{{OrderObject.Type}}  </span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="left" valign="middle" bgcolor="#ffffff">Origin</td>
+                                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="4" align="left" valign="bottom" bgcolor="#ffffff">
+
+                                        <span ng-if="OrderObject.Origin !== null">{{OrderObject.Origin}}  </span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="left" valign="middle" bgcolor="#ffffff">Destination</td>
+                                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="4" align="left" valign="bottom" bgcolor="#ffffff">
+
+                                        <span ng-if="OrderObject.Destination !== null">{{OrderObject.Destination}}  </span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td height="23" align="left" valign="top"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="top"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="top"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="top"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="top"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="middle"><br></td>
+                                    <td align="left" valign="middle"><br></td>
+                                    <td align="left" valign="bottom"><br></td>
+                                    <td align="left" valign="bottom"><br></td>
+                                    <td align="left" valign="bottom"><br></td>
+                                    <td align="left" valign="bottom"><br></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="center" valign="middle" bgcolor="#ffffff"><b>Insurance Details</b></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" height="23" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">Goods Insured:</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">Insurance Taken By:</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">Policy No.:</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">Policy Amount:</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'   &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">Remarks:</font>
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'   &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+                                </tr>
+                                <!--<tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" height="24" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">Yes</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">Shipper</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">AAA111/11212</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="2500000" sdnum="16393;0;#,##0"><font color="#000000">25,00,000</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">None</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+                                </tr>-->
+
+                                <tr ng-repeat="OrderInsuranceInfo in OrderInsuranceInformationList">
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" height="24" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">
+                                            <span ng-if="OrderInsuranceInfo.GoodsInsured ==='0'  ||  OrderInsuranceInfo.GoodsInsured ==''  || OrderInsuranceInfo.GoodsInsured ==false">NO</span>
+                                            <span ng-if="OrderInsuranceInfo.GoodsInsured ==='1'  || OrderInsuranceInfo.GoodsInsured ==true">YES</span>
+                                        </font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">{{OrderInsuranceInfo.InsuranceTakenBy}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">{{OrderInsuranceInfo.PolicyNo}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="2500000" sdnum="16393;0;#,##0">
+                                        <font color="#000000">{{OrderInsuranceInfo.PolicyAmount}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">{{OrderInsuranceInfo.Remarks}}</font>
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'   &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000;    width: 12%!important;" colspan="1" align="center" valign="bottom" bgcolor="#ffffff ">
+                                        <a ng-click="EditOrderInsuranceInfo(OrderInsuranceInfo.OrderInsuranceInformationGUID)">
+                                            Edit
+                                        </a>&nbsp;| &nbsp;
+                                        <a ng-click="DeleteOrderInsuranceInfo(OrderInsuranceInfo.OrderInsuranceInformationGUID)">
+                                            Delete
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'">
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" height="24" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">
+
+                                            <input class="form-white ng-valid ng-dirty ng-valid-parse ng-touched ng-empty" type="checkbox" ng-model="OrderInsuranceInformationObject.GoodsInsured" style="">
+                                        </font>
+
+
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000"><input class="form-control form-white" ng-model="OrderInsuranceInformationObject.InsuranceTakenBy" placeholder="Insurance Taken By" /></font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000"> <input class="form-control form-white" ng-model="OrderInsuranceInformationObject.PolicyNo" placeholder="Policy No" /></font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="2500000" sdnum="16393;0;#,##0">
+                                        <font color="#000000"><input class="form-control form-white" ng-model="OrderInsuranceInformationObject.PolicyAmount" placeholder="Policy Amount" valid-Number /></font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000"><input class="form-control form-white" ng-model="OrderInsuranceInformationObject.Remarks" placeholder="Remarks" /></font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <a ng-click="AddOrderInsuranceInfo()">
+                                            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
+                                            <span ng-if="OrderInsuranceInformationObject.EditOrderInsuranceInformationGUID ===''">Add</span>
+                                            <span ng-if="OrderInsuranceInformationObject.EditOrderInsuranceInformationGUID !==''">Update</span>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td height="23" align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="6" height="39" align="center" valign="middle" bgcolor="#ffffff"><b><font color="#000000">Shipper Details</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="6" align="center" valign="middle" bgcolor="#ffffff"><b><font color="#000000">Consignee Details</font></b></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="left" valign="bottom" bgcolor="#ffffff">Name:</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="5" align="left" valign="bottom" bgcolor="#ffffff"><span ng-if="OrderObject.ShipperName !== null">{{OrderObject.ShipperName}}  </span> </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom" bgcolor="#ffffff">Name:</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="left" valign="bottom" bgcolor="#ffffff"><span ng-if="OrderObject.ConsigneeName !== null">{{OrderObject.ConsigneeName}}  </span> </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="left" valign="top" bgcolor="#ffffff">Address:</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="5" align="left" valign="bottom" bgcolor="#ffffff"><span ng-if="OrderObject.ShipperAddress !== null">{{OrderObject.ShipperAddress}}  </span></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="top" bgcolor="#ffffff">Address:</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="left" valign="bottom" bgcolor="#ffffff"><span ng-if="OrderObject.ConsigneeAddress !== null">{{OrderObject.ConsigneeAddress}}  </span></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="left" valign="top" bgcolor="#ffffff">Contact No.:</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="5" align="left" valign="bottom" bgcolor="#ffffff" sdval="9919999919" sdnum="16393;"><span ng-if="OrderObject.ShipperContactNo !== null">{{OrderObject.ShipperContactNo}}  </span></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="top" bgcolor="#ffffff">Contact No.:</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="left" valign="bottom" bgcolor="#ffffff" sdval="9919999919" sdnum="16393;"><span ng-if="OrderObject.ConsigneeContactNo !== null">{{OrderObject.ConsigneeContactNo}}  </span></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="left" valign="top" bgcolor="#ffffff">GST No.:</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="5" align="left" valign="bottom" bgcolor="#ffffff"><span ng-if="OrderObject.ShipperGStNo !== null">{{OrderObject.ShipperGStNo}}  </span></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="top" bgcolor="#ffffff">GST No:</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="left" valign="bottom" bgcolor="#ffffff"><span ng-if="OrderObject.ConsigneeGStNo !== null">{{OrderObject.ConsigneeGStNo}}  </span></td>
+
+                                </tr>
+                                <tr>
+                                    <td height="23" align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="center" valign="middle" bgcolor="#ffffff"><b>Invoice Details</b></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000;    width: 1px;" height="23" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Sr. No.</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Invoice No</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Invoice Date</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Invoice Value</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Declared Value</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <b><font color="#000000">E-Way Bill No</font></b>
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+
+                                </tr>
+                                <!--<tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff" sdval="1" sdnum="16393;"><font color="#000000">1</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">AAA-00001</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="43487" sdnum="16393;0;D MMM YY"><font color="#000000">22 Jan 19</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)"><font color="#000000"> 2,40,00,000 </font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)"><font color="#000000"> 2,40,00,000 </font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">AAA-00001</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+                                </tr>-->
+
+                                <tr ng-repeat="OrderInvoiceInfo in OrderInvoiceInformationList">
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff" sdval="1" sdnum="16393;">
+                                        <font color="#000000">{{$index + 1}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">{{OrderInvoiceInfo.InvoiceNo}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="43487" sdnum="16393;0;D MMM YY">
+                                        <font color="#000000">{{OrderInvoiceInfo.InvoiceDate}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <font color="#000000"> {{OrderInvoiceInfo.InvoiceValue}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <font color="#000000">{{OrderInvoiceInfo.DeclaredValue}} </font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">{{OrderInvoiceInfo.EWayBillNo}}</font>
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000;    width: 12%!important;" colspan="1" align="center" valign="bottom" bgcolor="#ffffff ">
+                                        <a ng-click="EditOrderInvoiceInfo(OrderInvoiceInfo.OrderInvoiceInformationGUID)">
+                                            Edit
+                                        </a>&nbsp;| &nbsp;
+                                        <a ng-click="DeleteOrderInvoiceInfo(OrderInvoiceInfo.OrderInvoiceInformationGUID)">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ">
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff" sdval="1" sdnum="16393;">
+                                        <!--<font color="#000000">{{OrderInvoiceInformationList.length + 1}}</font>-->
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <input class="form-control form-white" ng-model="OrderInvoiceInformationObject.InvoiceNo" placeholder="InvoiceNo" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="43487" sdnum="16393;0;D MMM YY">
+                                        <input class="form-control form-white" ng-model="OrderInvoiceInformationObject.InvoiceDate" placeholder="Invoice Date" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <input class="form-control form-white" ng-model="OrderInvoiceInformationObject.InvoiceValue" placeholder="Invoice Value" valid-Number />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" valid-Number colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <input class="form-control form-white" ng-model="OrderInvoiceInformationObject.DeclaredValue" placeholder="Declared Value" valid-Number />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" valid-Number colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <input class="form-control form-white" ng-model="OrderInvoiceInformationObject.EWayBillNo" placeholder="EWay Bill No" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <a ng-click="AddOrderInvoiceInfo()">
+                                            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
+                                            <span ng-if="OrderInvoiceInformationObject.EditOrderInvoiceInformationGUID ===''">Add</span>
+                                            <span ng-if="OrderInvoiceInformationObject.EditOrderInvoiceInformationGUID !==''">Update</span>
+                                        </a>
+                                    </td>
+                                </tr>
+
+
+
+                                <tr>
+                                    <td height="23" align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="center" valign="middle" bgcolor="#ffffff"><b>Volume Details</b></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Sr. No.</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Dimension</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Package Type</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">No. of Packages</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Size</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Said to Contain</font></b></td>
+                                    <!--<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>-->
+                                </tr>
+                                <!-- <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff" sdval="1" sdnum="16393;"><font color="#000000">1</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">46*32*21 cm</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdnum="16393;0;D MMM YY"><font color="#000000">Cartons</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="23" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)"><font color="#000000"> 23 </font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)"><font color="#000000"> 300Sq m </font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">Biscuits</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+                                </tr>-->
+                                <tr ng-repeat="OrderVolumeInfo in OrderVolumeInformationList">
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff" sdval="1" sdnum="16393;">
+                                        <font color="#000000">{{$index + 1}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">{{OrderVolumeInfo.Dimension}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="43487" sdnum="16393;0;D MMM YY">
+                                        <font color="#000000">{{OrderVolumeInfo.PackageType}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <font color="#000000"> {{OrderVolumeInfo.NoOfPackages}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <font color="#000000">{{OrderVolumeInfo.Size}} </font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">{{OrderVolumeInfo.SaidToContain}}</font>
+                                    </td>
+                                    <!--<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000;    width: 12%!important;" colspan="1" align="center" valign="bottom" bgcolor="#ffffff ">
+                                        <a ng-click="EditOrderVolumeInfo(OrderVolumeInfo.OrderVolumeInformationGUID)">
+                                            Edit
+                                        </a>&nbsp;| &nbsp;
+                                        <a ng-click="DeleteOrderVolumeInfo(OrderVolumeInfo.OrderVolumeInformationGUID)">
+                                            Delete
+                                        </a>
+                                    </td>-->
+                                </tr>
+
+                                <tr ng-if="false">
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff" sdval="1" sdnum="16393;">
+                                        <!--<font color="#000000">{{OrderVolumeInformationList.length + 1}}</font>-->
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <input class="form-control form-white" ng-model="OrderVolumeInformationObject.Dimension" placeholder="Dimension" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="43487" sdnum="16393;0;D MMM YY">
+                                        <input class="form-control form-white" ng-model="OrderVolumeInformationObject.PackageType" placeholder="Package Type" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <input class="form-control form-white" ng-model="OrderVolumeInformationObject.NoOfPackages" placeholder="No Of Packages" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <input class="form-control form-white" ng-model="OrderVolumeInformationObject.Size" placeholder="Size" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <input class="form-control form-white" ng-model="OrderVolumeInformationObject.SaidToContain" placeholder="Said To Contain" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <a ng-click="AddOrderVolumeInfo()">
+
+                                            <span ng-if="OrderVolumeInformationObject.EditOrderVolumeInformationGUID ===''">Add</span>
+                                            <span ng-if="OrderVolumeInformationObject.EditOrderVolumeInformationGUID !==''">Update</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="23" align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="left" valign="bottom"><font color="#000000"><br></font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="center" valign="middle" bgcolor="#ffffff"><b>Freight Details</b></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="70" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Sr. No.</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Particulars</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Charged Basis</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Charged Weight</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><b><font color="#000000">Per Unit Charge</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'   &&  pageContrlAcessData.SaveLorryReceiptButton !='0'? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <b><font color="#000000">Amount</font></b>
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+
+                                </tr>
+
+
+                                <tr ng-repeat="OrderFreightInfo in OrderFreightInformationList">
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff" sdval="1" sdnum="16393;">
+                                        <font color="#000000">{{$index + 1}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">{{OrderFreightInfo.Particulars}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="43487" sdnum="16393;0;D MMM YY">
+                                        <font color="#000000">{{OrderFreightInfo.ChargedBasis}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <font color="#000000"> {{OrderFreightInfo.ChargedWeight}}</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <font color="#000000">{{OrderFreightInfo.PerUnitCharge}} </font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'   &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">{{OrderFreightInfo.Amount}}</font>
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'   &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000;    width: 12%!important;" colspan="1" align="center" valign="bottom" bgcolor="#ffffff ">
+                                        <a ng-click="EditOrderFreightInfo(OrderFreightInfo.OrderFreightInformationGUID)">
+                                            Edit
+                                        </a>&nbsp;| &nbsp;
+                                        <a ng-click="DeleteOrderFreightInfo(OrderFreightInfo.OrderFreightInformationGUID)">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'">
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff" sdval="1" sdnum="16393;">
+                                        <!--<font color="#000000">{{OrderFreightInformationList.length + 1}}</font>-->
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+
+
+                                        <select class="form-control" style="margin:0px !important" ng-model="OrderFreightInformationObject.Particulars">
+                                            <option value="">Select</option>
+                                            <option value="Freight">Freight</option>
+                                            <option value="Loading Charges">Loading Charges</option>
+                                            <option value="Unloading Charges	">Unloading Charges	</option>
+
+                                        </select>
+
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="43487" sdnum="16393;0;D MMM YY">
+                                        <input class="form-control form-white" ng-model="OrderFreightInformationObject.ChargedBasis" placeholder="Charged Basis" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <input class="form-control form-white" ng-model="OrderFreightInformationObject.ChargedWeight" valid-Number placeholder="Charged Weight" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdval="24000000" sdnum="16393;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)">
+                                        <input class="form-control form-white" ng-model="OrderFreightInformationObject.PerUnitCharge" valid-Number placeholder="Per Unit Charge" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <input class="form-control form-white" ng-model="OrderFreightInformationObject.Amount" valid-Number placeholder="Amount" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <a ng-click="AddOrderFreightInfo()">
+                                            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
+                                            <span ng-if="OrderFreightInformationObject.EditOrderFreightInformationGUID ===''">Add</span>
+                                            <span ng-if="OrderFreightInformationObject.EditOrderFreightInformationGUID !==''">Update</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000"><br></font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="8" align="center" valign="bottom" bgcolor="#ffffff">
+                                        <font color="#000000">Total:</font>
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff" sdval="36000" sdnum="16393;0;#,##0">
+                                        <font color="#000000">{{getTotalAmountOfFreightSection()}}</font>
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000"><br></font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">GST basis</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff" sdnum="16393;0;D MMM YY">
+                                        <select class="form-control" style="margin:0px !important" ng-model="OrderObject.GSTPaidBy" ng-change="OnSelectGSTPaidBy()">
+                                            <option value="">Select</option>
+                                            <option value="GST paid by Shipper">GST paid by Shipper</option>
+                                            <option value="GST paid by Transportor">GST paid by Transportor</option>
+                                            <!--<option value="GST paid by UCI">GST paid by UCI	</option>-->
+
+                                        </select>
+                                        <!--<b><font color="#000000">GST paid by GTA</font></b>-->
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">GST No of GTA</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff" sdnum="16393;0;D MMM YY"><b><font color="#000000">{{OrderObject.GSTNo}}</font></b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff" sdnum="16393;0;#,##0">
+                                        <font color="#000000"><br></font>
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000"><br></font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">GST Value</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff" sdnum="16393;0;D MMM YY">GST in Percentage</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="bottom" bgcolor="#ffffff" sdnum="16393;0;D MMM YY">
+                                        <input class="form-control form-white" ng-model="OrderObject.GSTPercentage" maxlength="3" valid-Number placeholder="Gst Value" />
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;  border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff" sdval="4320" sdnum="16393;0;#,##0">
+                                        {{getTotalfreightSectionOfgstAmount()}}
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000"><br></font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="bottom" bgcolor="#ffffff"><font color="#000000">Total Billable Value</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="6" align="center" valign="bottom" bgcolor="#ffffff" sdnum="16393;0;D MMM YY"><font color="#000000"><br></font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                        colspan="{{ OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0' ? 2 :3 }}" align="center" valign="bottom" bgcolor="#ffffff" sdval="40320" sdnum="16393;0;#,##0">
+                                        {{Gettotalpaybleamt()}}
+                                    </td>
+                                    <td ng-if="OrderObject.IsApplicable !== '1'  &&  pageContrlAcessData.SaveLorryReceiptButton !='0'" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="1" align="center" valign="bottom" bgcolor="#ffffff"></td>
+                                </tr>
+                                <tr>
+                                    <td height="23" align="center" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom" sdnum="16393;0;D MMM YY"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom" sdnum="16393;0;D MMM YY"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom" sdnum="16393;0;D MMM YY"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom" sdnum="16393;0;D MMM YY"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom" sdnum="16393;0;D MMM YY"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom" sdnum="16393;0;D MMM YY"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom"><font color="#000000"><br></font></td>
+                                    <td align="center" valign="bottom"><font color="#000000"><br></font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="center" valign="middle" bgcolor="#ffffff"><b>Acknowledgement and Verification</b></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="6" rowspan="2" height="50" align="left" valign="top" bgcolor="#ffffff"><font color="#000000">Following particulars are to be compulsorily filled by the Loading staff of the Shipper:</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="6" rowspan="2" align="left" valign="bottom" bgcolor="#ffffff"><font color="#000000">We have carefully checked and verified the contents filled in this LR and agree to the terms and conditions.</font></td>
+
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" height="25" align="left" valign="middle" bgcolor="#ffffff"><b>Date</b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle" bgcolor="#ffffff"><b>Date</b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle" bgcolor="#ffffff"><b>Time</b></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" rowspan="4" align="center" valign="middle" bgcolor="#DBEEF4">Shipper Sign and Stamp (Factoty Incharge)</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom" bgcolor="#ffffff">Date</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#DBEEF4" sdnum="16393;0;D MMM YY"><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" rowspan="4" align="center" valign="middle" bgcolor="#DBEEF4">
+                                        Shipper Sign and Stamp
+                                        <img ng-src="{{  OrderObject.ShipperSignBlob }}" style="    height: 100px;       width: 180px;">
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" height="25" align="left" valign="middle" bgcolor="#ffffff">Factory Reporting</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle" bgcolor="#DBEEF4" sdnum="16393;0;DD/MM/YYYY"><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle" bgcolor="#DBEEF4" sdnum="16393;0;HH:MM AM/PM"><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="middle" bgcolor="#ffffff">Time</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#DBEEF4"><br></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" height="25" align="left" valign="middle" bgcolor="#ffffff">Factory Entry</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle" bgcolor="#DBEEF4" sdnum="16393;0;DD/MM/YYYY"><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle" bgcolor="#DBEEF4" sdnum="16393;0;HH:MM AM/PM"><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="middle" bgcolor="#ffffff">Name</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#DBEEF4"><br></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" height="23" align="left" valign="middle" bgcolor="#ffffff">Factory Exit</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle" bgcolor="#DBEEF4" sdnum="16393;0;DD/MM/YYYY"><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="middle" bgcolor="#DBEEF4" sdnum="16393;0;HH:MM AM/PM"><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="middle" bgcolor="#ffffff">Designation</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#DBEEF4"><br></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="center" valign="middle"><b><br></b></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan="6" rowspan="2" height="48" align="left" valign="middle" bgcolor="#ffffff"><font color="#000000">Acknowledgement from Driver</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="6" rowspan="2" align="left" valign="bottom" bgcolor="#ffffff"><font color="#000000">Received goods in good conditions as per the details mentioned in the Consignment Note above.</font></td>
+
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000 ;    width: 9%;" height="25" align="left" valign="bottom" bgcolor="#ffffff">Vendor Ref</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="top" bgcolor="#ffffff" sdnum="16393;0;D MMM YY"><span ng-if="OrderObject.VendorRef !== null">{{OrderObject.VendorRef}}  </span></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" rowspan="4" align="center" valign="middle" bgcolor="#DBEEF4">
+                                        Driver Signature
+
+                                        <img ng-src="{{  OrderObject.DriverSignBlob }}" style="    height: 100px;       width: 180px;">
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom" bgcolor="#ffffff">Date</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#DBEEF4" sdnum="16393;0;D MMM YY">To be filled manually</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" rowspan="4" align="center" valign="middle" bgcolor="#DBEEF4">
+                                        Consignee Sign and Stamp
+
+
+                                        <img ng-src="{{  OrderObject.ConsigneeSignBlob }}" style="    height: 100px;       width: 180px;">
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="25" align="left" valign="middle" bgcolor="#ffffff">Driver Name</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="top" bgcolor="#ffffff" sdnum="16393;0;D MMM YY"><span ng-if="OrderObject.DriverName !== null">{{OrderObject.DriverName}}  </span></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="middle" bgcolor="#ffffff">Time</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#DBEEF4" sdnum="16393;0;D MMM YY">To be filled manually</td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="23" align="left" valign="middle" bgcolor="#ffffff">Driver Phone</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="middle" bgcolor="#ffffff" sdval="9919999919" sdnum="16393;"><span ng-if="OrderObject.DriverPhone !== null">{{OrderObject.DriverPhone}}  </span></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="middle" bgcolor="#ffffff">Received by</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#DBEEF4" sdnum="16393;0;D MMM YY">To be filled manually</td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="24" align="left" valign="middle"><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" align="center" valign="top"><br></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="middle" bgcolor="#ffffff">Designation</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#DBEEF4" sdnum="16393;0;D MMM YY">To be filled manually</td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="center" valign="middle"><b><br></b></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="6" rowspan="4" height="117" align="center" valign="middle" bgcolor="#ffffff"><font color="#000000">Please carefully read the Terms &amp; Conditions overleaf</font></td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" rowspan="2" align="center" valign="middle" bgcolor="#ffffff">On behalf of UCI Logistics Solutions Private Limited</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="3" rowspan="4" align="center" valign="middle" bgcolor="#DBEEF4">
+                                        UCI Signatory
+
+
+                                        <img ng-src="{{  OrderObject.UCISignBlob }}" style="    height: 100px;       width: 180px;">
+                                    </td>
+
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="middle" bgcolor="#ffffff">Name</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#ffffff">ASD RDS</td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="middle" bgcolor="#ffffff">Designation</td>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="2" align="center" valign="top" bgcolor="#ffffff">Factory Head</td>
+
+                                </tr>
+                                <tr>
+                                    <td height="23" align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+                                    <td align="center" valign="bottom"><br></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="21" align="center" valign="middle"><b><font color="#000000">TERMS AND CONDITIONS</font></b></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="44" align="left" valign="middle"><font color="#000000">1) All of the consignment and container are carried entirely at Shipper's risk. The Shipper or Consignee should take out their own insurance to protect against any risk of loss or damage to the consignment.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="65" align="left" valign="middle"><font color="#000000">2) The Transport Operator is not responsible for loss or damage to goods or container by leakage, breakage, evaporation, weather conditions, other natural causes, strike, lockouts, road/river hazards, default of staff, driver, labourers or agents, riots, civil or political disturbances, explosions, fire or accidents to vehicles by which goods/container are transported.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="left" valign="middle"><font color="#000000">3) Stuffing/de-stuffing of container at Shipper's go-down/factory or any other place should be done by the Shipper of the goods.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="136" align="left" valign="middle"><font color="#000000">4) The Shipper/Consignee or their representative making false declaration as to the contents, description or quantity of goods/weight of goods stuffed in container will be held liable for any damage which the carrier may sustain directly or indirectly as a result of such false declaration. Shipper/Consignee or their representative will therefore declare their goods correctly and take every precaution to comply with the Customs or Government regulation in force from time to time. The Transport Operator will not be responsible if any goods are declared to be contraband and are confiscated by any Government. Consignee or their agent representative is liable for any consequences arising out of incorrect declaration of the contents of the consignment.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="75" align="left" valign="middle"><font color="#000000">5) The Shipper or their agent/representative is responsible to obtain and handover to the Transport Operator or their drivers at the time of loading/stuffing the containers with appropriate permits and documents for transport by road. In case of restricted articles, the Shipper will be held responsible for any consequences arising out of such transport without permit/documents.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="44" align="left" valign="middle"><font color="#000000">6) The stuffing/de-stuffing of the containers must be complete within one clear shift or as per contract, failing which detention as per contract will be charged.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="left" valign="middle"><font color="#000000">7) Loaded/empty container must be taken inside docks/container yard immediately, on arrival, failing which detention of vehicles will be charged.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="left" valign="middle"><font color="#000000">8) Transport Operator shall have the right to dispose of perishables lying undelivered after 48 hours of arrival, without any notice.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="43" align="left" valign="middle"><font color="#000000">9) Transport Operator shall have the right to dispose of other goods after 30 days of arrival, after giving to the Shipper at least a minimum of 15 days notice of such disposal of goods.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="68" align="left" valign="middle"><font color="#000000">10) The consignment covered by this consignment note shall be transported and delivered at destination, under the control of the transport aggregator. Delivery will be to the order of the Shipper who is mentioned in the consignment note. Consignment will not be detained, diverted, re-routed  or rebooked.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="28" align="left" valign="middle"><font color="#000000">11) The Shipper is responsible for all consequences of any incorrect or false declaration.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="66" align="left" valign="middle"><font color="#000000">12) In case of any dispute or difference arising between the parties herein, the same shall be referred to the decision of a sole arbitrator to be nominated by the Transport Operator and shall be as per the Indian Arbitration and ConcifiationAct 1996 or any statutory modification thereof. The award of the Arbitrator shalt be final and binding on the parties. The venue of such arbitration shall be in Chennai only.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="41" align="left" valign="middle"><font color="#000000">13) The above terms &amp; conditions herein shall be governed by the laws of India and shall be subject to the jurisdiction of the courts in Chennai.</font></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="left" valign="middle"><font color="#000000">14) These conditions are subject to changes without notice.</font></td>
+
+                                </tr>
+                                <!--<tr>
+                                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="12" height="23" align="left" valign="middle">
+
+
+
+                                        <div class="successbtn" style="    padding-right: 11px;">
+                                            <button type="button" ng-click="SaveLorryReceipt()" class="btn btn-success">Save Lorry Receipt</button>
+                                        </div>
+                                        <div class="successbtn">
+                                            <button type="button" ng-click="DownloadLorryReceiptReport()" class="btn btn-success">Download Lorry  Report</button>
+                                        </div>
+
+                                    </td>
+
+                                </tr>-->
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</ion-content>

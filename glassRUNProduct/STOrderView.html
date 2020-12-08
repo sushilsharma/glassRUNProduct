@@ -1,0 +1,86 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+            <div class="fixrighttopbutton">
+                <div class="col-sm-2 singlebtn col-md-2" style="float:right;display:none">
+                    <a class="btn btn-success btn-square" ng-click="GetAllRecordUpdate()">{{resData.res_WarehousePage_Update}}</a>
+                </div>
+
+            </div>
+            <div class="header">
+                <h2>{{resData.res_CarrierPage_OrderAllocation}}</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+
+
+                    <div id="portalview" class="PortalView">
+                        <div class="panel">
+                            <!--<div class="MultiSelectControlRow" style="margin-left: 19px;">
+                                <a class="btn btn-success btn-square" ng-click="GetSoDetails('SO')">SO Order</a>
+                                <a class="btn btn-success btn-square" ng-click="GetSoDetails('ST')">ST Order</a>
+                            </div>-->
+                            <div class="panel-content">
+                                <div id="STOrderViewId" kendo-grid="Grid" k-options="STOrderViewId" k-rebind="STOrderViewId"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mobileview" class="MobileView">
+                        <div class="customlistview" ng-repeat="item in GridData.data">
+                            <div class="paddingcontainer">
+                                <div class="listviewContainer">
+                                    <span class="listviewtitle">
+                                        {{item.InquiryNumber}}
+                                    </span>
+                                </div>
+                                <div class="listviewContainer">
+
+                                    <span class="listviewdatafield">
+                                        Sold To : {{item.SoldTo}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        Ship To : {{item.ShipTo}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        Transport Operator : {{item.TransportOperator}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        Truck Size : {{item.TruckSize}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        {{resData.res_WarehousePage_ProposedETD}}<span class="prepend-icon">
+                                            <input type="text" name="datetimepicker" class="datetimepicker form-control" placeholder="Choose a Proposed ETD...">
+                                            <i class="icon-clock"></i>
+                                        </span>
+                                    </span>
+                                    <span class="listviewdatafield" ng-if="item.SpecialRequest === ''">{{resData.res_WarehousePage_SchedulingDateNotApplicable}}</span>
+                                    <span class="listviewdatafield" ng-if="item.SpecialRequest !== ''">
+                                        {{resData.res_WarehousePage_SchedulingDate}}<span class="prepend-icon">
+                                            <input type="text" name="datetimepicker" class="datetimepicker form-control" placeholder="Choose a Scheduling Date...">
+                                            <i class="icon-clock"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="listviewContainer">
+                                <a class="btn btn-success SingleRowbtn">{{resData.res_WarehousePage_AssingToTransport}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </ion-content>
+</ion-view>

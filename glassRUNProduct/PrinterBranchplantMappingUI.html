@@ -1,0 +1,117 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+            <div class="header">
+                <h2>{{Action}} <strong>{{resData.res_PrinterBranchplantMappingUI_PrinterBranchPlantMapping}}</strong></h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_PrinterBranchplantMappingUI_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a ng-click="AddForm()">
+                                    <tab-heading>
+                                        <i class="fa fa-plus"></i>{{resData.res_PrinterBranchplantMappingUI_Add}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                                            <div class="fullwidth">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_PrinterBranchplantMappingUI_BranchPlant}}</label>
+                                                        <div class="col-sm-9">
+                                                            <select id="val_Object" ng-model="PrinterBranchPlantJson.BranchPlant" class="form-control" name="val_SelectObject" ng-options="obj.DeliveryLocationId as obj.DeliveryLocationCode for obj in bindAllBranchPlant" ng-change="GetBranchPlantCode(PrinterBranchPlantJson.BranchPlant)">
+                                                                <option value="">{{resData.res_TruckUI_Select}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+
+                                                        <label class="col-sm-3 control-label">{{resData.res_PrinterBranchplantMappingUI_PrinterName}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control form-white" ng-model="PrinterBranchPlantJson.PrinterName" type="text" placeholder="PrinterName">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="fullwidth">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_PrinterBranchplantMappingUI_PrinterPath}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control form-white" ng-model="PrinterBranchPlantJson.PrinterPath" type="text" placeholder="PrinterPath">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+
+                                                        <label class="col-sm-3 control-label">{{resData.res_PrinterBranchplantMappingUI_NumberOfCopies}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control form-white" ng-model="PrinterBranchPlantJson.NumberOfCopies" type="text" placeholder="NumberOfCopies">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="ActionButtons">
+
+                                                <div class="clearbtn">
+                                                    <button type="button" ng-click="Clear()" class="btn btn-default">{{resData.res_TruckUI_Clear}}</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="SavePrinterBranchPlantMapping()" class="btn btn-success">{{resData.res_TruckUI_Save}}</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12">
+                                                <div kendo-grid="Grid" k-options="ViewPrinterBranchPlantMappingGrid" k-rebind="ViewPrinterBranchPlantMappingGrid"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </ion-content>
+</ion-view>

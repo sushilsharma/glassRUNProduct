@@ -1,0 +1,565 @@
+﻿
+
+
+<ion-view>
+    <ion-content class="main-content">
+        <style>
+            #example .demo-section {
+                max-width: none;
+                width: 100% !important;
+            }
+
+            #example .k-listbox {
+                /*width: 236px;*/
+                height: 500px;
+            }
+
+                #example .k-listbox:first-of-type {
+                    /*width: 270px;*/
+                    margin-right: 1px;
+                }
+
+            .btn:not(.btn-sm):not(.btn-hg):not(.btn-xs):not(.btn-lg):not(.bootstrap-touchspin-up):not(.bootstrap-touchspin-down) {
+                height: 40px;
+            }
+
+            .CapsuleClickEnabled {
+                float: left;
+                width: 11%;
+                border-radius: 20px !important;
+                border: 1px solid #d5d5d5;
+                background-color: white;
+                padding: 10px;
+                margin-right: 25px;
+            }
+
+            .CapsuleClickDisabled {
+                background-color: grey;
+            }
+
+            .CapsuleSelected {
+                border: 1px solid blue;
+            }
+
+            .QueueNotBay {
+                color: red;
+            }
+
+            .Queue_Selected {
+                float: left;
+                width: auto;
+                margin-left: 10px;
+                background-color: #fff;
+                border: 1px solid #d5d5d5;
+                border-radius: 8px;
+                padding: 5px 5px;
+                margin-bottom: 10px;
+                margin-left: -2px
+            }
+        </style>
+        <div class="pageview" style="margin-bottom: 50px;">
+            <div class="header">
+                <div style="float:left;width:100%;text-align:center;font-weight:bold;">Branch Plant : {{BranchPlantCode}}</div>
+            </div>
+
+            <a ng-click="UpdateTruckSequenceAfterLoadingEnd()"> start</a>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+
+
+
+                        <div style="float: left; width: 8%;border-radius: 20px !important;border: 1px solid #d5d5d5;background-color: white;padding: 10px; margin-right: 40px;">
+                            <div style="float:left;width:100%;">
+                                <div style="float:left;width:100%;background-color:#fff;">
+                                    <div style="float:left;width:100%;padding:5px">
+                                        <div class="Queue_Selected" ng-class="{'QueueNotBay' : Queue1.BayName==undefined || Queue1.IsDeActivated===1 || Queue1.IsDeActivated==='1'}" ng-repeat="Queue1 in QueueList | orderBy : -Queue1.BayId" ng-if="Queue1.OrderPresentInNextBay!=='0' && Queue1.AssignedTime===undefined" ng-click="LoadBayDetailsOnPopup(Queue1.OrderNumber,Queue1.LocationCode,Queue1.TruckNumber)">
+                                            <div style="float:left;width:100%;">
+                                                <div style="float:left;width:82%;">
+                                                    {{Queue1.TruckNumber}}
+                                                    {{Queue1.IsDeActivated}}
+
+                                                </div>
+                                                <div style="float:right;width:13%;" ng-if="Queue1.IsAssignedManually==='1'">
+                                                    M
+                                                </div>
+                                                <div style="float:right;width:13%;" ng-if="Queue1.IsAssignedManually!=='1'">
+                                                    A
+                                                </div>
+                                            </div>
+                                            <div style="float:left;width:100%;">
+                                                <div style="float:left;width:50%;text-align:left" ng-if="Queue1.BayName!=undefined">
+                                                    {{Queue1.BayName}}
+                                                </div>
+                                                <div style="float:left;width:50%;text-align:left" ng-if="Queue1.BayName==undefined">
+                                                    -
+                                                </div>
+                                                <div style="float:left;width:50%;text-align:right;">
+                                                    {{Queue1.Priority}} <i class="fa fa-star" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="CapsuleClickEnabled" ng-class="{'CapsuleClickDisabled' : loadCapsule.IsDeActivated === '1','CapsuleSelected' : loadCapsule.IsSelected === true}" ng-repeat="loadCapsule in LoadCapsuleList" ng-click="SelectedBay(loadCapsule.BayId)">
+                            <div style="float:left;width:100%;text-align:center;margin-bottom:16px">
+                                <!--<time ng-bind="JsonBay.TextTimer"></time>
+                                <p ng-bind="JsonBay.TextTimer"></p>
+                                <a ng-click="StartTime()"> start</a>-->
+
+                            </div>
+                            <div style="float:left;width:100%;text-align:center;border-radius:10px;border:1px solid green;padding:10px;margin-bottom:16px">
+                                Fld 01
+                            </div>
+                            <div style="background-color:red;border-radius:10px;padding:10px;color:white;float:left;width:100%;text-align:center;margin-bottom:10px" ng-if="loadCapsule.AssignedTime!==undefined">
+                                {{loadCapsule.BayName}}
+
+                                <div style="background-color:white;border-radius:10px;padding:10px;color:black;float:left;width:100%;margin-top:20px" s>
+                                    {{loadCapsule.TruckNumber}}
+                                </div>
+
+                            </div>
+
+                            <div style="background-color:green;border-radius:10px;padding:10px;color:white;float:left;width:100%;text-align:center;margin-bottom:10px" ng-if="loadCapsule.AssignedTime==undefined">
+                                {{loadCapsule.BayName}}
+
+                                <div style="border-radius:10px;padding:10px;color:black;float:left;width:100%;margin-top:20px" s>
+                                    -
+                                </div>
+
+                            </div>
+
+                            <div style="margin-bottom: 10px; float: left; width: 100%;font-weight: bold;">
+                                <div>
+                                    Assigmennt Time :
+                                </div>
+                                <div ng-if="loadCapsule.AssignedTime!==undefined">
+                                    {{loadCapsule.AssignedTime}}
+                                </div>
+                                <div ng-if="loadCapsule.AssignedTime==undefined">
+                                    -
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 10px; float: left; width: 100%;font-weight: bold;">
+                                <div>
+                                    Start Time :
+                                </div>
+                                <div ng-if="loadCapsule.StartTime!==undefined">
+                                    {{loadCapsule.StartTime}}
+                                </div>
+                                <div ng-if="loadCapsule.StartTime==undefined">
+                                    -
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 10px; float: left; width: 100%;font-weight: bold;">
+                                <div>
+                                    Estimated End Time :
+                                </div>
+                                <div ng-if="loadCapsule.ExpectedTruckOutTime!==undefined">
+                                    {{loadCapsule.ExpectedTruckOutTime | date: "dd/mm/yyyy HH:mm:ss"}}
+                                </div>
+                                <div ng-if="loadCapsule.ExpectedTruckOutTime==undefined">
+                                    -
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 10px; float: left; width: 100%;font-weight: bold;">
+                                <div>
+                                    Truck Tonnage :
+                                </div>
+                                <div ng-if="loadCapsule.TruckSize!==undefined">
+                                    {{loadCapsule.TruckSize
+                                    }}
+                                </div>
+                                <div ng-if="loadCapsule.TruckSize==undefined">
+                                    -
+                                </div>
+                            </div>
+
+
+                            <div style="margin-bottom: 10px; float: left; width: 100%;font-weight: bold;">
+                                <div>
+                                    Currently Loading :
+                                </div>
+                                <div ng-if="loadCapsule.OrderNumber!==undefined">
+                                    {{loadCapsule.OrderNumber}}
+                                </div>
+                                <div ng-if="loadCapsule.OrderNumber==undefined">
+                                    -
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 10px; float: left; width: 100%;font-weight: bold;">
+                                <div>
+                                    Company Name :
+                                </div>
+                                <div ng-if="loadCapsule.SoldToName!==undefined">
+                                    {{loadCapsule.SoldToName}}
+                                </div>
+                                <div ng-if="loadCapsule.SoldToName==undefined">
+                                    -
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div style="float: left;width: 100%; margin-top: 25px;background-color: white; padding: 10px 15px; position: relative">
+                            <div>
+                                <div>
+                                    {{SelectedBayName}}
+                                </div>
+                                <div>
+                                   Active /Deactive
+                                </div>
+
+
+                            </div>
+
+                            <div style="position:absolute;width:auto;padding:10px;right:10px;top:10px">
+                                <a style="color: green;" ng-if="ActivatedEnabled===true" ng-click="ActivatedOrDeActivated(false)">Activate</a>
+                                <a style="color: green;" ng-if="ActivatedEnabled===false" ng-click="ActivatedOrDeActivated(true)">DeActivate</a>
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div style="float:left;width:100%;padding:10px">
+                <div style="float:left;width:100%;background-color:#fff;border:1px solid #d5d5d5;border-radius:8px">
+                    <div style="float:left;width:100%;padding:5px">
+                        <div ng-class="{'QueueNotBay' : Queue.BayName==undefined || Queue.IsDeActivated===1 || Queue.IsDeActivated==='1'}" style="float:left;width:auto;margin-left:10px;background-color:#fff;border:1px solid #d5d5d5;    border-radius: 4px;padding: 5px 5px;" ng-repeat="Queue in QueueList | orderBy : '-Priority'" ng-if="Queue.OrderPresentInNextBay=='0'" ng-click="LoadHorizontalQueueOnPopup(Queue.OrderNumber,Queue.LocationCode,Queue.TruckNumber)">
+                            <!--<div ng-class="{'QueueNotBay' : Queue.BayName==undefined || Queue.IsDeActivated===1 || Queue.IsDeActivated==='1'}" style="float:left;width:auto;margin-left:10px;background-color:#fff;border:1px solid #d5d5d5;    border-radius: 4px;padding: 5px 5px;" ng-repeat="Queue in QueueList | orderBy : '-Priority'" ng-if="Queue.OrderPresentInNextBay=='0'" ng-click="CancelOrderAndReQueueSequenceNumber(Queue.OrderNumber,Queue.OrderId)">-->
+                            <div style="float:left;width:100%;">
+                                {{Queue.TruckNumber}}  ({{Queue.BayName}})
+
+                            </div>
+
+                            <div style="float:left;width:100%;">
+                                <div style="float:left;width:50%;text-align:left">
+                                    {{Queue.TruckSize}}
+                                </div>
+                                <div style="float:left;width:50%;text-align:right;">
+                                    {{Queue.Priority}} <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div style="float:left;width:100%;">
+                                {{Queue.OrderNumber}}
+                            </div>
+                            <div style="float:left;width:100%;">
+                                {{Queue.ExpectedTruckOutTime | date: "dd/mm/yyyy HH:mm:ss"}}
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <script id="templates/CartDetail.html" type="text/ng-template">
+            <ion-modal-view class="CreateInquirySmallModalView CreateInquiryModalView bgcolorheaderandfooter" style="min-height: 350px !important;height: 100% !important; margin-left: auto !important;margin-right: auto !important;position: relative;top: 90px;width: 28%; border-radius: 12px;">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <div style="width: 100%; float: left;padding: 6px 12px;">
+                        <div style="float:left">
+                            <i class="fa fa-truck" aria-hidden="true" style="color: black; font-size: 20px;padding-right: 8px;"></i>
+                        </div>
+                        <div style="float: left;font-size: 14px;font-weight: bold;">{{TruckNumber}}</div>
+
+                    </div>
+                    <button class="button button-clear button-primary" ng-click="CloseCartDetailpopup()"><i class="fa fa-times" style="    color: red;"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding">
+
+                    <div style="width: 100%; float: left;margin-left: 10px;">
+                        <div style="float: left;width: 100%;">
+                            Estimated Truck Out Time: {{AssignedTime}}
+                        </div>
+                        <div style="float: left; width: 100%;margin-top: 12px;margin-bottom: 10px;font-weight: bold;">
+                            <div>
+                                Size : {{TruckSize}}
+                            </div>
+                            <div>
+                                Tonnage : {{TruckTonnage}}T
+                            </div>
+                        </div>
+                        <div style="float: left; width: 100%;margin-top: 15px;margin-bottom: 15px; font-weight: bold;">
+                            <div style="float:left;width:15%">
+                                Priority :
+                            </div>
+                            <div>
+                                <div style="float:left" ng-if="Priority=='1'">
+                                    <i class="fa fa-star" style="font-size: 24px; font-weight: bold;" aria-hidden="true"></i>
+                                </div>
+                                <div style="float:left" ng-if="Priority=='2'">
+                                    <i class="fa fa-star" style="font-size: 24px; font-weight: bold;" aria-hidden="true"></i><i class="fa fa-star" style="font-size: 24px; font-weight: bold;" aria-hidden="true"></i>
+                                </div>
+                                <div style="float:left" ng-if="Priority=='3'">
+                                    <i class="fa fa-star" style="font-size: 24px; font-weight: bold;" aria-hidden="true"></i><i class="fa fa-star" style="font-size: 24px; font-weight: bold;" aria-hidden="true"></i><i class="fa fa-star" style="font-size: 24px; font-weight: bold;" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div style="float: right; padding-right: 10px;" ng-if="ClickOnHorizontalQueueCart==true">
+                                <a style="color: green;" ng-click="ShowPriorityDetailpopup()">Re-Assign</a>
+                            </div>
+                        </div>
+                        <div style="float: left; width: 100%;margin-top: 15px;margin-bottom: 15px; font-weight: bold;">
+                            <div style="float:left">
+                                Bay : {{BayNameCommaSeperatedValue}}
+                            </div>
+                            <div>
+                                <div style="float: right; padding-right: 10px;">
+                                    <a style="color: green;" ng-click="ShowBayDetailpopup()">Assign</a>
+
+                                </div>
+                                <div style="float: right; padding-right: 10px;">
+                                    <a style="color: green;" ng-click="CancelOrder()">Cancel Order</a>
+
+                                </div>
+                                <div style="float: right; padding-right: 10px;" ng-if="BayId==undefined && ClickOnHorizontalQueueCart==false">
+                                    <a style="color: green;" ng-click="ProceedToQueue()">Queue</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div style="float: left; margin-top: 10px;">
+                            On Truck :
+                        </div>
+                        <div style="float: left; width: 100%;font-weight: bold;">
+                            SO {{OrderNumber}}
+                        </div>
+                    </div>
+
+
+
+
+                </ion-content>
+
+            </ion-modal-view>
+        </script>
+
+
+
+
+        <script id="templates/BayDetail.html" type="text/ng-template">
+            <ion-modal-view class="CreateInquirySmallModalView CreateInquiryModalView bgcolorheaderandfooter" style="min-height: 273px !important;height: 100% !important; margin-left: auto !important;margin-right: auto !important;position: relative;top: 114px;width: 32%; border-radius: 12px;">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <div style="width: 100%; float: left;padding: 6px 12px;">
+                        <div style="float: left;font-size: 14px;">Bay</div>
+
+                    </div>
+                    <button class="button button-clear button-primary" ng-click="CloseBayDetailpopup()"><i class="fa fa-times" style="    color: red;"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding">
+
+                    <div style="width: 100%; float: left;margin-left: 10px;">
+                        <div style="width: 100%; float: left;padding: 6px 12px;">
+                            <div style="float:left">
+                                <i class="fa fa-truck" aria-hidden="true" style="color: black; font-size: 20px;padding-right: 8px;"></i>
+                            </div>
+                            <div style="float: left;font-size: 14px;font-weight: bold;">{{TruckNumber}}</div>
+
+                        </div>
+
+
+                        <div style="float: left; width: 100%;margin-top: 8px;margin-bottom: 4px;font-weight: bold;">
+                            <div style="float:left;width:15%">
+                                Size : {{TruckSize}}
+                            </div>
+                            <div style="float:right;width:85%">
+                                Tonnage : {{TruckTonnage}}T
+                            </div>
+
+                        </div>
+                        <div style="float: left; width: 100%;margin-bottom: 10px;font-weight: bold;">
+                            <div style="float:left;width:15%">
+                                On Truck :
+                            </div>
+                            <div style="float:right;width:85%">
+                                SO {{OrderNumber}}
+                            </div>
+                        </div>
+                        <div style="float: left;width: 100%;margin-top: 10px;">
+                            <div style="float: left; padding-top: 5px; margin-right: 10px;">Bay :</div>
+
+                            <div style="float: left;  width: 34%;">
+                                <select id="ddlBayId" ng-model="JsonBay.BayId" class="form-control" name="val_SelectObject" style="border-radius: 10px;" ng-change="ChangeTruckOutTimeAcctoBay(JsonBay.BayId    )" ng-options="obj.BayId as obj.BayNameWithDate for obj in BayListBind">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div style="float: right;padding-right: 10px;">
+                                Estimated Truck Out Time: {{AssignedTime}}
+                            </div>
+                        </div>
+
+
+                        <div style="float: right;width: 100%;margin-top:27;">
+
+                            <div style="float: right;  width: 16%;">
+                                <a class="btn btn-success btn-square" ng-click="UpdateBayDetails()">
+                                    Done
+                                </a>
+                            </div>
+                            <div style="float: right;padding-right: 10px;">
+                                <a class="btn btn-success btn-square redclosebtn" ng-click="CloseBayDetailpopup()">
+                                    {{resData.res_OrderListCheckCount_Close}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </ion-content>
+
+            </ion-modal-view>
+        </script>
+
+
+
+
+
+        <script id="templates/PriorityDetails.html" type="text/ng-template">
+            <ion-modal-view class="CreateInquirySmallModalView CreateInquiryModalView bgcolorheaderandfooter" style="min-height: 280px !important;height: 100% !important; margin-left: auto !important;margin-right: auto !important;position: relative;top: 114px;width: 32%; border-radius: 12px;">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <div style="width: 100%; float: left;padding: 6px 12px;">
+                        <div style="float: left;font-size: 14px;">Bay</div>
+
+                    </div>
+                    <button class="button button-clear button-primary" ng-click="ClosePriorityDetailpopup()"><i class="fa fa-times" style="    color: red;"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding">
+
+                    <div style="width: 100%; float: left;margin-left: 10px;">
+                        <div style="width: 100%; float: left;padding: 6px 12px;">
+                            <div style="float:left">
+                                <i class="fa fa-truck" aria-hidden="true" style="color: black; font-size: 20px;padding-right: 8px;"></i>
+                            </div>
+                            <div style="float: left;font-size: 14px;font-weight: bold;">{{TruckNumber}}</div>
+
+                        </div>
+
+
+                        <div style="float: left; width: 100%;margin-top: 8px;margin-bottom: 4px;font-weight: bold;">
+                            <div style="float:left;width:15%">
+                                Size : {{TruckSize}}
+                            </div>
+                            <div style="float:right;width:85%">
+                                Tonnage : {{TruckTonnage}}T
+                            </div>
+
+                        </div>
+                        <div style="float: left; width: 100%;margin-bottom: 10px;font-weight: bold;">
+                            <div style="float: left;width: 15%">
+                                On Truck :
+                            </div>
+                            <div style="float:right;width:85%">
+                                SO {{OrderNumber}}
+                            </div>
+                        </div>
+                        <div style="float: left;width: 100%;margin-top: 10px;">
+                            <div style="float: left;  margin-right: 10px;">Priority :</div>
+
+                            <div style="float: left;  width: 34%;">
+                                <i ng-if="star1===false" style="font-size: 24px; font-weight: bold;" class="fa fa-star-o" aria-hidden="true" ng-click="SelectPriorityCheck('1')"></i>
+                                <i ng-if="star1===true" style="font-size: 24px; font-weight: bold;" class="fa fa-star" aria-hidden="true" ng-click="DeselctPriorityCheck('1')"></i>
+                                <i ng-if="star2===false" style="font-size: 24px; font-weight: bold;" class="fa fa-star-o" aria-hidden="true" ng-click="SelectPriorityCheck('2')"></i>
+                                <i ng-if="star2===true" style="font-size: 24px; font-weight: bold;" class="fa fa-star" aria-hidden="true" ng-click="DeselctPriorityCheck('2')"></i>
+                                <i ng-if="star3===false" style="font-size: 24px; font-weight: bold;" class="fa fa-star-o" aria-hidden="true" ng-click="SelectPriorityCheck('3')"></i>
+                                <i ng-if="star3===true" style="font-size: 24px; font-weight: bold;" class="fa fa-star" aria-hidden="true" ng-click="DeselctPriorityCheck('3')"></i>
+
+                            </div>
+                            <div style="float: right;padding-right: 10px;">
+                                Estimated Truck Out Time: {{AssignedTime}}
+                            </div>
+                        </div>
+
+
+                        <div style="float: right;width: 100%;margin-top:27px;">
+
+                            <div style="float: right;  width: 16%;">
+                                <a class="btn btn-success btn-square" ng-click="UpdatePriorityDetails()">
+                                    Done
+                                </a>
+                            </div>
+                            <div style="float: right;padding-right: 10px;">
+                                <a class="btn btn-success btn-square redclosebtn" ng-click="ClosePriorityDetailpopup()">
+                                    {{resData.res_OrderListCheckCount_Close}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </ion-content>
+
+            </ion-modal-view>
+        </script>
+
+
+        <script id="WarningMessage.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{resData.res_DeleteDraft_Warning}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseBayConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        Do you want to deactivated this bay while it has been assigned by truck ?
+                    </div>
+                </ion-content>
+
+
+
+
+                <ion-footer-bar class="popupfooter">
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="BayDeactivatedYes()">
+                                {{resData.res_AddCompany_DeleteYes}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseBayConfirmation()">
+                                {{resData.res_AddCompany_DeleteNo}}
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+
+
+            </ion-modal-view>
+        </script>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,509 @@
+﻿<div style="float:left;width:100%" ng-controller="OrderReceiveController">
+    <link href="ManageCustomer/style/style.css" rel="stylesheet" />
+    <style type="text/css">
+        .show_menu_dots {
+            display: none;
+        }
+
+        .cart_icon {
+            display: none
+        }
+
+        .Quantityinput {
+            height: 37px !important;
+        }
+
+        .actionbtn {
+            height: auto !important;
+            padding: 6px 0px !important;
+        }
+
+        .new_popup_ui_action_buttons .button_icon_ui_container {
+            display: inline-block;
+            float: none;
+            width: auto;
+            top: 2px;
+            position: relative;
+        }
+
+            .new_popup_ui_action_buttons .button_icon_ui_container .button_icon_ui {
+                width: 16px;
+            }
+
+        .new_popup_ui_action_buttons .button_text_ui_container {
+            display: inline-block;
+            float: none;
+            width: auto;
+            position: relative;
+            top: 0px;
+            left: 4px;
+            font-weight: 400;
+            font-family: HEINEKEN_Core_0;
+            font-size: 14px;
+        }
+
+        .confirmationbtnInquiry {
+            margin-right: 0px !important;
+            width: 100%;
+        }
+
+        .continuebtnInquiry {
+            margin-top: 10px;
+            padding: 8px 8px;
+            border-radius: 9px;
+            height: 40px;
+            text-align: center;
+            margin-bottom: 10px;
+            margin-right: 2px;
+            margin-left: 2px;
+            margin-top: 10px;
+        }
+    </style>
+    <div class="edit_control_tower_section" style="float: left;
+        width: 100%;
+        overflow-y: auto;
+        position: fixed;
+        bottom: 50px;
+        top:40px;">
+        <div class="builder-container">
+            <div class="Console_sidebar_body" style="float:left;width:100%;padding: 0 0px 0 0;">
+                <div style="float:left;width:100%">
+                    <div style="float: left;width: 100%;">
+                        <div class="col-md-12" style="padding: 0px;">
+                            <div class="uk-container track_order_page_ui createInquiry onlineshopcontainer view_catalogue_container uk-container-center">
+                                <div id="View_Catalogue_Container" class="uk-width-large-10-10 uk-row-first uk-grid-margin">
+                                    <div class="profile_details_scrollable_div setup_screen_paddingtop_10_space">
+                                        <div class="fullwidthcontainer manage_catalogue_container partial_receive_order_summary ">
+                                            <div class="order_summary_status_container Order_summary_card_section">
+                                                <div class="OrderListViewUI Single_Order_Card_UI" ng-if="SelectedOrderJson !== undefined && SelectedOrderJson !== null">
+                                                    <div class="OrderListControl">
+                                                        <div class="OrderListControl_Card app_text_white_bgcolor curved_card app_text_dark_color">
+                                                            <div>
+                                                                <div class="track_order_number_date">
+                                                                    <div class="SONumber_value">
+                                                                        <div class="so_number_text" ng-if="OrderReceivepageContrlDataAcess.SONumber !='0'">
+                                                                            {{SelectedOrderJson.OrderNumber}}
+                                                                        </div>
+
+                                                                        <div class="so_status_text_trackpage" style="background-color: {{SelectedOrderJson.Class}}" ng-if="OrderReceivepageContrlDataAcess.SOStatus !='0'">
+                                                                            <div class="status_text_colot">
+                                                                                {{SelectedOrderJson.Status}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="Inquiry_productQuantity_count">
+                                                                        <div ng-if="OrderReceivepageContrlDataAcess.TotalPrice !='0'">
+                                                                            {{SelectedOrderJson.TotalPrice | currency: CurrencyFormatCode: DecimalValue}} {{resData.res_CurrencyCode}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="order_basic_info_container">
+                                                                    <div class="order_basic_info less_line_height" ng-if="OrderReceivepageContrlDataAcess.RequestedDate !='0'">
+                                                                        <div class="order_basic_info_text_ui">
+                                                                            {{resData.res_TrackOrder_RequestedDate}}
+                                                                        </div>
+                                                                        <div class="shipto_name_data">
+                                                                            {{DateParse(SelectedOrderJson.RequestDate)| date:'dd-MMM-yyyy'}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="order_basic_info less_line_height" ng-if="OrderReceivepageContrlDataAcess.ShipTo !='0'">
+
+                                                                        <div class="order_basic_info_text_ui">
+                                                                            {{resData.res_TrackOrder_ShipTo}}
+                                                                        </div>
+                                                                        <div class="shipto_name_data" style="width: calc(100% - 75px);">
+                                                                            {{SelectedOrderJson.ShipToName}} ({{SelectedOrderJson.ShipToCode}})
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="trakorder_status_data_text_section" ng-if="OrderReceivepageContrlDataAcess.SupplierName !='0'">
+                                                                    <div class="order_basic_info less_line_height">
+                                                                        <div class="order_basic_info_text_ui">
+                                                                            {{resData.res_TrackOrder_Supplier}}
+                                                                        </div>
+                                                                        <div class="shipto_name_data" style="width: calc(100% - 75px);">
+                                                                            {{SelectedOrderJson.SupplierName}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="nopaddingindesktop setup_screen_paddingtop_10_space full_screen_width">
+                                                <div class="ItemSearchControl Search_Bar_Control order_receive_item_text">
+                                                    Items
+                                                </div>
+                                            </div>
+                                            <div class="fullwidthcontainer">
+                                                <div class="customerlistheader_div order_product_receive_card_section">
+                                                    <div class="Accordion_List_Box order_product_receive_card" ng-repeat="orderJson in SelectedOrderJson.ProductList" ng-if="orderJson.ItemType !==30">
+                                                        <div class="product_catalog_card_ui app_text_white_bgcolor">
+                                                            <div class="text full_screen_width">
+                                                                <div class="card_left_text">
+                                                                    <div class="OrderFlow_product_image_thumbnail">
+                                                                        <div class="orderflow_product_image">
+                                                                            <img ng-if="orderJson.ImageUrl != null && orderJson.ImageUrl != ''" ng-src="{{orderJson.ImageUrl}}">
+                                                                            <img ng-if="orderJson.ImageUrl == null || orderJson.ImageUrl == ''" src="Images/heineken2.jpg">
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="OrderFlow_createinquiry_productcard_ui">
+                                                                        <div class="product_name_text_ui app_text_dark_color" ng-if="OrderReceivepageContrlDataAcess.ItemName !='0'">
+                                                                            {{orderJson.ItemName}}
+                                                                        </div>
+                                                                        <div class="product_price_ui" ng-if="OrderReceivepageContrlDataAcess.ProductPrice !='0'">
+                                                                            <div class="price_number app_text_dark_color">
+                                                                                {{resData.res_ProductPrice}}: {{orderJson.ItemPricesPerUnit | currency: CurrencyFormatCode: DecimalValue}}<span>{{resData.res_CurrencyCode}}</span>
+                                                                            </div>
+                                                                            <div class="price_uom app_text_dark_color">
+                                                                                {{resData.res_PerUOM}} {{orderJson.UOM}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product_price_ui" ng-if="OrderReceivepageContrlDataAcess.ProductUOM !='0'">
+                                                                            <div class="price_number app_text_dark_color"></div>
+                                                                            {{resData.res_OrderReceive_UoM}}: {{orderJson.UOM}}
+                                                                        </div>
+                                                                        <div class="product_price_ui" ng-if="gorderJson.ItemType ===31">
+                                                                            <div class="price_number app_text_dark_color"></div>
+                                                                            <img src="Images/Asset 97.png" style="height: 20px;margin-right: 17px;float: right;" />
+                                                                        </div>
+                                                                        <div class="product_price_ui" ng-if="OrderReceivepageContrlDataAcess.ProductTotalPrice !='0'">
+                                                                            <div class="price_number app_text_dark_color">
+                                                                                {{resData.res_TotalPrice}}: {{orderJson.ItemPrices | currency: CurrencyFormatCode: DecimalValue}}<span>{{resData.res_CurrencyCode}}</span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="product_quantity_info_container app_text_dark_color" ng-if="OrderReceivepageContrlDataAcess.IsPartialReceiveQuantitySection !='0'">
+                                                                            <div class="order_quantity_header_row">
+                                                                                <div class="item_quantity_column">
+                                                                                    {{resData.res_trackorder_Itemquantity}}
+                                                                                </div>
+                                                                                <div class="recieve_quantity_column">
+                                                                                    {{resData.res_trackorder_Receivedquantity}}
+                                                                                </div>
+                                                                                <div class="enqual_to_sign">
+                                                                                    &nbsp;
+                                                                                </div>
+                                                                                <div class="shortfall_quantity_column">
+                                                                                    {{resData.res_trackorder_Shortfall}}
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="order_quantity_data_row">
+                                                                                <div class="item_quantity_column text_aling_center">
+                                                                                    {{orderJson.ProductQuantity | number : 0}}
+                                                                                </div>
+                                                                                <div class="recieve_quantity_column">
+                                                                                    <div class="btn-group btnplusminus">
+                                                                                        <div class="input-group btngroup quantity_change_control">
+                                                                                            <div ng-click="ChangeReceivedQuantity('Minus',orderJson)" class="input-group-addon actionbtn btn plus_minus_control">
+                                                                                                <span class="action_icon_data minus_button_quantity">
+                                                                                                    <img src="Images/Asset 169.png" />
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <input only-numbers ng-change="ChangeReceivedQuantity('Enter',orderJson)" class="form-control ng-pristine additemdarktext Quantityinput ng-untouched ng-valid" ng-model="orderJson.ReceiveQuantity" min="0" step="1">
+                                                                                            <div ng-click="ChangeReceivedQuantity('Add',orderJson)" class="input-group-addon actionbtn btn plus_minus_control">
+                                                                                                <span class="action_icon_data plus_button_quantity">
+                                                                                                    <img src="Images/Asset 170.png" />
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="enqual_to_sign text_aling_center">
+                                                                                    =
+                                                                                </div>
+                                                                                <div class="shortfall_quantity_column text_aling_center">
+                                                                                    {{orderJson.ShortfallQuantity | number : 0}}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            <div class="order_receive_shortfall_section app_text_dark_color" ng-if="orderJson.OrderProductFeedback.length > 0 && orderJson.isProductQuantityShortfall === true && OrderReceivepageContrlDataAcess.IsAddReasonCodeSection !='0'">
+                                                                <div class="order_receive_shortfall_content">
+                                                                    <div class="order_receive_shortfall_header_content">
+                                                                        <div class="shortfall_reasoncode_section">
+                                                                            {{resData.res_ReasonCode}}:
+                                                                        </div>
+                                                                        <div class="shortfall_quantity_section">
+                                                                            {{resData.res_Shortfallquantity}}:
+                                                                        </div>
+                                                                        <div class="delete_shortfall_row">
+                                                                            &nbsp;
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="order_receive_shortfall_data_content">
+
+                                                                        <div class="orderreceive_shortfall_full_container" ng-repeat="orderProductFeedback in orderJson.OrderProductFeedback">
+
+                                                                            <div class="shortfall_reasoncode_section">
+                                                                                <div class="section_container_control nomargin">
+                                                                                    <select ng-change="SelectFeedbackReasonCode(orderProductFeedback.ReasonCodeId,orderProductFeedback, orderJson.OrderProductFeedback)" ng-options="obj.LookUpId as obj.Name for obj in ReasonCodeList" ng-model="orderProductFeedback.ReasonCodeId" class="form-control feedback_dropdownlist profile_detail_textbox select_dropdown_ui">
+                                                                                        <option value="">Select</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="shortfall_quantity_section">
+                                                                                <div class="btn-group btnplusminus">
+                                                                                    <div class="input-group btngroup quantity_change_control">
+                                                                                        <div ng-click="ChangeOrderReasonCodeQuantity('Minus',orderProductFeedback,orderJson)" style="margin-bottom: 0px;" class="input-group-addon actionbtn btn plus_minus_control">
+                                                                                            <span class="plus_minus_icon_data minus_button_quantity">
+                                                                                                <img src="Images/Asset 169.png">
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <input only-numbers ng-change="ChangeOrderReasonCodeQuantity('Enter',orderProductFeedback,orderJson)" class="form-control ng-pristine additemdarktext Quantityinput ng-untouched ng-valid" ng-model="orderProductFeedback.ShortfallQuantity" min="0" step="1">
+                                                                                        <div ng-click="ChangeOrderReasonCodeQuantity('Add',orderProductFeedback,orderJson)" style="margin-bottom: 0px;" class="input-group-addon actionbtn btn plus_minus_control">
+                                                                                            <span class="plus_minus_icon_data plus_button_quantity">
+                                                                                                <img src="Images/Asset 170.png">
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="delete_shortfall_row" ng-click="RemoveShortfallReasonCode(orderJson,orderProductFeedback)">
+                                                                                <img src="Images/Asset 342.png" />
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                    </div>
+
+                                                                    <div class="order_receive_shortfall_add_new_section app_text_whitebg_normal_color" ng-if="orderJson.IsShowAddReasoButton === true" style="width: auto;" ng-click="AddMoreReasonCode(orderJson)">
+                                                                        <div class="plus_icon_add_reason">
+                                                                            &#x2b;
+                                                                        </div>
+                                                                        <div class="add_reason_text_btn">
+                                                                            {{resData.res_AddReason}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-repeat="AsorderJson in SelectedOrderJson.ProductList" ng-if="AsorderJson.ItemType ===30">
+                                                        <span> {{resData.res_OrderReceive_gratis}} ({{AsorderJson.AssociatedOrderNumber}})</span>
+                                                        <div class="Accordion_List_Box order_product_receive_card" ng-if="gorderJson.ItemType ===30 && AsorderJson.AssociatedOrder===gorderJson.AssociatedOrder" ng-repeat="gorderJson in SelectedOrderJson.ProductList">
+                                                            <div class="product_catalog_card_ui app_text_white_bgcolor">
+                                                                <div class="text full_screen_width">
+                                                                    <div class="card_left_text">
+                                                                        <div class="OrderFlow_product_image_thumbnail">
+                                                                            <div class="orderflow_product_image">
+                                                                                <img ng-if="gorderJson.ImageUrl != null && gorderJson.ImageUrl != ''" ng-src="{{gorderJson.ImageUrl}}">
+                                                                                <img ng-if="gorderJson.ImageUrl == null || gorderJson.ImageUrl == ''" src="Images/OrderFlow/Hein_sleek_330_24.jpg">
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="OrderFlow_createinquiry_productcard_ui">
+                                                                            <div class="product_name_text_ui app_text_dark_color" ng-if="OrderReceivepageContrlDataAcess.ItemName !='0'">
+                                                                                {{gorderJson.ItemName}}
+                                                                            </div>
+                                                                            <div class="product_price_ui" ng-if="OrderReceivepageContrlDataAcess.ProductPrice !='0'">
+                                                                                <div class="price_number app_text_dark_color">
+                                                                                    {{resData.res_ProductPrice}}: {{gorderJson.ItemPricesPerUnit | currency: CurrencyFormatCode: DecimalValue}}<span>{{resData.res_CurrencyCode}}</span>
+                                                                                </div>
+                                                                                <div class="price_uom app_text_dark_color">
+                                                                                    {{resData.res_PerUOM}} {{gorderJson.UOM}}
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="product_price_ui" ng-if="OrderReceivepageContrlDataAcess.ProductUOM !='0'">
+                                                                                <div class="price_number app_text_dark_color"></div>
+                                                                                {{resData.res_OrderReceive_UoM}}: {{gorderJson.UOM}}
+                                                                            </div>
+                                                                            <div class="product_price_ui" ng-if="gorderJson.ItemType ===30">
+                                                                                <div class="price_number app_text_dark_color"></div>
+                                                                                <img src="Images/Asset 96.png" style="height: 20px;margin-right: 17px;float: right;" />
+                                                                            </div>
+                                                                            <div class="product_price_ui" ng-if="OrderReceivepageContrlDataAcess.ProductTotalPrice !='0'">
+                                                                                <div class="price_number app_text_dark_color">
+                                                                                    {{resData.res_TotalPrice}}: {{gorderJson.ItemPrices | currency: CurrencyFormatCode: DecimalValue}}<span>{{resData.res_CurrencyCode}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="product_quantity_info_container app_text_dark_color" ng-if="OrderReceivepageContrlDataAcess.IsPartialReceiveQuantitySection !='0'">
+                                                                    <div class="order_quantity_header_row">
+                                                                        <div class="item_quantity_column">
+                                                                            {{resData.res_trackorder_Itemquantity}}
+                                                                        </div>
+                                                                        <div class="recieve_quantity_column">
+                                                                            {{resData.res_trackorder_Receivedquantity}}
+                                                                        </div>
+                                                                        <div class="enqual_to_sign">
+                                                                            &nbsp;
+                                                                        </div>
+                                                                        <div class="shortfall_quantity_column">
+                                                                            {{resData.res_trackorder_Shortfall}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="order_quantity_data_row">
+                                                                        <div class="item_quantity_column text_aling_center">
+                                                                            {{gorderJson.ProductQuantity | number : 0}}
+                                                                        </div>
+                                                                        <div class="recieve_quantity_column">
+                                                                            <div class="btn-group btnplusminus">
+                                                                                <div class="input-group btngroup quantity_change_control">
+                                                                                    <div ng-click="ChangeReceivedQuantity('Minus',gorderJson)" class="input-group-addon actionbtn btn plus_minus_control">
+                                                                                        <span class="action_icon_data minus_button_quantity">
+                                                                                            <img src="Images/Asset 169.png" />
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <input only-numbers ng-change="ChangeReceivedQuantity('Enter',gorderJson)" class="form-control ng-pristine additemdarktext Quantityinput ng-untouched ng-valid" ng-model="gorderJson.ReceiveQuantity" min="0" step="1">
+                                                                                    <div ng-click="ChangeReceivedQuantity('Add',gorderJson)" class="input-group-addon actionbtn btn plus_minus_control">
+                                                                                        <span class="action_icon_data plus_button_quantity">
+                                                                                            <img src="Images/Asset 170.png" />
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="enqual_to_sign text_aling_center">
+                                                                            =
+                                                                        </div>
+                                                                        <div class="shortfall_quantity_column text_aling_center">
+                                                                            {{gorderJson.ShortfallQuantity | number : 0}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="order_receive_shortfall_section app_text_dark_color" ng-if="gorderJson.OrderProductFeedback.length > 0 && gorderJson.isProductQuantityShortfall === true && OrderReceivepageContrlDataAcess.IsAddReasonCodeSection !='0'">
+                                                                    <div class="order_receive_shortfall_content">
+                                                                        <div class="order_receive_shortfall_header_content">
+                                                                            <div class="shortfall_reasoncode_section">
+                                                                                {{resData.res_ReasonCode}}:
+                                                                            </div>
+                                                                            <div class="shortfall_quantity_section">
+                                                                                {{resData.res_Shortfallquantity}}:
+                                                                            </div>
+                                                                            <div class="delete_shortfall_row">
+                                                                                &nbsp;
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="order_receive_shortfall_data_content">
+
+                                                                            <div class="orderreceive_shortfall_full_container" ng-repeat="orderProductFeedback in gorderJson.OrderProductFeedback">
+
+                                                                                <div class="shortfall_reasoncode_section">
+                                                                                    <div class="section_container_control nomargin">
+                                                                                        <select ng-change="SelectFeedbackReasonCode(orderProductFeedback.ReasonCodeId,orderProductFeedback, gorderJson.OrderProductFeedback)" ng-options="obj.LookUpId as obj.Name for obj in ReasonCodeList" ng-model="orderProductFeedback.ReasonCodeId" class="form-control feedback_dropdownlist profile_detail_textbox select_dropdown_ui">
+                                                                                            <option value="">Select</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="shortfall_quantity_section">
+                                                                                    <div class="btn-group btnplusminus">
+                                                                                        <div class="input-group btngroup quantity_change_control">
+                                                                                            <div ng-click="ChangeOrderReasonCodeQuantity('Minus',orderProductFeedback,gorderJson)" class="input-group-addon actionbtn btn plus_minus_control">
+                                                                                                <span class="plus_minus_icon_data minus_button_quantity">
+                                                                                                    <img src="Images/Asset 169.png">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <input only-numbers ng-change="ChangeOrderReasonCodeQuantity('Enter',orderProductFeedback,gorderJson)" class="form-control ng-pristine additemdarktext Quantityinput ng-untouched ng-valid" ng-model="orderProductFeedback.ShortfallQuantity" min="0" step="1">
+                                                                                            <div ng-click="ChangeOrderReasonCodeQuantity('Add',orderProductFeedback,gorderJson)" class="input-group-addon actionbtn btn plus_minus_control">
+                                                                                                <span class="plus_minus_icon_data plus_button_quantity">
+                                                                                                    <img src="Images/Asset 170.png">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="delete_shortfall_row" ng-click="RemoveShortfallReasonCode(gorderJson,orderProductFeedback)">
+                                                                                    <img src="Images/Asset 342.png" />
+                                                                                </div>
+                                                                            </div>
+
+
+
+                                                                        </div>
+
+                                                                        <div class="order_receive_shortfall_add_new_section app_text_whitebg_normal_color" ng-if="gorderJson.IsShowAddReasoButton === true" style="width: auto;" ng-click="AddMoreReasonCode(gorderJson)">
+                                                                            <div class="plus_icon_add_reason">
+                                                                                &#x2b;
+                                                                            </div>
+                                                                            <div class="add_reason_text_btn">
+                                                                                {{resData.res_AddReason}}
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="bottom: 0px !important; padding-left: 5px !important;height: 60px !important;padding-right: 5px !important; position: fixed;" class="navbar-collapse shoppingcartdiv bottombutton_section_div collapse right cart_page_bottom_section order_management_app_bottom_buttons">
+        <div id="Save_Inquiry_Button" class="confirmationbtnInquiry">
+            <a ng-click="SavePartialOrderReceive()" id="Save_Button" class="continuebtn order_survey_confirm_btn">
+                <div class="button_icon_ui_container bgbutton_icon_topspace">
+                    <div class="img_done_btn">
+                        <img class="button_icon_uiInquiry" src="Images/Tick.png" />
+                    </div>
+                    <div class="done_btn_text">
+                        {{resData.res_OrderReceive_Proceed}}
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <div class="modal-backdrop active" ng-if="SubmitPartialOrderReceiveConfirmationMsg === true">
+        <div class="modal-backdrop-bg"></div>
+        <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:100px !important;width:800px !important;z-index: 10000 !important;">
+            <ion-header-bar class="bar bar-header bar-positive" style="height: 50px;border: 0px;">
+                <div class="exclamation_icon RemovePromotionCarousel" style="padding-top: 5px;">
+                    <img src="../Images/Tick.png" style="height: 30px;" />
+                </div>
+            </ion-header-bar>
+            <ion-content scroll="hidden" class="padding IonicPopupHeight" style="top: 50px !important;min-height: 100px !important;">
+                <div class="message_content bottom_space_30">
+                    {{messageText}}
+                </div>
+            </ion-content>
+            <ion-footer-bar align-title="left" class="popupfooter" style="bottom: 6px;">
+                <div class="message_continue_ok_content new_popup_ui_action_buttons">
+                    <a class="popupOKbtn app_button_dark_bgcolor" style="border-radius: 4px;margin-top:0px;border: 1px solid #39b54a !important;background-color: #fff;" ng-click="CloseConfirmationPopup()">
+                        <span class="button_icon_ui_container"> <img class="button_icon_ui" src="Images/Tick.png"> </span>
+                        <span class="button_text_ui_container" style="color:#101417">Ok</span>
+                    </a>
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </div>
+
+</div>

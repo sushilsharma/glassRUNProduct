@@ -1,0 +1,140 @@
+﻿<div id="PaymentSlabGrid" style="height: 70vh;" class="PaymentSlab_Grid" dx-data-grid="PaymentSlabGrid" dx-item-alias="PaymentSlabData">
+
+    <div data-options="dxTemplate:{ name:'Edit' }" class="ClickkableCell EnquiryNumberUI" style="width:50px">
+        <!--<i class='fa fa-pencil'></i>-->
+        Edit
+    </div>
+
+    <div data-options="dxTemplate:{ name:'ChangePassword' }" class="ClickkableCell EnquiryNumberUI" style="width:50px">
+        <!--<i class='fa fa-pencil'></i>-->
+        Change Password
+    </div>
+
+    <div data-options="dxTemplate:{ name:'ActiveInActiveTemplate' }" class="ClickkableCell EnquiryNumberUI">
+        <a class="greenbgfont approvebtn" ng-if="PaymentSlabData.data.IsActive=='0'">    {{resData.res_DriverPage_InActive}} </a>
+        <a class="greenbgfont approvebtn" ng-if="PaymentSlabData.data.IsActive=='1'">    {{resData.res_DriverPage_Active}} </a>
+    </div>
+
+
+    <div data-options="dxTemplate:{ name:'Regenerate' }" class="ClickkableCell">
+  
+        <a class="greenbgfont approvebtn" ng-if="PaymentSlabData.data.OTPValid=='N'">    Re-Generate OTP </a>
+    </div>
+</div>
+<script id="ViewGrid_WarningMessage.html" type="text/ng-template">
+    <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+        <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+            <h1 class="title">{{resData.res_PaymentSlab_Warning}}</h1>
+            <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation_ViewGrid()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+        </ion-header-bar>
+        <ion-content scroll="false" class="popioncontainer">
+            <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                {{ActiveInActiveMessage}}
+            </div>
+        </ion-content>
+        <ion-footer-bar class="popupfooter">
+
+            <div class="popupbtnstyle">
+                <div class="popupbuttonstyle">
+                    <a class="btn btn-success btn-square" ng-click="DeleteYes_ViewGrid()">
+                        {{resData.res_PaymentSlab_DeleteYes}}
+                    </a>
+                    <a class="btn btn-success btn-square" style="border:1px solid red !important" ng-click="CloseDeleteConfirmation_ViewGrid()">
+                        {{resData.res_PaymentSlab_DeleteNo}}
+                    </a>
+                </div>
+
+
+            </div>
+        </ion-footer-bar>
+    </ion-modal-view>
+</script>
+
+
+<script id="ViewGrid_OTPWarningMessage.html" type="text/ng-template">
+    <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+        <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+            <h1 class="title">{{resData.res_PaymentSlab_Warning}}</h1>
+            <button class="button button-clear button-primary" ng-click="CloseOTPReConfirmation_ViewGrid()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+        </ion-header-bar>
+        <ion-content scroll="false" class="popioncontainer">
+            <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                {{OTPWarningMessage}}
+            </div>
+        </ion-content>
+        <ion-footer-bar class="popupfooter">
+
+            <div class="popupbtnstyle">
+                <div class="popupbuttonstyle">
+                    <a class="btn btn-success btn-square" ng-click="RegenOTPYes_ViewGrid()">
+                        {{resData.res_PaymentSlab_DeleteYes}}
+                    </a>
+                    <a class="btn btn-success btn-square" style="border:1px solid red !important" ng-click="CloseOTPReConfirmation_ViewGrid()">
+                        {{resData.res_PaymentSlab_DeleteNo}}
+                    </a>
+                </div>
+
+
+            </div>
+        </ion-footer-bar>
+    </ion-modal-view>
+</script>
+
+
+<script id="ChangePasswordView.html" type="text/ng-template">
+    <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+        <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+            <h1 class="title">{{resData.res_ChangePasswordHeaderMessage}}</h1>
+            <button class="button button-clear button-primary" ng-click="CloseChangePasswordControlConfirmation()"><i class="fa fa-times"></i></button>
+        </ion-header-bar>
+        <ion-content scroll="hidden" class="padding IonicPopupHeight">
+            <div class="list">
+                <div class="customlistcontrolview">
+                    <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ChangePassword_NewPassword}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input class="form-control form-white" ng-model="changepass.newPassword" autocomplete="new-password" type="password" placeholder="New Password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ChangePassword_ConfirmedPassword}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input class="form-control form-white" ng-model="changepass.confirmedPassword" autocomplete="off" type="password" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </ion-content>
+        <ion-footer-bar align-title="left" class="popupfooter">
+            <div class="popupbtnstyle">
+
+                <div class="popupbuttonstyle">
+                    <a class="btn btn-success btn-square" ng-click="ChangePassword_ViewGrid()">
+                        {{resData.res_AssignTransporter_Ok}}
+                    </a>
+                </div>
+                <div class="popupbuttonstyle">
+                    <a class="btn btn-success btn-square redclosebtn" ng-click="CloseChangePasswordControlConfirmation()">
+                        {{resData.res_AssignTransporter_Close}}
+                    </a>
+                </div>
+            </div>
+        </ion-footer-bar>
+
+
+    </ion-modal-view>
+
+</script>

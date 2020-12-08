@@ -1,0 +1,65 @@
+﻿
+<div class="ContainerSection">
+    <div class="conatinerheader headerdataconatiner">
+
+        <div class="unitContainer rightaling">
+            {{resData.res_BillView_InvoiceNumber}}
+        </div>
+
+        <div class="unitContainer rightaling">
+           
+            {{resData.res_BillView_InvoiceAmount}}
+        </div>
+        <div class="unitContainer rightaling" style="width:20% !important;">
+           
+            {{resData.res_BillView_BillingDate}}
+        </div>
+        <div class="QuantityControl" style="width:20% !important;padding-top: 5px; margin-left:1%">
+           
+            {{resData.res_BillView_Remarks}}
+        </div>
+
+        <div class="TotalConatiner rightaling" style="width:10% !important;border:none !important" ng-if="SalesAdminApprovalData.data.IsBilled ==0">
+            
+            {{resData.res_BillView_Action}}
+        </div>
+
+    </div>
+    <div class="conatinerbody">
+        <div class="conatinerheader itemrowcontainer" style="height: auto;padding: 0px !important;">
+
+            <div class="unitContainer rightaling" style="height: auto;padding: 2px 5px  !important;">
+                <input class="form-control form-white" style="padding-left: 0px !important;padding-right: 5px;text-align:right" type="text"  ng-model="SalesOrderBillingObject.InvoiceNumber" ng-readonly="SalesOrderBillingObject.IsBilled =='1'" />
+            </div>
+            <div class="unitContainer rightaling" style="height: auto;padding: 2px 5px  !important;">
+               {{resData.res_CurrencyCode}}  <input class="form-control form-white" style="padding-left: 0px !important;padding-right: 5px;text-align:right" type="text" valid-number ng-model="SalesOrderBillingObject.InvoiceAmount"   ng-readonly="SalesOrderBillingObject.IsBilled =='1'"  />
+            </div>
+            <div class="unitContainer rightaling" style="width:20% !important;height: auto;padding: 2px 5px  !important;">
+
+                
+                
+                <input ng-mouseover="InitializeDatePicker()" class="form-control form-white datetimepicker  paymentDate" type="text" name="datetimepicker" placeholder="payment Date" style="width: 97% !important;" ng-readonly="true" ng-model="SalesOrderBillingObject.BillingDate" >
+
+                <i class="icon-calendar" style="    margin-left: -26px;"></i>
+            
+            
+            </div>
+            <div class="QuantityControl" style="width:20% !important;height: auto;margin-left:1%">
+                <input class="form-control form-white" style="padding-left: 0px !important;" type="text"  ng-model="SalesOrderBillingObject.Remarks"  ng-readonly="SalesOrderBillingObject.IsBilled =='1'" />
+            </div>
+
+            <div class="TotalConatiner rightaling" style="width:10% !important;height: auto;border:none !important;padding: 10px 5px  !important;" ng-if="SalesOrderBillingObject.IsBilled ==0">
+                <a ng-click="SendBillRequest(SalesOrderBillingObject)" >
+                  
+
+                    <span class="greenbgfont approvebtn">{{resData.res_BillView_Bill}}  </span>
+
+                   
+                   
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

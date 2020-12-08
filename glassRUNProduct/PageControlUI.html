@@ -1,0 +1,125 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <link href="Styles/console_tracker.css" rel="stylesheet">
+        <style>
+            .activeTab {
+                background-color: #394C4A !important;
+                color: #6cbf43 !important;
+            }
+
+            .visiblehiddentxt1 {
+                height: 1px;
+                right: 0px;
+                left: 0px;
+                top: 8px;
+                background-color: #fff !important;
+                border: 1px solid #fff !important;
+            }
+
+            #ui-datepicker-div.ui-datepicker {
+                margin-top: 8px !important;
+            }
+        </style>
+        <div class="pageview orderlist_page" style="padding: 20px 30px 0;overflow-y:hidden">
+            <div class="row">
+
+                <div class="col-md-12 pagecontainerdiv" style="margin-top:0px">
+                    <div class="gridheaderactionbuttons">
+                        <div style="float:left;margin-bottom: 24px; width:100% ">
+                            <div class="footerbuttons footerbtnrightborder" style="margin:0px">
+                                <a class="buttonstext drop-shadow greencolorbtntext toprefreshbuttons" ng-click="RefreshDataGrid()">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+                            </div>
+                            <div style="float:left!important;width:25%; margin-left:20px">
+                                    <div class="labelname">
+                                        Select Page
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select id="ddlPaymentPlanId" ng-change="OnSelectChange()" ng-model="JSONPageDetails.PageId" class="form-control" name="val_SelectObject" ng-options="obj.PageId as obj.PageName for obj in PageList | orderBy:'PageName'">
+                                            <option value="">Select</option>
+                                        </select>
+
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="portalview" class="PortalView">
+                        <div class="panel drop-shadow" style="background: #fff;float: left;width: 100%;">
+                            <div class="panel-content" style="padding:0px;float:left;width: 100%;">
+                                <div class="dx-viewport">
+                                    <div class="demo-container">
+                                        <div id="GratisListGrid" class="SalesAdminApproval_Grid" dx-data-grid="OrderDataGrid" dx-item-alias="SalesAdminApprovalData">
+
+                                            <div data-options="dxTemplate:{ name:'IsMandatoryTemplate' }">
+                                                <div style="float:left;width:100%" ng-show="SalesAdminApprovalData.data.IsMandatoryCheckbox != true">
+                                                    <span>{{SalesAdminApprovalData.data.IsMandatory}}</span>
+                                                </div>
+
+                                                <div style="float:left;width:100%" ng-show="SalesAdminApprovalData.data.IsMandatoryCheckbox == true">
+                                                    <div style="float:left;width:60%">
+                                                        <input type="checkbox" ng-model="SalesAdminApprovalData.data.IsMandatory" class="form-control check_control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'ValidationExpressionTemplate' }">
+                                                <div style="float:left;width:100%" ng-show="SalesAdminApprovalData.data.showValidationExpressionTextbox != true">
+                                                    <span>{{SalesAdminApprovalData.data.ValidationExpression}}</span>
+                                                </div>
+
+                                                <div style="float:left;width:100%" ng-show="SalesAdminApprovalData.data.showValidationExpressionTextbox == true">
+                                                    <div style="float:left;width:60%">
+                                                        <input class="form-control form-white" ng-model="SalesAdminApprovalData.data.ValidationExpressionNEW" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'EditRow' }">
+                                                <div style="float:left;width:100%">
+                                                    <a ng-show="IsShowEdit" ng-click="onValidationExpressionLinkClick($event,SalesAdminApprovalData.data)">
+                                                        <span ng-show="IsShowEdit">Edit</span>
+                                                    </a>
+                                                </div>
+                                                <div style="float:left;width:100%" ng-show="SalesAdminApprovalData.data.showValidationExpressionTextbox == true">
+                                                    <div style="float:left;width:20%">
+                                                        <a class="createinquirybtn_solidbg card_Section circlebg_icon_50 space_left_20 grid_confirm_icon grid_cancel_icon" ng-click="ClearValidationExpression($event,SalesAdminApprovalData.data)">
+                                                            <i style="font-size: 14px !important;" class="fa fa-times RemoveItemfa-trash" aria-hidden="true"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div style="float:left;width:20%">
+                                                        <a class="createinquirybtn_solidbg card_Section circlebg_icon_50 space_left_20 grid_confirm_icon" ng-click="SaveValidationExpression($event,SalesAdminApprovalData.data)">
+                                                            <i style="font-size: 14px !important;" class="fa fa-check textcolor_green"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script language="JavaScript">
+
+            // this prevents from typing non-number text, including "e".
+            function isNumber(evt) {
+
+                evt = (evt) ? evt : window.event;
+                let charCode = (evt.which) ? evt.which : evt.keyCode;
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                    evt.preventDefault();
+                } else {
+                    return true;
+                }
+            }
+        </script>
+
+
+    </ion-content>
+</ion-view>

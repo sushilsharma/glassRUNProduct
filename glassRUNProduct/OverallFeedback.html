@@ -1,0 +1,493 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div class="pageview">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+
+                        <div class="CreateOrderView">
+
+                            <div class="row PortalView">
+                                <div class="panel fullwithwithoutpadding">
+                                    <div class="panel-header bg-primary">
+                                        <h3>Feedback</h3>
+                                    </div>
+
+                                    <div class="panel-content fullwithwithoutpadding">
+
+
+
+
+                                        <div class="list" style="float:left;width:100%;border:1px solid #d5d5d5;margin-bottom:0px">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname">
+                                                            SO # :
+                                                        </div>
+                                                        <div class="labelcontrol" style="margin-top: 6px;">
+                                                            {{labelOrderNumber}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <button type="button" class="btn  btn-square col-lg-12 btn-success" style="margin-bottom: 0px;" ng-click="setoverall()">Overall Feedback</button>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname">
+                                                                Feedback Type :
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <!--<select class="form-control" style="margin:0px !important"
+                                                                        ng-model="FeedbackVariable.Name" ng-change=""
+                                                                        ng-options="obj.LookUpId as obj.Name for obj in bindallFeedbak">
+                                                                    <option value="">Select</option>
+                                                                </select>-->
+                                                                <select class="form-control" style="margin:0px !important"
+                                                                        ng-model="FeedbackVariable.Name" ng-change="GetValueByParentid(FeedbackVariable.Name)"
+                                                                        ng-options="obj.LookUpId as obj.Name for obj in bindOverAllFeedbak">
+                                                                    <option value="">Select</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname">
+                                                                Feedback :
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <select class="form-control" style="margin:0px !important"
+                                                                        ng-model="FeedbackVariable.ItemFeedbackName" ng-change="GetSelectedValue(FeedbackVariable.ItemFeedbackName)"
+                                                                        ng-options="obj.LookUpId as obj.Name for obj in bindallFeedbak">
+                                                                    <option value="">Select</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname">
+                                                                Attachment :
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                                    <div class="form-control" data-trigger="fileinput">
+                                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                                        <span class="fileinput-filename">{{FeedbackVariable.labelFilename}}</span>
+                                                                    </div>
+                                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                                        <span class="fileinput-new">Choose...</span>
+                                                                        <span class="fileinput-exists">Change</span>
+                                                                        <input type="file" id="fileUpload" onchange="angular.element(this).scope().FileNameChanged(this)" file-model="fileupload.File" />
+                                                                    </span>
+                                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname">
+                                                                Comment :
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <textarea id="inputRFMQty" class="form-control form-white" ng-model="FeedbackVariable.Comment" type="text" rows="4" cols="50" placeholder="Comment"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12" ng-show="ReturnQuantityFieldDistabled">
+                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname">
+                                                                Actual Receive Date :
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="prepend-icon">
+                                                                    <input type="text" name="datepicker" onkeypress="return false;" ng-model="FeedbackVariable.ReceiveDate" class="customdate-picker form-control" placeholder="Select a Request date...">
+                                                                    <i class="icon-calendar"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12">
+                                                    <div class="feedbackdata" style="display:none" ng-repeat="feedback in OrderFeedbackListJson">
+                                                        <div class="feedbacksection">
+                                                            <div class="feedbackheading">
+                                                                {{feedback.FeedbackName}}
+                                                            </div>
+                                                            <div class="feedbackcomment">
+                                                                {{feedback.FeedbackName}}
+                                                            </div>
+                                                            <div class="feedbackdocument" ng-repeat="document in feedback.DocumentsList">
+                                                                <a> {{document.DocumentName}}</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ReplySection">
+                                                            <div class="headingreply">
+                                                                Reply
+                                                            </div>
+                                                            <div class="ReplySectiondata">
+                                                                <div class="replydata" ng-repeat="reply in feedback.OrderFeedbackReplyList" ng-if="feedback.OrderFeedbackReplyList.length > 0">
+                                                                    <div class="replyname">
+                                                                        {{reply.Comment}}
+                                                                    </div>
+                                                                    <div class="replyername">
+                                                                        Reply by : <span class="replybyname">{{reply.Name}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="replydata" ng-if="feedback.OrderFeedbackReplyList.length === 0">
+                                                                    <span class="Noreply">No Reply Found.</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--<table class="table table-striped" style="border: 1px solid #d5d5d5;" ng-if="OrderFeedbackListJson.length > 0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th> Feedback Name </th>
+                                                                <th> User Name </th>
+                                                                <th> Comment </th>
+                                                                <th> Attachment </th>
+                                                                <th> Date </th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody ng-repeat="feedback in OrderFeedbackListJson" ng-if="feedback.OrderProductId === '0'">
+                                                            <tr>
+                                                                <td> {{feedback.FeedbackName}} </td>
+                                                                <td> {{feedback.Name}} </td>
+                                                                <td> {{feedback.Comment}} </td>
+                                                                <td ng-repeat="document in feedback.DocumentsList">
+                                                                    <a ng-click="DownloadDocument(document.DocumentsId,feedback.OrderFeedbackId)">{{document.DocumentName}} </a>
+                                                                </td>
+                                                                <td>
+                                                                    {{feedback.CreatedDate}}
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="5" style="    float: none;">
+                                                                    <table class="table table-striped feedbacktable">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th> Reply  </th>
+                                                                                <th> Reply By </th>
+                                                                                <th> Date </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="reply in feedback.OrderFeedbackReplyList">
+                                                                                <td> Reply : {{reply.Comment}} </td>
+                                                                                <td> {{reply.Name}} </td>
+                                                                                <td>
+                                                                                    {{reply.CreatedDate}}
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>-->
+
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="specificitem" style="float:left;width:100%">
+                                                <div class="col-lg-12" style="margin-top:1%;">
+                                                    <button type="button" class="btn btn-square col-lg-12  specificItemList">Specific Item</button>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                            <div class="columnfulldata  margintopdata">
+                                                                <div class="labelname">
+                                                                    Item :
+                                                                </div>
+                                                                <div class="labelcontrol">
+                                                                    <select class="form-control" style="margin:0px !important"
+                                                                            ng-model="FeedbackVariable.ItemName" ng-change="SelectedItem(FeedbackVariable.ItemName)"
+                                                                            ng-options="obj.OrderProductId as obj.ItemNameCode for obj in bindallproduct" ng-disabled="ItemSectionForFeedback">
+                                                                        <option value="">Select</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                            <div class="columnfulldata  margintopdata">
+                                                                <div class="labelname">
+                                                                    Quantity :
+                                                                </div>
+                                                                <div class="labelcontrol">
+                                                                    {{FeedbackVariable.Quantity}} {{FeedbackVariable.UOM}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;margin-top: 10px;">
+                                                            <div class="columnfulldata  margintopdata">
+                                                                <div class="labelname">
+                                                                    Return Quantity :
+                                                                </div>
+                                                                <div class="labelcontrol">
+
+                                                                    <input class="form-control form-white" ng-model="FeedbackVariable.ReturnQuantity" ng-disabled="ReturnQuantityFieldDistabled || ItemSectionForFeedback" type="text" placeholder="Quantity">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <!--<div class="col-lg-12">
+                                                        <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                            <div class="columnfulldata  margintopdata">
+                                                                <div class="labelname">
+                                                                    Feedback :
+                                                                </div>
+                                                                <div class="labelcontrol">
+                                                                    <select class="form-control" style="margin:0px !important"
+                                                                            ng-model="FeedbackVariable.ItemFeedbackName" ng-change="GetSelectedValue(FeedbackVariable.ItemFeedbackName)"
+                                                                            ng-options="obj.LookUpId as obj.Name for obj in bindallFeedbak">
+                                                                        <option value="">Select</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>-->
+
+                                                    <div class="col-lg-12" style="display:none">
+                                                        <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                            <div class="columnfulldata  margintopdata">
+                                                                <div class="labelname">
+                                                                    Attachment :
+                                                                </div>
+                                                                <div class="labelcontrol">
+                                                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                                        <div class="form-control" data-trigger="fileinput">
+                                                                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                                            <span class="fileinput-filename">{{FeedbackVariable.labelItemFilename}}</span>
+                                                                        </div>
+                                                                        <span class="input-group-addon btn btn-default btn-file">
+
+                                                                            <span class="fileinput-new">Choose...</span>
+                                                                            <span class="fileinput-exists">Change</span>
+                                                                            <input type="file" id="ItemfileUpload" onchange="angular.element(this).scope().ItemFileNameChanged(this)" file-model="fileupload.ItemFile" />
+                                                                        </span>
+                                                                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12" style="display:none">
+                                                        <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                            <div class="columnfulldata  margintopdata">
+                                                                <div class="labelname">
+                                                                    Comment :
+                                                                </div>
+                                                                <div class="labelcontrol">
+                                                                    <textarea id="inputRFMQty" class="form-control form-white" ng-model="FeedbackVariable.ItemComment" type="text" rows="4" cols="50" placeholder="Comment"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 actionbtnfeedbacksave" style="margin: 30px 0px;">
+                                                    <div class="actionbuttoncontrols">
+                                                        <div class="actionbtndiv">
+                                                            <button class="button btn btn-default" ng-click="ClearFeedbackFields()">Clear</button>
+                                                        </div>
+                                                        <div class="actionbtndiv">
+                                                            <button class="button btn btn-success" ng-click="AddMultipleFeedback()">Add</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--<div class="col-lg-12 feedbackgrid" ng-if="OrderItemFeedback.length > 0">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th> Item Code </th>
+                                                                <th> Item Name </th>
+                                                                <th> Quantity </th>
+                                                                <th> Return Quantity </th>
+                                                                <th> UOM </th>
+                                                                <th> FeedBack </th>
+                                                                <th> Attachment </th>
+                                                                <th> Comment </th>
+                                                                <th>&nbsp;</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="item in OrderItemFeedback">
+
+                                                                <td> {{item.ProductCode}} </td>
+                                                                <td> {{item.ItemName}} </td>
+                                                                <td> {{item.Quantity}} </td>
+                                                                <td> {{item.ReturnQuantity}} </td>
+                                                                <td> {{item.UOM}} </td>
+                                                                <td> {{item.FeedbackValue}} </td>
+                                                                <td> {{item.DocumentName}} </td>
+                                                                <td> {{item.Comment}} </td>
+                                                                <td class="text-right">
+                                                                    <a class="delete btn btn-sm btn-danger" ng-click="RemoveFeedbackForItem(item.OrderItemFeedbackGUID)"><i class="icons-office-52"></i></a>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>-->
+
+                                                <div class="col-lg-12 feedbackgrid" ng-if="OrderFeedbackListJson.length > 0">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th> Feedback Type </th>
+                                                                <th> Feedback </th>
+                                                                <th> Product Name</th>
+                                                                <th> User Name </th>
+                                                                <th> Comment </th>
+                                                                <th> Actual Receive Date </th>
+                                                                <th> Attachment </th>
+
+                                                                <th> Date </th>
+                                                                <th style="float: none;"> Delete </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody ng-repeat="feedback in OrderFeedbackListJson">
+                                                            <tr>
+
+                                                                <td> {{feedback.FeedbackName}} </td>
+                                                                <td> {{feedback.Feedback}} </td>
+                                                                <td> {{feedback.ProductName}} </td>
+                                                                <td> {{feedback.Name}} </td>
+                                                                <td> {{feedback.Comment}} </td>
+                                                                <td ng-if="feedback.ActualReceiveDate === '01/01/1900' || feedback.ActualReceiveDate === ''">
+                                                                    -
+                                                                </td>
+                                                                <td ng-if="feedback.ActualReceiveDate !== '01/01/1900' && feedback.ActualReceiveDate !== ''">
+                                                                    {{feedback.ActualReceiveDate}}
+                                                                </td>
+                                                                <td ng-repeat="document in feedback.DocumentsList">
+                                                                    <a class="linktext" ng-click="DownloadDocument(document.DocumentsId,feedback.OrderFeedbackId,document.DocumentName,document.DocumentExtension)">{{document.DocumentName}} </a>
+                                                                </td>
+
+                                                                <td>
+                                                                    {{feedback.CreatedDate}}
+                                                                </td>
+                                                                <td style="text-align:center;font-size:20px;cursor:pointer">
+                                                                    <a ng-click="RemoveFeedback(feedback.FeedbackGuId,feedback.OrderFeedbackId)"><i class="fa fa-trash"></i></a>
+                                                                    <!--ng-if="feedback.FeedbackGuId !== undefined && feedback.FeedbackGuId !== '' && feedback.FeedbackGuId !== null"--> 
+                                                                </td>
+                                                            </tr>
+                                                            <tr ng-if="feedback.OrderFeedbackReplyList.length > 0">
+                                                                <td colspan="7">
+                                                                    <table class="table table-striped feedbacktable">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th> Reply  </th>
+                                                                                <th> Reply By </th>
+                                                                                <th style="float:none"> Date </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="reply in feedback.OrderFeedbackReplyList">
+                                                                                <td> Reply : {{reply.Comment}} </td>
+                                                                                <td> {{reply.Name}} </td>
+                                                                                <td>
+                                                                                    {{reply.CreatedDate}}
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div style="float:left;width:100%;border:1px solid #d5d5d5;display:none">
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname">
+                                                                HVBL Comment :
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div style="float:left;width:100%;margin-top:5px;">
+                                            <div class="buttons rightbtn resetbutton" ng-click="savefeedback()">
+                                                <button class="button btn btn-success">Save</button>
+                                            </div>
+                                            <div class="buttons rightbtn" ng-click="Resetfeedback()">
+                                                <button class="button btn btn-default">Reset</button>
+                                            </div>
+
+                                            <div class="buttons rightbtn" style="margin-right: 1%;" ng-click="BackButton()">
+                                                <button class="button btn btn-default">Back</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </ion-content>
+</ion-view>

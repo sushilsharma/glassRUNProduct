@@ -1,0 +1,82 @@
+﻿<div class="col-md-12">
+    <div class="fullwidth">
+        <label class="control-label">{{resData.res_AddRoleAccess_Setrolepermissiontoaccessreadwriteanddelete}}</label>
+    </div>
+
+    <table class="table tablegrid table-hover">
+        <thead>
+            <tr>
+                <th style="    width: 668px !important;">{{resData.res_AddRoleAccess_PageName}}</th>
+                <th style="text-align: center; width: 58px !important;">{{resData.res_AddRoleAccess_View}}</th>
+                <!--<th>{{resData.res_AddRoleAccess_Edit}}</th>
+                <th>{{resData.res_AddRoleAccess_Add}}</th>
+                <th>{{resData.res_AddRoleAccess_Delete}}</th>-->
+                <th style="    width: 368px !important;">{{resData.res_AddRoleAccess_Action}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="page in PageDetailList">
+                <td>{{page.PageName}}</td>
+                <td><input class="form-white" ng-click="SetSelectedRow(page)" type="checkbox" ng-model="page.IsActive"></td>
+
+                <td><a ng-if="page.IsActive === true " ng-click="OpenPageControlAccessModalpopup(page.PageId)" style="color: #0071bc !important;" class="controllink">{{resData.res_AddRoleAccess_AddControlLevelAccess}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script id="templates/ControlLevelAccess.html" type="text/ng-template">
+    <ion-modal-view hide-back-button="true" class="confirmationmsgmodalview bgcolorheaderandfooter" style="height:550px !important;min-height:550px !important;width:75% !important;    margin-top: -58px;">
+        <ion-header-bar class="bar bar-header bar-positive">
+            <h1 class="title">Control Level Access</h1>
+            <button class="button button-clear button-primary" ng-click="ClosePageControlAccessModalpopup()"><i class="icons-office-52"></i></button>
+        </ion-header-bar>
+        <ion-content scroll="true">
+            <div class="scrollview">
+                <div class="col-md-12 padding">
+                    <div class="fullwidth">
+                        <label class="control-label"> Set role permission to access read, write and delete. </label>
+                    </div>
+
+                    <div class="pageverticalconatiner">
+                        <div class="labelheading">
+                            <h2> {{PageName}}</h2>
+                        </div>
+
+                        <table class="table tablegrid table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Field Name</th>
+                                    <th style="text-align: center;">Read Only</th>
+                                    <th style="text-align: center;">Read & Write</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="pageControl in PageControlList">
+                                    <td>{{pageControl.DisplayName}}</td>
+                                    <td><input class="form-white" ng-click="SetEnabledControl(pageControl)" ng-model="pageControl.IsShowChecked" type="checkbox" /></td>
+                                    <td><input class="form-white" ng-model="pageControl.IsEnableChecked" ng-disabled="!pageControl.IsShowChecked" type="checkbox" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </ion-content>
+        <ion-footer-bar align-title="left" class="bar-assertive">
+
+            <div style="float:left;width:100%">
+
+                <div class="buttons rightbtn resetbutton" ng-click="SavePageControlAccess()">
+                    <button class="button btn btn-success">Save</button>
+                </div>
+                <div class="buttons rightbtn" ng-click="ResetPageControlAccess()">
+                    <button class="button btn btn-default">Reset</button>
+                </div>
+            </div>
+        </ion-footer-bar>
+    </ion-modal-view>
+</script>

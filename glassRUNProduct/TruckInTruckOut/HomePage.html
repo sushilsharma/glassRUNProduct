@@ -1,0 +1,82 @@
+<ion-view view-title="{{resData.res_HomePage_TitleHome}}" style="background-color: #fcfcfc;">
+    <!-- Add Resources on Page Added by Vinod Yadav 20192019 -->
+    <ion-content has-bouncing="false" scroll="false">
+
+        <link href="Styles/OnlineShopUI.css" rel="stylesheet">
+
+        <style type="text/css">
+            .bar.bar-positive {
+                background-color: #012625 !important;
+                color: rgba(256,256,256,0.7);
+                z-index: 0 !important;
+                box-sizing: inherit !important;
+            }
+
+            .bar-positive .button.button-icon {
+                border-color: transparent;
+                background: none;
+                color: rgba(256,256,256,0.7);
+            }
+
+            .bar.bar-positive .title {
+                color: rgba(256,256,256,0.7);
+                text-align: center !important;
+                left: 0px !important;
+            }
+
+            .bar .title + .buttons {
+                position: absolute;
+                top: 12px;
+                right: 42px;
+                bottom: 5px;
+                font-size: 16px;
+            }
+
+            .button.back-button {
+                display: none !important
+            }
+
+            .button-icon.ion-navicon {
+                display: block !important;
+                opacity: 1 !important;
+            }
+        </style>
+
+
+        <div id="ItemProductCatalogue" class="ProductCatalogue ngIncludeItem ShowProductInfo">
+            <div class="CreateInquiryMainSection" style="background-color: #012625;height: 100vh;">
+                <div style="float:left;width:100%" ng-if="RoleId != 2">
+
+                    <div style="float:left;width:100%;margin-top: 75px;">
+                        <div class="OuterCicler" ui-sref="InputTruckInDetails">
+                            <div class="innercircle">{{resData.res_HomePage_IN}}</div>
+                        </div>
+                    </div>
+
+                    <div style="float:left;width:100%">
+                        <div class="OuterCicler" ui-sref="TruckInList">
+                            <div class="innercircle">{{resData.res_HomePage_OUT}}</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="float:left;width:100%" ng-if="RoleId == 2">
+
+                    <div style="float:left;width:100%;margin-top: 75px;">
+                        <div class="OuterCicler" ui-sref="TruckInList">
+                            <div class="innercircle" style="padding-top: 34px !important;">{{resData.res_HomePage_Load}}<br>{{resData.res_HomePage_Truck}}</div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </ion-content>
+
+
+</ion-view>

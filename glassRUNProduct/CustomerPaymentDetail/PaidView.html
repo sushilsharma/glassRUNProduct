@@ -1,0 +1,178 @@
+﻿
+<div class="ContainerSection" >
+   
+
+    <div class="conatinerheader headerdataconatiner">
+
+
+        <div class="QuantityControl" style="width:12% !important;padding-top: 5px; margin-left:1%">
+
+            {{resData.res_BillView_InvoiceNumber}}:
+
+        </div>
+
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+
+            {{SalesOrderPaymentList[0].InvoiceNumber}}
+
+        </div>
+
+        
+
+    </div>
+    <div class="conatinerheader headerdataconatiner">
+
+      
+        <div class="QuantityControl" style="width:12% !important;padding-top: 5px; margin-left:1%">
+            
+            {{resData.res_PaidView_PaymentDate}}
+            
+        </div>
+
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+            
+            {{resData.res_PaidView_ModeOfPayment}}
+            
+        </div>
+
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+
+            {{resData.res_PaidView_BankName}} 
+
+        </div>
+
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+           
+            {{resData.res_PaidView_ReferenceNumber}}
+            
+        </div>
+
+
+        <div class="QuantityControl" style="width:20% !important;padding-top: 5px; margin-left:1%">
+            
+            {{resData.res_PaidView_PaymentAmount}}
+        </div>
+        <div class="QuantityControl" style="width:20% !important;padding-top: 5px; margin-left:1%">
+            
+            {{resData.res_PaidView_Remarks}}
+        </div>
+
+        <div class="TotalConatiner rightaling" style="width:10% !important;border:none !important" ng-if="SalesAdminApprovalData.data.IsPaid ==0">
+            
+            {{resData.res_PaidView_Action}}
+        </div>
+
+    </div>
+    <div class="conatinerbody">
+        
+        <div class="conatinerheader itemrowcontainer" style="height: auto;padding: 0px !important;" ng-repeat="SalesOrderPayment in SalesOrderPaymentList">
+
+            <div class="QuantityControl" style="width:12% !important;height: auto;margin-left:1%">
+
+                {{SalesOrderPayment.PaymentDate}}
+
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;margin-left:1%">
+               
+                {{SalesOrderPayment.ModeOfPaymentTypeText == null  || SalesOrderPayment.ModeOfPaymentTypeText == "" ? "-" : SalesOrderPayment.ModeOfPaymentTypeText}}
+
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;margin-left:1%">
+                {{SalesOrderPayment.BankName == null  || SalesOrderPayment.BankName == "" ? "-" : SalesOrderPayment.BankName}}
+
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;margin-left:1%">
+                {{SalesOrderPayment.ReferenceNumber == null  || SalesOrderPayment.ReferenceNumber == "" ? "-" : SalesOrderPayment.ReferenceNumber}}
+
+            </div>
+            
+            <div class="QuantityControl" style="width:20% !important;height: auto;margin-left:1%">
+                {{SalesOrderPayment.PaymentAmount}}
+
+            </div>
+
+            <div class="QuantityControl" style="width:20% !important;height: auto;margin-left:1%">
+
+                {{SalesOrderPayment.Remarks}}
+
+            </div>
+
+
+        </div>
+        <div class="conatinerheader itemrowcontainer" style="height: auto;padding: 0px !important;">
+
+            <div class="QuantityControl" style="width:12% !important;height: auto;margin-left:1%">
+                <!--<input class="form-control form-white" style="padding-left: 0px !important;" type="text" ng-model="SalesOrderPaymentObject.PaymentDate" />-->
+                <input   ng-mouseover="InitializeDatePicker()" class="form-control form-white datetimepicker  paymentDate" type="text" name="datetimepicker" placeholder="Payment Date" style="    padding-left: 0px !important;"  ng-readonly="true"  ng-model="SalesOrderPaymentObject.PaymentDate">
+
+                <i class="icon-calendar" style="    margin-left: -26px;"></i>
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;margin-left:1%">
+                <!--<input class="form-control form-white" style="padding-left: 0px !important;" type="text" ng-model="SalesOrderPaymentObject.ModeOfPaymentType" />-->
+
+               <select  ng-model="SalesOrderPaymentObject.ModeOfPaymentType" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Code for obj in ModeOfPaymentList"  >
+                <option value="">Select</option>
+                </select>
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;margin-left:1%">
+                <input class="form-control form-white" style="padding-left: 0px !important;" type="text"    placeholder="Bank Name" ng-if="SalesOrderPaymentObject.ModeOfPaymentType =='2301' || SalesOrderPaymentObject.ModeOfPaymentType =='2302' || SalesOrderPaymentObject.ModeOfPaymentType =='2303' " ng-model="SalesOrderPaymentObject.BankName" />
+
+                <label ng-if="SalesOrderPaymentObject.ModeOfPaymentType =='2300' || SalesOrderPaymentObject.ModeOfPaymentType ==''   || SalesOrderPaymentObject.ModeOfPaymentType ==null  "> - </label>
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;margin-left:1%">
+                <input class="form-control form-white" style="padding-left: 0px !important;" type="text" placeholder="Reference No." ng-if="SalesOrderPaymentObject.ModeOfPaymentType =='2301' || SalesOrderPaymentObject.ModeOfPaymentType =='2302' || SalesOrderPaymentObject.ModeOfPaymentType =='2303' " ng-model="SalesOrderPaymentObject.ReferenceNumber" />
+
+                <label ng-if="SalesOrderPaymentObject.ModeOfPaymentType =='2300' || SalesOrderPaymentObject.ModeOfPaymentType ==''   || SalesOrderPaymentObject.ModeOfPaymentType ==null  "> - </label>
+            </div>
+            <div class="QuantityControl" style="width:20% !important;height: auto;margin-left:1%">
+                {{resData.res_CurrencyCode}}   <input class="form-control form-white" style="padding-left: 0px !important;" type="text"  placeholder="Amount" valid-number ng-model="SalesOrderPaymentObject.PaymentAmount" />
+            </div>
+
+            <div class="QuantityControl" style="width:20% !important;height: auto;margin-left:1%">
+                <input class="form-control form-white" style="padding-left: 0px !important;" type="text"  placeholder="Remarks" ng-model="SalesOrderPaymentObject.Remarks" />
+            </div>
+
+            <div class="TotalConatiner rightaling" style="width:10% !important;height: auto;border:none !important;padding: 10px 5px  !important;">
+                <a ng-click="SendPayRequest(SalesOrderPaymentObject)">
+                    <span class="greenbgfont approvebtn"> {{resData.res_PaidView_Pay}} </span>
+
+
+
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <script  type="text/javascript">
+
+
+
+        $(document).ready(function () {
+            $('.PaymentDate').each(function () {
+
+                alert('hi');
+                $(this).datetimepicker({
+
+                    onSelect: function (dateText, inst) {
+
+
+                        
+                        if (inst.id != undefined) {
+                            angular.element($('#' + inst.id)).triggerHandler('input');
+                        } else {
+                            angular.element($('#' + inst.inst.id)).triggerHandler('input');
+                        }
+
+
+                    },
+                    dateFormat: 'dd/mm/yy',
+                    prevText: '<i class="fa fa-angle-left"></i>',
+                    nextText: '<i class="fa fa-angle-right"></i>'
+                });
+            });
+        });
+
+        
+
+    </script>
+</div>

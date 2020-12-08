@@ -1,0 +1,297 @@
+﻿<div class="modal-wrapper">
+    <ion-modal-view class="confirmationmsgmodalview ShowBulkChangeDriverPickupDateAndShift bgcolorheaderandfooter modal fade-in-scale ng-enter active ng-enter-active" style="z-index: 1000000 !important;width: 80% !important; height: auto !important; min-height: 651px !important; top: 20px;">
+        <ion-header-bar class="bar bar-header bar-positive">
+            <h1 class="title">{{resData.res_createinquirypage_Add_Item}}</h1>
+            <button class="button button-clear button-primary" ng-click="CloseAddItemInMasterPopup()"><i class="icons-office-52"></i></button>
+        </ion-header-bar>
+        <ion-content scroll="hidden" class="padding IonicPopupHeight popup_scrollbar">
+            <div id="ProductCatalog" class="FirstSection productcataloglist_ui">
+                <div class="mobileview col-md-12 col-sm-12 margin_top_bottom_10">
+                    <div>
+                        
+
+
+                        <!--<div class="col-lg-12">
+                            <div ng-if="pageContrlAcessData.Input_ItemName !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            <span>{{resData.res_CreateInquiryPage_ItemName}} :</span>
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input type="text"  ng-model="ItemMasterForm.Input_ItemName" class="form-control" ng-readonly="pageContrlAcessData.LocationName =='0' || pageContrlAcessData.LocationName =='1'" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="pageContrlAcessData.Input_ItemCode !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            {{resData.res_CreateInquiryPage_ItemCode}} :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input type="text"  ng-model="ItemMasterForm.Input_ItemCode" class="form-control" ng-readonly="pageContrlAcessData.DisplayName =='0' || pageContrlAcessData.DisplayName =='1'" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+
+                        <div class="col-lg-12">
+                            <div ng-if="pageContrlAcessData.Input_ItemName !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            <span>{{resData.res_createinquirypage_Item_Short_Code}} :</span>
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input type="text"  ng-model="ItemMasterForm.Input_ItemShortCode" class="form-control" ng-readonly="pageContrlAcessData.LocationName =='0' || pageContrlAcessData.LocationName =='1'" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="pageContrlAcessData.Input_ItemCode !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            {{resData.res_CreateInquiryPage_ItemCode}} :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select id="txtItemCode" class="gray_border_selectbox">
+                                                <option value="">Select Item Type</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+
+                        <div class="col-lg-12">
+                            <div ng-if="pageContrlAcessData.Input_ItemPrice !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            <span>{{resData.res_createinquirypage_Item_Price}} :</span>
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input type="text"  ng-model="ItemMasterForm.Input_ItemPrice" class="form-control" ng-readonly="pageContrlAcessData.Input_ItemPrice =='0' || pageContrlAcessData.Input_ItemPrice =='1'" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="pageContrlAcessData.Input_PrimaryUnitOfMeasure !='0'">                              
+
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            {{resData.res_createinquirypage_Unit_Of_Measure}} :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select id="ddlPrimaryUnitOfMeasured" ng-model="ItemMasterForm.Input_PrimaryUnitOfMeasure" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in UnitOfMeasureList | orderBy:'Name'">
+                                                <option value="">Select</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+
+
+
+                        <div class="col-lg-12">
+                            <div ng-if="pageContrlAcessData.Input_RelatedPrimaryUnitOfMeasure !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            <span>{{resData.res_Related_Unit_Of_Measure}} :</span>
+                                        </div>
+                                        <div class="labelcontrol">                                            
+                                            <select id="ddlLocationTypeId" ng-model="ItemMasterForm.Input_RelatedPrimaryUnitOfMeasure" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in UnitOfMeasureList | orderBy:'Name'">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="pageContrlAcessData.Input_ConversionFactor !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                           {{resData.res_Conversion_Factor}} :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input type="text"  ng-model="ItemMasterForm.Input_ConversionFactor" class="form-control" ng-readonly="pageContrlAcessData.Input_ConversionFactor =='0' || pageContrlAcessData.Input_ConversionFactor =='1'" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+             
+
+
+
+
+                        <div class="col-lg-12">
+                            <div ng-if="pageContrlAcessData.Input_EffectiveDate !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            <span>{{resData.res_Effective_Date}} : :</span>
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="txtStartDate" ng-model="ItemMasterForm.Input_EffectiveDate" name="datepicker" autocomplete="off" class="form-control gray_border_textbox">
+                                            <i class="icon-calendar date_icon_select" ng-click="GetStartDateControl()"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="pageContrlAcessData.Input_ExpireDate !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            {{resData.res_Expire_Date}} :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="txtEndDate" ng-model="ItemMasterForm.Input_ExpireDate" name="datepicker" autocomplete="off" class="form-control  gray_border_textbox">
+                                            <i class="icon-calendar date_icon_select" ng-click="GetEndDateControl(ItemMasterForm.Input_EffectiveDate)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        
+
+
+
+
+
+                        <div class="col-lg-12">
+                            <div ng-if="pageContrlAcessData.Branch_Plant !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            {{resData.res_Branch_Plant}} :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                                <div class="form-group MultiSelectControl" ng-readonly="pageContrlAcessData.Branch_Plant =='0' || pageContrlAcessData.Branch_Plant =='1'" style="width: 100%;margin-left:5px ;margin-top:10px">
+                                                    <div ng-dropdown-multiselect="" options="BranchPlantDataList" selected-model="BranchPlantDataSelectedList" checkboxes="false" extra-settings="SortByListSetting"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="pageContrlAcessData.Input_BussinessUnit !='0'">
+                                
+
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            <span>{{resData.res_Bussiness_Unit}} :</span>
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input type="text"  ng-model="ItemMasterForm.Input_BussinessUnit" class="form-control" ng-readonly="pageContrlAcessData.Input_BussinessUnit =='0' || pageContrlAcessData.Input_BussinessUnit =='1'" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-12">
+                            <div ng-if="pageContrlAcessData.Input_PricingUnit !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            {{resData.res_Pricing_Unit}} :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input type="text"  ng-model="ItemMasterForm.Input_PricingUnit" class="form-control" ng-readonly="pageContrlAcessData.Input_PricingUnit =='0' || pageContrlAcessData.Input_PricingUnit =='1'" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="pageContrlAcessData.Input_ShippingUnit !='0'">
+
+
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                            <span>{{resData.res_Shipping_Unit}} :</span>
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input type="text"  ng-model="ItemMasterForm.Input_ShippingUnit" class="form-control" ng-readonly="pageContrlAcessData.Input_ShippingUnit =='0' || pageContrlAcessData.Input_ShippingUnit =='1'" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-lg-12">
+                            <div ng-if="pageContrlAcessData.Input_ItemDescription !='0'">
+                                <div class="col-lg-6">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname reasonlable">
+                                          {{resData.res_Description}} :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <textarea id="txtItemName" type="number" style="height:100px" ng-model="ItemMasterForm.Input_ItemDescription" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>-->
+
+
+                        <div class="tab-pane" ng-class="{'active': AddTab}">
+                            <div ng-include="'ItemView.html'" ng-controller="ItemViewController"></div>
+                        </div>
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+
+        <!--<ion-footer-bar align-title="left" class="popupfooter">
+            <div class="popupbtnstyle">
+                <div class="popupbuttonstyle">
+                    <a class="btn btn-success btn-square" ng-click="AddItemInList()">
+                        {{resData.res_createinquirypage_add}}
+                    </a>
+                </div>
+                <div class="popupbuttonstyle">
+                    <a class="btn btn-success btn-square redclosebtn" ng-click="CleaeAddItemForm()">
+                        {{resData.res_OMInquiryPage_Clear}}
+                    </a>
+                </div>
+            </div>
+        </ion-footer-bar>-->
+    </ion-modal-view>
+</div>

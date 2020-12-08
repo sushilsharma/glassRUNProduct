@@ -1,0 +1,156 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div ng-include="'ViewUpdateOrder.html'" class="createinquiryheight">
+        </div>
+
+        <script id="ViewGratisOrder.html" type="text/ng-template">
+            <ion-modal-view class="DetailModalViewScreen bgcolorheaderandfooter">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">{{resData.res_CreateInquiryPage_GratisOrder}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseViewGratisOrderControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding">
+                    <div class="list">
+                        <div class="customlistview" style="border: 1px solid #d5d5d5;cursor: pointer" ng-repeat="AssociatedOrder in AssociatedOrderList" ng-if="!AssociatedOrder.IsSelected" ng-click="AddAssociatedOrder(AssociatedOrder.OrderId)">
+                            <div class="paddingcontainer">
+                                <div class="listviewContainer">
+
+                                    <span class="listviewtitle">
+                                        {{AssociatedOrder.OrderType}} : {{AssociatedOrder.SalesOrderNumber}}
+                                    </span>
+                                </div>
+                                <d iv class="listviewContainer">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="srno"> {{resData.res_CreateInquiryPage_GratisSrNo}} </th>
+                                                <th> {{resData.res_CreateInquiryPage_GratisItemCode}} </th>
+                                                <th> {{resData.res_CreateInquiryPage_GratisItemName}} </th>
+                                                <th> {{resData.res_CreateInquiryPage_GratisDesc1}} </th>
+                                                <th> {{resData.res_CreateInquiryPage_GratisDesc2}} </th>
+                                                <th> {{resData.res_CreateInquiryPage_GratisUOM}} </th>
+                                                <th> {{resData.res_CreateInquiryPage_GratisQuantity}} </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr ng-repeat="orderProduct in AssociatedOrder.OrderProductsList">
+                                                <td class="srno"> {{$index +1}} </td>
+                                                <td> {{orderProduct.ProductCode}} </td>
+                                                <td> {{orderProduct.ItemName}} </td>
+                                                <td> {{orderProduct.Description1}} </td>
+                                                <td> {{orderProduct.Description2}} </td>
+                                                <td> {{orderProduct.UOM}} </td>
+                                                <td> {{orderProduct.ProductQuantity | currency: CurrencyFormatCode}} </td>
+
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    </div>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+        <script id="AddTruck.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{AddTruckHeaderMessage}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseAddTruckControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        {{AddTruckBodymessage}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar class="popupfooter">
+
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle" ng-hide="OrderId>0">
+                            <a class="btn btn-success btn-square" ng-click="AddTruck()">
+                                {{resData.res_CreateInquiryPage_AddNewTruck}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="CloseUpdateOrder()">
+                                {{resData.res_UpdateOrder_Update}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="CloseAddTruckControl()">
+                                {{resData.res_CreateInquiryPage_EditOrder}}
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+        <script id="RemoveGratisOrder.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{RemoveGratisOrderHeaderMessage}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseRemoveGratisOrderControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        {{RemoveGratisOrderBodymessage}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar class="popupfooter">
+
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="RemoveGratisOrderEvent()">
+                                {{resData.res_CreateInquiryPage_GratisYes}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseRemoveGratisOrderControl()">
+                                {{resData.res_CreateInquiryPage_GratisNo}}
+                            </a>
+                        </div>
+
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+        <script id="DeliveryLocationChangeModalPopup.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{resData.res_CreateInquiryPage_DeliveryLocationWarningHeading}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseDeliveryLocationChangeConfirmationPopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        {{resData.res_CreateInquiryPage_DeliveryLocationWarningMessage}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar class="popupfooter">
+
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveDeliveryLocationChange()">
+                                {{resData.res_CreateInquiryPage_DeliveryLocationClear}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseDeliveryLocationChangeConfirmationPopup()">
+                                {{resData.res_CreateInquiryPage_DeliveryLocationClose}}
+                            </a>
+                        </div>
+
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+    </ion-content>
+</ion-view>

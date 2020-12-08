@@ -1,0 +1,62 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+
+            <!--<div class="header">
+                <h2>{{resData.res_DashboardReportUI_DashboardReport}}</h2>
+            </div>-->
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+
+                    <div style="float:left;width:100%">
+                        <div style="float:left;width:100%">
+
+
+                            <!--<div style="float:left;width:28%;margin-right:2%">
+                                <div ng-dropdown-multiselect="" options="bindallShipToList" selected-model="ShipToSelectedList" checkboxes="true" extra-settings="MultiSelectDropdownSetting"></div>
+                            </div>-->
+
+                            <div style="float:left;width:23%;margin-right:2%">
+                                <div class="prepend-icon">
+                                    <input type="text" Id="RuleStartDate" ng-model='DashboarReportJson.FromDate' name="datepicker" class="date-picker form-control" placeholder="Select a from date...">
+                                    <i class="icon-calendar"></i>
+                                </div>
+                            </div>
+                            <div style="float:left;width:23%;margin-right:2%">
+                                <div class="prepend-icon">
+                                    <input type="text" Id="RuleToDate" ng-model='DashboarReportJson.ToDate' name="datepicker" class="date-picker form-control" placeholder="Select a to date...">
+                                    <i class="icon-calendar"></i>
+                                </div>
+                            </div>
+                            <div style="float:left;width:9%;margin-right:2%">
+                                <a class="btn btn-success btn-square" ng-click="SearchEnquiryByShipTo()">{{resData.res_CustomerFeedbackReport_Search}}</a>
+                            </div>
+
+                            <div style="float:left;width:9%">
+                                <a class="btn btn-success btn-square" ng-click="DownloadDashboardReportInExcel()">{{resData.res_CustomerFeedbackReport_Report}}</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div id="portalview" class="PortalView" style="margin-top:50px">
+                        <div class="panel">
+
+                            <div class="panel-content">
+                                <!--<kendo-tooltip options="tooltipOptions">  </kendo-tooltip>-->
+                                <div id="DashboarReportingGrid" kendo-grid="Grid" k-options="DashboarReportingGrid" k-rebind="DashboarReportingGrid"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </ion-content>
+</ion-view>

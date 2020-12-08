@@ -1,0 +1,243 @@
+﻿
+<ion-view view-title="{{resData.res_InputTruckDetails_Dashboard}}">
+    <!-- Add Resources on Page Added by Vinod Yadav 20192019 -->
+    <ion-content has-bouncing="false" scroll="false" style="background-color: white;background-size: cover;">
+
+        <div class="pageview" style="overflow:hidden">
+
+
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+
+
+                    <link href="Styles/OnlineShopUI.css" rel="stylesheet">
+
+                    <style type="text/css">
+                        .shadow-medium {
+                            box-shadow: 0 0 25px 2px rgba(0,0,0,.1) !important
+                        }
+
+                        .round-element, .round-element .overlay, .round-element img {
+                            border-radius: 10px !important;
+                            overflow: hidden !important;
+                        }
+
+                        ion-nav-bar {
+                            display: none
+                        }
+
+                        .has-header {
+                            top: 0px;
+                        }
+
+                        .CreateInquiryMainSection {
+                            height: 100vh;
+                            position: relative
+                        }
+                    </style>
+
+
+                    <div id="ProductSummaryView" style="width: 30%; margin: auto;margin-top: 18px;" class="ProductCatalogue ngIncludeItem ShowProductInfo">
+                        <div class="ProductCatalogueInnerView">
+                            <div class="ProductCatalogueInnerView">
+                                <div class="ProductCatalogueHeader">
+                                    <div class="HeaderBackButton" ng-click="BackScreenView()">
+                                        <i class="fa fa-angle-left"></i>
+                                    </div>
+                                    <div class="HeaderTitle">
+                                        <div class="HeaderTitleName">{{resData.res_InputTruckDetails_TruckDetails}}</div>
+                                        <div class="HeaderTitleRemark">{{resData.res_InputTruckDetails_Selectthetruck}}</div>
+
+                                    </div>
+                                    <div class="HeaderShoppingCart" style="float:right" ng-click="NextScreenView()">
+                                        <!--<i class="fa fa-shopping-cart">
+
+                                        </i>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div set-heightcustomcontainer="" class="CreateInquiryMainSection" style="overflow-y: auto;">
+
+                            <div class="ProductInformationSection">
+
+                                <div class="ItemSearchControl">
+                                    <div class="rows" style="text-align:center;">
+                                        <img id="truckImage" ng-click="ClickPhoto();" style="display: block;margin-left: auto;margin-right: auto;margin-top: 13px;height: 163px;width: auto;" class="round-element shadow-medium" src="{{Imagesrc}}" data-ng-src="{{Imagesrc}}">
+                                    </div>
+                                    <div class="rows" style="padding: 10px;">
+                                        {{resData.res_InputTruckDetails_TruckPlateNumber}}<span style="color:red;"><b>*</b></span>
+                                    </div>
+                                    <!--<div class="rows">
+                                        <input type="search" name="q" ng-model="Truck.PlateNumber" style="padding:18px;width: 100%;border-radius: 31px !important;" placeholder="Enter Truck Number" autocomplete="off">
+                                    </div>-->
+                                    <div class="rows">
+                                        <input type="text" name="q" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="Truck.TransporterVehicleRegistrationNumber" style="padding:18px;width: 100%;border-radius: 31px !important;border: 2px solid #d5d5d5 !important;" placeholder="Select Truck Plate Number" autocomplete="off" ng-click="GoToSearchPage('PlateNumber')" ng-readonly="true">
+                                        <span class="productsearchicon" style="top: 235px !important;">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </span>
+                                        <!--<select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-disabled="true" ng-click="GoToSearchPage('PlateNumber')" style="border-radius: 16px;height: 39px;border:1px solid #ececec" ng-model="Truck.TransporterVehicleId" ng-options="obj.TransporterVehicleId as obj.TransporterVehicleRegistrationNumber for obj in TransporterVehicleList">
+                                            <option value="" selected="selected">Select</option>
+                                        </select>-->
+                                    </div>
+                                    <div class="rows" style="padding: 10px;">
+                                        {{resData.res_InputTruckDetails_DeliveryPerson}}<span style="color:red;"><b>*</b></span>
+                                    </div>
+                                    <div class="rows">
+                                        <input type="text" name="q1" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="Truck.DriverName" style="padding:18px;width: 100%;border-radius: 31px !important;border: 2px solid #d5d5d5 !important;" placeholder="Select Delivery Person" autocomplete="off" ng-click="GoToSearchPage('Driver')" ng-readonly="true">
+                                        <span class="productsearchicon" style="top: 305px !important;">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </span>
+                                        <!--<select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-disabled="true" ng-click="GoToSearchPage('Driver')" style="border-radius: 16px;height: 39px;border:1px solid #ececec" ng-model="Truck.DriverId" ng-options="obj.DeliveryPersonnelId as obj.Name for obj in DriverList">
+                                            <option value="" selected="selected">Select</option>
+                                        </select>-->
+                                    </div>
+                                    <div class="rows" style="padding: 10px;">
+                                        {{resData.res_InputTruckDetails_CarrierNumber}}<span style="color:red;"><b>*</b></span>
+                                    </div>
+                                    <div class="rows">
+                                        <input type="text" name="q2" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="Truck.CarrierName" style="padding:18px;width: 100%;border-radius: 31px !important;border: 2px solid #d5d5d5 !important;" placeholder="Select Carrier Number" autocomplete="off" ng-click="GoToSearchPage('Carrier')" ng-readonly="true">
+                                        <span class="productsearchicon" style="top: 375px !important;">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </span>
+                                        <!--<select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-disabled="true" ng-click="GoToSearchPage('Carrier')" style="border-radius: 16px;height: 39px;border:1px solid #ececec" ng-model="Truck.CompanyId" ng-options="obj.CompanyId as obj.Name for obj in TransporterList">
+                                            <option value="" selected="selected">Select</option>
+                                        </select>-->
+                                    </div>
+
+                                </div>
+
+
+                                <div style="float:left;width:100%">
+                                    <div class="botttombuttonview" style="width: 30%;bottom: 20px;">
+                                        <div class="resetbtnview" style="float:left;width:48%" ng-click="TruckInDetailsReset();">
+                                            <span class=""><i class="fa fa-refresh"></i></span>
+                                            <span class="product_recommendation">{{resData.res_InputTruckDetails_Reset}}</span>
+                                        </div>
+                                        <div class="confirmbtnview" style="float:right;width:48%" ng-click="ConfirmTruckInDetails();">
+                                            <span class=""><i class="fa fa-check"></i></span>
+                                            <span class="product_recommendation">{{resData.res_InputTruckDetails_Confirm}}</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="landing-homepage" style="display:none">
+                        <div class="landing-wrapper">
+                            <div class="rows" style="text-align:center;">
+                                <img id="truckImage" ng-click="ClickPhoto();" style="display: block;margin-left: auto;margin-right: auto;margin-top: 13px;height: 163px;width: auto;" class="round-element shadow-medium" src="../images/cordova.png" data-src="../images/cordova.png">
+                            </div>
+                            <div class="rows" style="padding: 10px;">{{resData.res_InputTruckDetails_TruckPlateNumber}}</div>
+                            <div class="rows">
+                                <input type="search" name="q" ng-model="Truck.PlateNumber" style="padding:18px;width: 100%;border-radius: 31px !important;" placeholder="Enter Truck Number" autocomplete="off">
+                            </div>
+                            <div class="rows" style="padding: 10px;">{{resData.res_InputTruckDetails_DeliveryPersonnel}}</div>
+                            <div class="rows">
+                                <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" style="border-radius: 16px;height: 39px;" ng-model="Truck.DriverId" ng-options="obj.DeliveryPersonnelId as obj.Name for obj in DriverList">
+                                    <option value="" selected="selected">{{resData.res_InputTruckDetails_Select}}
+                                </select>
+                            </div>
+                            <div class="rows">
+                                <div class="confirmationbtn" style="padding: 24px;width: 100% !important;">
+                                    <a class="continuebtn" ng-click="SaveTruckInDetails()">{{resData.res_InputTruckDetails_Continue}}</a>
+                                </div>
+                            </div>
+
+
+                            <div style="float:left;width:100%">
+                                <div class="ProductRecommendations" ng-click="SaveTruckInDetails();">
+                                    <span class="product_angel_fa product_angle_view"><i class="fa fa-check"></i></span>
+                                    <span class="product_recommendation">{{resData.res_InputTruckDetails_Confirmation}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <script id="AlertMessagesPopUp.html" type="text/ng-template">
+                        <ion-modal-view hide-back-button="false" style="    top: 221px !important;    height: 147px !important;">
+                            <ion-header-bar class="bar bar-header bar-positive">
+                                <h1 class="title">Alert !</h1>
+                                <button class="button button-clear button-primary" ng-click="CloseAlertMessagesPopUp()"><i class="fa fa-times"></i></button>
+                            </ion-header-bar>
+                            <ion-content scroll="true">
+
+                                <div class="LoginControls" style="margin-top: 50px; font-size: 15px; margin-left: 10px;">
+                                    <div class="LoginTxtbox">
+                                        <span>{{ErrorMessage}}</span>
+                                    </div>
+
+                                </div>
+                            </ion-content>
+                            <ion-footer-bar class="popupfooter">
+
+                                <div class="OrderButton modalfooter" style="margin-left: 130px;margin-right: 140px;">
+                                    <a class="btn btn-warning modalfullbtn" ng-click="CloseAlertMessagesPopUp()">
+                                        {{resData.res_Orders_Ok}}
+                                    </a>
+                                </div>
+                            </ion-footer-bar>
+                        </ion-modal-view>
+                    </script>
+
+                    <script id="TruckInConfirmationModalPopup.html" type="text/ng-template">
+                        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+                            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                                <h1 class="title">{{resData.res_TruckDetails_ConfirmTruckIn}}</h1>
+                                <button class="button button-clear button-primary" ng-click="CloseTruckInConfirmationModalPopup()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+                            </ion-header-bar>
+                            <ion-content scroll="false" class="popioncontainer">
+
+                                <div class="LoginControls" style="margin-top: 50px;font-size: 14px;padding-left: 10px;padding-right:10px;">
+                                    <div class="LoginTxtbox">
+                                        <span><b> {{resData.res_TruckDetails_TruckNumber}}</b> {{Truck.TransporterVehicleRegistrationNumber}}</span>
+                                    </div>
+                                    <div class="LoginTxtbox">
+                                        <span><b>{{resData.res_TruckDetails_Driver}}</b> {{Truck.DriverName}}</span>
+                                    </div>
+                                    <div class="LoginTxtbox">
+                                        <span><b>{{resData.res_TruckDetails_LicenseNumber}}</b> {{Truck.LicenseNumber}}</span>
+                                    </div>
+                                    <div class="LoginTxtbox">
+                                        <span><b>{{resData.res_TruckDetails_Carrier}}</b> {{Truck.CarrierName}}</span>
+                                    </div>
+
+                                </div>
+                            </ion-content>
+                            <ion-footer-bar class="popupfooter">
+
+                                <div class="popupbtnstyle">
+                                    <div class="popupbuttonstyle">
+                                        <a class="btn btn-success btn-square" ng-click="SaveTruckInDetails()">
+                                            {{resData.res_Orders_Ok}}
+                                        </a>
+                                        <a class="btn btn-success btn-square" ng-click="CloseTruckInConfirmationModalPopup()">
+                                            {{resData.res_Orders_Cancel}}
+                                        </a>
+                                    </div>
+
+
+                                </div>
+
+                            </ion-footer-bar>
+                        </ion-modal-view>
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+
+
+
+</ion-view>

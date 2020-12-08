@@ -1,0 +1,318 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+            <div class="fixrighttopbutton">
+                <div class="col-sm-2 singlebtn col-md-2" style="float:right;">
+                    <a class="btn btn-success btn-square" style="display:none" ng-click="GetAllRecordUpdate()">{{resData.res_WarehousePage_Update}}</a>
+                    <a class="btn btn-success btn-square" style="margin-right: 15px;" ng-click="ChangeAllOrderDriver()">{{resData.res_CarrierPage_ChangeDriver}}</a>
+                </div>
+
+            </div>
+            <div class="header">
+                <h2>{{resData.res_CarrierPage_OrderAllocation}}</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+
+
+                    <div id="portalview" class="PortalView">
+                        <div class="panel">
+                            <div class="MultiSelectControlRow" style="margin-left: 19px;">
+                                <a class="btn btn-success btn-square" ng-click="GetSoDetails('SO')">SO Order</a>
+                                <a class="btn btn-success btn-square" ng-click="GetSoDetails('ST')">ST Order</a>
+                                <a class="btn btn-success btn-square" style="display:none" ng-click="GridDataExportToExcel()">Export To Excel</a>
+                            </div>
+                            <div class="panel-content">
+                                <div id="CarrierGridId" kendo-grid="Grid" k-options="CarrierGridId" k-rebind="CarrierGridId"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mobileview" class="MobileView">
+                        <div class="customlistview" ng-repeat="item in GridData.data">
+                            <div class="paddingcontainer">
+                                <div class="listviewContainer">
+                                    <span class="listviewtitle">
+                                        {{item.InquiryNumber}}
+                                    </span>
+                                </div>
+                                <div class="listviewContainer">
+
+                                    <span class="listviewdatafield">
+                                        Sold To : {{item.SoldTo}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        Ship To : {{item.ShipTo}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        Transport Operator : {{item.TransportOperator}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        Truck Size : {{item.TruckSize}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        {{resData.res_WarehousePage_ProposedETD}}<span class="prepend-icon">
+                                            <input type="text" name="datetimepicker" class="datetimepicker form-control" placeholder="Choose a Proposed ETD...">
+                                            <i class="icon-clock"></i>
+                                        </span>
+                                    </span>
+                                    <span class="listviewdatafield" ng-if="item.SpecialRequest === ''">{{resData.res_WarehousePage_SchedulingDateNotApplicable}}</span>
+                                    <span class="listviewdatafield" ng-if="item.SpecialRequest !== ''">
+                                        {{resData.res_WarehousePage_SchedulingDate}}<span class="prepend-icon">
+                                            <input type="text" name="datetimepicker" class="datetimepicker form-control" placeholder="Choose a Scheduling Date...">
+                                            <i class="icon-clock"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="listviewContainer">
+                                <a class="btn btn-success SingleRowbtn">{{resData.res_WarehousePage_AssingToTransport}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-backdrop active" ng-if="ShowBulkChangePickupDateAndShift">
+                        <div class="modal-backdrop-bg"></div><div class="modal-wrapper" ng-transclude="">
+                            <ion-modal-view class="confirmationmsgmodalview ShowBulkChangePickupDateAndShift bgcolorheaderandfooter modal fade-in-scale ng-enter active ng-enter-active" style="min-height:300px !important">
+                                <ion-header-bar class="bar bar-header bar-positive">
+                                    <h1 class="title" style="left: 29px; right: 29px;">{{resData.res_CarrierPage_UpdateInBulk}}</h1>
+                                    <button class="button button-clear button-primary" ng-click="ClosChangeDriverPopup()"><i class="fa fa-times"></i></button>
+                                </ion-header-bar>
+                                <ion-content scroll="hidden" class="padding IonicPopupHeight scroll-content ionic-scroll overflow-scroll  has-header has-footer">
+                                    <div class="scroll">
+                                        <div class="list">
+                                            <div class="customlistcontrolview">
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            {{resData.res_CarrierPage_Driver}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="SelectedDriver.DriverForSelectedOrder" ng-options="obj.DeliveryPersonnelId as obj.UserName for obj in DriverList"><option value="" selected="selected">Select</option><option label="D3552" value="string:381">D3552</option></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            {{resData.res_CarrierPage_PlateNumber}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="SelectedDriver.PlateNumberForSelectedOrder" ng-options="obj.TransporterVehicleRegistrationNumber as obj.TransporterVehicleRegistrationNumber for obj in PlateNumberList"><option value="" selected="selected">Select</option><option label="XV 443R" value="string:XV 443R">XV 443R</option></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">                                                           
+                                                            {{resData.res_CarrierPage_ConfirmedPickShift}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="SelectedDriver.PickShiftForSelectedOrder" ng-options="obj.LookUpId as obj.Name for obj in ShiftList"><option value="" selected="selected">Select</option><option label="MorningShift" value="string:1106">MorningShift</option><option label="EveningShift" value="string:1107">EveningShift</option><option label="NightShift" value="string:1108">NightShift</option></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">                                                            
+                                                            {{resData.res_CarrierPage_ConfirmedPickDate}} :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <div class="prepend-icon">
+                                                                <input type="text" id="Pickupdate" ng-model="SelectedDriver.ExpectedTimeOfAction" name="datepicker" class="PickupDateControl form-control" placeholder="please select date" style="">
+                                                                <i class="icon-calendar"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-content>
+
+                                <ion-footer-bar align-title="left" class="popupfooter bar bar-footer">
+
+                                    <div class="popupbtnstyle">
+
+                                        <div class="popupbuttonstyle">
+                                            <a class="btn btn-success btn-square" ng-click="SaveDriverForSelectedEnquiry()">
+                                                Save
+                                            </a>
+                                        </div>
+                                        <div class="popupbuttonstyle">
+                                            <a class="btn btn-success btn-square redclosebtn" ng-click="ClosChangeDriverPopup()">
+                                                Close
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </ion-footer-bar>
+                            </ion-modal-view>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <script id="templates/reasoncodepopup.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Reason Code</h1>
+                    <button class="button button-clear button-primary" ng-click="ClosReasoncodepopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Please choose reason code :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="ReasonCodeJson.ReasonCode" ng-options="obj.ReasonCodeId as obj.ReasonName for obj in ReasonCodeList">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Description :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <textarea type="text" class="form-control form-white" rows="4" cols="50" ng-model="ReasonCodeJson.ReasonDescription"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-content>
+                <ion-footer-bar align-title="left" class="popupfooter">
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveReasonCode()">
+                                Save
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="ClosReasoncodepopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+
+        <!--<script id="templates/ChangeDriver.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Change Driver</h1>
+                    <button class="button button-clear button-primary" ng-click="ClosChangeDriverPopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Driver :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="SelectedDriver.DriverForSelectedOrder" ng-options="obj.DeliveryPersonnelId as obj.UserName for obj in DriverList">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Plate Number :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="SelectedDriver.PlateNumberForSelectedOrder" ng-options="obj.TransporterVehicleRegistrationNumber as obj.TransporterVehicleRegistrationNumber for obj in PlateNumberList">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Confirmed Pick Shift :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="SelectedDriver.PickShiftForSelectedOrder" ng-options="obj.LookUpId as obj.Name for obj in ShiftList">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Confirmed Pickup Date :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <div class="prepend-icon">
+                                            <input type="text" id="Pickupdate" ng-model="SelectedDriver.ExpectedTimeOfAction" name="datepicker" class="PickupDateControl form-control" placeholder="please select date">
+                                            <i class="icon-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveDriverForSelectedEnquiry()">
+                                Save
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="ClosChangeDriverPopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>-->
+
+
+    </ion-content>
+</ion-view>

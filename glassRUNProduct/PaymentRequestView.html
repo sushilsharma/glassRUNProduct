@@ -1,0 +1,209 @@
+﻿
+<div class="ContainerSection">
+    <div class="conatinerheader headerdataconatiner" ng-if="PaymentRequestSlabList.length > 0 && isPaymentRequestSlab === true">
+
+        <div class="NumberConatiner" style="border: 0px !important;padding-left:0px">
+            {{resData.res_ViewInquiryForCustomer_SrNo}}
+        </div>
+
+        <div class="ItemNameContainer" style="width: 12%;">
+            {{resData.res_OrderPaymentRequest_SlabName}}
+        </div>
+        <div class="UOMContainer" style="width: 10%;border:none !important">
+            {{resData.res_OrderPaymentRequest_AmountUnit}}
+        </div>
+        <div class="unitContainer rightaling">
+            {{resData.res_OrderPaymentRequest_Amount}} ({{resData.res_CurrencyCode}})
+        </div>
+		<div class="QuantityControl" style="width:8% !important;padding-top: 5px; margin-left:1%">
+			{{resData.res_OrderPaymentRequest_PaidAmount}} ({{resData.res_CurrencyCode}})
+		</div>
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+            {{resData.res_OrderPaymentRequest_SlabReason}}
+        </div>
+        <div class="QuantityControl" style="width:8% !important;padding-top: 5px; margin-left:1%">
+            {{resData.res_OrderPaymentRequest_Status}}
+        </div>
+		<div class="QuantityControl" style="width:10% !important;padding-top: 5px;">
+			{{resData.res_OrderPaymentRequest_Reason}}
+		</div>
+        <div class="QuantityControl" style="width:12% !important;padding-top: 5px;">
+            {{resData.res_OrderPaymentRequest_FinanceRemark}}
+        </div>
+        <div class="TotalConatiner rightaling" style="width:6% !important;border:none !important" ng-if="pageContrlAcessData.RequestSlabAddRequestAction  !='0'">
+            {{resData.res_OrderPaymentRequest_Action}}
+        </div>
+
+    </div>
+
+    <div class="conatinerbody">
+        <div class="conatinerheader itemrowcontainer" style="height: auto;padding: 0px !important;" ng-repeat="paymentslab in PaymentRequestSlabList" ng-if="paymentslab.SlabId !== '0' && paymentslab.SlabId !== 0">
+            <div class="NumberConatiner" style="height: auto;border: 0px !important;padding: 10px 5px !important;">
+                {{$index + 1}}
+            </div>
+            <div class="ItemNameContainer" style="width: 12%;height: auto;padding: 10px 5px  !important;">
+                {{paymentslab.SlabName}}
+            </div>
+
+            <div class="UOMContainer" style="width: 10%;height: auto;border:none !important;padding: 10px 5px  !important;">
+                {{paymentslab.AmountUnitName}}  <span ng-show="paymentslab.PercentageValue !== '' && paymentslab.PercentageValue !== undefined"> ({{paymentslab.PercentageValue}}%)</span>
+            </div>
+            <div class="unitContainer rightaling" style="height: auto;padding: 2px 5px  !important;">
+                <input class="form-control form-white" style="padding-left: 0px !important;padding-right: 5px;text-align:right" type="text" valid-number ng-model="paymentslab.Amount" />
+            </div>
+			<div class="QuantityControl" style="width:8% !important;height: auto;padding: 10px 5px  !important; margin-left:1%">
+				<span ng-if="paymentslab.PaidAmount !== '' && paymentslab.PaidAmount !== null" style="white-space: normal;">{{paymentslab.PaidAmount}}</span>
+				<span ng-if="paymentslab.PaidAmount === '' || paymentslab.PaidAmount === null">&nbsp;</span>
+			</div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;padding: 10px 5px  !important; margin-left:1%">
+                <span ng-if="paymentslab.SlabReason !== '' && paymentslab.SlabReason !== null" style="white-space: normal;">{{paymentslab.SlabReason}}</span>
+                <span ng-if="paymentslab.SlabReason === '' || paymentslab.SlabReason === null">&nbsp;</span>
+            </div>
+            <div class="QuantityControl" style="width:8% !important;height: auto;padding: 10px 5px  !important; margin-left:1%">
+                <span ng-if="paymentslab.StatusName !== '' && paymentslab.StatusName !== null && paymentslab.StatusName !== '-'" style="white-space: normal;">{{paymentslab.StatusName}}</span>
+                <span ng-if="paymentslab.StatusName === '-' || paymentslab.StatusName === null">&nbsp;</span>
+            </div>
+			<div class="QuantityControl" style="width:10% !important;padding: 10px 5px  !important;">
+				<span ng-if="paymentslab.Reason !== '' && paymentslab.Reason !== null" style="white-space: normal;">{{paymentslab.Reason}}</span>
+				<span ng-if="paymentslab.Reason === '' || paymentslab.Reason === null">&nbsp;</span>
+			</div>
+            <div class="QuantityControl" style="width:12% !important;padding: 10px 5px  !important;">
+                <span ng-if="paymentslab.FinanceRemark !== '' && paymentslab.FinanceRemark !== null" style="white-space: normal;">{{paymentslab.FinanceRemark}}</span>
+                <span ng-if="paymentslab.FinanceRemark === '' || paymentslab.FinanceRemark === null">&nbsp;</span>
+            </div>
+            <div class="TotalConatiner rightaling" style="width:6% !important;height: auto;border:none !important;padding: 10px 5px  !important;" ng-if="pageContrlAcessData.RequestSlabAddRequestButton  !='0'">
+                <a ng-click="CheckPaymentRequestApplicable(paymentslab.AdditionalPaymentRequestId,paymentslab.PaymentRequestId,paymentslab.SlabId,paymentslab.SlabName,paymentslab.ApplicableAfter)" ng-hide="paymentslab.Status === 2202 || paymentslab.Status === '2202'">
+                    <span ng-show="paymentslab.Status === 0 || paymentslab.Status === '0' || paymentslab.Status === 2203 || paymentslab.Status === '2203'">{{resData.res_OrderPaymentRequest_AddRequestButton}}</span>
+                    <!--<span ng-hide="paymentslab.Status === 2201 || paymentslab.Status === '2201' || paymentslab.Status === 2203 || paymentslab.Status === '2203' ">Requested</span>-->
+                </a>
+            </div>
+        </div>
+
+        <div style="float: left;width: 100%;margin-top: 10px;margin-bottom: 15px;text-decoration: underline;font-weight: bold;">
+            {{resData.res_OrderPaymentRequest_MiscellaneousPaymentHeading}}
+        </div>
+        <div class="conatinerheader headerdataconatiner" ng-if="PaymentRequestSlabList.length > 0 && isPaymentRequestSlab === false">
+
+            <div class="NumberConatiner" style="border: 0px !important;padding-left:0px">
+                {{resData.res_ViewInquiryForCustomer_SrNo}}
+            </div>
+
+            <div class="ItemNameContainer" style="width: 12%;">
+                {{resData.res_OrderPaymentRequest_SlabName}}
+            </div>
+            <div class="UOMContainer" style="width: 10%;border:none !important">
+                {{resData.res_OrderPaymentRequest_AmountUnit}}
+            </div>
+            <div class="unitContainer rightaling">
+                {{resData.res_OrderPaymentRequest_Amount}} ({{resData.res_CurrencyCode}})
+            </div>
+			<div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+				{{resData.res_OrderPaymentRequest_PaidAmount}} ({{resData.res_CurrencyCode}})
+			</div>
+            <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+                {{resData.res_OrderPaymentRequest_SlabReason}}
+            </div>
+
+            <div class="QuantityControl" style="width:8% !important;padding-top: 5px; margin-left:1%">
+                {{resData.res_OrderPaymentRequest_Status}}
+            </div>
+			<div class="QuantityControl" style="width:10% !important;padding-top: 5px;">
+				{{resData.res_OrderPaymentRequest_Reason}}
+			</div>
+            <div class="QuantityControl" style="width:12% !important;padding-top: 5px;">
+                {{resData.res_OrderPaymentRequest_FinanceRemark}}
+            </div>
+            <div class="TotalConatiner rightaling" style="width:6% !important;border:none !important" ng-if="pageContrlAcessData.MiscellaneousAddRequestAction  !='0'">
+                {{resData.res_OrderPaymentRequest_Action}}
+            </div>
+
+        </div>
+
+        <div class="conatinerheader itemrowcontainer" style="height: auto;padding: 0px !important;" ng-repeat="paymentslab in PaymentRequestSlabList" ng-if="paymentslab.SlabId === '0' || paymentslab.SlabId === 0">
+            <div class="NumberConatiner" style="height: auto;border: 0px !important;padding: 10px 5px !important;">
+                {{$index + 1}}
+            </div>
+            <div class="ItemNameContainer" style="width: 12%;height: auto;padding: 10px 5px  !important;">
+                {{paymentslab.SlabName}}
+            </div>
+
+            <div class="UOMContainer" style="width: 10%;height: auto;border:none !important;padding: 10px 5px  !important;">
+                {{paymentslab.AmountUnitName}}  <span ng-show="paymentslab.PercentageValue !== '' && paymentslab.PercentageValue !== undefined"> ({{paymentslab.PercentageValue}}%)</span>
+            </div>
+            <div class="unitContainer rightaling" style="height: auto;padding: 2px 5px  !important;">
+                <input class="form-control form-white" style="padding-left: 0px !important;padding-right: 5px;text-align:right" type="text" valid-number ng-model="paymentslab.Amount" />
+            </div>
+			<div class="QuantityControl" style="width:10% !important;height: auto;padding: 10px 5px  !important; margin-left:1%">
+				<span ng-if="paymentslab.PaidAmount !== '' && paymentslab.PaidAmount !== null" style="white-space: normal;">{{paymentslab.PaidAmount}}</span>
+				<span ng-if="paymentslab.PaidAmount === '' || paymentslab.PaidAmount === null">&nbsp;</span>
+			</div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;padding: 10px 5px  !important; margin-left:1%">
+                <span ng-if="paymentslab.SlabReason !== '' && paymentslab.SlabReason !== null" style="white-space: normal;">{{paymentslab.SlabReason}}</span>
+                <span ng-if="paymentslab.SlabReason === '' || paymentslab.SlabReason === null">&nbsp;</span>
+            </div>
+            <div class="QuantityControl" style="width:8% !important;height: auto;padding: 10px 5px  !important; margin-left:1%">
+                <span ng-if="paymentslab.StatusName !== '' && paymentslab.StatusName !== null && paymentslab.StatusName !== '-'" style="white-space: normal;">{{paymentslab.StatusName}}</span>
+                <span ng-if="paymentslab.StatusName === '-' || paymentslab.StatusName === null">&nbsp;</span>
+            </div>
+			<div class="QuantityControl" style="width:10% !important;padding: 10px 5px  !important;">
+				<span ng-if="paymentslab.Reason !== '' && paymentslab.Reason !== null" style="white-space: normal;">{{paymentslab.Reason}}</span>
+				<span ng-if="paymentslab.Reason === '' || paymentslab.Reason === null">&nbsp;</span>
+			</div>
+            <div class="QuantityControl" style="width:12% !important;padding: 10px 5px  !important;">
+                <span ng-if="paymentslab.FinanceRemark !== '' && paymentslab.FinanceRemark !== null" style="white-space: normal;">{{paymentslab.FinanceRemark}}</span>
+                <span ng-if="paymentslab.FinanceRemark === '' || paymentslab.FinanceRemark === null">&nbsp;</span>
+            </div>
+            <div class="TotalConatiner rightaling" style="width:4% !important;height: auto;border:none !important;padding: 10px 5px  !important;" ng-if="pageContrlAcessData.MiscellaneousAddRequestButton  !='0'">
+                <a ng-click="SendSlabPaymentRequest(paymentslab.PaymentRequestId,paymentslab.SlabId,paymentslab.SlabName)" ng-hide="paymentslab.Status === 2202 || paymentslab.Status === '2202'">
+                    <span ng-show="paymentslab.Status === 0 || paymentslab.Status === '0' || paymentslab.Status === 2203 || paymentslab.Status === '2203'">{{resData.res_OrderPaymentRequest_AddRequestButton}}</span>
+                    <!--<span ng-hide="paymentslab.Status === 2201 || paymentslab.Status === '2201' || paymentslab.Status === 2203 || paymentslab.Status === '2203' ">Requested</span>-->
+                </a>
+            </div>
+			<div class="TotalConatiner rightaling" style="width:3% !important;height: auto;border:none !important;padding: 10px 5px  !important;color:red" ng-if="pageContrlAcessData.MiscellaneousAddDeleteButton  !='0'">
+				<a ng-click="Delete_DeleteMisc(paymentslab.PaymentRequestId,paymentslab.SlabId,paymentslab.SlabName)" ng-hide="paymentslab.Status === 2202 || paymentslab.Status === '2202'">
+					<span ng-show="paymentslab.Status === 0 || paymentslab.Status === '0' || paymentslab.Status === 2203 || paymentslab.Status === '2203'"><i class="fa fa-trash"></i></span>
+					<!--<span ng-hide="paymentslab.Status === 2201 || paymentslab.Status === '2201' || paymentslab.Status === 2203 || paymentslab.Status === '2203' ">Requested</span>-->
+				</a>
+			</div>
+        </div>
+    </div>
+
+    <div class="conatinerheader" style="margin-top:20px" ng-show="showadditiontab">
+
+        <div class="NumberConatiner rightaling" style="padding-top: 0px;border:0px !important">
+            &nbsp;
+        </div>
+        <div class="ItemNameContainer" style="padding-top: 0px;width: 20%;border:0px !important">
+            {{resData.res_OrderPaymentRequest_MiscellaneousPaymentTerm}}
+        </div>
+
+        <div class="UOMContainer" style="padding-top: 0px;width: 10%;border:none !important">
+            <select id="ddlAmountUnit" ng-model="PaymentRequestVariable.AdditionalSlabAmountUnit" style="padding-left: 5px !important;" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in UnitOfMeasure_AmountList">
+                <option value="">Select</option>
+            </select>
+        </div>
+        <div class="unitContainer rightaling" style="padding-top: 0px;">
+            <input class="form-control form-white" type="text" valid-number style="padding-left: 0px !important;padding-right: 10px;text-align:right" placeholder="Enter Amount" ng-model="PaymentRequestVariable.AdditionalSlabAmount" /> ({{resData.res_CurrencyCode}})
+        </div>
+        <div class="QuantityControl" style="padding-top: 0px;width:40% !important; margin-left:1%">
+            <input class="form-control form-white" type="text" style="padding-left: 10px !important;padding-right: 0px;" placeholder="Enter Reason" ng-model="PaymentRequestVariable.AdditionalSlabReason" />
+        </div>
+
+        <div class="TotalConatiner rightaling" style="width:10% !important;border:none !important">
+            <a ng-click="AddAdditionalSlab()">{{resData.res_OrderPaymentRequest_AddAdditionalSlab}}</a>
+        </div>
+
+
+    </div>
+
+    <div class="conatinerheader footerbuttons" style="float:left;width:100%;    margin-top: 20px;" ng-hide="showadditiontab">
+        <div class="NumberConatiner rightaling" style="border:0px !important">
+            &nbsp;
+        </div>
+        <div class="ItemNameContainer" style="padding: 0px;border:0px !important" ng-if="pageContrlAcessData.AddMiscellaneousPaymentTerm  !='0'">
+            <a class="buttonstext drop-shadow greencolorbtntext" style="background-color: #fff;" ng-click="ShowAdditionalTab()">{{resData.res_OrderPaymentRequest_AddMiscellaneousPaymentTerm}}</a>
+        </div>
+
+    </div>
+
+</div>

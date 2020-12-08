@@ -1,0 +1,166 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <link href="css/angular-json-explorer.min.css" rel="stylesheet" />
+        <style type="text/css">
+            .main-content .page-content .panel .panel-title {
+                font-size: 16px !important;
+            }
+
+            .panel-heading .panel-title > a:after {
+                display: none
+            }
+
+            .formcomponents {
+                width: 25%;
+            }
+
+            .formarea {
+                width: 75%;
+            }
+
+            .row + .row {
+                margin-top: 0px;
+                padding-top: 0;
+            }
+
+            .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+                margin-left: -25px;
+                margin-top: -1px;
+                width: 20px;
+                height: 20px;
+            }
+
+            .checkbox input:before, .checkbox-icon:before {
+                border-radius: 0px;
+            }
+
+            .checkbox input:after, .checkbox-icon:after {
+                top: 29%;
+                left: 25%;
+                width: 10px;
+                height: 5px;
+            }
+        </style>
+        <div class="page-content" ng-app="formioApp" style="overflow-y: auto;float: left; width: 100%;">
+            <div class="container-fluid">
+                <div class="nav-tabs2">
+                    <ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                        <li class="active" ng-class="{'active': ViewTab}">
+                            <a ng-click="ViewForm()" class="">
+                                <tab-heading>
+                                    <i class="fa fa-eye"></i>View
+                                </tab-heading>
+                            </a>
+                        </li>
+                        <li class="" ng-class="{'active': AddTab}">
+                            <a ng-click="AddForm()">
+                                <tab-heading>
+                                    <span>
+                                        <i class="fa fa-pencil"></i>Edit
+                                    </span>
+                                </tab-heading>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane" ng-class="{'active': AddTab}">
+                            <div class="panel-content" style="height: 400px;">
+                                <div class="row">
+                                    <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                        <div class="fullwidth">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+
+                                                    <div class="bg-info" style="display:none">
+                                                        <h4>
+                                                            <code>
+                                                                <select class="form-control form-type-select" ng-model="form.display" ng-options="display.name as display.title for display in displays"></select>
+                                                            </code>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="well" style="background-color: #fdfdfd;">
+
+                                                        <div class="row">
+                                                            <div class="col-xs-4 col-sm-3 col-md-3 ">
+
+                                                            </div>
+                                                            <div class="col-xs-8 col-sm-9 col-md-9 ">
+                                                                <div class="fullwidth">
+                                                                    <div class="col-md-2">
+                                                                        <div class="form-group">
+                                                                            Form Name :
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="form-group">
+                                                                            <input class="form-control form-white" ng-model="localObject.TemplateName" placeholder="Name" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <form-builder form="form"></form-builder>
+
+                                                        <div class="row">
+                                                            <div class="clearfix"></div>
+                                                            <div class="ActionButtons">
+                                                                <div class="clearbtn">
+                                                                    <button type="button" ng-click="ClearFormBuilder()" class="btn btn-default">Clear</button>
+                                                                </div>
+                                                                <div class="successbtn">
+                                                                    <button type="button" ng-click="SaveFormBuilder()" class="btn btn-success">Save</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4" ng-if="false" style="display:none">
+
+                                                    <div class="bg-info"><h4><code>$rootScope.form = </code></h4></div>
+                                                    <div class="well jsonviewer">
+
+                                                        <json-explorer data="form" collapsed="jsonCollapsed"></json-explorer>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-8 col-sm-offset-2">
+                                                    <div class="well" style="float: left; width: 100%; margin-top: 30px;">
+                                                        <formio id="GenerateForm" form="form" ng-if="renderForm"></formio>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                            <div class="panel-content">
+                                <div class="row">
+                                    <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                        <div class="col-md-12" style="overflow:scroll">
+                                            <div id="SettingMasterGrid" class="SettingMaster_Grid" style="height: 600px;width:100% !important" dx-data-grid="SettingMasterGrid" dx-item-alias="SettingMasterData">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+              
+
+                </div>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

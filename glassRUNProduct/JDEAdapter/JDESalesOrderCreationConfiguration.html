@@ -1,0 +1,124 @@
+﻿
+
+<ion-view>
+	<ion-content class="main-content">
+		<div class="pageview" style="margin-bottom: 50px;" >
+			
+			
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="nav-tabs2">
+
+							<div class="tab-content">
+
+								<div class="tab-pane  active">
+									<div class="panel-content">
+										<div class="row">
+											<div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+
+												<section class="fullwidth" style="border: 1px solid #d5d5d5;    margin-top: 10px;" ng-repeat="jDETable in JDETableList">
+
+
+
+													<div class="col-md-6" style="background-color: #f5f5f5;height: 45px;
+    padding-top: 3px;">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">Table Name</label>
+															<div class="col-sm-9">
+																<label class="form-control form-white">{{jDETable.TableName}}</label>
+
+
+
+															</div>
+
+
+														</div>
+													</div>
+													<div class="col-md-6" style="background-color: #f5f5f5;height: 45px;
+    padding-top: 3px;">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">Table Description</label>
+															<div class="col-sm-9">
+																<label class="form-control form-white">{{jDETable.TableDescription}}</label>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-12">
+														<div class="form-group">
+
+															<table class="table tablegrid table-hover">
+																<thead>
+																	<tr>
+																		<th style="    width: 24px !important;">Column Name</th>
+																		<th style="width: 12px !important;">Description</th>
+																		<th style="width: 5px !important;">DataType</th>
+																		<th style="width: 5px !important;">Length</th>
+																		
+																		<th style="width: 200px !important;">Value</th>
+																		<th style="width: 200px !important;">Rule</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr ng-repeat="tableColumn in jDETable.JDETableColumnList  | filter:filterJson">
+																		<td  ng-style="(tableColumn.IsMandatory =='1') && {'color':'red'}">{{tableColumn.JDETableColumnName}}</td>
+																		<td  ng-style="(tableColumn.IsMandatory =='1') && {'color':'red'}">{{tableColumn.Description}}</td>
+																		<td ng-style="(tableColumn.IsMandatory =='1') && {'color':'red'}">{{tableColumn.DataType}}</td>
+																		<td>{{tableColumn.Length}}</td>
+																		
+																		<td>
+																			<input class="form-control form-white" name="myInput" style="width:200px" ng-model="tableColumn.glassRUNFieldName" type="text" placeholder="Field Name"  >
+
+
+																			<label ng-if="!minlengthValidation(tableColumn)">The value provided is greater than the max length</label>
+
+																			
+																		</td>
+																		<td>  <a style="    color: blue !important;
+    text-decoration: underline;    cursor: pointer;">Assign Rule</a></td>
+
+																	</tr>
+																</tbody>
+															</table>
+
+
+														</div>
+
+
+													</div>
+
+
+
+												</section>
+
+												
+
+												<div class="ActionButtons">
+
+													<div class="clearbtn">
+														<button type="button" ng-click="Clear()" class="btn btn-default">{{resData.res_AddRoleAccess_Clear}}</button>
+													</div>
+													<div class="successbtn">
+														<button type="button" ng-click="Save()" class="btn btn-success">{{resData.res_AddRoleAccess_Save}}</button>
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+				
+
+
+</div>
+	</ion-content>
+</ion-view>

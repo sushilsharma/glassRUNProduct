@@ -1,0 +1,169 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview customscreen">
+            <div class="fixrighttopbutton">
+                <div class="col-sm-2 singlebtn col-md-2" style="float:right;display:none">
+                    <a class="btn btn-success btn-square" ng-click="UpdateAllShipConfirm()">{{resData.res_GateKeeperListPage_Update}}</a>
+                </div>
+            </div>
+            <div class="header">
+                <h2>{{resData.res_GateKeeperListPage_ShipConfirm}}</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+                    <div id="portalview" class="PortalView">
+                        <div class="panel">
+                            <div class="panel-content">
+                                <div id="GateKeeperConfirmationGrid" kendo-grid="Grid" k-options="GateKeeperConfirmationGrid" k-rebind="GateKeeperConfirmationGrid"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <script id="ViewGateKeeper.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalviewDriverDetail bgcolorheaderandfooter">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Driver Details</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseViewGratisOrderControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding">
+                    <div class="row">
+                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                            <div class="" style="float: left;    width: 100%;">
+                                <div class="panel-content">
+                                    <div style="float:left;width:20%">
+
+
+                                        <div class="md-card-content">
+                                            <div class="uk-margin-bottom uk-text-center campusVendorProduct uk-position-relative">
+                                                <div class="user_heading_avatar productImages fileinput fileinput-new" style="float: none" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail" style="margin-left: 14px;">
+                                                        <img class="" data-ng-src="{{UserImage.UserPhoto}}" ng-model="UserImage.UserPhoto" data-err-src="Images/download.jpg">
+                                                    </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                                    <!--<div class="user_avatar_controls">
+                                                        <div class="cameraiconcss">
+                                                            <span class="btn-file">
+                                                                <span class="fileinput-new" style="margin-left: 11px;position: relative;top: 10px;">
+                                                                    <i class="fa fa-camera" style="font-size:16px">
+                                                                    </i>
+                                                                </span>
+                                                                <span class="fileinput-exists" style="margin-left: 11px;    position: relative;    top: 10px;">
+                                                                    <i class="fa fa-camera" style="font-size:16px">
+                                                                    </i>
+                                                                </span>
+                                                                <img class="" data-ng-src="{{UserImage.Photo}}" ng-model="UserImage.Photo" data-err-src="Images/download.jpg">
+                                                                <input name="user_edit_avatar_control" id="user_edit_avatar_control" type="file" image-model="UserImage.Photo" accept="image/*">
+                                                            </span>
+                                                        </div>
+
+                                                        <a href="#" id="btn2" class="btn-file fileinput-exists" data-dismiss="fileinput">
+                                                            <div class="deleteiconcss">
+                                                                <div style="margin-left: 11px;position: relative;top: 10px;">
+                                                                    <i class="fa fa-times" style="font-size: 20px;">
+                                                                    </i>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div style="float:left;width:60%">
+                                        <div class="fullwidth">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    Driver Name :
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{DriverName}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fullwidth">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    Driver Id :
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{DriverId}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fullwidth">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    Mobile Number :
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{MobileNumber}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fullwidth">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    ID Number :
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{UserName}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="fullwidth">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    License Number :
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{LicenseNumber}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseViewGratisOrderControl()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+    </ion-content>
+</ion-view>

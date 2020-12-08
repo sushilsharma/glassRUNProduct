@@ -1,0 +1,32 @@
+﻿<div class="col-lg-12 nopadding">
+    <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px;">
+        <div class="columnfulldata  margintopdata">
+            <div class="labelname">{{resData.res_UpdateOrder_OrderDate}}</div>
+            <div class="labelcontrol labeltext">
+                <b>{{DateField.OrderDate | date:'dd/MM/yyyy HH:mm:ss'}}</b>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px;display:none !important" ng-hide="IsSelfCollect">
+        <div class="columnfulldata  margintopdata">
+            <div class="labelname">{{resData.res_UpdateOrder_ProposedDeliveryDate}}</div>
+
+            <div class="labelcontrol labeltext">
+                {{ProposedDate}}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px;">
+        <div class="columnfulldata  margintopdata">
+            <div class="labelname">{{resData.res_UpdateOrder_SchedulingDate}}</div>
+
+            <div class="labelcontrol" style="margin-top: -3px;">
+
+                <div class="prepend-icon">
+                    <input type="text" name="datepicker" onkeypress="return false;" ng-readonly="true" ng-model="DateField.RequestDate" class="customdate-picker form-control" style="cursor: pointer; background-color: white;" placeholder="{{resData.res_UpdateOrder_SelectARequestDate}}">
+                    <i class="icon-calendar"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

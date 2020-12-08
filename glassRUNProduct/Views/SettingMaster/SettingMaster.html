@@ -1,0 +1,280 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <style>
+            .DeleteCamaraicon1 {
+                position: absolute;
+                left: -23px;
+                height: 40px;
+                width: 40px;
+                background-color: #fff;
+                color: #000;
+                border-radius: 50%;
+                padding-top: 0px;
+                padding-left: 0px;
+                top: -66px;
+                cursor: pointer;
+                border: 1px solid #d5d5d5;
+            }
+        </style>
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_SettingMaster_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a>
+                                    <tab-heading>
+                                        <span ng-show="enabelEdit">
+                                            <i class="fa fa-pencil"></i>{{resData.res_SettingMaster_Edit}}
+                                        </span>
+                                        <span ng-hide="enabelEdit" style="color: #bfbfbf!important;">
+                                            <i class="fa fa-pencil"></i>{{resData.res_SettingMaster_Edit}}
+                                        </span>
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content" style="height: 400px;">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="fullwidth">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_SettingMaster_PageName}}</label>
+                                                        <div class="col-sm-9">
+                                                            <div class="padded-row" style="position: relative;width: 100%;">
+                                                                <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                    <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                        <input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_GridConfiguration_SelectPage}}" ng-change="ShowChangebox()" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="SearchControl.InputPageItem" ng-disabled="pageNameDisbale" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" style="border: 1px solid #bec1c3;border-radius: 20px;">
+                                                                        <div id="ItemListAutoCompleteBox_dropdown" ng-show="showPagebox" class="angucomplete-dropdown" style="height: auto !important;top:40px !important" ng-disabled="pageNameDisbale">
+                                                                            <div class="angucomplete-searching" ng-show="searchingPage" ng-bind="textPageSearching" style="">{{resData.res_GridConfiguration_SelectObject}}</div>
+                                                                            <div class="angucomplete-searching" ng-show="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                            <div class="angucomplete-row" ng-repeat="result in PagesList | filter:SearchControl.InputPageItem" ng-disabled="pageNameDisbale" key-navigation="" ng-click="LoadGridColumns(result.PageName,result.PageId)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+                                                                                <div class="angucomplete-title" style="">
+                                                                                    {{result.PageName}}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-hide="pageNameDisbale">
+                                                                    <a class="clearautosearchbox" ng-disabled="pageNameDisbale" ng-show="SearchControl.InputPageItem.length==0 || SearchControl.InputPageItem === undefined" ng-click="ShowPageSearchList()">
+                                                                        <i class="fa fa-caret-down" style="width: 17px;font-size: 14px;"></i>
+                                                                    </a>
+                                                                    <a class="clearautosearchbox" ng-disabled="pageNameDisbale" ng-show="SearchControl.InputPageItem.length>0 && !EditRoleDisable" ng-click="ClearPageInputSearchbox()">
+                                                                        <i class="fa fa-times" style="width: 17px;font-size: 14px;"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <!--<div ng-hide="pageNameDisbale">
+                                                                    <a class="clearautosearchbox" ng-click="ShowPageSearchList()">
+                                                                        <i class="fa fa-caret-down" style="width: 17px;font-size: 14px;"></i>
+                                                                    </a>
+                                                                    <a class="clearautosearchbox"  ng-click="ClearPageInputSearchbox()">
+                                                                        <i class="fa fa-times" style="width: 17px;font-size: 14px;"></i>
+                                                                    </a>
+                                                                </div>-->
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_SettingMaster_Description}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control form-white" ng-model="SettingMasterJSON.Description" type="text" placeholder={{resData.res_SettingMaster_Description}}>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                            <div class="fullwidth">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_SettingMaster_SettingValue}}</label>
+                                                        <div ng-hide="hidetextBox">
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="SettingMasterJSON.SettingValue" type="text" placeholder={{resData.res_SettingMaster_SettingValue}}>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-hide="hideDropDown">
+                                                            <div class="col-sm-9">
+                                                                <select id="ddlPaymentPlanId" ng-model="SettingMasterJSON.SettingValue" class="form-control" name="val_SelectObject" ng-options="obj.Id as obj.Name for obj in PossibleValuesList | orderBy:'Name'">
+                                                                    <option value="">Select</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-hide="hideMultiselectPropDown">
+                                                            <div class="col-sm-9">
+                                                                <div class="labelcontrol">
+                                                                    <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                                                        <div class="form-group MultiSelectControl" style="width: 100%;margin-left:5px ;margin-top:10px">
+                                                                            <div ng-dropdown-multiselect="" options="PossibleValuesList" selected-model="SelectedSettingList" checkboxes="false" extra-settings="SortByListSetting"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div ng-hide="hideDatePicker">
+                                                            <div class="col-sm-9">
+                                                                <!--<div class="input-group date">
+                                                                    <input type="text" id="FromDate" ng-model="FinancePartnerJSON.SettingValue" name="datepicker" class="form-control form-white date-picker" style="width:89% !important;">
+                                                                    <i class="icon-calendar" style="right: 0;left: auto;"></i>
+                                                                </div>-->
+                                                                <div class="prepend-icon">
+                                                                    <input type="text" Id="txtDatePicker" ng-model='SettingMasterJSON.SettingValue' name="datepicker" class="date-picker form-control" placeholder="Select date...">
+                                                                    <i class="icon-calendar"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-hide="hideUploadControl">
+                                                            <div class="col-sm-9">
+                                                                <div class="user_heading_avatar productImages fileinput fileinput-new" style="float: none" data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail">
+                                                                        <img class="" ng-src="{{'data:image/jpg;base64,'+SettingMasterJSON.UserProfilePicture}}">
+                                                                    </div>
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                                                    <div class="user_avatar_controls">
+                                                                        <div class="cameraiconcss" style="margin-left: -44px;position: relative;top: -26px;">
+                                                                            <span class="btn-file">
+                                                                                <span class="fileinput-new" style="margin-left: 11px;position: relative;top: 10px;">
+                                                                                    <i class="fa fa-camera" style="font-size:16px">
+                                                                                    </i>
+                                                                                </span>
+                                                                                <span class="fileinput-exists" style="margin-left: 11px;position: relative;top: 10px;">
+                                                                                    <i class="fa fa-camera" style="font-size:16px">
+                                                                                    </i>
+                                                                                </span>
+                                                                                <input type="file" id="fileUpload" ng-file-extension="SettingMasterJSON.FileFormat" ng-file-select="onFileSelect($files)" ng-file-allowsize="SettingMasterJSON.AllowFileSize" ng-file-allowextension="SettingMasterJSON.AllowFileFormat" ng-file-base64="SettingMasterJSON.UserProfilePicture" />
+                                                                            </span>
+                                                                        </div>
+
+                                                                        <a id="btn2" class="btn-file fileinput-exists" ng-click="ClearUploadProfileImage()" ng-hide="CheckFileUploaded()" style="display: inline">
+                                                                            <div class="DeleteCamaraicon1">
+                                                                                <div style="margin-left: 11px;position: relative;top: 10px;">
+                                                                                    <i class="fa fa-times" style="font-size: 20px;">
+                                                                                    </i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div style="margin-top: -35px;float:left;width:100%">
+                                                                        <div style="width:100%;margin-top: 12px;">
+                                                                            {{resData.res_SettingMaster_FileType}} : ({{SettingMasterJSON.AllowFileFormat}})
+                                                                        </div>
+                                                                        <div style="float:left;width:100%">
+                                                                            {{resData.res_SettingMaster_FileSize}} : ({{SettingMasterJSON.AllowFileSize}} MB)
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_SettingMaster_SettingParameter}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control form-white" ng-disabled="pageNameDisbale" ng-model="SettingMasterJSON.SettingParameter" type="text" placeholder={{resData.res_SettingMaster_SettingParameter}}>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="fullwidth" style="display:none!important">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_SettingMaster_IsActive}}</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="radio" name="IsActive" ng-model="SettingMasterJSON.IsActive" value="1" />&nbsp;Yes&nbsp;&nbsp;&nbsp;
+                                                            <input type="radio" name="IsActive" ng-model="SettingMasterJSON.IsActive" value="0" />&nbsp;No
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="ActionButtons" style="position: absolute;bottom: 10px;right: 30px;">
+                                                <div class="clearbtn">
+                                                    <button type="button" ng-click="ResetButton(SettingMasterId,ControlType,PossibleValues)" class="btn btn-default">Reset</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="Save()" class="btn btn-success">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12" style="overflow:scroll">
+                                                <div id="SettingMasterGrid" class="SettingMaster_Grid" style="height: 600px;width:100% !important" dx-data-grid="SettingMasterGrid" dx-item-alias="SettingMasterData">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+
+    <script id="WarningMessage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">{{resData.res_SettingMaster_Warning}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                    {{resData.res_SettingMaster_DeleteWarning}}
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteYes()">
+                            {{resData.res_SettingMaster_DeleteYes}}
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+                            {{resData.res_SettingMaster_DeleteNo}}
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+</ion-view>

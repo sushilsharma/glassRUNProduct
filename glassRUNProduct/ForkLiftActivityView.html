@@ -1,0 +1,263 @@
+﻿
+
+
+<ion-view>
+    <ion-content class="main-content">
+        <style>
+            #example .demo-section {
+                max-width: none;
+                width: 100% !important;
+            }
+
+            #example .k-listbox {
+                /*width: 236px;*/
+                height: 500px;
+            }
+
+                #example .k-listbox:first-of-type {
+                    /*width: 270px;*/
+                    margin-right: 1px;
+                }
+
+            .btn:not(.btn-sm):not(.btn-hg):not(.btn-xs):not(.btn-lg):not(.bootstrap-touchspin-up):not(.bootstrap-touchspin-down) {
+                height: 40px;
+            }
+
+            .CapsuleClickEnabled {
+                float: left;
+                width: 8%;
+                border-radius: 20px !important;
+                border: 1px solid #d5d5d5;
+                background-color: white;
+                padding: 10px;
+                margin-right: 175px;
+            }
+
+            .CapsuleClickDisabled {
+                background-color: grey;
+            }
+
+            .CapsuleSelected {
+                border: 1px solid blue;
+            }
+
+            .QueueNotBay {
+                color: red;
+            }
+
+            .Queue_Selected {
+                float: left;
+                width: auto;
+                margin-left: 10px;
+                background-color: #fff;
+                border: 1px solid #d5d5d5;
+                border-radius: 8px;
+                padding: 5px 5px;
+                margin-bottom: 10px;
+                margin-left: -2px
+            }
+
+            .CapsuleActivity {
+                background-color: red;
+                border-radius: 10px;
+                padding: 10px;
+                color: white;
+                float: left;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px
+            }
+
+            .CapsuleActivity_green {
+                background-color: green;
+                border-radius: 10px;
+                padding: 10px;
+                color: white;
+                float: left;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px
+            }
+
+            .CapsuleActivity_grey {
+                background-color: #d0d0d0;
+                border-radius: 10px;
+                padding: 10px;
+                color: white;
+                float: left;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px
+            }
+        </style>
+        <div class="pageview" style="margin-bottom: 50px;">
+            <div class="header">
+                <div style="float:left;width:100%;text-align:center;font-weight:bold;">Branch Plant : {{BranchPlantCode}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <div style="margin-left: 161px; margin-top: 30px;float: left;width: 100%;">
+                            <div class="CapsuleClickEnabled" ng-repeat="loadCapsule in LoadCapsuleList">
+                                <div ng-if="loadCapsule.UserName!==undefined" style="float: left; width: 100%; text-align: center;  border-radius: 10px; border: 1px solid green;  padding: 10px;       margin-bottom: 16px">
+
+                                    {{loadCapsule.UserName}}
+                                </div>
+                                <div ng-if="loadCapsule.UserName==undefined" style="float: left; width: 100%; text-align: center;  padding: 10px;margin-bottom: 16px">
+
+                                    &nbsp;
+                                </div>
+
+                                <div class="CapsuleActivity" ng-if="(loadCapsule.TruckNumber!==undefined && loadCapsule.TruckNumber!=='' && loadCapsule.TruckNumber!==null) && loadCapsule.IsDeActivated==='0'">
+                                    {{loadCapsule.BayName}}
+
+                                    <div ng-if="loadCapsule.TruckNumber!==undefined" style="background-color:white;border-radius:10px;padding:10px;color:black;float:left;width:100%;margin-top:20px">
+                                        {{loadCapsule.TruckNumber}}
+                                    </div>
+                                    <div ng-if="loadCapsule.TruckNumber===undefined" style="background-color:white;border-radius:10px;padding:10px;color:black;float:left;width:100%;margin-top:20px">
+                                        &nbsp;
+                                    </div>
+
+                                </div>
+
+                                <div class="CapsuleActivity_green" ng-if="(loadCapsule.TruckNumber===undefined || loadCapsule.TruckNumber==='' || loadCapsule.TruckNumber===null) && loadCapsule.IsDeActivated==='0'">
+                                    {{loadCapsule.BayName}}
+
+
+                                    <div style="padding:10px;color:black;float:left;width:100%;margin-top:20px">
+                                        &nbsp;
+                                    </div>
+
+                                </div>
+
+                                <div class="CapsuleActivity_grey" ng-if="(loadCapsule.IsDeActivated==='1')">
+                                    {{loadCapsule.BayName}}
+
+
+                                    <div style="padding:10px;color:black;float:left;width:100%;margin-top:20px">
+                                        &nbsp;
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!--<div id="ForkLiftActivityGrid" class="SalesAdminApproval_Grid" dx-data-grid="ForkLiftActivityGrid" dx-item-alias="SalesAdminApprovalData">-->
+
+                    </div>
+
+                    <div class="panel-content" style="padding:0px;float:left;width: 100%;">
+                        <div class="dx-viewport">
+                            <div class="demo-container">
+                                <div id="ForkLiftActivityGrid" class="SalesAdminApproval_Grid" dx-data-grid="ForkLiftActivityGrid" dx-item-alias="SalesAdminApprovalData">
+                                    <div data-options="dxTemplate:{ name:'StatusTemplate' }">
+                                        <a style="float:left;width:150px;color:green" ng-if="SalesAdminApprovalData.data.Status=='1'">Online</a>
+                                        <a style="float:left;width:150px;color:red" ng-if="SalesAdminApprovalData.data.Status=='0'">Offline</a>
+                                    </div>
+
+
+                                    <div data-options="dxTemplate:{ name:'AssignBayTemplate' }">
+                                        <!--SHIFT NAME DROP DOWN COLUMN FOR SCHEDULE ORDER PAGE-->
+                                        <div ng-if="ChangeBayGlobally==false">
+                                            <div ng-show="SalesAdminApprovalData.data.showShiftDropDown != true" style="float:left;width:100%">
+                                                <a ng-click="onChangeClick($event,SalesAdminApprovalData.data)">
+                                                    <span ng-show="SalesAdminApprovalData.data.Status == '0'">Select</span>
+                                                </a>
+                                            </div>
+                                            <div style="float:left;width:100%" ng-show="SalesAdminApprovalData.data.Status == '1'">
+                                                <span>{{SalesAdminApprovalData.data.BayName}}</span>
+                                            </div>
+
+                                        </div>
+                                        <div ng-if="ChangeBayGlobally==true">
+                                            <div ng-show="SalesAdminApprovalData.data.showShiftDropDown != true" style="float:left;width:100%">
+                                                <a ng-click="onChangeClick($event,SalesAdminApprovalData.data)">
+                                                    <span ng-show="SalesAdminApprovalData.data.BayName !=undefined && SalesAdminApprovalData.data.BayName !='-' ">{{SalesAdminApprovalData.data.BayName}}</span>
+                                                    <span ng-show="SalesAdminApprovalData.data.BayName ==undefined || SalesAdminApprovalData.data.BayName =='-' ">Select</span>
+                                                </a>
+                                            </div>
+                                            <div style="float:left;width:100%" ng-show="SalesAdminApprovalData.data.showBranchPlantDropDown !=true">
+                                                <!--<span>{{SalesAdminApprovalData.data.BayName}}</span>-->
+                                                <span style="width: 100% !important;float:left">
+                                                    <span ng-show="SalesAdminApprovalData.data.BayName !=undefined && SalesAdminApprovalData.data.BayName !='-' ">{{SalesAdminApprovalData.data.BranchPlantName}}</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div style="float:left;width:100%" ng-show="SalesAdminApprovalData.data.showShiftDropDown == true">
+                                            <div style="float:left;width:60%">
+                                                <select class="form-control grid_selectbox" ng-model="SalesAdminApprovalData.data.AssignBay" ng-options="obj.BayCode as obj.BayName for obj in BayAllListForkLift "><option value="">Select</option></select>
+                                            </div>
+                                            <div style="float:left;width:20%">
+                                                <a class="createinquirybtn_solidbg card_Section circlebg_icon_50 space_left_20 grid_confirm_icon grid_cancel_icon" ng-click="ClearBranchPlant(SalesAdminApprovalData.data)">
+                                                    <i style="font-size: 14px !important;" class="fa fa-times RemoveItemfa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                            <div style="float:left;width:20%">
+                                                <a class="createinquirybtn_solidbg card_Section circlebg_icon_50 space_left_20 grid_confirm_icon" ng-click="ChangeBayAccToConfiguration(SalesAdminApprovalData.data.AssignBay,SalesAdminApprovalData.data.UserId)">
+                                                    <i style="font-size: 14px !important;" class="fa fa-check textcolor_green"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <script id="WarningMessageForFLDTask.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{resData.res_FLDTaskWarning_Header}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseFLDTaskWarningMessagePopup()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        {{resData.res_FLDTaskWarning_MessageBody}}
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar class="popupfooter">
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="ChangeBayWarningYes()">
+                                {{resData.res_FLDActivityView_Yes}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseFLDTaskWarningMessagePopup()">
+                                {{resData.res_FLDActivityView_No}}
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+
+
+
+
+
+
+    </ion-content>
+</ion-view>

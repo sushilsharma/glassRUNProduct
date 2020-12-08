@@ -1,0 +1,94 @@
+﻿
+<div class="ContainerSection">
+    <div class="conatinerheader headerdataconatiner">
+
+    
+        <div class="ItemNameContainer" style="width: 10%;">
+
+           {{resData.res_OrderListView_OrderNumber}}
+         
+        </div>
+      
+        <div class="QuantityControl" style="width: 10%!important;padding-top: 5px; margin-left:1%">
+            
+            {{resData.res_OrderListView_CurrentState}}
+        </div>
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+            
+
+            {{resData.res_OrderListView_CollectionDate}}
+        </div>
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+            
+
+            {{resData.res_OrderListView_DeliveryDate}}
+        </div>
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+          
+
+            {{resData.res_OrderListView_TripCost}}
+        </div>
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px; margin-left:1%">
+          
+
+            {{resData.res_OrderListView_TripRevenue}}
+        </div>
+        <div class="QuantityControl" style="width:10% !important;padding-top: 5px;">
+       
+
+            {{resData.res_OrderListView_User}}
+        </div>
+        <div class="TotalConatiner rightaling" style="width:10% !important;border:none !important">
+         
+
+            {{resData.res_OrderListView_VehicleNo}}
+        </div>
+
+    </div>
+    <div class="conatinerbody">
+        <div class="conatinerheader itemrowcontainer" style="height: auto;padding: 0px !important;" ng-repeat="ChildOrder in ChildOrderList">
+            <!--<div class="NumberConatiner rightaling" style="height: auto;border: 0px !important;padding: 10px 5px !important;">
+                {{$index + 1}}
+            </div>-->
+            <div class="ItemNameContainer"  style="width: 10%;">
+                {{ChildOrder.OrderNumber}}
+            </div>
+            <!--<div class="ItemNameContainer" style="width: 10%;">
+                {{ChildOrder.SalesOrderNumber}}
+            </div>
+            <div class="ItemNameContainer" style="width: 15%;">
+             
+
+                {{ChildOrder.PurchaseOrderNumber}}
+            </div>-->
+
+
+            <div class="QuantityControl" style="width: 10%;height: auto;border:none !important;">
+                <a class="{{ChildOrder.Class}}">{{ChildOrder.StatusDescription}}</a>
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto; margin-left:1%">
+              <span>{{ ChildOrder.CollectionDate == null ? "-" : ChildOrder.CollectionDate }}</span>  
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;margin-left:1%">
+                <span>{{ ChildOrder.DeliveryDate == null ? "-" : ChildOrder.DeliveryDate }}</span>   
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;margin-left:1%">
+                {{ChildOrder.TripCost}}
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;margin-left:1%">
+                {{ChildOrder.TripRevenue}}
+            </div>
+           
+            <div class="QuantityControl" style="width:10% !important;height: auto;padding: 10px 5px  !important; margin-left:1%">
+                {{ChildOrder.UserName}}
+            </div>
+            <div class="QuantityControl" style="width:10% !important;height: auto;padding: 10px 5px  !important; margin-left:1%">
+                {{ChildOrder.VehicleRegistrationNumber}}
+            </div>
+        </div>
+
+    </div>
+
+   
+
+</div>

@@ -1,0 +1,100 @@
+﻿<div class="page-content">
+    <div class="header">
+        <h2> <strong>{{resData.res_ObjectVersion_CreateObjectVersion}}</strong></h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                            <div class="col-md-6">
+                                <!--<div class="form-group">
+                                    <label class="col-sm-3 control-label">Select Object :</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control form-white" ng-model="RoleName" type="text" placeholder="Role Name">
+                                    </div>
+                                </div>-->
+                                <!--<div class="form-group">
+                                    <label>Select Object :</label>
+                                    <select id="val_Object" ng-model="objects" class="form-control" name="val_SelectObject" ng-options="obj.ObjectId as obj.ObjectName for obj in bindAllObject" ng-change="GetObjectPropertyByobjectId(obj.ObjectId)">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>-->
+
+                                <div class="uk-form-row" id="divval_SelectHealthMeter">
+                                    <label>{{resData.res_ObjectVersion_SelectObject}}</label>
+                                    <select id="val_Object" ng-model="objects" ng-disabled="disabledselectobject" class="form-control" name="val_SelectObject" ng-options="obj.ObjectId as obj.ObjectName for obj in bindAllObject" ng-change="GetObjectPropertyByobjectId(objects)">
+                                        <option value="">{{resData.res_ObjectVersion_Select}}
+                                    </select>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-3 control-label">{{resData.res_ObjectVersion_VersionNumber}}</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control form-white" ng-model="VersionNumber" type="text" placeholder="VersionNumber">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="fullwidth">
+                                    <label class="control-label">{{resData.res_ObjectVersion_ListOfProperties}}</label>
+                                </div>
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>{{resData.res_ObjectVersion_Properties}}</th>
+                                            <th></th>
+                                            <th>{{resData.res_ObjectVersion_DefaultValue}}</th>
+                                            <th>{{resData.res_ObjectVersion_Mandatory}}</th>
+                                            <th>{{resData.res_ObjectVersion_ValidationExpression}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="objectProperty in bindAllObjectProperty">
+                                            <td>{{objectProperty.PropertyName}}</td>
+                                            <td><input class="form-white" type="checkbox" ng-model="objectProperty.IsChecked"></td>
+                                            <td><input class="form-control form-white" ng-model="objectProperty.DefaultValue" type="text" placeholder="DefaultValue"></td>
+                                            <td><input class="form-white" type="checkbox" ng-model="objectProperty.Mandatory"></td>
+                                            <td>
+                                                <select id="val_ValidationExpression" ng-model="objectProperty.ValidationExpression" class="form-control" name="val_SelectValidationExpression" ng-options="obj.ValidationExpression as obj.ValidationExpression for obj in ValidationExpressionList">
+                                                    <option value="">{{resData.res_ObjectVersion_Select}}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="ActionButtons">
+                                <div class="successbtn">
+                                    <button type="button" ng-click="Save()" class="btn btn-success">{{resData.res_ObjectVersion_Save}}</button>
+                                </div>
+                                <div class="clearbtn">
+                                    <button type="button" ng-click="Clear()" class="btn btn-default">{{resData.res_ObjectVersion_Clear}}</button>
+                                </div>
+
+                                <div class="clearbtn">
+                                    <button type="button" ng-click="demoClick()" class="btn btn-default">{{resData.res_ObjectVersion_DemoClick}}</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

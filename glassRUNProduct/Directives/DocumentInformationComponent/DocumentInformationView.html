@@ -1,0 +1,193 @@
+﻿<div class="fullwidth" ng-if="pageContrlAcessData.DocumentTypeDropDown !='0'" style="margin-top: 20px;">
+    <style type="text/css">
+        .GridColumnWithBorder_AddCompany {
+            float: left;
+            width: 22%;
+            padding: 0px 20px;
+            border-right: 2px dashed #d5d5d5;
+            height: 36px;
+            padding-top: 5px;
+        }
+
+        .GridColumnWithBorder_Adddocument_data {
+            height: 55px !important;
+            padding-top: 12px !important;
+        }
+    </style>
+    <div class="col-lg-12">
+        <div class="columnfulldata  margintopdata">
+            <div class="labelname reasonlable">
+                <b>  Document Details</b>
+            </div>
+        </div>
+    </div>
+    <div class="conatinerheader headerdataconatiner">
+
+        <div class="UOMContainer  rightaling">
+            SR No.
+        </div>
+
+        <div class="GridColumnWithBorder_AddCompany" style="width:22%">
+            Document Type
+        </div>
+        <div class="GridColumnWithBorder_AddCompany" style="width:30%">
+            Document Name
+
+            <div style="float:left;width:100%" ng-hide="DocumentInformationObject.DocumentTypeId === 0 || DocumentInformationObject.DocumentTypeId === null || DocumentInformationObject.DocumentTypeId === undefined || DocumentInformationObject.DocumentTypeId === ''">
+                {{resData.res_DriverPage_FileType}} : ({{DocumentInformationObject.SelectFileFormat}})
+            </div>
+            <div style="float:left;width:100%" ng-hide="DocumentInformationObject.DocumentTypeId === 0 || DocumentInformationObject.DocumentTypeId === null || DocumentInformationObject.DocumentTypeId === undefined || DocumentInformationObject.DocumentTypeId === ''">
+                {{resData.res_DriverPage_FileSize}} : ({{DocumentInformationObject.SelectFileSize}} MB)
+            </div>
+        </div>
+
+        <div class="removeItemicon" style="width:16%">
+            {{resData.res_AddCompany_ContactType_Action}}
+        </div>
+    </div>
+    <div class="conatinerbody">
+        <div class="conatinerheader itemrowcontainer" style="margin-top: 20px;">
+            <div class="UOMContainer rightaling">
+                &nbsp;
+            </div>
+            <div class="GridColumnWithBorder_AddCompany" style="width:22%">
+                <select ng-if="$root.DocumentAction==='Clear'" id="ddlContacttype" ng-model="DocumentInformationObject.DocumentTypeId" ng-change="SetFileExtensionAndSize(DocumentInformationObject.DocumentTypeId)" style="float: left;width: 80% !important;" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in DocumentTypeList  | orderBy:'Name'">
+                    <option value="">Select</option>
+
+                </select>
+                <input ng-if="$root.DocumentAction==='Add'" type="text" style="float: left;width: 80% !important;" ng-model="DocumentInformationObject.DocumentInformationText" class="form-control" />
+                <a ng-if="$root.DocumentAction==='Clear'" class="add_clear_control" ng-click="$root.AddDocumentType()">
+                    <span>
+                        Add
+                    </span>
+                </a>
+                <a ng-if="$root.DocumentAction==='Add'" class="add_clear_control" ng-click="$root.ClearDocumentTypeButton()">
+                    <span>
+                        Clear
+                    </span>
+                </a>
+            </div>
+
+
+            <div class="GridColumnWithBorder_AddCompany" style="width:30%">
+
+                <div class="labelcontrol" style="position:relative;margin-top: 5px;width: 100%;">
+                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                        <div class="form-control" data-trigger="fileinput" style="word-break: break-word;white-space: normal;padding: 0px !important;">
+                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                            <span class="fileinput-filename">{{DocumentInformationObject.DocumentName}}</span>
+                        </div>
+                        <span class="input-group-addon btn btn-default btn-file">
+                            <span class="fileinput-new">Choose...</span>
+                            <span class="fileinput-exists">Change</span>
+                            <input type="file" id="fileUpload" ng-file-select="onFileSelect($files)"
+                                   ng-file-name="DocumentInformationObject.DocumentName"
+                                   ng-file-allowextension="DocumentInformationObject.SelectFileFormat"
+                                   ng-file-allowsize="DocumentInformationObject.SelectFileSize"
+                                   ng-file-extension="DocumentInformationObject.FileFormat"
+                                   ng-file-base64="DocumentInformationObject.DocumentBase64" />
+                        </span>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="removeItemicon" style="width:16%">
+                <a ng-click="AddDocumentInfo()">
+                    <span ng-if="DocumentInformationObject.EditDocumentinfoGUID ===''">Add</span>
+                    <span ng-if="DocumentInformationObject.EditDocumentinfoGUID !==''">Update</span>
+                </a>
+            </div>
+        </div>
+        <div style="float:left;width:100%;margin-top: 20px;">
+            <div class="conatinerheader itemrowcontainer" style="height: 55px;padding-bottom: 0px;padding-top: 0px !important;" ng-repeat="Documentinfo in documentInformationList">
+                <div class="UOMContainer rightaling" style="height: 55px;padding-top: 12px;">
+                    {{$index + 1}}
+                </div>
+                <div class="GridColumnWithBorder_AddCompany GridColumnWithBorder_Adddocument_data" style="width:22%">
+                    {{Documentinfo.DocumentType}}
+                </div>
+
+
+                <div class="GridColumnWithBorder_AddCompany GridColumnWithBorder_Adddocument_data" style="width:30%">
+
+
+                    <a ng-show="Documentinfo.DocumentExtension === 'pdf' || Documentinfo.DocumentExtension === 'PDF'" download="{{Documentinfo.DocumentName}}" href="data:application/octet-stream;base64,{{Documentinfo.DocumentBase64}}">{{Documentinfo.DocumentName}}</a>
+
+                    <a ng-show="Documentinfo.DocumentExtension === 'PNG' || Documentinfo.DocumentExtension === 'png' || Documentinfo.DocumentExtension === 'JPG' || Documentinfo.DocumentExtension === 'jpg' || Documentinfo.DocumentExtension === 'JPEG' || Documentinfo.DocumentExtension === 'jpeg'" download="{{Documentinfo.DocumentName}}" href="data:image/{{Documentinfo.DocumentExtension}};base64,{{Documentinfo.DocumentBase64}}">{{Documentinfo.DocumentName}}</a>
+
+
+                </div>
+
+
+                <div class="removeItemicon" style="width:16%;padding-top: 12px !important">
+                    <a ng-click="EditDocumentInfo(Documentinfo.DocumentinfoGUID)" style="display:none">
+                        Edit
+                    </a>
+                    <a ng-click="DeleteDocumentInfoObject(Documentinfo.DocumentinfoGUID)">
+                        Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<div class="fullwidth">
+    <script id="ViewDocumentImage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" style="height: 340px !important; width: 340PX !important;    margin-left: 560px;" class="confirmationmsgmodalviewforimg bgcolorheaderandfooter">
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">View Image</h1>
+                <button class="button button-clear button-primary" ng-click="CloseViewDocumentImage()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="padding: 10px;margin: 0px;">
+                    <div class="fileinput-new thumbnail" style="margin:0px">
+                        <img class="" ng-src="{{'data:image/jpg;base64,'+viewDocument}}">
+                    </div>
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyleforimg" style="margin-right:0px">
+                        <a class="btn btn-success btn-square" ng-click="CloseViewDocumentImage()">
+                            Close
+                        </a>
+                    </div>
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+    <script id="WarningMessage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">Delete Warning</h1>
+                <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                    Are you sure you want to delete this record?
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteYes()">
+                            Yes
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+                            No
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+</div>

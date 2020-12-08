@@ -1,0 +1,161 @@
+﻿
+
+<ion-view>
+    <ion-content>
+        <style type="text/css">
+            .main-content .page-content {
+                margin-top: 0px;
+                overflow: inherit;
+                position: inherit;
+                padding: 0px;
+            }
+        </style>
+
+
+        <div class="sidebar-condensed  account2" style="height:100vh;background: url({{BackgroundImage}}) center;background-size: cover;" ng-class="{'nomargintop' : InvisibleComponentForLoginScreen}">
+            <div style="background-color: #fff;height:100vh;">
+                <div class="container" id="login-block">
+                    <div class="user-img PortalView">
+                        <img src="{{LogoImage}}" style="width:220px">
+                    </div>
+                    <div class="user-img MobileView mobilelogo">
+                        <img src="Images/glassRUN245.png" style="width:100%" />
+                    </div>
+                    <div style="width:80% !important;margin:auto !important">
+                        <div class="account-info" style="float: left;width:40%;height:235px;">
+                            <a class="logo">
+                                <img src="Images/glassRUN245.png" />
+                            </a>
+                        </div>
+                        <div class="account-form" style="float: left;width:60%;border: 1px solid #afacac;">
+                            <div class="form-signin" role="form">
+                                <h3><strong>Sign in</strong> to your account</h3>
+                                <div class="append-icon">
+                                    <input type="text" name="name" id="name" ng-model="Login.Username" ng-keypress="LoginOnEnter($event)" class="form-control form-white username" placeholder="Username" required="">
+                                    <i class="icon-user"></i>
+                                </div>
+                                <div class="append-icon m-b-20">
+                                    <input type="password" name="password" ng-model="Login.Password" ng-keypress="LoginOnEnter($event)" class="form-control form-white password" placeholder="Password" required="">
+                                    <i class="icon-lock"></i>
+                                </div>
+                                <a class="btn btn-lg btn-dark btn-rounded ladda-button" ng-click="btnLogin()">Sign In</a>
+                                <span class="forgot-password"><a id="password" ng-click="ForgetPasswordClick();">Forgot password?</a></span>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="account-copyright" style="bottom: 100px;">
+                        <img src="Images/DisrptivLogotransp.png" style="width: 200px;" />
+                    </div>
+                    <p class="account-copyright">
+                        <span>Version 9.1</span><br /><span>Copyright © 2018 </span><span>Disrptiv Exchange PTE</span><br /><span>All rights reserved.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script id="ConfirmationPopuScreen.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;border-bottom: 1px solid #cac3c3;">
+                    <h1 class="title">{{PopupVariables.Title}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseConfirmationPopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody">
+                        {{PopupVariables.Message}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar align-title="left" class="bar-assertive">
+                    <div class="fullwidthrow">
+                        <div class="buttons modalbtn" ng-click="CloseConfirmationPopup()">
+                            <a class="buttonstext greencolorbtn" style="display:inline-block;margin-top: -14px;">
+                                <i class="fa fa-check" style="margin-right: 10px;font-size: 18px;font-weight: normal;float:left"></i>
+                                <span style="float:left">{{PopupVariables.Okbtn}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+
+
+		<script id="PasswordPolicyModalPopup.html" type="text/ng-template">
+			<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter" style="width: 800px !important" ;>
+
+				<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+					<h1 class="title">Attention</h1>
+					<button class="button button-clear button-primary" ng-click="ClosePasswordPolicyChangeConfirmationPopup()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="false" class="popioncontainer">
+					<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+						{{PasswordpolicyWarningMessage}}
+					</div>
+				</ion-content>
+
+
+
+
+
+				<ion-footer-bar class="popupfooter">
+					<div class="popupbtnstyle">
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square" ng-click="EventYesChangePassword()">
+								Yes
+
+							</a>
+						</div>
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square redclosebtn" ng-click="EventNoChangePassword()">
+								No
+							</a>
+						</div>
+					</div>
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+		<!--Changed by nimesh on 24-10-2019-->
+		<script id="PasswordPolicyForcefullyModalPopup.html" type="text/ng-template">
+			<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter" style="width: 800px !important" ;>
+
+				<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+					<h1 class="title">Attention</h1>
+					<button class="button button-clear button-primary" ng-click="ChangePasswordForcefully()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="false" class="popioncontainer">
+					<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+						Your Password is expired. Please change the password.
+					</div>
+				</ion-content>
+
+
+
+
+
+				<ion-footer-bar class="popupfooter">
+					<div class="popupbtnstyle">
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square" ng-click="ChangePasswordForcefully()">
+								Ok
+
+							</a>
+						</div>
+						<!--<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square redclosebtn" ng-click="EventNoChangePassword()">
+							No
+						</a>
+					</div>-->
+					</div>
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+
+
+
+
+
+    </ion-content>
+</ion-view>

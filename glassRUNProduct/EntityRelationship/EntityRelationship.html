@@ -1,0 +1,418 @@
+﻿<ion-view>
+    <ion-content class="main-content" style="overflow-y:hidden">
+        <style type="text/css">
+            .detailsLable {
+                float: left;
+                color: #4d4d4d;
+                font-weight: 600
+            }
+
+            .eventmappingcss .main-content {
+                margin-left: 0px !important;
+            }
+
+            .eventmappingcss #bussinessruleui {
+                padding: 0px !important;
+                
+            }
+
+            #bussinessruleui .dx-treeview-node-is-leaf {
+                display: none;
+            }
+
+            #bussinessruleui .dx-cell-focus-disabled {
+                background-color: #fff;
+            }
+
+            #bussinessruleui .dx-row td {
+                border: 0px !important
+            }
+
+            #bussinessruleui .dx-viewport {
+                border: 0px !important;
+            }
+
+            #bussinessruleui .dx-datagrid-headers {
+                display: none !important
+            }
+
+            #bussinessruleui .dx-datagrid-rowsview {
+                border: 0px !important
+            }
+
+            #bussinessruleui .dx-datagrid-filter-row td {
+                display: none !important
+            }
+
+            #bussinessruleui .selectobject {
+                margin-left: 0px !important;
+            }
+
+            #bussinessruleui .removepadding {
+                padding-right: 0px !important;
+                padding-left: 0px !important;
+                border-bottom: 1px solid #f1f0f0;
+                padding-bottom: 20px;
+                padding-top: 15px;
+            }
+
+            #bussinessruleui .dx-datagrid-content .dx-datagrid-table .dx-row > td {
+                vertical-align: top;
+                border: 0px !important;
+            }
+
+            #bussinessruleui .dx-datagrid-rowsview .dx-selection.dx-row.dx-row-lines > td {
+                background-color: #fff;
+            }
+
+            #bussinessruleui .selectedYes {
+                width: 17px;
+                font-size: 14px;
+                margin-right: 6px;
+                color: #39b54a !important;
+                cursor: pointer;
+            }
+
+            #bussinessruleui .selectedNo {
+                width: 17px;
+                font-size: 14px;
+                margin-right: 6px;
+                color: #19211b;
+                cursor: pointer;
+            }
+
+            #bussinessruleui .underlinetextbox {
+                width: 100%;
+                height: 30px;
+                font-size: 14px;
+                color: #4d4d4d !important;
+                font-weight: normal;
+                padding-left: 5px !important;
+            }
+        </style>
+        <link href="Styles/jquery-ui.css" rel="stylesheet">
+        <div id="bussinessruleui" class="pageview" style="margin-bottom: 50px;" ng-controller="BusinessRulesEnginePageController">
+            <div class="row">
+                <div class="col-md-12 ruleEnginePage" style="margin-bottom:100px">
+                    <div class="nav-tabs2">
+                        <div class="tab-content" style="padding-bottom: 25px;">
+                            <!--Loading Grid and view rule section-->
+                            <div class="col-md-12" ng-if="RedirectToRulePage" style="margin-top: 10px; margin-left: 18px;margin-bottom: 10px;">
+                                <span style="float: left; width: auto; margin-right: 28px">
+                                    <a ng-click="RedirectToWorkflow();">
+                                        <i style="color: #5b5b5b;font-size: 20px;font-weight: normal;" class="fa fa-arrow-left"></i>
+                                    </a>
+                                </span>
+                                <span style="float: left; width: auto; font-size: 18px; margin-bottom: 10px;">{{WorkflowBreadCrumb}}</span>
+                            </div>
+                            <div class="tab-pane" ng-class="{'active': EntityRelationshipFirstTab}">
+                                <div class="panel-content bussinessrule">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-8 bussinessrightpanel">
+                                                <div class="col-md-12">
+                                                    <h2 class="ruletypeheading" style="font-size: 20px;margin-bottom: 5px;">Entity Relationship Config</h2>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div style="float:left;width:100%;margin-bottom: 25px;margin-top: 15px;" ng-if="pageContrlAcessData.AddNewBusinessRulesVisibility !='0'">
+                                                        <div class="footerbuttons" style="margin: 0px;">
+                                                            <a class="buttonstext bggreencolorbtn" ng-click="AddNewEntityRelationship();">Entity Relationship</a>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="grbussinessrulecontrol" style="position: relative;padding-bottom: 0px;" ng-if="false">
+
+                                                        <span style="position: absolute;top: -12px;background-color: #fff; padding-right: 5px;"> {{resData.res_BusinessRulesEnginePage_filterlabel}}</span>
+
+                                                        <div class="col-md-12" style="padding: 0px">
+                                                            <div class="grMasterPagelable grlabelWidth" style="width: 107px !important;margin-top: -3px;">{{resData.res_AddEditBusinessRuleEngine_RuleType}}</div>
+                                                            <div class="grMasterPagecontrol grcontrolwidth" style="width: 82% !important;">
+                                                                <div class="form-group">
+                                                                    <select class="dropdown-toggle btn btn-default" style="border-radius:0px !important;" ng-model="Filter.FilterByRuleType" ng-change="LoadRuleTypeToFilter(Filter.FilterByRuleType)" ng-options="ruleType.Code as ruleType.Name for ruleType in RulesEngineType">
+                                                                        <option value="">{{resData.res_AddEditBusinessRuleEngine_Selectruletype}}
+                                                                    </select>
+                                                                    <!--<div ng-dropdown-multiselect="" options="RulesEngineType" selected-model="FilterByListSelectedList" checkboxes="true" extra-settings="FilterByListSetting"></div>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12" style="padding: 0px">
+                                                            <div class="col-md-6">
+                                                                <div class="grMasterPagelable grlabelWidth" style="width: 107px !important;margin-top: -5px;">{{resData.res_AddEditBusinessRuleEngine_SelectObjectName}}</div>
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 56% !important;">
+                                                                    <div class="form-group">
+                                                                        <select class="dropdown-toggle btn btn-default" style="border-radius:0px !important;" ng-change="LoadFilterObjectPropertiesByObject(Filter.SortByObject);" ng-model="Filter.SortByObject" ng-options="objectType.Name as objectType.Name for objectType in RuleFilterObjectDataList">
+                                                                            <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectObjectName}}
+                                                                        </select>
+                                                                        <!--<div ng-dropdown-multiselect="" options="RulesEngineType" selected-model="FilterByListSelectedList" checkboxes="true" extra-settings="FilterByListSetting"></div>-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="grMasterPagelable grlabelWidth" style="width: 120px !important;margin-top: -5px;">{{resData.res_AddEditBusinessRuleEngine_SelectPropertyName}}</div>
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 60% !important;">
+                                                                    <div class="form-group">
+                                                                        <select class="dropdown-toggle btn btn-default" style="border-radius:0px !important;" ng-model="Filter.GroupByProperty" ng-options="objectProperty.Name as objectProperty.Name for objectProperty in RuleFilterObjectsPropertiesList">
+                                                                            <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectPropertyName}}
+                                                                        </select>
+                                                                        <!--<div ng-dropdown-multiselect="" options="RulesEngineType" selected-model="FilterByListSelectedList" checkboxes="true" extra-settings="FilterByListSetting"></div>-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12" style="padding: 0px">
+
+                                                            <div class="grMasterPagecontrol" style="width: 100%">
+                                                                <div style="width: 50%;float: left;">
+                                                                    <div class="grMasterPagelable grlabelWidth" style="width: 98px;margin-top:-3px">{{resData.res_AddEditBusinessRuleEngine_EnableDisable}}</div>
+                                                                    <div class="form-group" style="margin-top: -16px;">
+                                                                        <span class='selectedNo' ng-class="{'selectedYes': FilterEnable}" ng-if="FilterEnable" style='font-size:35px !important;' ng-click="FilterEnableSetButton(false)">
+                                                                            <i class='fa fa-toggle-on'></i>
+                                                                        </span>
+                                                                        <span class='selectedNo' ng-class="{'selectedNoButton': !FilterEnable}" ng-if="!FilterEnable" style='font-size:35px !important;' ng-click="FilterEnableSetButton(true)">
+                                                                            <i class='fa fa-toggle-off'></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div style="width: 50%;float: left;display: flex; justify-content: flex-end">
+                                                                    <div class="footerbuttons" style="margin: 0px;">
+                                                                        <a class="buttonstext bggreencolorbtn" ng-click="FilterData();"><i class='fa fa-search'></i> Search</a>
+                                                                    </div>
+                                                                    <div class="footerbuttons">
+                                                                        <a class="buttonstext bggreencolorbtn" style="    border: 1px solid #C1272D;background-color:#C1272D !important" ng-click="ClearData();"><i class='fa fa-refresh'></i> Clear</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12" style="padding:0px">
+                                                        <div class="CreateNewRule" style="padding-left:10px">
+                                                            View Existing Entity Relationship
+                                                        </div>
+
+
+                                                        <div class="dx-viewport">
+                                                            <div class="demo-container">
+                                                                <div id="EntityRelationshipGrid" class="SalesAdminApproval_Grid" dx-data-grid="EntityRelationshipGrid" dx-item-alias="EntityRelationshipGridData">
+                                                                    <div data-options="dxTemplate:{ name:'EntityRelationshipTemplate' }">
+                                                                        <div class='bussinessrulecard' ng-class="{'SelectedCard' : EntityRelationshipGridData.data.PrimaryEntity=== SelectedPrimaryEntity}">
+                                                                            <div class='bussinessequenceNumber'>
+                                                                                {{EntityRelationshipGridData.data.rownumber}}
+                                                                            </div>
+                                                                            <div class='bussinesruleText'>
+                                                                                <div class='bussinessruleheader'>
+                                                                                    <div class="col-md-6" style="padding: 0px;">
+                                                                                        <span style='font-size: 17px !important;'>{{EntityRelationshipGridData.data.CompanyName}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-6" style="display: flex; justify-content: flex-end">
+
+                                                                                        <span class='ruletypeicon' style='font-size:22px !important;cursor: pointer;' ng-click="OpenEntityRelationshipDeleteConfirmationModalPopup({{EntityRelationshipGridData.data.PrimaryEntity}})" ng-if="pageContrlAcessData.DeleteRulesVisibility !='0'">
+                                                                                            <i class='fa fa-trash'></i>
+                                                                                        </span>
+                                                                                    </div>
+
+
+                                                                                </div>
+                                                                                <div class='bussinessrulecontaint'>{{EntityRelationshipGridData.data.RelatedEntity}} </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                           
+
+
+
+                                            </div>
+                                            <div class="col-md-4" ng-if="ShowEditPanel">
+
+                                                <div class="col-md-12" style="padding: 0px;margin-top: 20px;">
+                                                    <div style="float:left;width:100%;margin-bottom: 20px;">
+                                                        <div class="footerbuttons" style="margin: 0px;">
+                                                            <a class="buttonstext bggreencolorbtn" ng-click="LoadEditEntityRecord();">Edit Entity Relationship</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bussinessrulerightpaneldetails bussinessrulerightpaneldetailsUI">
+                                                    <h2 class="ruletypeheading" style="font-size: 18px;">
+                                                        {{resData.res_BusinessRulesEnginePage_Details}}
+
+                                                    </h2>
+                                                    <div class="col-md-12" style="padding: 0px !important">
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable" style="padding-bottom: 8px;">Primary Entity</div>
+                                                            <div class="detailsLableValue greentextcolor">
+                                                                {{PrimaryComapnyName}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable">Related Entity</div>
+                                                            <div class="detailsLableValue" style="font-weight: 505 !important;" ng-repeat="x in EntityRelationshipData" ng-if="x.RuleId=='0'">
+                                                                {{x.CompanyName}} ({{x.CompanyMnemonic}})
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable">Rule</div>
+                                                            <div class="detailsLableValue" style="font-weight: 505 !important;" ng-repeat="x in EntityRelationshipData" ng-if="x.RuleId !='0'">
+                                                                {{x.RuleText}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable">{{resData.res_BusinessRulesEnginePage_From}}</div>
+                                                            <div class="detailsLableValue greentextcolorbold" style="font-weight: 505 !important;">
+                                                                {{FinalValue.RuleStartDate | date : "fullDate" }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable">{{resData.res_BusinessRulesEnginePage_To}}</div>
+                                                            <div class="detailsLableValue greentextcolorbold" style="font-weight: 505 !important;">
+                                                                {{FinalValue.RuleEndDate | date : "fullDate" }}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Loading Page for add and edit rule-->
+                            <div class="tab-pane" ng-class="{'active': EntityRelationshipSecondTab}">
+                                <div class="col-md-12 rulesjs">
+                                    <div ng-include="'EntityRelationship/AddEditEntityRelationship.html'" ng-controller="AddEditEntityRelationshipController"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+    </ion-content>
+
+    <!--validation for selecting Criteria For New Condition-->
+    <script id="templates/contact-popover.html" type="text/ng-template">
+        <ion-popover-view style="width: 400px !important; height: 150px !important;">
+            <ion-content>
+                <div class="list">
+                    <div style="float:left;width:100%;padding:10px">
+                        Please choose the Criteria For New Condition.
+                    </div>
+                    <div class="newcondition">
+                        <a class="btn btn-default itemlistdata" ng-click="AddNewConditionCriteria('&', $event)">
+                            And
+                        </a>
+                        <a class="btn btn-default itemlistdata" ng-click="AddNewConditionCriteria('||', $event)">
+                            Or
+                        </a>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-popover-view>
+    </script>
+
+    <!--Delete confirmation popup-->
+    <script id="templates/EntityRelationshipDeleteConfirmation.html" type="text/ng-template">
+        <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:200px !important">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">{{resData.res_GridConfiguration_DeleteConfirmation_Header}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseEntityRelationshipDeleteConfirmationModalPopup()"><i class="icons-office-52"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                <div class="list">
+                    <div class="customlistcontrolview">
+
+                        <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                            <div class="columnfulldata  margintopdata">
+
+                                <div>
+                                    {{resData.res_GridConfiguration_DeleteConfirmation_Message}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ion-content>
+
+            <ion-footer-bar align-title="left" class="popupfooter">
+
+                <div class="popupbtnstyle">
+
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteEntityOnConfirm()">
+                            <i class="fa fa-check"></i> {{resData.res_GridConfigurationPage_Confirm}}
+                        </a>
+                    </div>
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square redclosebtn" ng-click="CloseEntityRelationshipDeleteConfirmationModalPopup()">
+                            <i class="fa fa-times"></i> {{resData.res_GridConfigurationPage_Close}}
+                        </a>
+                    </div>
+                </div>
+
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+
+    <script id="templates/EntityRuleConfirmation.html" type="text/ng-template">
+        <ion-modal-view class="confirmationmsgmodalview eventmappingcss bgcolorheaderandfooter" style="min-height: 650px !important;width: 90% !important;top: 50px !important;">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">{{resData.res_GridConfiguration_DeleteConfirmation_Header}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseEntityRuleModalPopup()"><i class="icons-office-52"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="hidden" class="padding IonicPopupHeight" style="overflow: hidden;">
+                <div class="list">
+                    <div class="customlistcontrolview" style="height: 550px;">
+
+                        <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                            <div class="columnfulldata  margintopdata">
+
+                                <div ng-include="'../BusinessRulesEnginePage.html'" style="height: 540px;"></div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ion-content>
+
+            <ion-footer-bar align-title="left" class="popupfooter">
+
+                <div class="popupbtnstyle">
+
+                
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square redclosebtn" ng-click="CloseEntityRuleModalPopup()">
+                            <i class="fa fa-times"></i> {{resData.res_GridConfigurationPage_Close}}
+                        </a>
+                    </div>
+                </div>
+
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+</ion-view>

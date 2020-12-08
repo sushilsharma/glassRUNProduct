@@ -1,0 +1,48 @@
+﻿<div class="customlistcontrolview">
+    <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+        <div class="columnfulldata  margintopdata" style="width:90% !important">
+            <div class="labelname reasonlable">
+                <!--Please choose reason code * :-->
+                {{resData.res_ResonCode_ChooseReasonCode}} * :
+            </div>
+            <div class="labelcontrol">
+                <select ng-if="Action==='Clear'" class="form-control"
+                        ng-model="ReasonCodeJson.ReasonCode" ng-options="obj.ReasonCodeId as obj.ReasonName for obj in ReasonCodeList">
+                    <option value="">Select</option>
+                </select>
+
+                <input ng-if="Action==='Add'" type="text" ng-model="ReasonCodeJson.ReasonCodeText" class="form-control" />
+                <div>
+                    <div style="float: right; margin-top: -29px !important; margin-right: -76px !important;">
+                        <a ng-if="Action==='Clear'" ng-click="AddReasonCode()">
+                            <span>
+                                Add
+                            </span>
+                            <!--<span ng-hide="paymentslab.Status === 2201 || paymentslab.Status === '2201' || paymentslab.Status === 2203 || paymentslab.Status === '2203' ">Requested</span>-->
+                        </a>
+                        <a ng-if="Action==='Add'" ng-click="ClearReasonCodeAddButton()">
+                            <span>
+                                Clear
+                            </span>
+                            <!--<span ng-hide="paymentslab.Status === 2201 || paymentslab.Status === '2201' || paymentslab.Status === 2203 || paymentslab.Status === '2203' ">Requested</span>-->
+                        </a>
+                    </div>
+                    <!--<div style="width: 9% !important;float: right;margin-top: -29px !important; margin-right: -76px !important;">
+
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+        <div class="columnfulldata  margintopdata" style="width:88% !important">
+
+            <div class="labelname reasonlable" style="width: 341px;">
+                {{resData.res_ResonCode_Description}} :
+            </div>
+            <div class="labelcontrol">
+                <textarea type="text" class="form-control form-white" rows="4" cols="50" ng-model="ReasonCodeJson.ReasonDescription"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

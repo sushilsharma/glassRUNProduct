@@ -1,0 +1,230 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+            <div class="fixrighttopbutton">
+                <div class="col-sm-2 singlebtn col-md-2" style="float:right">
+                    <a class="btn btn-success btn-square" ng-click="GetAllRecordUpdated()" style="display:none">{{resData.res_OMOrderPage_UpdateOrder}}</a>
+                    <a class="btn btn-success btn-square" ng-click="GetAllRecordToPrintPrintSlip()">{{resData.res_OMOrderPage_PrintPickSlipButton}}</a>
+                    <a class="btn btn-success btn-square" ng-click="RefreshGrid()">{{resData.res_OMOrderPage_Refresh}}</a>
+                    <a class="btn btn-success btn-square" ng-click="UpdatePickUpDateAndShift(false)">
+                        Update Pickup
+                    </a>
+                    <a class="btn btn-success btn-square" ng-click="UpdateBulkPickUpDateAndShift()">
+                        Bulk Update Pickup
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="header">
+                <h2>{{resData.res_OMOrderPage_OrderList}}</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+                    <div id="portalview" class="PortalView">
+
+                        <div class="panel">
+                            <div class="MultiSelectControlRow">
+                                <div class="form-group MultiSelectControl">
+                                    <div ng-dropdown-multiselect="" options="ProductList" selected-model="ProductSelectedList" checkboxes="true" extra-settings="MultiSelectDropdownSetting"></div>
+
+                                </div>
+                                <a class="btn btn-success btn-square" ng-click="SearchEnquiryIncludeByProductName()">{{resData.res_OMOrderPage_Include}}</a>
+                                <a class="btn btn-success btn-square" ng-click="SearchEnquiryExcludeByProductName()">{{resData.res_OMOrderPage_Exclude}}</a>
+                                <a class="btn btn-success btn-square" ng-click="ClearProductSearch()">{{resData.res_OMOrderPage_Clear}}</a>
+                            </div>
+                            <div class="panel-content">
+                                <div kendo-grid="Grid" id="InquiryDetailsGrid" k-options="OrderDetailsGrid" k-rebind="OrderDetailsGrid" k-on-change="onSelection(kendoEvent)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-backdrop active" ng-if="ShowBulkChangePickupDateAndShift">
+                        <div class="modal-backdrop-bg"></div>
+                        <div class="modal-wrapper">
+                            <ion-modal-view class="confirmationmsgmodalview ShowBulkChangePickupDateAndShift bgcolorheaderandfooter modal fade-in-scale ng-enter active ng-enter-active" style="min-height:300px !important">
+                                <ion-header-bar class="bar bar-header bar-positive">
+                                    <h1 class="title" style="left: 29px; right: 29px;">Change Pick-up</h1>
+                                    <button class="button button-clear button-primary" ng-click="CloseChangePickUpCodePopup()"><i class="fa fa-times"></i></button>
+                                </ion-header-bar>
+                                <ion-content scroll="hidden" class="padding IonicPopupHeight scroll-content ionic-scroll overflow-scroll  has-header has-footer">
+                                    <div class="scroll">
+                                        <div class="list">
+                                            <div class="customlistcontrolview">
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            Pick-up Date :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <div class="prepend-icon">
+                                                                <input type="text" id="Pickupdate" ng-model="PickupInformation.PickupDate" name="datepicker" class="PickupDateControl form-control" placeholder="please select date">
+                                                                <i class="icon-calendar"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            Pick Shift :
+                                                        </div>
+                                                        <div class="labelcontrol">
+                                                            <select class="form-control" style="margin:0px !important" ng-model="PickupInformation.PickupShift" ng-options="obj.LookUpId as obj.Name for obj in ShiftList"><option value="" selected="selected">Select</option><option label="MorningShift" value="string:1106">MorningShift</option><option label="EveningShift" value="string:1107">EveningShift</option><option label="NightShift" value="string:1108">NightShift</option></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-content>
+
+                                <ion-footer-bar align-title="left" class="popupfooter bar bar-footer">
+
+                                    <div class="popupbtnstyle">
+
+                                        <div class="popupbuttonstyle">
+                                            <a class="btn btn-success btn-square" ng-click="SavePickUpInfoForSelectedEnquiry()">
+                                                Save
+                                            </a>
+                                        </div>
+                                        <div class="popupbuttonstyle">
+                                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseChangePickUpCodePopup()">
+                                                Close
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </ion-footer-bar>
+                            </ion-modal-view>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script id="templates/reasoncodepopup.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Reason Code</h1>
+                    <button class="button button-clear button-primary" ng-click="ClosReasoncodepopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Please choose reason code :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="ReasonCodeJson.ReasonCode" ng-options="obj.ReasonCodeId as obj.ReasonName for obj in ReasonCodeList">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+
+                                    <div class="labelname reasonlable">
+                                        Description :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <textarea type="text" class="form-control form-white" rows="4" cols="50" ng-model="ReasonCodeJson.ReasonDescription"></textarea>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveReasonCode()">
+                                Save
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="ClosReasoncodepopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+        <!--<script id="templates/ChangePickupDateAndShift.html" type="text/ng-template">
+        <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">Change Pick-up</h1>
+                <button class="button button-clear button-primary" ng-click="CloseChangePickUpCodePopup()"><i class="fa fa-times"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                <div class="list">
+                    <div class="customlistcontrolview">
+                        <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                            <div class="columnfulldata  margintopdata">
+                                <div class="labelname reasonlable">
+                                    Pick-up Date :
+                                </div>
+                                <div class="labelcontrol">
+                                    <input type="text" Id="Pickupdate" ng-model="PickupDate" name="datepicker" class="PickupDate form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                            <div class="columnfulldata  margintopdata">
+                                <div class="labelname reasonlable">
+                                    Pick Shift :
+                                </div>
+                                <div class="labelcontrol">
+                                    <select class="form-control" style="margin:0px !important" ng-model="PickupShift" ng-options="obj.LookUpId as obj.Name for obj in ShiftList">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-content>
+
+            <ion-footer-bar align-title="left" class="popupfooter">
+
+                <div class="popupbtnstyle">
+
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="SavePickUpInfoForSelectedEnquiry()">
+                            Save
+                        </a>
+                    </div>
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square redclosebtn" ng-click="CloseChangePickUpCodePopup()">
+                            Close
+                        </a>
+                    </div>
+                </div>
+
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>-->
+
+
+    </ion-content>
+</ion-view>

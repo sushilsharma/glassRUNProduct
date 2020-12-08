@@ -1,0 +1,387 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <style>
+            .treeSelection {
+                background-color: green;
+                color: #fff;
+            }
+
+            .highlighted {
+                background: yellow;
+                position: relative;
+                top: -3px;
+            }
+
+            .dropdown-multiselect {
+                height: auto;
+            }
+
+            .btn-group > .btn:first-child {
+                padding-left: 20px;
+            }
+
+            .angucomplete-dropdown {
+                border-bottom: 1px solid #d5d5d5 !important;
+            }
+
+            .itemrowcontainer:nth-child(even) {
+                margin-top: 15px;
+            }
+        </style>
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_SettingMaster_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <!--<a ng-click="AddForm()">
+                                    <tab-heading>
+                                        <i class="fa fa-plus"></i>{{resData.res_EmailDynamicColumn_Add}}
+                                    </tab-heading>
+                                </a>-->
+
+								<!--Changed by nimesh on 06-09-2019-->
+								<a ng-click="AddForm()">
+									<tab-heading>
+										<i ng-show="!EditMode" class="fa fa-plus"></i><span ng-show="!EditMode">{{resData.res_SettingMaster_Add}}</span><i ng-show="EditMode" class="fa fa-pencil"></i><span ng-show="EditMode">{{resData.res_TransportVehicleUI_Edit}}</span>
+									</tab-heading>
+								</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid" style="padding-bottom: 51px!important;">
+											<!--Changed red mark for mendatory and dropddown size increase by nimesh on 03-09-2019-->
+                                            <div class="col-lg-12">
+                                                <div>
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_DimensionMapping_Page}} : <span style="color:red">*</span>
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="itemcontrols" style="width: 600px;">
+                                                                    <div class="padded-row" style="position: relative;width: 100%;">
+                                                                        <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                            <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                                <input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_GridConfiguration_SelectPage}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="SearchControl.InputPageItem" ng-disabled="pageContrlAcessData.InputPageItem =='0' || pageContrlAcessData.InputPageItem =='1' || IsControlDisbaled" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="PageInputSelecteChangeEvent(SearchControl.InputPageItem)" style="border: 1px solid #bec1c3;border-radius: 20px;">
+                                                                                <div id="ItemListAutoCompleteBox_dropdown" ng-if="showPagebox" class="angucomplete-dropdown" style="height: auto !important;top:40px !important;max-height: 220px;">
+                                                                                    <div class="angucomplete-searching" ng-if="searchingPage" ng-bind="textPageSearching" style="">{{resData.res_GridConfiguration_SelectObject}}</div>
+                                                                                    <div class="angucomplete-searching" ng-if="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                                    <div class="angucomplete-row" ng-repeat="result in PagesList | filter:SearchControl.InputPageItem" ng-hide="pageContrlAcessData.InputPageItem =='0' || pageContrlAcessData.InputPageItem =='1' || IsControlDisbaled" key-navigation="" ng-click="LoadGridColumns(result.PageName,result.PageId)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+                                                                                        <div class="angucomplete-title" style="">
+                                                                                            {{result.PageName}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <a class="clearautosearchbox" ng-if="SearchControl.InputPageItem.length==0 || SearchControl.InputPageItem === undefined" ng-click="ShowPageSearchList()">
+                                                                            <i class="fa fa-caret-down" style="width: 17px;font-size: 14px;" ng-disabled="true"></i>
+                                                                        </a>
+                                                                        <a class="clearautosearchbox" ng-if="SearchControl.InputPageItem.length>0 && !IsControlDisbaled" ng-click="ClearPageInputSearchbox()">
+                                                                            <i class="fa fa-times" style="width: 17px;font-size: 14px;" ng-disabled="true"></i>
+                                                                        </a>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<!--Changed red mark for mendatory and dropddown size increase by nimesh on 03-09-2019-->
+
+                                            <div class="col-lg-12">
+                                                <div>
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_DimensionMapping_Role}} : <span style="color:red">*</span>
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="itemcontrols" style="width: 600px;">
+                                                                    <div class="padded-row" style="position: relative;width:100%;">
+                                                                        <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                            <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                                <input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_GridConfiguration_SelectRole}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-disabled="pageContrlAcessData.InputRoleItem =='0' || pageContrlAcessData.InputRoleItem =='1' || IsControlDisbaled" ng-model="SearchControl.InputRoleItem" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="RoleInputSelecteChangeEvent(SearchControl.InputRoleItem)" style="border: 1px solid #bec1c3;border-radius: 20px;">
+                                                                                <div id="ItemListAutoCompleteBox_dropdown" ng-if="showRolebox" class="angucomplete-dropdown" style="height: auto !important;top:40px !important;max-height: 220px;">
+                                                                                    <div class="angucomplete-searching" ng-if="searchingRole" ng-bind="textRoleSearching" style="">{{resData.res_GridConfiguration_SelectObject}}</div>
+                                                                                    <div class="angucomplete-searching" ng-if="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                                    <div class="angucomplete-row" ng-repeat="result in RoleMasterList | filter:SearchControl.InputRoleItem" ng-hide="pageContrlAcessData.InputRoleItem =='0' || pageContrlAcessData.InputRoleItem =='1' || IsControlDisbaled" key-navigation="" ng-click="LoadPagesByRole(result.RoleName,result.RoleMasterId)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+                                                                                        <div class="angucomplete-title" style="">
+                                                                                            {{result.RoleName}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <a class="clearautosearchbox" ng-if="SearchControl.InputRoleItem.length==0 || SearchControl.InputRoleItem === undefined" ng-click="ShowRoleSearchList()">
+                                                                            <i class="fa fa-caret-down" style="width: 17px;font-size: 14px;"></i>
+                                                                        </a>
+                                                                        <a class="clearautosearchbox" ng-if="SearchControl.InputRoleItem.length>0 && !IsControlDisbaled" ng-disabled="IsControlDisbaled" ng-click="ClearRoleInputSearchbox()">
+                                                                            <i class="fa fa-times" style="width: 17px;font-size: 14px;"></i>
+                                                                        </a>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+											<!--Changed red mark for mendatory and dropddown size increase by nimesh on 03-09-2019-->
+                                            <div class="col-lg-12">
+                                                <div>
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_DimensionMapping_User}} :
+                                                            </div>
+                                                            <div class="labelcontrol MultiSelectControl" style="margin-left:0px">
+
+																<input id="ItemListAutoCompleteBox_value" style="width: 600px;" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-if="UserDetailVisible" ng-disabled="IsControlDisbaled" ng-model="SearchControl.UserSelected" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="RoleInputSelecteChangeEvent(SearchControl.InputRoleItem)" style="border: 1px solid #bec1c3;border-radius: 20px;">
+																<div ng-dropdown-multiselect="" style="width: 600px;" options="UserList" selected-model="UserSelectedList" ng-if="!IsControlDisbaled" checkboxes="true" extra-settings="MultiSelectUserDropdownSetting" events="ObjectUserEvent"></div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+											<!--Changed red mark for mendatory and dropddown size increase by nimesh on 03-09-2019-->
+                                            <div class="col-lg-12">
+                                                <div>
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                               {{resData.res_DimensionMapping_ControlName}} : <span style="color:red">*</span>
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="itemcontrols" style="width: 600px;">
+                                                                    <div class="padded-row" style="position: relative;width:100%;">
+                                                                        <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                            <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                                <input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_GridConfiguration_SelectObject}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="SearchControl.InputItem" ng-disabled="pageContrlAcessData.InputItem =='0' || pageContrlAcessData.InputItem =='1' || IsControlDisbaled" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="ItemInputSelecteChangeEvent(SearchControl.InputItem)" style="border: 1px solid #bec1c3;border-radius: 20px;">
+                                                                                <div id="ItemListAutoCompleteBox_dropdown" ng-if="showItembox" class="angucomplete-dropdown" style="height: auto !important;top:40px !important;max-height: 220px;">
+                                                                                    <div class="angucomplete-searching" ng-if="searching" ng-bind="textSearching" style="">{{resData.res_GridConfiguration_SelectObject}}</div>
+                                                                                    <div class="angucomplete-searching" ng-if="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                                    <div class="angucomplete-row" ng-repeat="result in ObjectList | filter:SearchControl.InputItem" key-navigation="" ng-hide="pageContrlAcessData.InputItem =='0' || pageContrlAcessData.InputItem =='1' || IsControlDisbaled" ng-click="LoadObjectDropdown(result.DisplayName,result.ObjectId)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRoleRow}" style="">
+                                                                                        <div class="angucomplete-title" style="">
+                                                                                            {{result.DisplayName}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <a class="clearautosearchbox" ng-if="SearchControl.InputItem.length==0 || SearchControl.InputItem === undefined" ng-click="ShowObjectSearchList()">
+                                                                            <i class="fa fa-caret-down" style="width: 17px;font-size: 14px;"></i>
+                                                                        </a>
+                                                                        <a class="clearautosearchbox" ng-if="SearchControl.InputItem.length>0 && !IsControlDisbaled" ng-click="ClearItemInputSearchbox()">
+                                                                            <i class="fa fa-times" style="width: 17px;font-size: 14px;"></i>
+                                                                        </a>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+
+												<!--Changed red mark for mendatory by nimesh on 03-09-2019-->
+                                                <div class="col-lg-12">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            <b>Property Configuration</b> <span style="color:red">*</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerheader headerdataconatiner">
+
+                                                    <div class="UOMContainer  rightaling">
+                                                        {{resData.res_AddCompany_ContactType_SrNo}}
+                                                    </div>
+
+                                                    <div class="Company_AddCompany">
+                                                        {{resData.res_DimensionMapping_DimensionName}}
+                                                    </div>
+                                                    <div class="Company_AddCompany">
+                                                        {{resData.res_DimensionMapping_OperatorType}}
+                                                    </div>
+                                                    <div class="Company_AddCompany">
+                                                        {{resData.res_DimensionMapping_DimensionValue}}
+                                                    </div>
+                                                    <div class="removeItemicon">
+                                                        Delete
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerbody">
+                                                    <div class="conatinerheader itemrowcontainer">
+                                                        <div class="UOMContainer rightaling">
+                                                            #
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            <select id="ddlContacttype" ng-model="DimensionMappingJson.PropertyId" class="form-control" name="val_SelectObject" ng-options="obj.PropertyName as obj.PropertyName for obj in PageProperties  | orderBy:'PropertyName'">
+                                                                <option value="">Select</option>
+                                                            </select>
+
+                                                        </div>
+
+                                                        <div class="Company_AddCompany">
+                                                            <select id="ddlContacttype" ng-model="DimensionMappingJson.ControlType" class="form-control" name="val_SelectObject" ng-options="obj.Value as obj.Value for obj in ComparisonDataList">
+                                                                <option value="">Select</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            <input class="form-control form-white" ng-model="DimensionMappingJson.Value" type="text">
+                                                        </div>
+                                                        <div class="removeItemicon">
+                                                            <a ng-click="AddPropertyMapping()">
+                                                                Add
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="conatinerheader itemrowcontainer" ng-repeat="PropertyInfo in PropertyMappingList">
+                                                        <div class="UOMContainer rightaling">
+                                                            {{$index + 1}}
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            {{PropertyInfo.PropertyName}}
+                                                        </div>
+
+                                                        <div class="Company_AddCompany">
+                                                            {{PropertyInfo.ControlType}}
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            {{PropertyInfo.ControlValue}}
+                                                        </div>
+
+                                                        <div class="removeItemicon">
+                                                            <a ng-click="DeletePropertyMappingByGuId(PropertyInfo.PropertyGUID)">
+                                                                Delete
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="ActionButtons">
+                                                <div class="clearbtn">
+                                                    <button type="button" ng-click="ClearControls()" class="btn btn-default">Clear</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="Save()" class="btn btn-success">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12">
+                                                <div id="FinanceDashboardGrid" class="SalesAdminApproval_Grid SalesAdminApprovalConfigurationGrid" dx-data-grid="FinanceDashboardGrid" dx-item-alias="FinanceDashboardData">
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <script id="WarningMessage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">{{resData.res_AddCompany_Warning}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                    {{resData.res_AddCompany_DeleteWarning}}
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteUserDimension()">
+                            {{resData.res_AddCompany_DeleteYes}}
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+                            {{resData.res_AddCompany_DeleteNo}}
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+
+	<!--Changed by nimesh on 03-09-2019-->
+	<script id="WarningMessageForConfiguration.html" type="text/ng-template">
+		<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+			<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+				<h1 class="title">{{resData.res_AddCompany_Warning}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseDeleteForConfigurationConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="false" class="popioncontainer">
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+					{{resData.res_AddCompany_DeleteWarning}}
+				</div>
+			</ion-content>
+			<ion-footer-bar class="popupfooter">
+
+				<div class="popupbtnstyle">
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="DeletePropertyConfiguration()">
+							{{resData.res_AddCompany_DeleteYes}}
+						</a>
+						<a class="btn btn-success btn-square" ng-click="CloseDeleteForConfigurationConfirmation()">
+							{{resData.res_AddCompany_DeleteNo}}
+						</a>
+					</div>
+
+
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+</ion-view>

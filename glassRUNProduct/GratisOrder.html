@@ -1,0 +1,162 @@
+﻿<ion-view>
+	<ion-content scroll="false" overflow-y="hidden" class="main-content">
+		<style>
+			{
+
+			{
+				resData .res_GratisOrder_tabletheadtrthtabletbodytrthtabletfoottrthtabletheadtrtdtabletbodytrtdtabletfoottrtdpadding8pxverticalaligntop
+			}
+
+			}
+		</style>
+		<div class="pageview">
+			<div class="gridview fullwithwithoutpadding">
+				<div class="header">
+					<h2>{{resData.res_GratisOrder_Gratis}}<strong>{{resData.res_GratisOrder_Order}}</strong></h2>
+				</div>
+				<div class="row">
+					<div class="col-md-12" style="margin-top: 15px;">
+						<div id="portalview" class="PortalView">
+							<div class="panel" ng-hide="isShowMsg">
+								<div class="panel-content" style="    HEIGHT: 135PX;">
+									<div class="uk-grid" data-uk-grid-margin="">
+										<div class="uk-width-medium-1-2">
+											<div class="parsley-row">
+												<!--<input type="file" id="fileUpload" file-model="fileupload.File" class="md-input">-->
+
+												<input type="file" id="fileUpload" ng-file-select="onFileSelect($files)" ng-file-name="FileUploadJSON.DocumentName" ng-file-allowextension="FileUploadJSON.SelectFileFormat" ng-file-allowsize="FileUploadJSON.SelectFileSize" ng-file-extension="FileUploadJSON.FileFormat"
+													   ng-file-base64="FileUploadJSON.DocumentBase64" />
+											</div>
+
+											<div class="parsley-row">
+
+
+
+												<div style="float:left;width:100%;margin-bottom:5px;">
+													<div class="footerbuttons" style="margin: 0px;">
+														<a class="buttonstext bggreencolorbtn" ng-click="UploadFile();">
+															{{resData.res_GratisOrder_Upload}}
+														</a>   
+													</div>
+												</div>
+												<div style="float:left;width:100%;margin-bottom: 20px;">
+													<div class="footerbuttons" style="margin: 0px;">
+														 <span>  <b>Note</b>:     {{resData.res_GratisOrder_GratisNote}}</span>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="panel" ng-show="isShowMsg">
+								<div class="panel-content" style="    HEIGHT: 102PX;">
+									<div class="uk-grid" data-uk-grid-margin="">
+										<div class="uk-width-medium-1-1">
+											<span class="sectionheader">
+												{{PopupMessage}}
+											</span>
+											<div class="parsley-row">
+
+												<div style="float:left;width:100%;margin-bottom: 20px;">
+													<div class="footerbuttons" style="margin: 0px;">
+														<a class="buttonstext bggreencolorbtn" ng-click="Close();">
+															{{resData.res_GratisOrder_Close}}
+														</a>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel" ng-show="isShowErrorRecord">
+								<div class="panel-content">
+									<div class="uk-grid" data-uk-grid-margin="">
+										<div class="uk-width-medium-1-1">
+											<div class="parsley-row">
+												<span class="sectionheader">{{resData.res_GratisOrder_ErrorRecord}}</span>
+											</div>
+											<table class="table">
+												<tr>
+													<th>{{resData.res_GratisOrder_OrderGroup}}</th>
+													<th>{{resData.res_GridCOlumn_CollectionLocationCode}} </th>
+													<th> {{resData.res_GridColumn_SoldToCode}}</th>
+													<th>{{resData.res_GridColumn_DeliveryLocationCode}}</th>
+													<th>  {{resData.res_GridColumn_Province}} </th>
+													<th> {{resData.res_GridColumn_OrderType}} </th>
+													<th> {{resData.res_GridColumn_GratisCode}} </th>
+													<th> {{resData.res_GridColumn_OrderedBy}}</th>
+													<th> {{resData.res_GridColumn_Description1}} </th>
+													<th> {{resData.res_GridColumn_Description2}} </th>
+													<th>{{resData.res_GratisOrder_ProductCode}}</th>
+													<th>{{resData.res_GratisOrder_Quantity}}</th>
+													<th>{{resData.res_GratisOrder_Remark}}</th>
+												</tr>
+												<tr ng-repeat="item in errorRecord | orderBy:sorterFunc">
+													<td>{{item.OrderGroupCode}}</td>
+													<td>{{item.BranchPlantCode}}</td>
+													<td>{{item.SoldToCode}}</td>
+													<td>{{item.ShipToCode}}</td>
+													<td>{{item.Province}}</td>
+													<td>{{item.OrderType}}</td>
+													<td>{{item.GratisCode}}</td>
+													<td>{{item.OrderedBy}}</td>
+													<td>{{item.Description1}}</td>
+													<td>{{item.Description2}}</td>
+													<td>{{item.ItemCode}}</td>
+													<td>{{item.Quantity}}</td>
+													<td><p ng-bind-html="item.Remark"></td>
+												</tr>
+
+
+											</table>
+										</div>
+										<div class="uk-width-medium-1-1">
+											<div class="parsley-row">
+												<span class="sectionheader">{{resData.res_GratisOrder_SuccessRecord}}</span>
+											</div>
+											<table class="table">
+												<tr>
+													<th>{{resData.res_GratisOrder_OrderGroup}}</th>
+													<th>{{resData.res_GridCOlumn_CollectionLocationCode}} </th>
+													<th> {{resData.res_GridColumn_SoldToCode}}</th>
+													<th>{{resData.res_GridColumn_DeliveryLocationCode}}</th>
+													<th>  {{resData.res_GridColumn_Province}} </th>
+													<th> {{resData.res_GridColumn_OrderType}} </th>
+													<th> {{resData.res_GridColumn_GratisCode}} </th>
+													<th> {{resData.res_GridColumn_OrderedBy}}</th>
+													<th> {{resData.res_GridColumn_Description1}} </th>
+													<th> {{resData.res_GridColumn_Description2}} </th>
+													<th>{{resData.res_GratisOrder_ProductCode}}</th>
+													<th>{{resData.res_GratisOrder_Quantity}}</th>
+													
+												</tr>
+												<tr ng-repeat="item in successRecord | orderBy:sorterFunc">
+													<td>{{item.OrderGroupCode}}</td>
+													<td>{{item.BranchPlantCode}}</td>
+													<td>{{item.SoldToCode}}</td>
+													<td>{{item.ShipToCode}}</td>
+													<td>{{item.Province}}</td>
+													<td>{{item.OrderType}}</td>
+													<td>{{item.GratisCode}}</td>
+													<td>{{item.OrderedBy}}</td>
+													<td>{{item.Description1}}</td>
+													<td>{{item.Description2}}</td>
+													<td>{{item.ItemCode}}</td>
+													<td>{{item.Quantity}}</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,147 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <link href="Styles/jquery-ui.css" rel="stylesheet" />
+        <style type="text/css">
+            .angucomplete-dropdown {
+                max-height: 200px;
+                overflow-y: auto;
+                height: 200px;
+                top: 39px;
+                left: -8px;
+                border-bottom: 1px solid #d5d5d5 !important
+            }
+
+            .nav-tabs2 > .tab-content {
+                min-height: 500px !important;
+            }
+        </style>
+        <div class="pageview">
+            <div class="header">
+                <h2><strong>{{resData.res_AddWaveUI_AddWave}}</strong> ({{Action}})</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs masterpage" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_AddWaveUI_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a ng-click="AddForm()">
+                                    <tab-heading>
+                                        <i class="fa fa-plus"></i>{{resData.res_AddWaveUI_Add}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="form-horizontal ng-pristine ng-valid">
+                                            <div class="fullwidth">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_AddWaveUI_WaveTime}}</label>
+                                                        <div class="prepend-icon col-sm-9 ">
+                                                            <input type="text" name="timepicker" ng-model="addWave.WaveTime" class="timepicker form-control" placeholder="Choose a time...">
+                                                            <i class="icon-clock"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="fullwidth">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_AddWaveUI_TruckSize}}</label>
+                                                        <div class="col-sm-9">
+                                                            <select id="val_Object" ng-model="addWave.TruckSizeId" class="form-control" name="val_SelectObject" ng-options="obj.TruckSizeId as obj.TruckSize for obj in bindTruckSizeList">
+                                                                <option value="">{{resData.res_AddWave_TruckSize_Select}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <button type="button" ng-click="AddWaveTruckDetails()" class="btn btn-success"> {{resData.res_AddWaveUI_AddTruckDetails}} </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+
+                                            </div>
+
+                                            <div class="fullwidth">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_AddWaveUI_TruckSizeList}}</label>
+                                                        <div class="col-sm-9">
+                                                            <div class="listviewContainer">
+                                                                <table class="table table-striped noborder">
+                                                                    <thead style="border-bottom: 1px solid #d5d5d5;">
+                                                                        <tr>
+                                                                            <th class="srno"> {{resData.res_AddWave_Truck_SrNo}} </th>
+                                                                            <th> {{resData.res_AddWave_Truck_TruckSize}} </th>
+                                                                            <th> {{resData.res_AddWave_Truck_NumberOfTruck}}</th>
+                                                                            <th> {{resData.res_AddWave_Truck_Remove}} </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr ng-repeat="WaveTruckDetails in WaveTruckDetailsList" ng-if="WaveTruckDetails.IsActive === '1' || WaveTruckDetails.IsActive === true">
+                                                                            <td class="srno"> {{$index +1}} </td>
+                                                                            <td> {{WaveTruckDetails.TruckSize}} </td>
+                                                                            <td> <input class="form-control" ng-model="WaveTruckDetails.NumbersOfTruck" onkeypress='return validateQty(event);'  /> </td>
+                                                                            <td> <a class="delete btn btn-sm btn-danger" ng-click="RemoveNewWave(WaveTruckDetails.WaveDefinitionDetailsId,WaveTruckDetails.WaveDefinitionIdGUID)"><i class="icons-office-52"></i></a> </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-include="'ViewRuleEngine.html'" ng-controller="ViewRuleEngineController"></div>
+                                            <div class="ActionButtons">
+                                                <div class="clearbtn" style="margin-top:12px">
+                                                    <button type="button" ng-click="ClearRule()" class="btn btn-default">{{resData.res_WaveUI_Clear}}</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="SaveWave()" class="btn btn-success">{{resData.res_WaveUI_Save}}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12">
+                                                <div kendo-grid="Grid" k-options="ViewAddWaveGrid" k-rebind="ViewAddWaveGrid"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-include="'ViewRuleFunctionPopup.html'" ng-controller="ViewRuleFunctionController"></div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

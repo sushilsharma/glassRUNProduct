@@ -1,0 +1,187 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <style>
+            .Company_AddCompany {
+                width: 20% !important;
+            }
+
+            .removeItemicon {
+                width: 20% !important;
+                padding-top: -1px !important;
+            }
+
+            .conatinerheader {
+                height: 45px !important;
+                padding-bottom: 0px !important;
+                padding-top: 0px !important;
+            }
+
+            .Company_AddCompany {
+                height: 45px !important;
+                padding-top: 9px !important;
+            }
+        </style>
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_SettingMaster_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a ng-click="AddForm()">
+                                    <tab-heading ng-hide="IsEdit">
+                                        <i class="fa fa-plus"></i>{{resData.res_SettingMaster_Add}}
+
+                                    </tab-heading>
+                                    <tab-heading ng-show="IsEdit">
+                                        <i class="fa fa-edit"></i>{{resData.res_PalletInclusionGroup_Edit}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" style="height: 85vh;position: relative;">
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="fullwidth">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">{{resData.res_PalletInclusionGroup_Ship_To}}</label>
+                                                        <div class="col-sm-9">
+                                                            <div class="padded-row" style="position: relative;width: 100%;">
+                                                                <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                    <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                        <input id="ItemListAutoCompleteBox_value" placeholder={{resData.res_PalletInclusionGroup_Ship_To_placeholder}} ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="SearchControl.InputShipToName" ng-disabled="pageNameDisbale" type="text" ng-focus="ShowPageSearchList()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" style="border: 1px solid #bec1c3;border-radius: 20px;">
+                                                                        <a ng-click="ShowPallerInclusionInfo()" style="float: right;margin-top: 9px;margin-right: -26px;">
+                                                                            <i class="fa fa-info-circle" style="width: 17px;font-size: 14px;"></i>
+                                                                        </a>
+                                                                        <div id="ItemListAutoCompleteBox_dropdown" ng-show="showPagebox" class="angucomplete-dropdown" style="height: auto !important;top:40px !important;max-height: 247px;border-bottom: 1px solid #d5d5d5 !important" ng-disabled="pageNameDisbale">
+                                                                            <div class="angucomplete-searching" ng-show="searchingPage" ng-bind="textPageSearching" style="">{{resData.res_GridConfiguration_SelectObject}}</div>
+                                                                            <div class="angucomplete-searching" ng-show="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                            <div class="angucomplete-row" ng-repeat="result in ShipToList | filter:SearchControl.InputShipToName" ng-disabled="pageNameDisbale" key-navigation="" ng-click="LoadGridColumns(result.LocationName,result.LocationId)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+                                                                                <div class="angucomplete-title" style="">
+                                                                                    {{result.LocationName}}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <a class="clearautosearchbox" ng-show="SearchControl.InputShipToName.length==0 || SearchControl.InputShipToName === undefined" ng-click="ShowPageSearchList()" ng-disabled="pageNameDisbale">
+                                                                    <i class="fa fa-caret-down" style="width: 17px;font-size: 14px;"></i>
+                                                                </a>
+                                                                <a class="clearautosearchbox" ng-show="SearchControl.InputShipToName.length>0 && !EditRoleDisable" ng-click="ClearPageInputSearchbox()" ng-disabled="pageNameDisbale">
+                                                                    <i class="fa fa-times" style="width: 17px;font-size: 14px;"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="fullwidth" ng-if="ShowTable">
+
+                                                <div class="col-lg-12">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            <b> {{resData.res_PalletInclusionGroup_Select_Group}} </b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerheader headerdataconatiner">
+
+                                                    <div class="UOMContainer  rightaling">
+                                                        {{resData.res_PalletInclusionGroup_SrNo}}
+                                                    </div>
+
+                                                    <div class="Company_AddCompany">
+                                                        {{resData.res_PalletInclusionGroup_Truck_Size}}
+                                                    </div>
+                                                    <div class="Company_AddCompany">
+                                                        {{resData.res_PalletInclusionGroup_No_Of_Pallets}}
+
+                                                    </div>
+                                                    <div class="Company_AddCompany">
+                                                        {{resData.res_PalletInclusionGroup_Weight}}
+                                                    </div>
+
+                                                    <div class="removeItemicon">
+                                                        {{resData.res_PalletInclusionGroup_Carrier_Group}}
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerbody">
+                                                    <div class="conatinerheader itemrowcontainer" ng-repeat="TruckSize in TruckSizeList">
+                                                        <div class="UOMContainer rightaling">
+                                                            {{$index + 1}}
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            {{TruckSize.TruckSize}}
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            {{TruckSize.TruckCapacityPalettes}}
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            {{TruckSize.TruckCapacityWeight}}
+                                                        </div>
+
+                                                        <div class="removeItemicon">
+                                                            <select id="ddlContacttype" ng-model="TruckSize.PalletInclusionGroup" class="form-control" name="val_SelectObject" ng-options="obj.Name as obj.Name for obj in PalletLookupInclusionGroupList  | orderBy:'Name'">
+                                                                <option value=""> {{resData.res_PalletInclusionGroup_Select}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="ActionButtons" ng-if="ShowTable">
+                                                <div class="clearbtn">
+                                                    <button type="button" ng-click="ClearAllControls()" class="btn btn-default">{{resData.res_PalletInclusionGroup_Clear}}</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="Save()" class="btn btn-success">{{resData.res_PalletInclusionGroup_Save}}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row" style="margin-bottom: 10px!important;">
+                                        <div class="gridheaderactionbuttons">
+                                            <div class="footerbuttons" style="margin-top: 5px; margin-left: 15px;">
+                                                <a class="buttonstext drop-shadow greencolorbtntext" style="" ng-click="ExportToExcel()">
+                                                    <i class="fa fa-file-excel-o fa-icon"></i> Export To Excel
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12" >
+                                                <div id="PalletInclusionGroupGrid" class="SettingMaster_Grid" style="height: 600px; width:100%!important" dx-data-grid="PalletInclusionGroupGrid" dx-item-alias="PalletInclusionGroupData">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

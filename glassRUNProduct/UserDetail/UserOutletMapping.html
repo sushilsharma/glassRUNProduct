@@ -1,0 +1,156 @@
+﻿
+
+<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview" style="margin-bottom: 50px;">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="nav-tabs2">
+
+                        <div class="tab-content">
+
+                            <div class="tab-pane active">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                                            <div class="fullwidth">
+
+                                                <div class="col-lg-12">
+                                                    <div>
+                                                        <div class="col-lg-6">
+                                                            <div class="columnfulldata  margintopdata">
+                                                                <div class="labelname reasonlable">
+                                                                    {{resData.res_UserOutletMapping_SuperUser}}:
+                                                                </div>
+                                                                <div class="labelcontrol">
+                                                                    <select id="ddlPaymentPlanId" ng-change="LoadOutletList()" ng-model="UserOutletMappingObject.UserId" class="form-control" name="val_SelectObject" ng-options="obj.UserId as obj.CompanyName for obj in SuperUserList | filter: { IsSuperUser: true } | orderBy:'CompanyName'">
+                                                                        <option value="">{{resData.res_UserOutletMapping_Select}}</option>
+                                                                    </select>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12">
+                                                    <div>
+                                                        <div class="col-lg-6">
+                                                            <div class="columnfulldata  margintopdata">
+                                                                <div class="labelname reasonlable">
+                                                                    {{resData.res_UserOutletMapping_ChooseOutlet}}:
+                                                                </div>
+                                                                <div class="labelcontrol">
+                                                                    <select id="ddlPaymentPlanId" ng-model="UserOutletMappingObject.CompanyId" class="form-control" name="val_SelectObject" ng-options="obj.CompanyId as obj.CompanyName for obj in LoadedCompanyList | orderBy:'CompanyName'">
+                                                                        <option value="">{{resData.res_UserOutletMapping_Select}}</option>
+                                                                    </select>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+
+                                                            <div class="columnfulldata  margintopdata">
+                                                                <div>
+                                                                    <button type="button" ng-click="AddOutlets()" class="btn btn-success">{{resData.res_UserOutletMapping_Add}}</button>
+                                                                </div>
+                                                                <div class="labelcontrol">
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="col-md-12">
+                                                <div class="fullwidth">
+                                                    <label class="control-label"></label>
+                                                </div>
+
+                                                <table class="table tablegrid table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="    width: 668px !important;">{{resData.res_UserOutletMapping_Outlet}}</th>
+                                                            <th style="text-align: center; width: 58px !important;">{{resData.res_UserOutletMapping_OutletCode}}</th>
+                                                            <th style="text-align: center; width: 368px !important;">{{resData.res_UserOutletMapping_Delete}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="user in UserOutletMappingList | filter: {IsActive: true}">
+                                                            <td>{{user.CompanyName}}</td>
+                                                            <td>{{user.CompanyCode}}</td>
+                                                            <td style="text-align: center;">
+                                                                <a ng-click="OpenDeleteUserOutletMappingModalPopup(user.CompanyId)" style="color: #0071bc !important;" class="controllink">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="ActionButtons">
+
+                                                <div class="clearbtn">
+                                                    <button type="button" ng-click="Clear()" class="btn btn-default">{{resData.res_UserOutletMapping_Clear}}</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="Save()" class="btn btn-success">{{resData.res_UserOutletMapping_Save}}</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <script id="templates/UserOutletMappingModal.html" type="text/ng-template">
+                <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                        <h1 class="title">{{resData.res_UserOutletMapping_DeleteConfirmMsgTitle}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseUserOutletMappingModalpopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="false" class="popioncontainer">
+                        <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                            {{resData.res_UserOutletMapping_DeleteConfirmMsg}}
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar class="popupfooter">
+                        <div class="popupbtnstyle">
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square" ng-click="DeleteUserOutletMapping()">
+                                    {{resData.res_UserOutletMapping_DeleteYes}}
+                                </a>
+                            </div>
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square redclosebtn" ng-click="CloseUserOutletMappingModalpopup()">
+                                    {{resData.res_UserOutletMapping_DeleteNo}}
+                                </a>
+                            </div>
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+            
+        </div>
+    </ion-content>
+</ion-view>

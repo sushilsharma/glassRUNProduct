@@ -1,0 +1,229 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <link href="style/style.css" rel="stylesheet" />
+        <style>
+
+            .reasonlable {
+                width: 40% !important;
+            }
+
+            .card_left_text {
+                width: 100%;
+                float: left;
+                line-height: 24px;
+                position: relative;
+            }
+
+            .card_right_text {
+                /*position: absolute;*/
+                right: -6px;
+                top: 5px;
+            }
+
+            .slider_off_image {
+                right: 13px;
+            }
+
+            .slider_image_ui {
+                width: 50px;
+                height: 50px;
+            }
+        </style>
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <div class="tab-content">
+
+                            <div class="tab-pane active">
+                                <div class="panel-content">
+                                    <div class="row">
+
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid" style="padding-bottom: 51px !important; ">
+                                            <div class="col-lg-12">
+
+                                                <div ng-if="pageContrlAcessData.CustomerGroupCode !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                <span>{{resData.res_ManageCustomerGroup_SystemGeneratedCustomerGroupIdentifier}}</span>
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-model="CustomerGroup.GroupCode" class="form-control" ng-readonly="true" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12">
+
+                                                <div ng-if="pageContrlAcessData.CustomerPriceGroup !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_ManageCustomerGroup_CustomerGroupIdentifier}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+
+                                                                <input type="text" ng-change="Changetext();" ng-model="CustomerGroup.GroupIdentifier" class="form-control" placeholder="{{resData.res_ManageCustomerGroup_CustomerGroupIdentifier}}" ng-disabled="EnebleDisableCustomerpriceGroup || DisableButtons" />
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="columnfulldata  margintopdata">
+                                                    <div class="labelname reasonlable">
+                                                        <b>{{resData.res_ManageCustomerGroup_Customers}}</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+
+                                                <div ng-if="pageContrlAcessData.CustomerSearch !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+
+                                                            <div class="labelcontrol" style="width: 95% !important;">
+
+                                                                <input type="text" placeholder="{{resData.res_ManageCustomer_SearchCustomers}}" ng-model="SearchValue.search" class="form-control" />
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="columnfulldata  margintopdata">
+                                                    <div class="labelname reasonlable">
+                                                        <b>{{resData.res_ManageCustomerGroup_Selected}}</b> <span style="color: #00a551;">{{SelectedCustomerGroupCount}}</span> /
+                                                        {{TotalCountOfCustomerGroup}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="fullwidth">
+                                                <div id="example" class="col-md-12">
+                                                    <div class="demo-section k-content wide" style="margin: 0px !important;width: 100% !important;">
+                                                        <div class="demo-section k-content wide ng-scope" style="width: 100% !important;">
+
+                                                            <div class="k-widget k-listbox k-listbox-toolbar-right" deselectable="on" title="" style="width: 100% !important;height: 450px !important;">
+
+                                                                <div class="k-list-scroller k-selectable" data-role="selectable" style="float: left;width: 100% !important;">
+                                                                    <ul class="k-reset k-list">
+                                                                        <li style="height: 60px !important;" class="k-item" role="option" ng-click="toggleSelection(customerGroup.CompanyId, customerGroup.IsSelectedGroup)" ng-repeat="customerGroup in CustomerGroupDetailsList | filter: SearchValue.search">
+                                                                            <span style="float: left !important;padding-top: 10px !important;">{{customerGroup.CompanyName}}</span>
+                                                                            <span class="card_right_text" style="float: right !important;" ng-show="customerGroup.IsSelectedGroup == true">
+                                                                                <img src="Images/Asset 116@2x.png" class="slider_image_ui">
+                                                                            </span>
+                                                                            <span class="card_right_text slider_off_image" style="float: right !important;margin-right: 15px !important;" ng-show="customerGroup.IsSelectedGroup == false">
+                                                                                <img src="Images/Asset 117@2x.png" class="slider_image_ui">
+                                                                            </span>
+
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="footerbuttons" style="margin-top: 50px; float:right !important;">
+
+                                                <a class="buttonstext drop-shadow greencolorbtntext" ng-click="SaveCustomerGroupDetails()" style="background-color: #fff;">
+                                                    <i class="fa fa-check fa-icon" aria-hidden="true"></i> Save
+                                                </a>
+
+                                            </div>
+
+                                            <div class="footerbuttons" style="margin-top: 50px; float:right !important;">
+
+                                                <a class="buttonstext drop-shadow redcolorbtntext" ng-click="GoToBackPage()" style="background-color: #fff;">
+                                                    Back
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <script id="WarningMessage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">{{resData.res_AddCompany_Warning}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                    {{resData.res_AddCompany_DeleteWarning}}
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteYes()">
+                            {{resData.res_AddCompany_DeleteYes}}
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+                            {{resData.res_AddCompany_DeleteNo}}
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+    <script id="ViewImage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" style="height: 340px !important; width: 340PX !important;" class="confirmationmsgmodalviewforimg bgcolorheaderandfooter">
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">View Image</h1>
+                <button class="button button-clear button-primary" ng-click="CloseViewImage()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="padding: 10px;margin: 0px;">
+                    <div class="fileinput-new thumbnail" style="margin:0px">
+                        <img ng-src="{{ViewLogo}}" style="height: 220px;" ng-if="ViewLogo !== '' && ViewLogo !== undefined && ViewLogo !== null" alt="Red dot" data-err-src="Images/No_image.png" />
+                        <img ng-src="../Images/No_image.png" style="height: 220px;" ng-if="ViewLogo === '' || ViewLogo === undefined || ViewLogo === null" />
+                        <!--<a ng-click="RemoveImageFromJson()" ng-if="TransportVehicleJson.image !== '' && TransportVehicleJson.image !== undefined && TransportVehicleJson.image !== null" style="cursor:pointer !important;float:left"><i class="fa fa-remove"></i></a>-->
+                    </div>
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyleforimg" style="margin-right:0px">
+                        <a class="btn btn-success btn-square" ng-click="CloseViewImage()">
+                            Close
+                        </a>
+                    </div>
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+</ion-view>

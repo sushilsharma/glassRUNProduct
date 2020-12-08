@@ -1,0 +1,138 @@
+﻿
+
+<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+
+
+
+            <div class="header">
+                <h2>{{resData.res_MasterPageUISample_MasterForms}}<strong>{{resData.res_MasterPageUISample_Component}}</strong></h2>
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">{{resData.res_MasterPageUISample_Make}}</a>
+                        </li>
+                        <li>
+                            <a href="forms.html">{{resData.res_MasterPageUISample_Forms}}</a>
+                        </li>
+                        <li class="active">{{resData.res_MasterPageUISample_MasterPage}}</li>
+                    </ol>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+
+                        <div class="panel-content">
+                            <div class="row">
+                                <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{resData.res_MasterPageUISample_Input}}</label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control form-white" type="text" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label class="col-sm-3 control-label">{{resData.res_MasterPageUISample_Checkbox}}</label>
+                                            <div class="col-sm-9">
+
+
+                                                <div class="skin skin-square">
+                                                    <div class="input-group">
+
+
+                                                        <div class="icheck-list">
+                                                            <label>
+                                                                <input id="text" type="checkbox" ng-change="findcheckboxvalue()" ng-model="checkbox1" data-checkbox="icheckbox_square-green">{{resData.res_MasterPageUISample_Checkbox1}}</label>
+                                                            <label>
+                                                                <input id="text1" type="checkbox" checked="" data-checkbox="icheckbox_square-green">{{resData.res_MasterPageUISample_Checkbox2}}</label>
+                                                            <label>
+                                                                <input id="text2" type="checkbox" data-checkbox="icheckbox_square-green">{{resData.res_MasterPageUISample_Checkbox3}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{resData.res_MasterPageUISample_TimePicker}}</label>
+                                            <div class="col-sm-9">
+                                                <div class="prepend-icon">
+                                                    <input type="text" name="timepicker" class="timepicker form-control" placeholder="Choose a time...">
+                                                    <i class="icon-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{resData.res_MasterPageUISample_Dropdown}}</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control">
+                                                    <option value="United States">{{resData.res_MasterPageUISample_UnitedStates}}
+                                                    <option value="United Kingdom">{{resData.res_MasterPageUISample_UnitedKingdom}}
+                                                    <option value="Afghanistan">{{resData.res_MasterPageUISample_Afghanistan}}
+                                                    <option value="Albania">{{resData.res_MasterPageUISample_Albania}}
+                                                    <option value="Algeria">{{resData.res_MasterPageUISample_Algeria}}
+                                                    <option value="American Samoa">{{resData.res_MasterPageUISample_AmericanSamoa}}
+                                                    <option value="Andorra">{{resData.res_MasterPageUISample_Andorra}}
+                                                    <option value="Angola">{{resData.res_MasterPageUISample_Angola}}
+                                                    <option value="Anguilla">{{resData.res_MasterPageUISample_Anguilla}}
+                                                    <option value="Antarctica">{{resData.res_MasterPageUISample_Antarctica}}
+                                                    <option value="Antigua and Barbuda">{{resData.res_MasterPageUISample_AntiguaandBarbuda}}
+                                                    <option value="Argentina">{{resData.res_MasterPageUISample_Argentina}}
+                                                    <option value="Armenia">{{resData.res_MasterPageUISample_Armenia}}
+                                                    <option value="Aruba">{{resData.res_MasterPageUISample_Aruba}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{resData.res_MasterPageUISample_DatePicker}}</label>
+                                            <div class="col-sm-9">
+                                                <div class="prepend-icon">
+                                                    <input type="text" name="datepicker" class="date-picker form-control" placeholder="Select a date...">
+                                                    <i class="icon-calendar"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{resData.res_MasterPageUISample_DateTimePicker}}</label>
+                                            <div class="col-sm-9">
+                                                <div class="prepend-icon">
+                                                    <input type="text" name="datetimepicker" class="datetimepicker form-control" placeholder="Choose a date...">
+                                                    <i class="icon-clock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{resData.res_MasterPageUISample_RadioButton}}</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <div class="icheck-list">
+                                                        <label><input type="radio" name="radio1" data-radio="iradio_square-blue">{{resData.res_MasterPageUISample_RadioButton1}}</label>
+                                                        <label><input type="radio" name="radio1" checked="" data-radio="iradio_square-blue">{{resData.res_MasterPageUISample_RadioButton2}}</label>
+                                                        <label><input type="radio" name="radio1" data-radio="iradio_square-blue">{{resData.res_MasterPageUISample_RadioButton3}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </ion-content>
+</ion-view>

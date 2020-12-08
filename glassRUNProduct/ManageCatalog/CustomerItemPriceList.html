@@ -1,0 +1,186 @@
+﻿<ion-view>
+    <ion-content class="main-content" style="overflow-y:hidden">
+        <link href="ManageCustomer/style/style.css" rel="stylesheet" />
+        <style>
+            .treeSelection {
+                background-color: green;
+                color: #fff;
+            }
+
+            .highlighted {
+                background: yellow;
+                position: relative;
+                top: -3px;
+            }
+
+            .ob-right {
+                text-align: left;
+            }
+
+            .heading_searched_product {
+                font-weight: bold;
+                padding-left: 12px;
+                margin: 10px 0px 15px 0px;
+            }
+
+            .add_pricing_btn {
+                padding-right: 0px !important;
+                padding-left: 0px !important;
+                position: absolute;
+                width: 125px;
+                margin-top: 10px;
+                right: 0px;
+                text-align: center;
+            }
+        </style>
+        <div class="pageview" style="margin-bottom: 60px;height:calc(100% - 50px)">
+            <div class="row">
+                <div class="footerbuttons" style="float:right !important">
+
+                    <a class="buttonstext drop-shadow redcolorbtntext" ng-click="GoToBackPage()" style="background-color: #fff;">
+                        {{resData.res_OrderFeedback_Back}}
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="uk-container track_order_page_ui createInquiry onlineshopcontainer view_catalogue_container uk-container-center">
+                        <div id="View_Catalogue_Container" class="uk-width-large-10-10 uk-row-first uk-grid-margin">
+                            <div class="profile_details_scrollable_div setup_screen_paddingtop_10_space">
+                                <div class="fullwidthcontainer manage_catalogue_container">
+                                    <div class="product_item_price_card_ui app_text_white_bgcolor">
+                                        <div class="card_left_text manage_catalog_product_info card_item_price_section_image">
+                                            <div class="OrderFlow_product_image_thumbnail" ng-class="{'product_image_hidden_adjust_ui' : pageContrlAcessData.CatalogProductImage === '0'}">
+                                                <div class="orderflow_product_image product_image_without_badge">
+                                                    <img ng-if="SelectedItemJson.ImageUrl != null && SelectedItemJson.ImageUrl != ''" src="{{SelectedItemJson.ImageUrl}}">
+                                                    <img ng-if="SelectedItemJson.ImageUrl == null " src="../Images/heineken2.jpg">
+                                                </div>
+                                            </div>
+                                            <div class="OrderFlow_createinquiry_productcard_ui manage_catalog_product_info">
+                                                <div class="product_name_text_ui app_text_dark_color">
+                                                    {{SelectedItemJson.ItemName}}
+                                                </div>
+
+                                                <div class="product_price_ui">
+                                                    <div class="selling_price_label">
+                                                        {{resData.res_AddItemPrice_BasePrice}}:
+                                                    </div>
+                                                    <div class="price_number product_price_style_ui app_text_dark_color">
+                                                        {{SelectedItemJson.Price | currency: CurrencyFormatCode: DecimalValue}} <span class="current_code_icon">{{CurrencyCode}}</span>
+                                                    </div>
+                                                    <div class="price_uom app_text_dark_color"> / {{SelectedItemJson.UOM}} </div>
+                                                </div>
+
+
+                                                <div class="add_pricing_btn confirmationbtn">
+                                                    <a class="continuebtn app_button_white_bgcolor app_button_text_dark_color app_2px_border_dark_color" style="float: left;width: 100%;padding: 5px 10px;border-radius: 4px;" ng-click="AddNewItemPricing()">
+                                                        <div class="button_text_ui_container"> {{resData.res_ItemPriceVariation_AddPricing}} </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rows Item_Price_list_heading_sepration">
+                                    <span class="heading_sepration_line"></span>
+                                </div>
+
+                                <div class="fullwidthcontainer manage_catalogue_container setup_screen_margintop_20_space">
+                                    <div class="product_item_price_card_ui app_text_white_bgcolor" ng-repeat="itemPrice in ItemPriceVariationList" ng-class="{'deactivate_item' : itemPrice.IsActive === false}">
+                                        <div class="card_left_text manage_catalog_product_info">
+                                            <div class="product_name_text_ui app_text_dark_color">
+                                                {{itemPrice.CustomerGroupName}}
+                                            </div>
+                                            <div class="product_price_ui item_price_list_size">
+                                                <div class="selling_price_label">
+                                                    {{resData.res_ItemPriceVariation_Price}}:
+                                                </div>
+                                                <div class="price_number product_price_style_ui app_text_dark_color">
+                                                    {{itemPrice.Price}} <span class="current_code_icon">{{resData.res_CurrencyCode}}</span>
+                                                </div>
+                                                <div class="price_uom app_text_dark_color"> per {{SelectedItemJson.UOM}} </div>
+                                            </div>
+                                            <div class="price_list_section_validity">
+                                                {{resData.res_ItemPriceVariation_Validity}}: {{itemPrice.EffectiveDate | date:'dd/MM/yyyy'}} - {{itemPrice.ExpiryDate | date:'dd/MM/yyyy'}}
+                                            </div>
+                                            <div class="Quick_Action_Button">
+                                                <div class="call_quick_action_bar" ng-click="ShowQuickActionPopOver(itemPrice); $event.stopPropagation();">
+                                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="quick_action_card" ng-if="itemPrice.ShowQuickAction === true">
+                                                    <div class="quick_action_card_row" ng-click="EditItemPriceGroup(itemPrice); $event.stopPropagation();">
+                                                        <div class="quick_action_icon_ui">
+                                                            <img src="../Images/Edit.png">
+                                                        </div>
+                                                        <div class="quick_action_text_ui">
+                                                            {{resData.res_ItemPriceVariation_Edit}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="quick_action_card_row" ng-if="itemPrice.IsGroupAll !== true" ng-click="CopyItemPriceGroup(itemPrice); $event.stopPropagation();">
+                                                        <div class="quick_action_icon_ui">
+                                                            <i class="fa fa-circle" aria-hidden="true"></i>
+                                                        </div>
+                                                        <div class="quick_action_text_ui">
+                                                            {{resData.res_ItemPriceVariation_Copy}}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="quick_action_card_row" ng-if="itemPrice.IsGroupAll !== true" ng-click="DeactivateActivateItemPriceGroup(itemPrice); $event.stopPropagation();">
+                                                        <div class="quick_action_icon_ui">
+                                                            <i class="fa fa-circle" aria-hidden="true"></i>
+                                                        </div>
+                                                        <div class="quick_action_text_ui" ng-if="itemPrice.IsActive === true">
+                                                            {{resData.res_ManageCatalog_DeActivate}}
+                                                        </div>
+                                                        <div class="quick_action_text_ui" ng-if="itemPrice.IsActive === false">
+                                                            {{resData.res_ManageCatalog_Activate}}
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+<div class="modal-backdrop active" ng-if="ConfirmationMessagePopup">
+    <div class="modal-backdrop-bg"></div>
+    <div class="modal-wrapper">
+        <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:100px !important;width:800px !important;z-index: 10000 !important;">
+            <ion-header-bar class="bar bar-header bar-positive" style="height: 50px;border: 0px;">
+                <div class="exclamation_icon RemovePromotionCarousel" style="padding-top: 5px;">
+                    <img src="../Images/Tick.png" style="height: 30px;" />
+                </div>
+            </ion-header-bar>
+            <ion-content scroll="hidden" class="padding IonicPopupHeight" style="top: 50px !important;min-height: 100px !important;">
+                <div class="message_content bottom_space_30">
+                    {{Alertmsg}}
+                </div>
+            </ion-content>
+
+            <ion-footer-bar align-title="left" class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="message_continue_ok_content">
+                        <a class="popupOKbtn app_button_dark_bgcolor white_button_bg" ng-click="CloseConfirmationMessagePopup()">
+                            <div class="button_text_ui_container" ng-if="true">{{resData.res_OrderReceiveConfirmation_OK}}</div>
+                            <div class="button_icon_ui_container bgbutton_icon_topspace" ng-if="false">
+                                <img class="button_icon_ui " src="../Images/Asset 299.png">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </ion-footer-bar>
+        </ion-modal-view>
+    </div>
+</div>

@@ -1,0 +1,310 @@
+﻿<div class="col-md-12" style="padding:0px">
+    <style>
+        .selectedYes {
+            width: 17px;
+            font-size: 14px;
+            margin-right: 6px;
+            color: #39b54a !important;
+            cursor: pointer;
+        }
+
+        .selectedNoButton {
+            width: 17px;
+            font-size: 14px;
+            margin-right: 6px;
+            color: #C1272D !important;
+            cursor: pointer;
+        }
+
+        .selectedNo {
+            width: 17px;
+            font-size: 14px;
+            margin-right: 6px;
+            color: #19211b;
+            cursor: pointer;
+        }
+
+        .transpantcolorbtn {
+            border: 1px solid black;
+            border-radius: 15px;
+            color: black;
+            font-size: 14px;
+        }
+        /* The container */
+
+
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: normal;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            color: #4d4d4d !important;
+            padding-top: 1px;
+        }
+
+        .containerbold {
+            font-size: 16px;
+            font-weight: 600 !important
+        }
+        /* Hide the browser's default checkbox */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #fff;
+            border: 1px solid #d5d5d5;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+            background-color: #f5f5f5;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+            background-color: #39b54a;
+            border-color: #19a22c;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+            left: 7px;
+            top: 2px;
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0px 2px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .shadow {
+            filter: progid:DXImageTransform.Microsoft.Shadow(Strength=13, Direction=135, Color='#dfdfdf');
+            box-shadow: darkslateblue;
+            -moz-box-shadow: 4px 6px 12px #dfdfdf;
+            /*border: 6px double #fff;*/
+            box-shadow: 0px 0px 18px 9px #dfdfdf;
+            border-radius: 11px;
+            height: 38px;
+        }
+
+        .box {
+            float: left;
+            height: 20px;
+            width: 20px;
+            border: 1px solid black;
+            clear: both;
+        }
+
+        .smallbox {
+            float: left;
+            height: 8px;
+            width: 8px;
+            border: 1px solid black;
+            clear: both;
+            top: 8px;
+            position: relative;
+        }
+
+        .green {
+            background-color: #39b54a;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-7" style="border-right:1px dashed #d5d5d5">
+            <div class="col-md-12" style="margin: 0px;">
+
+                <div class="col-md-12" style="padding: 0px;margin: 0px;">
+                    <div class="col-md-6">
+
+                        <a class="buttonstext transpantcolorbtn" style="width: 55px;font-size: 16px !important;text-align: center;" ng-click="BackFourthView();">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+                <div class="col-md-12" style="padding: 0px;margin: 0px;">&nbsp;</div>
+                <div class="col-md-12" style="padding: 0px;margin: 0px;">
+                    <h2><b>{{WorkFinalValue.WorkFlowName}}</b> </h2>
+
+                </div>
+
+                <div class="col-md-12" style="padding: 0px;margin: 0px;" ng-if="FinalWorkFlowRuleText !== undefined && FinalWorkFlowRuleText !== ''">
+                    <div class='bussinessrulecontaint' style="padding: 0px;margin-top: 10px;">
+                        <div class='bussinessrulecard' style="border: 0px;">
+
+                            <div class='bussinesruleText' style="border-radius: 6px;">
+                                <div class='bussinessruleheader'>
+                                    <span>Rule</span>
+                                    <span class="ruletypeicon" style="font-size:22px !important;" ng-click="OpenDeleteConfirmationModalPopup(2879)">
+                                        <i class="fa fa-trash"></i>
+                                    </span>
+                                </div>
+                                <div class='bussinessrulecontaint'>
+                                    {{FinalWorkFlowRuleText}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12" style="padding: 0px;">
+                    <div class="col-md-12" style="padding: 0px;margin: 0px;">
+                        <div class="CreateNewWorkflow">
+                        </div>
+                        <div class="form-group" style="margin-top: -5px;">
+                            <div class="" ng-repeat="x in uniqueHeader">
+                                <div ng-if="x.RowNumber == 1">
+                                    &nbsp;
+                                    <label class="container containerbold" style="padding-left: 0px;">
+                                        <span class='smallbox green'>
+                                        </span>  &nbsp;{{x.Header}}<!--<input type="checkbox" data-checkbox="true" ng-disabled="true" ng-model="x.Selected"><span class="checkmark"></span>-->
+                                    </label>
+                                    <div style="margin-bottom: 10px;  margin-left:0px;  padding-top: 8px;position:relative" class="checked " ng-repeat="y in SelectedActivityList | orderBy:'SequenceNo'" ng-if="x.Header.trim() == y.Header.trim()" ng-click="CheckSelectedActivityClick($event,{{y.StatusCode}})">
+
+                                        <label class="container " style="padding-left: 8px;">
+                                            &nbsp;{{y.ActivityName}}<input type="checkbox" data-checkbox="true" ng-disabled="false" ng-model="y.Selected"><!--<span class="checkmark"></span>-->
+                                        </label>
+
+                                        <span class="showupdownarrow" style="float:right;width:auto; margin-top: 2px;position: absolute;top: 2px;right: 10px;display:none">
+                                            <span style="float:left;margin-right:15px" ng-hide="y.isFirst === true">
+                                                <a ng-click="SetActivityProcessUp(y.Header,y.StatusCode,y.SequenceNo)"> <i class="fa fa-angle-up" style="font-size:30px"></i></a>
+                                            </span>
+                                            <span ng-hide="y.isLast === true">
+                                                <a ng-click="SetActivityProcessDown(y.Header,y.StatusCode,y.SequenceNo)"><i class="fa fa-angle-down" style="font-size:30px"></i></a>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="col-md-5" ng-show="ShowWorkFlowStep">
+            <div class="bussinessrulerightpaneldetails" style="margin:0px">
+                <div class="col-md-12 ruletypeheading" style="margin-left: 0px;padding: 0px;">
+                    <h3><b>{{ ActivityName }}</b> </h3>
+                </div>
+                <div class="col-md-12 ActionButtons" ng-if="IsControlVisible" style="">
+                    <div class="col-md-6" style="display: flex;padding: 0px; justify-content: flex-end;float: right;margin-right: 20px; border-bottom: 1px solid #d5d5d5;width: 100%;padding-bottom: 14px !important;">
+                        <div class="footerbuttons" style="margin: 0px;float:left;width:100%">
+                            <a class="buttonstext bggreencolorbtn" ng-click="AddRuleInWorkflow();">
+                                {{resData.res_WorkflowPage_ManageRules}}
+                            </a>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin: 0px; padding: 0px;">
+                    <div class="col-md-12 removepadding" style="border:0px;margin: 0px;">
+                        <div class="bussinessdetailsLable">
+                            {{resData.res_WorkflowPage_AutomatedStep}} :
+                        </div>
+                        <div class="detailsLableValue greentextcolor" style="width: 60%;margin-top:5px">
+                            <div class="col-md-12" style="padding:0px;width: 60%;">
+                                <div class="col-md-6" style="display: flex; justify-content: flex-start">
+                                    <a style="width: 26%; font-size: 18px; display: flex; justify-content: flex-start;" ng-class="{'selectedYes': AddWorkFlowStep.IsAutomated}" ng-click="SetIsAutomated(true);SaveWorkFlowStepProperty();" class="selectedNo"><i class="fa fa-check-circle" style="font-size: 22px;margin-right: 10px;" aria-hidden="true"></i><span style="font-size: 14px;">Yes</span></a>
+                                </div>
+                                <div class="col-md-6" style="display: flex; justify-content: flex-end">
+                                    <a style="width: 24%; font-size: 18px; display: flex; justify-content: flex-end;" ng-class="{'selectedNoButton': !AddWorkFlowStep.IsAutomated}" ng-click="SetIsAutomated(false);SaveWorkFlowStepProperty();" class="selectedNo selectedNoButton"><i class="fa fa-times-circle" style="font-size: 22px;margin-right: 10px;" aria-hidden="true"></i><span style="font-size: 14px;">No</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-12 removepadding" style="border:0px;margin: 0px;margin-bottom: 10px;">
+
+                        <div class="bussinessdetailsLable" style="padding-top:5px">
+                            {{resData.res_WorkflowPage_FormName}} :
+                        </div>
+                        <div class="detailsLableValue greentextcolor" style="width: 60%;">
+
+
+
+                            <select class="form-control" style="margin:0px !important" ng-model="AddWorkFlowStep.ActivityFormMappingId" ng-change="SaveWorkFlowStepProperty()"
+                                    ng-options="obj.ActivityFormMappingId as obj.FormName for obj in ActivityFormMappingList">
+                                <option value="">Select Form
+                            </select>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-12 ActionButtons" style="border-top: 1px solid rgb(213, 213, 213); padding-top: 14px;">
+            <div class="col-md-6" style="display: flex; justify-content: flex-start; padding-left: 15px; ">
+                <div class="footerbuttons" style="margin: 0px;margin-right: 12px;">
+                    <!--<a class="buttonstext transpantcolorbtn" style="width: 55px;text-align: center;" ng-click="BackFourthView();">
+                        <i class="fa fa-repeat"></i>
+                    </a>-->
+                </div>
+                &nbsp;
+            </div>
+            <div class="col-md-6" style="display: flex; justify-content: flex-end">
+                <div class="footerbuttons" style="margin: 0px;margin-right: 12px;">
+                    <a class="buttonstext transpantcolorbtn" style="text-align: center;" ng-click="CancelWorkflowStepController();">Cancel</a>
+                </div>
+
+                <div class="footerbuttons" style="margin: 0px;">
+                    <a class="buttonstext bggreencolorbtn" ng-click="GetValue();">{{resData.res_WorkflowPage_Save}}</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

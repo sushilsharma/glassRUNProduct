@@ -1,0 +1,285 @@
+﻿<style type="text/css">
+    .GridColumnWithBorder_AddCompany {
+        float: left;
+        width: 25%;
+        padding: 0px 20px;
+        border-right: 2px dashed #d5d5d5;
+        height: 36px;
+        padding-top: 5px;
+    }
+
+    #autoCustomerList .angucomplete-dropdown {
+        border-radius: 0px;
+        width: 52.5%;
+        padding: 0px;
+        cursor: pointer;
+        z-index: 9999;
+        position: absolute;
+        top: 45px;
+        left: 249px;
+        margin-top: -5px;
+        background-color: #ffffff;
+        border-top: 1px solid #d5d5d5 !important;
+        border-left: 1px solid #d5d5d5 !important;
+        border-right: 1px solid #d5d5d5 !important;
+        border-bottom: 0px !important;
+        /*max-height: 135px;*/
+        overflow-y: auto;
+        height: auto;
+    }
+</style>
+
+<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_EmailDynamicColumn_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a ng-click="AddForm()">
+                                    <tab-heading ng-hide="IsEdit">
+                                        <i class="fa fa-plus"></i>{{resData.res_EmailDynamicColumn_Add}}
+                                    </tab-heading>
+                                    <tab-heading ng-show="IsEdit">
+                                        <i class="fa fa-edit"></i>{{resData.res_EmailDynamicColumn_Edit}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" style="height: 80vh;">
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid" style="padding-bottom: 51px!important;">
+
+                                            <!--<div ng-include="'Location/DeliveryLocationDropdownView.html'" ng-controller="DeliveryLocationDropdownController"></div>-->
+
+
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.OriginId !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_RouteMapping_OriginId}}
+
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div ng-include="'Location/LocationDropdownView.html'" ng-controller="LocationDropdownController"></div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.DestinationId !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_RouteMapping_DestinationId}}
+
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div ng-include="'Location/DeliveryLocationDropdownView.html'" ng-controller="DeliveryLocationDropdownController"></div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12" ng-if="false">
+                                                <div ng-if="pageContrlAcessData.CompanyId !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_RouteMapping_CompanyName}}
+                                                                <span style="color:red;">*</span>
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <select id="ddlPaymentPlanId" ng-model="RouteDeailsJSON.CompanyId" ng-disabled="pageContrlAcessData.CompanyId =='0' || pageContrlAcessData.CompanyId =='1' || disableControl" class="form-control" name="val_SelectObject" ng-options="obj.Id as obj.Name for obj in CompanyList | orderBy:'Name'">
+                                                                    <option value="">Select</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.CompanyId !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_RouteMapping_CompanyName}}
+                                                                <span style="color:red;">*</span>
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div angucomplete-alt id="autoCustomerList"
+                                                                     placeholder="{{resData.res_RouteMapping_CompanyName}}"
+                                                                     maxlength="50"
+                                                                     pause="100"
+                                                                     selected-object="SelectedCompany"
+                                                                     local-data="CompanyList"
+                                                                     search-fields="Name"
+                                                                     title-field="Name"
+                                                                     minlength="1"
+                                                                     image-field=""
+                                                                     focus-in="focusIn()"
+                                                                     focus-out="focusOut()"
+                                                                     input-class="form-control form-control-small"
+                                                                     match-class="highlight">
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.TransporterId !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_RouteMapping_TransporterId}}
+                                                                <span style="color:red;">*</span>
+                                                            </div>
+
+
+                                                            <div class="labelcontrol">
+
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                                                    <div class="form-group MultiSelectControl" style="width: 100%;margin-left:5px ;margin-top:10px">
+                                                                        <div ng-dropdown-multiselect="" options="TransporterList" selected-model="SelectedTransporterList" checkboxes="false" ng-class="{'disablemultiselectcontrol' : pageContrlAcessData.TransporterId =='0' || pageContrlAcessData.TransporterId =='1'}" extra-settings="SortByListSetting"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.TruckSizeId !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_RouteMapping_TruckSize}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <select id="ddlPaymentPlanId" ng-model="RouteDeailsJSON.TruckSizeId" class="form-control" name="val_SelectObject" ng-options="obj.TruckSizeId as obj.TruckSize for obj in bindTruckSizeList" ng-readonly="pageContrlAcessData.TruckSizeId =='0' || pageContrlAcessData.TruckSizeId =='1'">
+                                                                    <option value="">Select</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="ActionButtons">
+                                                <div class="clearbtn">
+                                                    <button type="button" ng-click="ClearControls()" class="btn btn-default">Clear</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="Save()" class="btn btn-success">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12">
+                                                <div id="RouteGrid" class="Company_Grid" style="height: 70vh;" dx-data-grid="RouteGrid" dx-item-alias="RouteGridDate">
+                                                    <div data-options="dxTemplate:{ name:'ActiveInActiveTemplate' }">
+                                                        <a class="greenbgfont approvebtn" ng-if="RouteGridDate.data.IsActive=='0'">    {{resData.res_ItemUI_Active}} </a>
+                                                        <a class="greenbgfont approvebtn" ng-if="RouteGridDate.data.IsActive=='1'">    {{resData.res_ItemUI_InActive}} </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <script id="WarningMessage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">{{resData.res_CompanyTransporterMapping_Warning}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" ng-if="ActiveInActiveRecord=='1'" style="margin-left: 15px;font-weight: 500;">
+                    {{resData.res_CompanyTransporterMapping_ActiveWarning}}
+                </div>
+                <div class="messagebody" ng-if="ActiveInActiveRecord=='0'" style="margin-left: 15px;font-weight: 500;">
+                    {{resData.res_CompanyTransporterMapping_InActiveWarning}}
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteYes()">
+                            {{resData.res_AddCompany_DeleteYes}}
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+                            {{resData.res_AddCompany_DeleteNo}}
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+
+
+    <div class="modal-backdrop active" ng-if="PickupAddedModalPopupControl">
+        <div class="modal-backdrop-bg"></div>
+        <div class="modal-wrapper">
+            <ion-modal-view class="confirmationmsgmodalview ShowBulkChangeDriverPickupDateAndShift bgcolorheaderandfooter modal fade-in-scale ng-enter active ng-enter-active" style="z-index: 1000000 !important;width: 80% !important; height: auto !important; min-height: 651px !important; top: 100px;">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">{{resData.res_createinquirypage_Add_Location}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseAddLocationInMasterPopup()"><i class="icons-office-52"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight popup_scrollbar">
+                    <div ng-include="'AddLocation.html'" ng-controller="AddLocationController"></div>
+                </ion-content>
+            </ion-modal-view>
+        </div>
+    </div>
+
+</ion-view>

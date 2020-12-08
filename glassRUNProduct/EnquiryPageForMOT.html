@@ -1,0 +1,1054 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div class="row fixheaderbox" style="margin:auto !important">
+
+            <div class="fixheaderbackground">
+                <div class="col-md-6 col-sm-2 halfbox nopaddingleft">
+                    <div class="widget widget-stats purple-bg">
+
+                        <div class="col-lg-6">
+                            <div class="stats-title textalingcenter paddingfordetails">{{resData.res_EnquiryPageForMOT_TotalCreditLimit}}</div>
+                            <div class="stats-number textalingcenter paddingfordetails">
+                                <span class="bigcurrencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{CreditLimit  === null ? "0" : CreditLimit  | currency: "EUR"}}
+                            </div>
+                        </div>
+                        <div class="sepratorline">
+                            &nbsp;
+                        </div>
+                        <div class="stats-desc paddingfordetails col-lg-6">
+                            <div class="stats-title textalingcenter">{{resData.res_EnquiryPageForMOT_AvailableCredit}}</div>
+                            <div class="stats-number textalingcenter"><span class="bigcurrencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{AvailableCreditLimit  === null ? "0" : AvailableCreditLimit-totalorderamount | currency: "EUR"}}</div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-2 halfbox secondbox nopaddingright">
+                    <div class="widget widget-stats red-bg">
+
+                        <div class="col-lg-6">
+                            <div class="stats-title textalingcenter paddingfordetails">{{resData.res_EnquiryPageForMOT_EmptiesLimit}}</div>
+                            <div class="stats-number textalingcenter paddingfordetails">{{EmptiesLimit  === null ? "0" : EmptiesLimit | currency: "EUR"}}</div>
+                        </div>
+                        <div class="sepratorline">
+                            &nbsp;
+                        </div>
+                        <div class="stats-desc paddingfordetails col-lg-6">
+                            <div class="stats-title textalingcenter">{{resData.res_EnquiryPageForMOT_ActualEmpties}}</div>
+                            <div class="stats-number textalingcenter">{{ActualEmpties  === null ? "0" : ActualEmpties | currency: "EUR"}}</div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="pageview">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+
+                        <div class="CreateOrderView scrollablecontainer">
+
+                            <div class="uploadedinquirylist">
+                                <div class="row">
+                                    <div class="panel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_EnquiryPageForMOT_CreateInquiry}}</h3>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+                                                <div class="ibox float-e-margins">
+                                                    <div id="demo6" class="ibox-content collapse in">
+
+
+                                                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                            <div class="table-scrollable">
+
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <span class="sectionheader">{{resData.res_EnquiryPageForMOT_Customer}}</span>
+
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname labelwithcontrol">{{resData.res_EnquiryPageForMOT_SelectCustomer}}</div>
+
+                                                                            <div class="padded-row" style="position: relative;width: 100%;">
+
+                                                                                <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                                    <div class="angucomplete-holder angucomplete-dropdown-visible" style="">
+                                                                                        <input id="ItemListAutoCompleteBox_value" placeholder="Search Item by: Name or Code" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="predicates.InputCustomer" ng-disabled="disableInput" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(predicates.InputCustomer)" style="border: 1px solid #bec1c3;">
+                                                                                        <div id="ItemListAutoCompleteBox_dropdown" ng-show="showItembox" class="angucomplete-dropdown" style="">
+                                                                                            <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching" style="">{{resData.res_EnquiryPageForMOT_Searching}}</div>
+                                                                                            <div class="angucomplete-searching" ng-show="foundResult">{{resData.res_EnquiryPageForMOT_Noresultsfound}}</div>
+                                                                                            <div class="angucomplete-row" ng-repeat="result in bindallCompanyList | multipleTags:predicates.InputCustomer" ng-click="GetCompanyDetails(result)" ng-mouseenter="hoverRow($index)" style="">
+                                                                                                <div class="angucomplete-title" style="">
+                                                                                                    {{result.CompanyNameAndMnemonic}}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <span class="sectionheader">{{resData.res_EnquiryPageForMOT_ShipToLocation}}</span>
+
+                                                                    <div class="row m-t-10">
+                                                                        <div class="row m-t-10">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-repeat="deliverylocation in bindDeliverylocation" ng-click="getDeliverylocationSelectValue(deliverylocation.DeliveryLocationId)">
+                                                                                <div class="panel" ng-class="{'greenbg' : deliverylocation.IsDeliveryLocationSelected}">
+                                                                                    <div class="panel-content widget-info">
+                                                                                        <div class="row">
+                                                                                            <div class="left">
+                                                                                                <i class="fa fa-industry bg-green"></i>
+                                                                                            </div>
+                                                                                            <div class="right">
+                                                                                                <p class="number" data-from="0" data-to="52000">{{deliverylocation.DeliveryLocationName}}</p>
+                                                                                                <p class="text">Capacity : {{deliverylocation.Capacity | number : 0}}</p>
+                                                                                            </div>
+                                                                                            <div class="rightaling">
+                                                                                                <i ng-class="{'fa fa-check' : deliverylocation.IsDeliveryLocationSelected}"></i>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+
+
+
+                                                                </div>
+
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">{{resData.res_EnquiryPageForMOT_OrderDate}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                <b>{{ordermanagement.OrderDate | date:'dd/MM/yyyy HH:mm:ss'}}</b>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">{{resData.res_EnquiryPageForMOT_ProposedDeliveryDate}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                {{ProposedDate}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">{{resData.res_EnquiryPageForMOT_SchedulingDate}}</div>
+
+                                                                            <div class="labelcontrol" style="margin-top: -3px;">
+
+                                                                                <div class="prepend-icon">
+                                                                                    <input type="text" name="datepicker" onkeypress="return false;" ng-model="ordermanagement.RequestDate" class="customdate-picker form-control" placeholder="Select a Request date...">
+                                                                                    <i class="icon-calendar"></i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                            <div class="table-scrollable">
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <span class="sectionheader">{{resData.res_EnquiryPageForMOT_TransportVehicle}}</span>
+
+                                                                    <div class="row m-t-10">
+                                                                        <div class="widget-infobox">
+                                                                            <div class="infobox" ng-class="{'greenbg' : objTruckSize.Selected}" ng-repeat="objTruckSize in bindTruckSize | orderBy:'TruckCapacityWeight/1'" ng-click="getSelectValue(objTruckSize.TruckSizeId)" style="cursor: pointer">
+                                                                                <div class="left">
+                                                                                    <i class="fa fa-truck bg-blue"></i>
+                                                                                </div>
+                                                                                <div class="right">
+                                                                                    <div>
+                                                                                        <span class="pull-left">{{objTruckSize.TruckSize}}</span> <span class="checkicon">
+
+                                                                                            <i ng-class="{'fa fa-check' : objTruckSize.Selected}"></i>
+                                                                                        </span>
+
+                                                                                    </div>
+                                                                                    <div class="txt">Palettes : {{objTruckSize.TruckCapacityPalettes}}</div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px; display:none">
+                                                                    <div class="columnfulldata  margintopdata">
+                                                                        <div class="labelname">{{resData.res_EnquiryPageForMOT_RPMQuantity}}</div>
+                                                                        <div class="labelcontrol">
+                                                                            <input id="inputRFMQty" class="form-control form-white" placeholder="RFM Quantity" md-input="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                            <div class="table-scrollable">
+                                                                <div class="col-lg-6" style="margin-bottom: 10px;padding: 0px;">
+
+                                                                    <span class="sectionheader">{{resData.res_EnquiryPageForMOT_LoadAnalysis}}</span>
+
+                                                                    <div class="progressbarcontainers">
+
+
+
+                                                                        <div class="palettesfullview">
+                                                                            <div class="labelview">{{resData.res_EnquiryPageForMOT_NoofPallet}}</div>
+                                                                            <div class="controlview">
+                                                                                <div class="palattes">
+                                                                                    <div class="palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-success progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-success progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-primary progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-primary progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="lastpalatesui palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-primary progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="capacity">
+                                                                            <div class="capacityfullview">
+                                                                                <div class="labelview">{{resData.res_EnquiryPageForMOT_Weight}}</div>
+                                                                                <div class="controlview">
+                                                                                    <div class="progress progress-striped active progress-bar-large">
+                                                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                                                            <span class="sr-only">{{resData.res_EnquiryPageForMOT_60Completewarning}}</span>{{resData.res_EnquiryPageForMOT_132Ton}}</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 receivingcapacity">
+
+                                                                    <span class="sectionheader">{{resData.res_EnquiryPageForMOT_ReceivingLocationBalanceCapacity}}</span>
+
+
+                                                                    <div class="columnfulldata  margintopdata">
+                                                                        <div class="labelname" style="width: 196px;">{{resData.res_EnquiryPageForMOT_AvailablecapacityinPallet}}</div>
+
+                                                                        <div class="labelcontrol labeltext">
+                                                                            {{DeliveryLocationCapacity-(DeliveryUsedCapacity+tempDeliveryUsedCapacity) | number:0}}/{{DeliveryLocationCapacity | number:0}}
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                            <div class="table-scrollable">
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <span class="sectionheader">{{resData.res_EnquiryPageForMOT_UploadItem}}</span>
+
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname labelwithcontrol">{{resData.res_EnquiryPageForMOT_SelectFile}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                                                    <div class="form-control" data-trigger="fileinput">
+                                                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i><span class="fileinput-filename"></span>
+                                                                                    </div>
+                                                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                                                        <span class="fileinput-new">{{resData.res_EnquiryPageForMOT_Choose}}</span><span class="fileinput-exists">{{resData.res_EnquiryPageForMOT_Change}}</span>
+                                                                                        <input type="file" name="...">
+                                                                                    </span>
+                                                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">{{resData.res_EnquiryPageForMOT_Remove}}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="borderedTable" style="float: left;width:100%;">
+                                                            <div class="table-scrollable PortalView">
+
+                                                                <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+
+                                                                    <span class="sectionheader">{{resData.res_EnquiryPageForMOT_ItemSelection}}</span>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+                                                                    <div class="collg4">
+                                                                        <div class="labeldata">{{resData.res_EnquiryPageForMOT_Item}}</div>
+                                                                        <div class="itemcontrols">
+                                                                            <select class="form-control" style="margin:0px !important">
+                                                                                <option value="Select">{{resData.res_EnquiryPageForMOT_Select}}
+                                                                                <option value="Affligem Double 300x24B Ctn">{{resData.res_EnquiryPageForMOT_AffligemDouble300x24BCtn}}
+                                                                                <option value="Tiger 330x24B Crt Unc">{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}
+                                                                                <option value="Tiger Crystl 330x24B Crt">{{resData.res_EnquiryPageForMOT_TigerCrystl330x24BCrt}}
+                                                                                <option value="Tiger Crystl 330x24C Ctn">{{resData.res_EnquiryPageForMOT_TigerCrystl330x24CCtn}}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="collg4" style="width:12%">
+                                                                        <div class="labeldata">{{resData.res_EnquiryPageForMOT_Allocation}}</div>
+                                                                        <div class="itemcontrols" style="margin-top: 10px;">{{resData.res_EnquiryPageForMOT_800}}</div>
+                                                                    </div>
+                                                                    <div class="collg4" style="width:12%">
+                                                                        <div class="labeldata">{{resData.res_EnquiryPageForMOT_Price}}</div>
+                                                                        <div class="itemcontrols" style="margin-top: 10px;">
+                                                                            <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_250}}</div>
+                                                                    </div>
+
+                                                                    <div class="collg4" style="width:12%">
+                                                                        <div class="labeldata">{{resData.res_EnquiryPageForMOT_UOM}}</div>
+                                                                        <div class="itemcontrols" style="margin-top: 10px;">{{resData.res_EnquiryPageForMOT_CR}}</div>
+                                                                    </div>
+
+                                                                    <div class="collg4">
+                                                                        <div class="labeldata">{{resData.res_EnquiryPageForMOT_Quantity}}</div>
+                                                                        <div class="itemcontrols">
+
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="collg4" style="display:none">
+                                                                        <div class="labeldata">{{resData.res_EnquiryPageForMOT_Nooftruck}}</div>
+                                                                        <div class="itemcontrols">
+
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="collgbtn">
+                                                                        <div class="labeldata">
+                                                                            &nbsp;
+                                                                        </div>
+                                                                        <div style="float:left">
+                                                                            <a class="btn btn-default" ng-click="OpenReasoncodepopup()"><i class="fa fa-plus"></i></a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="srno">{{resData.res_EnquiryPageForMOT_SrNo}}</th>
+                                                                            <th>{{resData.res_EnquiryPageForMOT_ItemCode}}</th>
+                                                                            <th>{{resData.res_EnquiryPageForMOT_ItemName}}</th>
+                                                                            <th>{{resData.res_EnquiryPageForMOT_UOM}}</th>
+                                                                            <th>{{resData.res_EnquiryPageForMOT_Quantity}}</th>
+                                                                            <th>{{resData.res_EnquiryPageForMOT_Price}}</th>
+                                                                            <th> </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_EnquiryPageForMOT_1}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_0001}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_20}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_250}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_EnquiryPageForMOT_2}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_0002}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_AffligemDouble300x24BCtn}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_22}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_260}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_EnquiryPageForMOT_3}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_0003}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_TigerCrystl330x24BCrt}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_30}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_200}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_EnquiryPageForMOT_4}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_0004}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_TigerCrystl330x24CCtn}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                            <td>{{resData.res_EnquiryPageForMOT_35}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_280}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno"> &nbsp; </td>
+                                                                            <td> &nbsp; </td>
+                                                                            <td> &nbsp; </td>
+                                                                            <td> &nbsp; </td>
+                                                                            <td class="text-right">{{resData.res_EnquiryPageForMOT_TotalPrice}}</td>
+                                                                            <td> <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_EnquiryPageForMOT_990}}</td>
+                                                                            <td class="text-right">
+                                                                                &nbsp;
+                                                                            </td>
+
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="totalamountdiv" style="color:#5b5b5b;margin-top:5px;display:none">
+                                                                    <span>{{resData.res_EnquiryPageForMOT_Total}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_EnquiryPageForMOT_75}}</div>
+                                                            </div>
+
+                                                            <div class="MobileView">
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="labelname">{{resData.res_EnquiryPageForMOT_Item}}</div>
+
+                                                                    <div class="labelcontrol">
+                                                                        <select class="form-control">
+                                                                            <option value="Select">{{resData.res_EnquiryPageForMOT_Select}}
+                                                                            <option value="Affligem Double 300x24B Ctn">{{resData.res_EnquiryPageForMOT_AffligemDouble300x24BCtn}}
+                                                                            <option value="Tiger 330x24B Crt Unc">{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}
+                                                                            <option value="Tiger Crystl 330x24B Crt">{{resData.res_EnquiryPageForMOT_TigerCrystl330x24BCrt}}
+                                                                            <option value="Tiger Crystl 330x24C Ctn">{{resData.res_EnquiryPageForMOT_TigerCrystl330x24CCtn}}
+                                                                        </select>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="columnhalfdata mobilefullrow" style="width:50%">
+                                                                        <div class="labelname">{{resData.res_EnquiryPageForMOT_Allocation}}</div>
+
+                                                                        <div class="labelcontrol labeltext">{{resData.res_EnquiryPageForMOT_34}}</div>
+                                                                    </div>
+                                                                    <div class="columnhalfdata mobilefullrow" style="width:50%">
+                                                                        <div class="labelname">{{resData.res_EnquiryPageForMOT_Price}}</div>
+                                                                        <div class="labelcontrol labeltext">
+                                                                            <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_40}}</div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="columnhalfdata">
+                                                                        <div class="labelname">{{resData.res_EnquiryPageForMOT_Quantity}}</div>
+
+                                                                        <div class="labelcontrol">
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="columnhalfdata">
+                                                                        <div class="labelname">{{resData.res_EnquiryPageForMOT_Nooftruck}}</div>
+
+                                                                        <div class="labelcontrol">
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="addbtnrow">
+                                                                        <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()" style="padding: 10px !important;"><i class="fa fa-plus"></i></a>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row PortalView">
+                                    <div class="panel inquirylistpanel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_EnquiryPageForMOT_InquiryList}}</h3>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+
+
+                                                <div class="ibox float-e-margins" ng-repeat="orderdata in OrderData">
+                                                    <div id="demo6" class="ibox-content collapse in">
+
+
+                                                        <div class="panel widget-weather">
+                                                            <div class="panel-header background-primary ui-sortable-handle">
+                                                                <h3>
+                                                                    <i class="icon-30"></i> <strong>{{resData.res_EnquiryPageForMOT_Truck1}}</strong>{{resData.res_EnquiryPageForMOT_2Ton}}<span style="display:none"> <strong class="sonumber">{{resData.res_EnquiryPageForMOT_SO}}</strong>{{resData.res_EnquiryPageForMOT_3635}}</span>
+                                                                    <span class="removetruck">
+                                                                        <span class="text-right">
+                                                                            <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                            <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                        </span>
+                                                                    </span>
+                                                                </h3>
+
+                                                                <div class="weather panel-content">
+                                                                    <ul class="weather-forecast clearfix">
+                                                                        <li class="first">
+                                                                            <a id="day-0" class="today-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_CreditLimit}}</strong>
+                                                                                <span class="today-img">
+                                                                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                                                                </span><span class="today-temp-low"><i class="fa fa-check"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-1" class="1-days-day warningcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_ReceivingLocationCapacity}}</strong><span class="1-days-image">
+                                                                                    <i class="fa fa-industry" aria-hidden="true"></i>
+                                                                                </span><span class="1-days-temp-low"><i class="fa fa-exclamation-triangle"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-2" class="2-days-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_Pallet}}</strong>
+                                                                                <span class="2-days-image">
+                                                                                    <i class="fa fa-object-ungroup"></i>
+                                                                                </span>
+                                                                                <span class="2-days-temp-low">{{resData.res_EnquiryPageForMOT_44}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-3" href="javascript:;" class="3-days-day successcolor active">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_Weight}}</strong><span class="3-days-image">
+                                                                                    <i class="fa fa-truck" aria-hidden="true"></i>
+                                                                                </span><span class="3-days-temp-low">{{resData.res_EnquiryPageForMOT_132Ton}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="last">
+                                                                            <a id="day-4" href="javascript:;" class="4-days-day dangercolor active">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_Stock}}</strong>
+                                                                                <span class="4-days-image">
+                                                                                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                                </span><span class="4-days-temp-low">{{resData.res_EnquiryPageForMOT_55}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                            <div class="weather panel-content" style="background-color: rgb(49, 157, 181);">
+                                                                <div class="weather-highlighted">
+                                                                    <div class="day-0 weather-item clearfix active">
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_ShipTo}}</div>
+                                                                                <div class="labelcontrol labeltext">{{resData.res_EnquiryPageForMOT_PHUONG1QUAN5TPHCM}}</div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata" style="display:none">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_BranchPlant}}</div>
+
+                                                                                <div class="labelcontrol labeltext">{{resData.res_EnquiryPageForMOT_B003}}</div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_ProposedETD}}</div>
+                                                                                <div class="labelcontrol">{{resData.res_EnquiryPageForMOT_09142017}}</div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_SpecialRequest}}</div>
+
+                                                                                <div class="labelcontrol">{{resData.res_EnquiryPageForMOT_07102017}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="columnfulldata margintopdata" style="margin-top: -1px; display:none">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_LoadNumber}}</div>
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_PlateNumber}}</div>
+
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="weather-location clearfix">
+                                                                    <div class="columnfulldata margintopdata">
+                                                                        <table class="table table-hover">
+                                                                            <thead>
+                                                                                <tr>
+
+                                                                                    <th class="srno">{{resData.res_EnquiryPageForMOT_SrNo}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_ItemCode}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_ItemName}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_UOM}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_Quantity}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_Price}}</th>
+                                                                                    <th style="display:none">{{resData.res_EnquiryPageForMOT_QuantityInStock}}</th>
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_EnquiryPageForMOT_1}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_0001}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_EnquiryPageForMOT_30}}</td>
+
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_EnquiryPageForMOT_2}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_0001}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_EnquiryPageForMOT_30}}</td>
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_EnquiryPageForMOT_3}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_0001}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_EnquiryPageForMOT_30}}</td>
+
+                                                                                </tr>
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <div class="totalamountdiv">
+                                                                            <span>{{resData.res_EnquiryPageForMOT_Total}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_EnquiryPageForMOT_75}}</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="weather-highlighted weatherapprovebth">
+                                                                    <div class="groupbtn last-column">
+                                                                        <div style="width:100%;float:right">
+
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-click="OpenRPMQuantitypopup()">{{resData.res_EnquiryPageForMOT_SubmitInquiry}}</a> </div>
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve">{{resData.res_EnquiryPageForMOT_SaveAsDraft}}</a> </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+
+
+                                                <div class="ibox float-e-margins" ng-repeat="orderdata in OrderData">
+                                                    <div id="demo6" class="ibox-content collapse in">
+
+
+                                                        <div class="panel widget-weather">
+                                                            <div class="panel-header background-primary ui-sortable-handle">
+                                                                <h3>
+                                                                    <i class="icon-30"></i> <strong>{{resData.res_EnquiryPageForMOT_Truck1}}</strong>{{resData.res_EnquiryPageForMOT_2Ton}}<span style="display:none"> <strong class="sonumber">{{resData.res_EnquiryPageForMOT_SO}}</strong>{{resData.res_EnquiryPageForMOT_3635}}</span>
+                                                                    <span class="removetruck">
+                                                                        <span class="text-right">
+                                                                            <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                            <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                        </span>
+                                                                    </span>
+                                                                </h3>
+
+                                                                <div class="weather panel-content">
+                                                                    <ul class="weather-forecast clearfix">
+                                                                        <li class="first">
+                                                                            <a id="day-0" class="today-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_CreditLimit}}</strong>
+                                                                                <span class="today-img">
+                                                                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                                                                </span><span class="today-temp-low"><i class="fa fa-check"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-1" class="1-days-day warningcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_ReceivingLocationCapacity}}</strong><span class="1-days-image">
+                                                                                    <i class="fa fa-industry" aria-hidden="true"></i>
+                                                                                </span><span class="1-days-temp-low"><i class="fa fa-exclamation-triangle"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-2" class="2-days-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_Pallet}}</strong>
+                                                                                <span class="2-days-image">
+                                                                                    <i class="fa fa-object-ungroup"></i>
+                                                                                </span>
+                                                                                <span class="2-days-temp-low">{{resData.res_EnquiryPageForMOT_44}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-3" href="javascript:;" class="3-days-day successcolor active">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_Weight}}</strong><span class="3-days-image">
+                                                                                    <i class="fa fa-truck" aria-hidden="true"></i>
+                                                                                </span><span class="3-days-temp-low">{{resData.res_EnquiryPageForMOT_132Ton}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="last">
+                                                                            <a id="day-4" href="javascript:;" class="4-days-day dangercolor active">
+                                                                                <strong>{{resData.res_EnquiryPageForMOT_Stock}}</strong>
+                                                                                <span class="4-days-image">
+                                                                                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                                </span><span class="4-days-temp-low">{{resData.res_EnquiryPageForMOT_55}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                            <div class="weather panel-content" style="background-color: rgb(49, 157, 181);">
+                                                                <div class="weather-highlighted">
+                                                                    <div class="day-0 weather-item clearfix active">
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_ShipTo}}</div>
+                                                                                <div class="labelcontrol labeltext">{{resData.res_EnquiryPageForMOT_PHUONG1QUAN5TPHCM}}</div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata" style="display:none">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_BranchPlant}}</div>
+
+                                                                                <div class="labelcontrol labeltext">{{resData.res_EnquiryPageForMOT_B003}}</div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_ProposedETD}}</div>
+                                                                                <div class="labelcontrol">{{resData.res_EnquiryPageForMOT_09142017}}</div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_SpecialRequest}}</div>
+
+                                                                                <div class="labelcontrol" style="position:relative !important" data-tap-disabled="true">{{resData.res_EnquiryPageForMOT_NA}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="columnfulldata margintopdata" style="margin-top: -1px;display:none">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_LoadNumber}}</div>
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_EnquiryPageForMOT_PlateNumber}}</div>
+
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="weather-location clearfix">
+                                                                    <div class="columnfulldata margintopdata">
+                                                                        <table class="table table-hover">
+                                                                            <thead>
+                                                                                <tr>
+
+                                                                                    <th class="srno">{{resData.res_EnquiryPageForMOT_SrNo}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_ItemCode}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_ItemName}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_UOM}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_Quantity}}</th>
+                                                                                    <th>{{resData.res_EnquiryPageForMOT_Price}}</th>
+                                                                                    <th style="display:none">{{resData.res_EnquiryPageForMOT_QuantityInStock}}</th>
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_EnquiryPageForMOT_1}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_0001}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_EnquiryPageForMOT_30}}</td>
+
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_EnquiryPageForMOT_2}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_0001}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_EnquiryPageForMOT_30}}</td>
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_EnquiryPageForMOT_3}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_0001}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_CR}}</td>
+                                                                                    <td>{{resData.res_EnquiryPageForMOT_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_EnquiryPageForMOT_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_EnquiryPageForMOT_30}}</td>
+
+                                                                                </tr>
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <div class="totalamountdiv">
+                                                                            <span>{{resData.res_EnquiryPageForMOT_TotalPrice}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_EnquiryPageForMOT_75}}</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="weather-highlighted weatherapprovebth">
+                                                                    <div class="groupbtn last-column">
+                                                                        <div style="width:100%;float:right">
+
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-click="OpenRPMQuantitypopup()">{{resData.res_EnquiryPageForMOT_SubmitInquiry}}</a> </div>
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve">{{resData.res_EnquiryPageForMOT_SaveAsDraft}}</a> </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="groupbtn last-column">
+                                            <div class="col-lg-12" style="width:100%;float:right;">
+                                                <div class="col-sm-2 col-md-2" style="float:right"> <a class="btn btn-success" ng-click="saveOrder()">{{resData.res_EnquiryPageForMOT_Submitallinquiries}}</a></div>
+                                                <div class="col-sm-2 col-md-2" style="float:right"><a class="btn btn-success" ng-click="saveAsDraftOrder()">{{resData.res_EnquiryPageForMOT_Saveallasdraft}}</a> </div>
+                                                <div class="col-sm-2 col-md-2" style="float:right;display:none"><a class="btn btn-success" ng-click="OpenAddFeedbackpopup()">{{resData.res_EnquiryPageForMOT_AddFeedback}}</a> </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="remainingitemlist">
+
+                                <div class="row">
+                                    <div class="panel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_EnquiryPageForMOT_ProductList}}</h3>
+
+
+                                            <div class="Recalculatebtn">
+                                                <a class="btn btn-success btn-square">{{resData.res_EnquiryPageForMOT_Recalculate}}</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+                                                <div class="table-scrollable PortalView">
+
+                                                    <ul class="list">
+                                                        <li class="item headeritem">
+                                                            <div class="item1">
+                                                                &nbsp;
+                                                            </div>
+                                                            <div class="item2">
+                                                                <span class="itemname">{{resData.res_EnquiryPageForMOT_ItemName}}</span>
+                                                                <span class="itemcode">{{resData.res_EnquiryPageForMOT_ItemCode}}</span>
+
+                                                            </div>
+                                                            <div class="item3">{{resData.res_EnquiryPageForMOT_UOM}}</div>
+                                                            <div class="item4">{{resData.res_EnquiryPageForMOT_Qty}}</div>
+                                                        </li>
+                                                    </ul>
+
+                                                    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+                                                        <li ng-repeat="item in list" class="item" style="cursor:move">
+                                                            <div class="item1">
+                                                                <div ng-if="$index === 1 || $index === 2" class="fa fa-check greenbgfont">  </div>
+
+                                                                <i ng-if="$index === 0 || $index === 4" class="fa fa-exclamation-triangle orangebgfont"></i>
+
+                                                                <i ng-if="$index === 3 || $index === 5" class="fa fa-times redbgfont"></i>
+                                                            </div>
+                                                            <div class="item2">
+                                                                <span class="itemname">{{resData.res_EnquiryPageForMOT_Tiger330x24BCrtUnc}}</span>
+                                                                <span class="itemcode">({{item.text}}0000)</span>
+                                                            </div>
+                                                            <div class="item3">{{resData.res_EnquiryPageForMOT_CR}}</div>
+                                                            <div class="item4">{{resData.res_EnquiryPageForMOT_20}}</div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </ion-content>
+</ion-view>

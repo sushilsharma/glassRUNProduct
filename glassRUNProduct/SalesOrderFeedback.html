@@ -1,0 +1,462 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview customscreen">
+            <div class="header">
+                <h2>{{resData.res_SalesOrderFeedback_SalesOrderFeedback}}</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+                    <div id="portalview" class="PortalView">
+                        <div class="panel">
+                            <div class="panel-content">
+                                <div kendo-grid="Grid" k-options="OrderDetailsGrid" k-rebind="OrderDetailsGrid"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <script id="templates/AddFeedback.html" type="text/ng-template">
+                <ion-modal-view class="DetailModalViewScreen bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Add Feedback</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseAddFeedbackpopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div style="display:none">
+                            <div class="list" style="float:left;width:100%;border:1px solid #d5d5d5;border-bottom:none;margin-bottom:0px">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Order Number :
+                                            </div>
+                                            <div class="labelcontrol" style="margin-top: 6px;">
+                                                <label>{{labelOrderNumber}}</label>
+                                            </div>
+                                            <div class="labelcontrol" style="margin-top: 6px;display:none">
+                                                <label>{{labelOrderId}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+
+                                            <button type="button" class="btn  btn-square" ng-class="{'btn-success' : FeedbackVariable.OverAll === true, 'btn-default' : FeedbackVariable.OverAll === false}" ng-click="setoverall()">Overall Feedback</button>
+
+                                            <button type="button" class="btn btn-default btn-square" ng-class="{'btn-success' : FeedbackVariable.Specific === true, 'btn-default' : FeedbackVariable.Specific === false}" ng-click="setspecific()">Specific Item</button>
+
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!--<div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Item :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <select class="form-control" style="margin:0px !important"
+                                                        ng-model="FeedbackVariable.ProductCode" ng-change=""
+                                                         ng-options="obj.OrderProductId as obj.ProductCode for obj in bindallproduct">
+                                                    <option value="">Select</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!--<div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Quantity :
+                                            </div>
+                                            <div class="labelcontrol">
+
+                                                <input  type="text"  ng-model="FeedbackVariable.Quantity"  class="form-control form-white" placeholder="Quantity" md-input="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Feedback :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <select class="form-control" style="margin:0px !important"
+                                                        ng-model="FeedbackVariable.Name" ng-change=""
+                                                        ng-options="obj.LookUpId as obj.Name for obj in bindallFeedbak">
+                                                    <option value="">Select</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Attachment :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <div>
+                                                    <input type="file" id="fileUpload" file-model="fileupload.File" class="md-input" />
+                                                    <!--<button type="button" class="btn btn-success" ng-click="UploadFile()">Upload</button>-->
+                                                </div>
+                                                <div class="labelcontrol" style="margin-top: 6px;display:none">
+                                                    <label>{{labelFilename}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Comment :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <input type="text" ng-model="FeedbackVariable.Comment" class="form-control form-white" placeholder="Comment" md-input="" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Comment :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <input type="text" ng-model="FeedbackVariable.Comment" class="form-control form-white" placeholder="Comment" md-input="" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+
+
+
+                            </div>
+                            <div style="float:left;width:100%;border:1px solid #d5d5d5;">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                HVBL Comment :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <input class="form-control form-white" ng-model="FeedbackVariable.HVBLComment" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+
+
+                            <div class="panel">
+                                <div class="panel-content">
+                                    <div class="uk-grid" data-uk-grid-margin>
+                                        <div class="uk-width-medium-1-1">
+                                            <div class="parsley-row">
+                                                <span class="sectionheader">
+                                                    Item Specific
+                                                </span>
+                                            </div>
+                                            <table class="table">
+                                                <tr>
+
+                                                    <th>Product Code</th>
+                                                    <th>Delivered Quantity</th>
+                                                    <th>Quantity</th>
+                                                    <th>Upload</th>
+                                                    <th>Feedback</th>
+                                                    <th>Comment</th>
+                                                </tr>
+                                                <tr ng-repeat="item in bindallproduct">
+                                                    <td ng-if="data.type == 'hootsslllll' ">{{item.OrderProductId}}</td>
+                                                    <td>{{item.ProductCode}}</td>
+                                                    <td>{{item.ProductQuantity}}</td>
+                                                    <td><input type="text" ng-model='item.Quantity'></td>
+                                                    <td><input type="file" id="itemfileUpload" file-model="itemfileUpload.File" class="md-input" /></td>
+                                                    <td>
+                                                        <select ng-model="obj.Name" ng-options="obj.LookUpId as obj.Name for obj in bindallFeedbak">
+                                                            <option value="">Select</option>
+                                                        </select>
+                                                        <!--<select
+                                                                ng-model="FeedbackVariable.Name"
+                                                                ng-options="obj.LookUpId as obj.Name for obj in bindallFeedbak">
+                                                            <option value="">Select</option>
+                                                        </select>-->
+                                                    </td>
+                                                    <td><input type="text" ng-model='item.HVBLComment'></td>
+                                                </tr>
+
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list" style="float:left;width:100%;border:1px solid #d5d5d5;margin-bottom:0px">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            SO # :
+                                        </div>
+                                        <div class="labelcontrol" style="margin-top: 6px;">
+                                            {{labelOrderNumber}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+
+                                        <button type="button" class="btn  btn-square" ng-class="{'btn-success' : FeedbackVariable.OverAll === true, 'btn-default' : FeedbackVariable.OverAll === false}" ng-click="setoverall()">Overall Feedback</button>
+
+                                        <button type="button" class="btn btn-default btn-square" ng-class="{'btn-success' : FeedbackVariable.Specific === true, 'btn-default' : FeedbackVariable.Specific === false}" ng-click="setspecific()">Specific Item</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Feedback :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <select class="form-control" style="margin:0px !important"
+                                                        ng-model="FeedbackVariable.Name" ng-change=""
+                                                        ng-options="obj.LookUpId as obj.Name for obj in bindallFeedbak">
+                                                    <option value="">Select</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Attachment :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                    <div class="form-control" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename">{{FeedbackVariable.labelFilename}}</span>
+                                                    </div>
+                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                        <span class="fileinput-new">Choose...</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" id="fileUpload" onchange="angular.element(this).scope().FileNameChanged(this)" file-model="fileupload.File" />
+                                                    </span>
+                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Comment :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <textarea id="inputRFMQty" class="form-control form-white" ng-model="FeedbackVariable.Comment" type="text" rows="4" cols="50" placeholder="Comment"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Item :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <select class="form-control" style="margin:0px !important"
+                                                        ng-model="FeedbackVariable.ItemName" ng-change="SelectedItem(FeedbackVariable.ItemName)"
+                                                        ng-options="obj.OrderProductId as obj.ItemNameCode for obj in bindallproduct">
+                                                    <option value="">Select</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Quantity :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                {{FeedbackVariable.Quantity}} {{FeedbackVariable.UOM}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Feedback :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <select class="form-control" style="margin:0px !important"
+                                                        ng-model="FeedbackVariable.ItemFeedbackName" ng-change=""
+                                                        ng-options="obj.LookUpId as obj.Name for obj in bindallFeedbak">
+                                                    <option value="">Select</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Attachment :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                    <div class="form-control" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename">{{FeedbackVariable.labelItemFilename}}</span>
+                                                    </div>
+                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                        <span class="fileinput-new">Choose...</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" id="ItemfileUpload" onchange="angular.element(this).scope().ItemFileNameChanged(this)" file-model="fileupload.ItemFile" />
+                                                    </span>
+                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                        <div class="columnfulldata  margintopdata">
+                                            <div class="labelname">
+                                                Comment :
+                                            </div>
+                                            <div class="labelcontrol">
+                                                <textarea id="inputRFMQty" class="form-control form-white" ng-model="FeedbackVariable.ItemComment" type="text" rows="4" cols="50" placeholder="Comment"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 actionbtnfeedbacksave">
+                                    <div class="actionbuttoncontrols">
+                                        <div class="actionbtndiv">
+                                            <button class="button btn btn-default" ng-click="ClearItemFeedback()">Clear</button>
+                                        </div>
+                                        <div class="actionbtndiv">
+                                            <button class="button btn btn-success" ng-click="AddItemFeedback()">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <table class="table table-striped" ng-if="OrderItemFeedback.length > 0">
+                                        <thead>
+                                            <tr>
+                                                <th class="srno"> Sr. No. </th>
+                                                <th> Item Code </th>
+                                                <th> Item Name </th>
+                                                <th> Quantity </th>
+                                                <th> UOM </th>
+                                                <th> FeedBack </th>
+                                                <th> Attachment </th>
+                                                <th> Comment </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in OrderItemFeedback">
+                                                <td class="srno"> {{$index+1}} </td>
+                                                <td> {{item.ProductCode}} </td>
+                                                <td> {{item.ItemName}} </td>
+                                                <td> {{item.UOM}} </td>
+                                                <td> {{item.ProductQuantity}} </td>
+                                                <td> {{item.FeedbackValue}} </td>
+                                                <td> {{item.DocumentName}} </td>
+                                                <td> {{item.Comment}} </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="float:left;width:100%;border:1px solid #d5d5d5;display:none">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            HVBL Comment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ion-content>
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="savefeedback()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="Resetfeedback()">
+                                <button class="button btn btn-default">Reset</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+        </div>
+
+    </ion-content>
+</ion-view>
+

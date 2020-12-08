@@ -1,0 +1,93 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">            
+
+            <div class="header">
+                <h2>{{resData.res_GratisOrderView_Gratisorderlist}}</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+                    <div id="portalview" class="PortalView">
+                        <div class="panel">
+                            <div class="panel-content">
+                                <div kendo-grid="Grid" id="GratisOrderViewGrid" k-options="GratisOrderViewGrid" k-rebind="GratisOrderViewGrid"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mobileview" class="MobileView">
+                        <div class="customlistview" ng-repeat="item in GridData.data">
+                            <div class="paddingcontainer">
+                                <div class="listviewContainer">
+                                    <span class="listviewtitle">
+                                        {{item.InquiryNumber}}
+                                    </span>
+                                </div>
+                                <div class="listviewContainer">
+                                    <span class="listviewdatafield">
+                                        Truck Size : {{item.TruckSize}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        Sold To : {{item.SoldTo}}
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        Ship To : {{item.ShipTo}}
+                                    </span>
+
+
+                                    <span class="listviewdatafield">{{resData.res_GratisOrderView_Status}}<span ng-class="{'greenbgfont':item.Status ==='Clean','redbgfont':item.Status ==='Exceptional','graybgfont':item.Status ==='Draft','graybgfont':item.Status ===''}">
+                                            {{item.Status}}
+                                        </span>
+                                    </span>
+                                    <span class="listviewdatafield">
+                                        Remark : {{item.Remark}}
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="listviewContainer">
+                                <div class="listviewinnerContainer">
+                                    <div class="listviewchecklists">
+                                        <span class="checklistlable">{{resData.res_GratisOrderView_Empties}}</span>
+                                        <span class="checklistsign">
+                                            <i class="fa fa-check" ng-class="{'fa-check greenbgfont':item.Empties ==='1','fa-times redbgfont':item.Empties ===''}"></i>
+                                        </span>
+                                    </div>
+                                    <div class="listviewchecklists">
+                                        <span class="checklistlable">{{resData.res_GratisOrderView_Capacity}}</span>
+                                        <span class="checklistsign">
+                                            <i class="fa fa-check" ng-class="{'fa-check greenbgfont':item.Capacity ==='1','fa-times redbgfont':item.Capacity ===''}"></i>
+                                        </span>
+                                    </div>
+                                    <div class="listviewchecklists">
+                                        <span class="checklistlable">{{resData.res_GratisOrderView_Stock}}</span>
+                                        <span class="checklistsign">
+                                            <i class="fa fa-check" ng-class="{'fa-check greenbgfont':item.Stock ==='1','fa-times redbgfont':item.Stock ===''}"></i>
+                                        </span>
+                                    </div>
+                                    <div class="listviewchecklists">
+                                        <span class="checklistlable">{{resData.res_GratisOrderView_SchedulingDate}}</span>
+                                        <span class="checklistsign">
+                                            <i class="fa fa-check" ng-class="{'fa-check greenbgfont':item.SpecialRequest ==='1','fa-times redbgfont':item.SpecialRequest ===''}"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="listviewContainer">
+                                <a class="btn btn-success SingleRowbtn"><i class="icons-office-51"></i>{{resData.res_GratisOrderView_Approve}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        
+
+    </ion-content>
+</ion-view>

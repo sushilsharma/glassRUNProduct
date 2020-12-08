@@ -1,0 +1,869 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview" style="padding: 20px 30px 0;overflow-y:hidden">
+            <div class="row">
+                <div class="col-md-12 pagecontainerdiv" style="margin-top:0px">
+                    <div class="gridheaderactionbuttons">
+
+                        <div style="float:left;margin-bottom: 24px;">
+                            <div class="footerbuttons footerbtnrightborder" style="margin:0px">
+                                <a class="buttonstext drop-shadow greencolorbtntext toprefreshbuttons" ng-click="RefreshDataGrid()">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+                            </div>
+                            <div class="footerbuttons">
+                                <a class="buttonstext drop-shadow greencolorbtntext" ng-click="ExportToExcelSalesAdminApprovalData()">
+                                    <i class="fa fa-file-excel-o fa-icon"></i> {{resData.res_OMInquiryPage_ExportToExcel}}
+                                </a>
+                            </div>
+                        </div>
+                        <div style="float:right;margin-bottom: 24px;">
+                            <div class="footerbuttons footerbtnrightborder">
+                                <a class="buttonstext drop-shadow bluecolorbtntext" ng-click="ChangeSelectedEnquiryBranchPlant()">
+                                    <i class="fa fa-check fa-icon" aria-hidden="true"></i> {{resData.res_OMInquiryPage_ChangeBranchPlant}}
+                                </a>
+                            </div>
+
+                            <div class="footerbuttons">
+                                <a class="buttonstext drop-shadow greencolorbtntext" ng-click="ApproveSelectedEnquiry()">
+                                    <i class="fa fa-thumbs-up fa-icon" aria-hidden="true"></i> {{resData.res_OMInquiryPage_Approve}}
+                                </a>
+                            </div>
+
+                            <div class="footerbuttons">
+                                <a class="buttonstext drop-shadow redcolorbtntext" ng-click="RejectSelectedEnquiry()">
+                                    <i class="fa fa-thumbs-down fa-icon" aria-hidden="true"></i> {{resData.res_OMInquiryPage_Reject}}
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="portalview" class="PortalView">
+                        <div class="panel drop-shadow" style="background: #f5f5f5;float: left;width: 100%;">
+                            <div class="panel-content" style="padding:0px">
+                                <div class="dx-viewport">
+                                    <div class="demo-container">
+                                        <div id="SalesAdminApprovalGrid" class="SalesAdminApproval_Grid" dx-data-grid="SalesAdminApprovalGrid" dx-item-alias="SalesAdminApprovalData">
+
+                                            <div data-options="dxTemplate:{ name:'CheckBoxTemplate' }">
+                                                <input type="checkbox" />
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'CheckBoxHeaderTemplate' }">
+                                                <input type="checkbox" />
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'ApproveTemplate' }">
+                                                <a class="greenbgfont approvebtn" ng-click="ApproveEnquiryByEnquiryId(SalesAdminApprovalData.value)"> Approve </a>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'EmptiesTemplate' }">
+                                                <span ng-if="SalesAdminApprovalData.value === 'C'" class="greenbgfont"><i class="fa fa-check"></i></span>
+                                                <span ng-if="SalesAdminApprovalData.value !== 'C'" class="orangebgfont"><i class="fa fa-exclamation-triangle"></i></span>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'CapacityTemplate' }">
+                                                <span ng-if="SalesAdminApprovalData.value === '1'" class="">{{SalesAdminApprovalData.data.ReceivedCapacityPalettes}}/{{SalesAdminApprovalData.data.Capacity}}</span>
+                                                <span ng-if="SalesAdminApprovalData.value !== '1'" class="fontred">{{SalesAdminApprovalData.data.ReceivedCapacityPalettes}}/{{SalesAdminApprovalData.data.Capacity}}</span>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'StockTemplate' }">
+                                                <span ng-if="SalesAdminApprovalData.value === '1'" class="greenbgfont"><i class="fa fa-check PositiveValue"></i></span>
+                                                <span ng-if="SalesAdminApprovalData.value !== '1'" class="orangebgfont"><i class="fa fa-times NegativeValue"></i></span>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'CreditLimitTemplate' }">
+                                                <span ng-if="SalesAdminApprovalData.value === '1'" class="greenbgfont"><i class="fa fa-check PositiveValue"></i></span>
+                                                <span ng-if="SalesAdminApprovalData.value !== '1'" class="orangebgfont"><i class="fa fa-times NegativeValue"></i></span>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'NoteTemplate' }">
+                                                <a ng-hide="SalesAdminApprovalData.value === '' || SalesAdminApprovalData.value === null || SalesAdminApprovalData.value === undefined" ng-click="OpenModelPoppupNote(SalesAdminApprovalData.data.EnquiryId)">
+                                                    <i class="fa fa-sticky-note stickynotecolor">
+                                                    </i>
+                                                </a>
+
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'StatusTemplate' }">
+                                                <a class="{{SalesAdminApprovalData.data.Class}}">{{SalesAdminApprovalData.data.Status}}</a>
+                                            </div>
+
+                                            <div id="EnquiryProductInfoId" class="EnquiryProductInfoClass" data-options="dxTemplate: {name: 'EnquiryProductInfo'}" style="float: left;">
+                                                <div class="EnquiryDetailsAccordion" ng-show="ProductInfoSection">
+                                                    <div class="ContainerNote">
+                                                        <div style="float:left;width:50%;padding-left: 8px;">
+                                                            <span class="HeaderInfo" style="font-weight:bold">{{resData.res_CreateInquiryPage_TotalCreditLimit}} :</span>
+                                                            <span class="HeaderInfo">{{CreditLimit}}</span>
+                                                        </div>
+
+                                                        <div style="float:left;width:50%;padding-left: 8px;">
+                                                            <span class="HeaderInfo" style="font-weight:bold">{{resData.res_CreateInquiryPage_AvailableCredit}} :</span>
+                                                            <span class="HeaderInfo">{{AvailableCreditLimit}}</span>
+                                                            <input id="setfocusoninput" style="border:0px !important;height:0px" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="ContainerSection">
+                                                        <div class="conatinerheader headerdataconatiner">
+
+                                                            <div class="NumberConatiner  rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_SrNo}}
+                                                            </div>
+
+                                                            <div class="ItemNameContainer">
+                                                                {{resData.res_ViewInquiryForCustomer_ItemName}}
+                                                            </div>
+                                                            <div class="UOMContainer">
+                                                                {{resData.res_ViewInquiryForCustomer_UOM}}
+                                                            </div>
+                                                            <div class="unitContainer rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_Price}} <span class="controltagicon">X</span>
+                                                            </div>
+                                                            <div class="QuantityControl rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_Quantity}} <span class="controltagicon">=</span>
+                                                            </div>
+                                                            <div class="TotalConatiner rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_TotalPrice}}
+                                                            </div>
+                                                            <div class="palletspacecontainer rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_CurrentStockPosition}}
+                                                            </div>
+                                                            <div class="removeItemicon" ng-show="IsEnquiryEdit">
+                                                                {{resData.res_ViewInquiryForCustomer_RemoveEnquiryProduct}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="conatinerbody">
+                                                            <div class="conatinerheader itemrowcontainer" ng-repeat="enquiryProduct in OrderData[0].OrderProductList" ng-show="enquiryProduct.IsActive === '1'">
+                                                                <div class="NumberConatiner rightaling">
+                                                                    <i class="fa fa-gift" style="color:green" aria-hidden="true" ng-show="enquiryProduct.ItemType == 31 || enquiryProduct.ItemType == '31'"></i>
+                                                                    <i class="fa fa-google" aria-hidden="true" ng-show="enquiryProduct.ItemType == 30 || enquiryProduct.ItemType == '30'"></i>
+                                                                    {{$index + 1}}
+                                                                </div>
+                                                                <div class="ItemNameContainer">
+                                                                    <span style="font-style:italic;padding-right:5px">[{{enquiryProduct.ProductCode}}]</span> {{enquiryProduct.ItemName}}
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    {{enquiryProduct.PrimaryUnitOfMeasure}}
+                                                                </div>
+                                                                <div class="unitContainer rightaling">
+                                                                    {{resData.res_CurrencyCode}}{{enquiryProduct.UnitPrice |  number : 2}} <span class="controltagicon">X</span>
+                                                                </div>
+                                                                <div class="QuantityControl  rightaling greenText" ng-class="{'redTextColor':  enquiryProduct.IsItemAvailableInStock === false && enquiryProduct.ItemType !== '30' && enquiryProduct.ItemType !== 30 &&  enquiryProduct.ProductCode !== WoodenPalletCode &&  RoleName !== 'Customer'}" ng-hide="IsEnquiryEdit && enquiryProduct.ProductCode !== WoodenPalletCode && enquiryProduct.ItemType !== 31 && enquiryProduct.ItemType !=='31'">
+                                                                    {{enquiryProduct.ProductQuantity}}
+                                                                    <span class="controltagicon">=</span>
+                                                                </div>
+
+                                                                <div class="QuantityControl  rightaling" ng-show="IsEnquiryEdit && enquiryProduct.ProductCode !== WoodenPalletCode && enquiryProduct.ItemType !== 31 && enquiryProduct.ItemType !== '31'">
+                                                                    <input class="form-control form-white EditInputQuantity" type="number" min="0" ng-model="enquiryProduct.ProductQuantity" ng-enter="RemoveInputFocus()" ng-blur="GetItemDetails(enquiryProduct.ItemId,enquiryProduct.EnquiryId,enquiryProduct.ProductQuantity,enquiryProduct.PrimaryUnitOfMeasure)" ng-change="validatefield('Name','txt')" />
+                                                                    <span class="controltagicon">=</span>
+                                                                </div>
+
+                                                                <div class="TotalConatiner rightaling">
+                                                                    {{resData.res_CurrencyCode}}{{enquiryProduct.ItemPrices |  number : 2}}
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling greenText" ng-if="enquiryProduct.ProductCode !== WoodenPalletCode" ng-class="{'redTextColor':  enquiryProduct.IsItemAvailableInStock === false && enquiryProduct.ItemType !== '30' && enquiryProduct.ItemType !== 30 &&  enquiryProduct.ProductCode !== WoodenPalletCode &&  RoleName !== 'Customer'}">
+                                                                    {{enquiryProduct.CurrentStockPosition}}
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling" ng-if="enquiryProduct.ProductCode === WoodenPalletCode">
+                                                                    -
+                                                                </div>
+                                                                <div class="removeItemicon" ng-show="IsEnquiryEdit && enquiryProduct.ProductCode !== WoodenPalletCode && enquiryProduct.ItemType !== 31 && enquiryProduct.ItemType !== '31'">
+                                                                    <a ng-click="RemoveProductFromEnquiry(enquiryProduct.EnquiryId,enquiryProduct.EnquiryProductGUID)">
+                                                                        <i class="fa fa-trash RemoveItemfa-trash" aria-hidden="true"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="conatinerheader nodotline" ng-show="IsEnquiryEdit && !EnableAddItem">
+
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    <a style="color: green;font-style: italic; font-weight: bold; margin-top: 10px;font-size: 16px;cursor:pointer" ng-click="EnableAddItemSection()">
+                                                                        <i style="border: 1px solid green;padding: 3px 5px;font-size: 14px;" class="fa fa-plus"></i> Add Item
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="unitContainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="QuantityControl rightaling">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="TotalConatiner  rightaling">
+
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="conatinerheader itemrowcontainer additemrowcontainer" style="height: 80px;background-color: #fff;" ng-show="IsEnquiryEdit && EnableAddItem">
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="ItemNameContainer">
+                                                                    <div class="itemcontrols">
+                                                                        <div class="padded-row" style="position: relative;width: 100%;">
+                                                                            <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                                <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                                    <input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_CreateInquiryPage_SearchItemPlaceholder}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="SearchControl.InputItem" ng-disabled="disableInput" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="ItemInputSelecteChangeEvent(SearchControl.InputItem)" style="padding-left: 12px !important;">
+                                                                                    <div id="ItemListAutoCompleteBox_dropdown" ng-show="showItembox" class="angucomplete-dropdown" style="">
+                                                                                        <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching" style="">{{resData.res_CreateInquiryPage_Searching}}</div>
+                                                                                        <div class="angucomplete-searching" ng-show="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                                        <div class="angucomplete-row" ng-repeat="result in (filteredItems = (bindallproduct | multipleTags:SearchControl.FilterAutoCompletebox))" ng-if="!IsSelfCollect?result.ItemCode !== WoodenPalletCode:RoleName==='CustomerService'? (result.ItemCode !== WoodenPalletCode || result.ItemCode === WoodenPalletCode):result.ItemCode !== WoodenPalletCode" key-navigation="" ng-click="getItemPrice(result.ItemId,EditedEnquiryId,0,0,true)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+                                                                                            <div class="angucomplete-title" style="">
+                                                                                                {{result.ItemNameCode}}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <a class="clearautosearchbox" ng-click="ClearItemData()">
+                                                                                <i class="fa fa-times"></i>
+                                                                            </a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div style="float:left;width:100%;display:none">
+
+                                                                        <div class="itemcontrols" style="width: 100%;color: #39b54a;">
+                                                                            <span> {{resData.res_CreateInquiryPage_MaxPermissibleQuantity}}</span> : {{MaxPermissibleQuantity}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    <div class="itemcontrols">
+                                                                        {{UOM}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="unitContainer rightaling">
+                                                                    <div class="itemcontrols">
+                                                                        <span ng-bind="resData.res_CurrencyCode"></span>{{ItemPrices  | currency: "EUR"}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="QuantityControl  rightaling">
+                                                                    <input id="inputItemsQty" class="form-control form-white EditInputQuantity" ng-enter="CheckingExtraPalettesBeforeAddingItem(ItemField.itemId,ItemField.inputItemsQty,0,32,0,'')" onkeypress='return validateQty(event);' type="number" min="0" placeholder="Quantity" ng-init="ItemField.inputItemsQty=''" ng-model="ItemField.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input=""><span style="color:#4d4d4d">/{{MaxPermissibleQuantity}}</span>
+
+                                                                    <div style="float:left;width:100%">
+                                                                        <div class="itemcontrols" style="text-align:right;right: -7px;color: #39b54a;position: relative;">
+                                                                            <span>{{resData.res_CreateInquiryPage_Allocation}}</span>     {{Allocation=='NA' ? 'N/A' : Allocation}}
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+
+
+
+                                                                <div class="TotalConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling" style="margin-top: 7px;">
+                                                                    {{ItemCurrentStockPosition}}
+                                                                </div>
+
+                                                                <div class="removeItemicon">
+                                                                    <a ng-click="ClearItem()" style="font-size: 14px;padding: 0px;"><i class="icons-office-52"></i></a>
+                                                                    <div style="float:right;">
+                                                                        <a class="btn btn-default" style="display:none" ng-click="CheckingExtraPalettesBeforeAddingItem(ItemField.itemId,ItemField.inputItemsQty,0,32,0,'')"><i class="fa fa-plus"></i></a>
+                                                                    </div>
+                                                                    &nbsp;
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="conatinerheader nodotline" style="height:1px">
+
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="unitContainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="QuantityControl rightaling">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="TotalConatiner horiborder rightaling">
+
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="conatinerheader nodotline">
+
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="unitContainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="QuantityControl rightaling">
+                                                                    {{resData.res_ViewInquiryForCustomer_EnquiryTotalAmount}} =
+                                                                </div>
+                                                                <div class="TotalConatiner rightaling">
+                                                                    {{resData.res_CurrencyCode}}{{EnquiryTotalAmount |  number : 2}}
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="conatinerheader nodotline">
+
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="unitContainer singicon rightaling">
+                                                                    -
+                                                                </div>
+                                                                <div class="QuantityControl rightaling">
+                                                                    {{resData.res_ViewInquiryForCustomer_Discount}} =
+                                                                </div>
+                                                                <div class="TotalConatiner rightaling">
+                                                                    {{resData.res_CurrencyCode}}{{DiscountAmount |  number : 2}}
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="conatinerheader nodotline">
+
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="unitContainer singicon rightaling">
+                                                                    -
+                                                                </div>
+                                                                <div class="QuantityControl rightaling">
+                                                                    {{resData.res_ViewInquiryForCustomer_CashDiscount}} =
+                                                                </div>
+                                                                <div class="TotalConatiner rightaling">
+                                                                    {{resData.res_CurrencyCode}}{{EnquiryCashDiscount |  number : 2}}
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="conatinerheader nodotline" style="height:1px">
+
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="unitContainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="QuantityControl rightaling">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="TotalConatiner horiborder rightaling">
+
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="conatinerheader nodotline">
+
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="unitContainer singicon rightaling">
+                                                                    =
+                                                                </div>
+                                                                <div class="QuantityControl rightaling">
+                                                                    {{resData.res_ViewInquiryForCustomer_NetAmount}} =
+                                                                </div>
+                                                                <div class="TotalConatiner rightaling">
+                                                                    {{resData.res_CurrencyCode}}{{EnquiryNetAmount |  number : 2}}
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="conatinerheader nodotline">
+
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="unitContainer singicon rightaling">
+                                                                    +
+                                                                </div>
+                                                                <div class="QuantityControl rightaling">
+                                                                    {{resData.res_ViewInquiryForCustomer_TotalTax}} ({{ItemTaxInPec}}%) =
+                                                                </div>
+                                                                <div class="TotalConatiner rightaling">
+                                                                    {{resData.res_CurrencyCode}}{{EnquiryTotalTax |  number : 2}}
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="conatinerheader nodotline">
+
+                                                                <div class="NumberConatiner rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="unitContainer singicon rightaling" style="padding-top: 5px;">
+                                                                    =
+                                                                </div>
+                                                                <div class="QuantityControl rightaling" style="font-weight: 600;font-size: 16px;padding-top: 5px;">
+                                                                    {{resData.res_ViewInquiryForCustomer_Total}} =
+                                                                </div>
+                                                                <div class="TotalConatiner totalprice rightaling" style="font-weight: 600;font-size: 16px;">
+                                                                    {{resData.res_CurrencyCode}}{{EnquiryGrandTotalAmount |  number : 2}}
+                                                                </div>
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    &nbsp;
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="conatinerfooter" style="position:relative">
+                                                            <div class="col-lg-6" style="margin-bottom: 10px;padding: 0px;position: absolute;bottom: 120px; width: 35%;">
+
+                                                                <div class="progressbarcontainers">
+                                                                    <div class="palettesfullview">
+                                                                        <div class="labelview" style="width: 152px;">
+                                                                            {{resData.res_CreateInquiryPage_PalletSpace}} : ({{PalettesCorrectWeight | number:2}}/{{buindingPalettes.length}})
+                                                                        </div>
+                                                                        <div class="controlview" style="width: 63%;">
+                                                                            <div class="palattes">
+                                                                                <div class="palatesui" ng-repeat="palettes in buindingPalettes" ng-style="{'width' : PalettesWidth.width}">
+                                                                                    <div class="progress progress-bar-thin">
+                                                                                        <div class="progress-bar progress-bar-success progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="{{palettes.PalettesWidth}}" ng-style="{'width' : palettes.PalettesWidth + '%'}" style="width: {{palettes.PalettesWidth}}%">
+                                                                                            <span class="sr-only"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="capacity" style="margin-top: 6px;">
+                                                                        <div class="capacityfullview">
+                                                                            <div class="labelview" style="width: 152px;">{{resData.res_CreateInquiryPage_Weight}}</div>
+                                                                            <div class="controlview" style="width: 63%;">
+                                                                                <div class="progress progress-striped active progress-bar-large" ng-class="{'blankweight' : TruckCapacityFullInPercentage === 0}">
+                                                                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width' : TruckCapacityFullInPercentage + '%' }" style="width:{{TruckCapacityFullInPercentage}}%">
+                                                                                        <span class="sr-only">{{TruckCapacityFullInPercentage}} % Complete (warning)</span>
+                                                                                        {{TruckCapacityFullInTone | number : 2}}/{{TruckCapacityInTone}} Ton
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div style="float:left;margin-bottom: 10px;">
+                                                                <div class="footerbuttons footerbtnrightborder">
+                                                                    <a class="buttonstext blackolorbtn" ng-click="EditEnquiryByEnquiry(SalesAdminApprovalData.data.EnquiryId)">
+                                                                        <span ng-hide="IsEnquiryEdit"><i class="fa fa-pencil fa-icon" aria-hidden="true"></i> {{resData.res_ViewInquiryForCustomer_Edit}}</span>
+                                                                        <span ng-show="IsEnquiryEdit"><i class="fa fa-times fa-icon" aria-hidden="true"></i> {{resData.res_ViewInquiryForCustomer_Remove}}</span>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="footerbuttons">
+                                                                    <a class="buttonstext bluecolorbtn" ng-click="UpdateEnquiryByEnquiry(SalesAdminApprovalData.data.EnquiryId)">
+                                                                        <i class="fa fa-check fa-icon" aria-hidden="true"></i> {{resData.res_ViewInquiryForCustomer_Update}}
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div style="float:right;margin-bottom: 10px;">
+                                                                <div class="footerbuttons footerbtnrightborder" ng-hide="SalesAdminApprovalData.data.CurrentState === '7'">
+                                                                    <a class="buttonstext greencolorbtn" ng-class="{'disabledbuttons':IsEnquiryEdit == true}" ng-disabled="IsEnquiryEdit" ng-click="ApproveEnquiryByEnquiryNumber(SelectedEnquiryNumber)">
+                                                                        <i class="fa fa-thumbs-up fa-icon" aria-hidden="true"></i> {{resData.res_ViewInquiryForCustomer_Approve}}
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="footerbuttons" ng-hide="SalesAdminApprovalData.data.CurrentState === '7'">
+                                                                    <a class="buttonstext redcolorbtn" ng-class="{'disabledbuttons':IsEnquiryEdit == true}" ng-disabled="IsEnquiryEdit" ng-click="RejectEnquiryByEnquiryNumber(SelectedEnquiryNumber)">
+                                                                        <i class="fa fa-thumbs-down fa-icon" aria-hidden="true"></i> {{resData.res_ViewInquiryForCustomer_Reject}}
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="footerbuttons">
+                                                                    <a class="buttonstext blackolorbtn" ng-click="CloseEnquiryDetailAccordion()">
+                                                                        <i class="fa fa-times fa-icon" aria-hidden="true"></i> {{resData.res_ViewInquiryForCustomer_Close}}
+                                                                    </a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="EnquiryDetailsAccordion" ng-show="StockCheckSection">
+                                                    <div class="ContainerNote">
+                                                        <div style="float:left;width:50%;padding-left: 8px;">
+                                                            <span class="HeaderInfo" style="font-weight:bold">{{resData.res_GridColumn_branchPlant}} :</span>
+                                                            <span class="HeaderInfo">{{SalesAdminApprovalData.data.BranchPlant}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ContainerSection">
+                                                        <div class="conatinerheader headerdataconatiner">
+                                                            <div class="NumberConatiner  rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_SrNo}}
+                                                            </div>
+
+                                                            <div class="ItemNameContainer">
+                                                                {{resData.res_ViewInquiryForCustomer_ItemName}}
+                                                            </div>
+                                                            <div class="UOMContainer">
+                                                                {{resData.res_ViewInquiryForCustomer_UOM}}
+                                                            </div>
+
+                                                            <div class="QuantityControl rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_Quantity}}
+                                                            </div>
+                                                            <div class="palletspacecontainer rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_CurrentStockPosition}}
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="conatinerbody">
+                                                            <div class="conatinerheader itemrowcontainer" ng-repeat="enquiryProduct in EnquiryUnavailableStockProductList">
+                                                                <div class="NumberConatiner rightaling">
+                                                                    {{$index + 1}}
+                                                                </div>
+
+                                                                <div class="ItemNameContainer">
+                                                                    <span style="font-style :italic;padding-right:5px">[{{enquiryProduct.ProductCode}}]</span>    {{enquiryProduct.ItemName}}
+                                                                </div>
+
+                                                                <div class="UOMContainer">
+                                                                    {{enquiryProduct.PrimaryUnitOfMeasure}}
+                                                                </div>
+
+                                                                <div class="QuantityControl  rightaling">
+                                                                    {{enquiryProduct.ProductQuantity}}
+                                                                </div>
+
+                                                                <div class="palletspacecontainer rightaling">
+                                                                    {{enquiryProduct.CurrentStockPosition}}
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="EnquiryDetailsAccordion" ng-show="CustomerCreditCheckSection">
+                                                    <div class="ContainerNote">
+                                                        <div style="float:left;width:33%;padding-left: 8px;">
+                                                            <span class="HeaderInfo" style="font-weight:bold">{{resData.res_CreateInquiryPage_TotalCreditLimit}} :</span>
+                                                            <span class="HeaderInfo">{{EnquiryCreditLimit}}</span>
+                                                        </div>
+                                                        <div style="float:left;width:33%;padding-left: 8px;">
+                                                            <span class="HeaderInfo" style="font-weight:bold">{{resData.res_CreateInquiryPage_AvailableCredit}} :</span>
+                                                            <span class="HeaderInfo">{{EnquiryAvailableCreditLimit}}</span>
+                                                        </div>
+                                                        <div style="float:left;width:33%;padding-left: 8px;">
+                                                            <span class="HeaderInfo" style="font-weight:bold">{{resData.res_CreateInquiryPage_CalculatedCredit}} :</span>
+                                                            <span class="HeaderInfo">{{EnquiryCalculatedCreditLimit}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="EnquiryDetailsAccordion" ng-show="StatusTimelineSection">
+                                                    <div class="ContainerNote">
+                                                        <div style="float:left;width:50%;padding-left: 8px;">
+                                                            <span class="HeaderInfo" style="font-weight:bold">{{resData.res_CreateInquiryPage_CurrentStatus}} :</span>
+                                                            <span class="HeaderInfo">{{SalesAdminApprovalData.data.Status}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ContainerSection">
+                                                        <div class="swiper-container" style="height:100px">
+                                                            <div class="swiper-wrapper timeline">
+                                                                <div class="swiper-slide">
+                                                                    <div class="timestamp">
+                                                                        <span class="date">24/10/2018 10:12</span>
+                                                                    </div>
+                                                                    <div class="status">
+                                                                        <span>{{SalesAdminApprovalData.data.Status}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="timestamp">
+                                                                        <span class="date">24/10/2018 10:12</span>
+                                                                    </div>
+                                                                    <div class="status">
+                                                                        <span>{{SalesAdminApprovalData.data.Status}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="timestamp">
+                                                                        <span class="date">24/10/2018 10:12</span>
+                                                                    </div>
+                                                                    <div class="status">
+                                                                        <span>{{SalesAdminApprovalData.data.Status}}</span>
+                                                                    </div>
+                                                                </div><div class="swiper-slide">
+                                                                    <div class="timestamp">
+                                                                        <span class="date">24/10/2018 10:12</span>
+                                                                    </div>
+                                                                    <div class="status">
+                                                                        <span>{{SalesAdminApprovalData.data.Status}}</span>
+                                                                    </div>
+                                                                </div><div class="swiper-slide">
+                                                                    <div class="timestamp">
+                                                                        <span class="date">24/10/2018 10:12</span>
+                                                                    </div>
+                                                                    <div class="status">
+                                                                        <span>{{SalesAdminApprovalData.data.Status}}</span>
+                                                                    </div>
+                                                                </div><div class="swiper-slide">
+                                                                    <div class="timestamp">
+                                                                        <span class="date">24/10/2018 10:12</span>
+                                                                    </div>
+                                                                    <div class="status">
+                                                                        <span>{{SalesAdminApprovalData.data.Status}}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-include="'ReasonCodePopupView.html'" ng-controller="ReasonCodeViewController"></div>
+
+                </div>
+            </div>
+        </div>
+        <script id="templates/ChangeBranchPlantCode.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Change Branch Plant</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseChangeBranchPlantCodePopup()">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div ng-include="'ReasonCodeView.html'">
+                        </div>
+                        <div class="customlistcontrolview">
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Branch Plant :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="SelectedBranchPlant.BranchPlantForSelectedEnquiry" ng-options="obj.DeliveryLocationId as obj.DeliveryLocationCode for obj in bindAllBranchPlant">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveBranchPlantForSelectedEnquiry()">
+                                Save
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseChangeBranchPlantCodePopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+        <script id="templates/AddNotesForObject.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:380px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">{{resData.res_ViewInquiryForCustomer_Note}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseAddNotesModalPopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+
+                                    <div class="labelname" style="width:70px">
+                                        {{resData.res_ViewInquiryForCustomer_Note}} :
+                                    </div>
+                                    <div class="labelcontrol viewNote" style="width: 85%;text-align:justify">
+                                        {{NoteVariable.NoteText}}
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseAddNotesModalPopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+        <script id="templates/ConfirmationMessageModalPopup.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">{{resData.res_SalesAdminApproval_RemoveProductHeading}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseConfirmationMessageModalPopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+                            {{resData.res_SalesAdminApproval_RemoveProductMessage}}
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="RemoveEnquiryProduct()">
+                                {{resData.res_SalesAdminApproval_Ok}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseConfirmationMessageModalPopup()">
+                                {{resData.res_SalesAdminApproval_Close}}
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+        <script id="AddTruck.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{AddTruckHeaderMessage}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseAddTruckControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        {{AddTruckBodymessage}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+
+                            <a class="btn btn-success btn-square" ng-click="CloseAddFinalize()">
+                                {{resData.res_CreateInquiryPage_Finalize}}
+                            </a>
+                        </div>
+
+                    </div>
+                </ion-footer-bar>
+
+
+            </ion-modal-view>
+
+        </script>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,134 @@
+﻿<style type="text/css">
+	.GridColumnWithBorder_AddCompany {
+		float: left;
+		width: 25%;
+		padding: 0px 20px;
+		border-right: 2px dashed #d5d5d5;
+		height: 36px;
+		padding-top: 5px;
+	}
+</style>
+
+<ion-view>
+	<ion-content class="main-content">
+		<div class="pageview">
+			<div class="header">
+				<h2>{{Action}} <strong> {{PageName}}</strong></h2>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="nav-tabs2">
+						<ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+							<li class="active" ng-class="{'active': ViewTab}">
+								<a ng-click="ViewForm()" class="">
+									<tab-heading>
+										<i class="fa fa-eye"></i>{{resData.res_LocationUI_View}}
+									</tab-heading>
+								</a>
+							</li>
+							<li class="" ng-class="{'active': AddTab}">
+								<a ng-click="AddForm()">
+									<tab-heading>
+										<i class="fa fa-plus"></i>{{resData.res_LocationUI_Add}}
+									</tab-heading>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane" ng-class="{'active': AddTab}">
+								<div ng-include="'AddLocation.html'" ng-controller="AddLocationController"></div>
+							</div>
+
+							<div class="tab-pane active" ng-class="{'active': ViewTab}">
+								<div class="panel-content">
+									<div class="row">
+										<div class="formcontrols form-horizontal ng-pristine ng-valid">
+											<div class="col-md-12">
+												<div id="LocationGrid" class="Company_Grid" style="height: 70vh;" dx-data-grid="LocationGrid" dx-item-alias="LocationData">
+
+													<div data-options="dxTemplate:{ name:'ActiveInActiveTemplate' }">
+														<a class="greenbgfont approvebtn" ng-if="LocationData.data.IsActive=='0'">    {{resData.res_ItemUI_Active}} </a>
+														<a class="greenbgfont approvebtn" ng-if="LocationData.data.IsActive=='1'">    {{resData.res_ItemUI_InActive}} </a>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+
+
+	<script id="WarningMessage.html" type="text/ng-template">
+		<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+			<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+				<h1 class="title">{{resData.res_LocationUI_Warning}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="false" class="popioncontainer">
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+					{{resData.res_LocationUI_DeleteWarning}}
+				</div>
+			</ion-content>
+			<ion-footer-bar class="popupfooter">
+
+				<div class="popupbtnstyle">
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="DeleteYes()">
+							{{resData.res_LocationUI_DeleteYes}}
+						</a>
+						<a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+							{{resData.res_LocationUI_DeleteNo}}
+						</a>
+					</div>
+
+
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+	<script id="ActiveInActiveWarningMessage.html" type="text/ng-template">
+		<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+			<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+				<h1 class="title">{{resData.res_LocationUI_Warning}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseActiveInActiveWarningMessageConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="false" class="popioncontainer">
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;" ng-if="SelectedIdLocationAction === '1'">
+					{{resData.res_LocationUI_ActiveWarning}}
+				</div>
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;" ng-if="SelectedIdLocationAction === '0'">
+					{{resData.res_LocationUI_InActiveWarning}}
+				</div>
+			</ion-content>
+			<ion-footer-bar class="popupfooter">
+
+				<div class="popupbtnstyle">
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="ActiveInActiveLocation()">
+							{{resData.res_LocationUI_DeleteYes}}
+						</a>
+						<a class="btn btn-success btn-square" ng-click="CloseActiveInActiveWarningMessageConfirmation()">
+							{{resData.res_LocationUI_DeleteNo}}
+						</a>
+					</div>
+
+
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+
+</ion-view>

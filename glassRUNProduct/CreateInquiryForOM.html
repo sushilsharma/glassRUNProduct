@@ -1,0 +1,101 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+
+        <style type="text/css">{{resData.res_CreateInquiryForOM_selectedbackgroundcolorredimportantfloatleftwidth100colorfff}}</style>
+
+        <div class="pageview">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+
+                        <div class="CreateOrderView scrollablecontainer">
+
+                            <div class="row">
+                                <div class="panel fullwithwithoutpadding">
+                                    <div class="panel-header bg-primary">
+                                        <h3>{{resData.res_CreateInquiryForOM_CreateInquiry}}</h3>
+                                    </div>
+
+                                    <div class="panel-content fullwithwithoutpadding">
+
+                                        <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+                                            <div class="col-lg-12" style="display:none">
+                                                <table class="table table-bordered" style="height:30px !important;max-height:30px !important;overflow-y:auto !important" arrow-selector="">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" ng-keyup="keyupevent()" ng-model="Textbox.SelectedName">
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr ng-show="displayhide">
+                                                        <th>#</th>
+                                                        <th>{{resData.res_CreateInquiryForOM_Name}}</th>
+                                                        <th>{{resData.res_CreateInquiryForOM_Price}}</th>
+                                                        <th>{{resData.res_CreateInquiryForOM_Quantity}}</th>
+                                                    </tr>
+                                                    <tr ng-repeat="item in (filteredItems = (foodItems | filter:Textbox.SelectedName))" key-navigation="" ng-show="displayhide" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index)">
+                                                        <td>{{$index}}</td>
+                                                        <td>{{item.name}}</td>
+                                                        <td>{{item.price}}</td>
+                                                        <td>{{item.quantity}}</td>
+                                                    </tr>
+                                                </table>
+                                                <div>
+                                                    selectedRow = {{selectedRow}}
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-lg-12" arrow-selector="">
+                                                <div>
+                                                    <input type="text" ng-keyup="keyupevent()" ng-model="Textbox.SelectedName">
+                                                </div>
+                                                <div ng-show="displayhide">
+                                                    <ul class="searchlistcontainer" style="height:50px !important;max-height:50px !important;overflow-y:auto !important">
+                                                        <li ng-repeat="item in (filteredItems = (foodItems | multipleTags:Textbox.SelectedName))" key-navigation="" ng-show="displayhide" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index)">
+                                                            <span>{{$index}}</span>
+                                                            <span>{{item.name}}</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <!--<ul id="search_results">
+                                                <li class="list-item" ng-repeat="item in (filteredItems = (foodItems | filter:Textbox.SelectedName))"
+                                                    tabindex="{{$index}}"
+                                                    ng-class="item.selected"
+                                                    ng-keydown="onKeydown(item, $event)" ng-focus="onFocus(item)">
+                                                    {{item.name}}
+                                                </li>
+                                            </ul>-->
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </ion-content>
+</ion-view>

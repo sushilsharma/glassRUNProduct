@@ -1,0 +1,89 @@
+﻿<style type="text/css">
+    .Enquiry_list {
+        height: calc(100% - 135px);
+        float: left;
+        width: 100%;
+        height: 90% !important;
+        overflow-y: auto;
+    }
+</style>
+
+<ion-view>
+    <ion-content class="main-content">
+        <div id="portalview" class="CreateInquiryPage">
+            <!--<div id="CommonHeader" class="row topheaderbalancerow">
+                <div class="col-md-4">
+                    <span class="textbold_600">Available Credit:</span>
+                </div>
+            </div>-->
+            <div id="CreateInquiryFirstView" class="FirstSection" style="top: 36px!important;">
+                <div id="RightPanelFirstView" class="portalView col-md-4 col-sm-4" ng-class="{'mobileview' : MobileView === false}">
+                    <div class="AddItemLeftView ScrollbarUI" style="margin-top: 0px!important;">
+                        <div class="card_Section additem_view section_width_100 margin_bottom_10">
+                            <div class="section_width_100 margin_bottom_10 margin_top_bottom_5 note_ui">
+                                {{resData.res_AddEditEventController_HeaderName}}
+                            </div>
+                            <div ng-if="pageContrlAcessData.AddressLine1 !='0'">
+                                <div class="section_width_100 margin_bottom_10">
+                                    <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                        {{resData.res_AddEditEventController_EventCode}}
+                                    </span>
+                                    <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                        <input class="green_border_textbox" ng-model="EventInfo.EventCode" placeholder="Event Code" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="pageContrlAcessData.AddressLine1 !='0'">
+                                <div class="section_width_100 margin_bottom_10">
+                                    <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                        {{resData.res_AddEditEventController_EventDescription}}
+                                    </span>
+                                    <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                        <input class="green_border_textbox" ng-model="EventInfo.EventDescription" placeholder="Event Description" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section_width_100">
+                                <div class="TwoSection padding_top_bottom_10">
+                                    <div class="Left_Third_Aling">
+                                        <a class="createinquirybtn_solidbg card_Section dark_blue space_left aling_float_left" ng-click="Save()">
+                                            <i class="fa fa-clone white"></i> <span class="icon_text white_text">Save</span>
+                                        </a>
+                                    </div>
+                                    <div class="Right_One_Aling">
+                                        <!--ng-click="OpenProductCatalogModalPopup()"-->
+                                        <a class="createinquirybtn_solidbg card_Section aling_float_right space_right border_icon_color_green" ng-click="Clear()">
+                                            <span class="icon_text">Clear</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="LeftPanelFirstView" class="portalView col-md-8 col-sm-8" ng-class="{'mobileview' : MobileView === true}">
+                    <div class="RightSideView">
+                        <div class="EnquiryCountSection TwoSection">
+                            <div class="RightAling">
+                                <span class="textbold_600">{{resData.res_AddEditEventController_GridHeaderName}}</span>
+                            </div>
+                        </div>
+                        <div class="Enquiry_list ScrollbarUI">
+                            <div class="Enquiry_data">
+                                <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                    <div class="col-md-12">
+                                        <!--<div id="AddEditEventGrid" kendo-grid="Grid" k-options="AddEditEventGrid" k-rebind="AddEditEventGrid"></div>-->
+                                        <div id="AddEditEventGrid" class="Company_Grid" style="height: 70vh;" dx-data-grid="AddEditEventGrid" dx-item-alias="EventmasterData">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

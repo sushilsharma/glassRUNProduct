@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div class="row-fluid">
+        <div class="uk-tab uk-tab-flip">
+            <div class="md-card">
+                <div class="md-card-content">
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="formTab">
+
+                            <div class="uk-grid" data-uk-grid-margin>
+
+
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row">
+                                        <label for="EmailEventId"> Email Event  </label>
+                                        <select id="ddlRoleName" ng-model="RoleMasterData.ddlRoleName">
+                                            <option value="0">Select</option>
+                                            <option data-ng-repeat="t in RoleMasterData" value="{{t.RoleMasterId}}">{{t.RoleName}}</option>
+                                        </select>
+                                    </div>
+                                    <i id="inputRoleId" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                                </div>
+
+
+
+                                <!--<div class="uk-width-medium-1-2">
+                                    <div class="parsley-row">
+                                        <label for="RoleId "> RoleId  </label>
+                                        <input id="inputRoleIdtype=" text" ng-model=RoleId name="Input" ng-change="validatefield('RoleId','txt')" class="md-input" />
+                                    </div>
+                                    <i id="inputRoleId" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                                </div>-->
+                                <!--<div class="uk-width-medium-1-2">
+                                    <div class="parsley-row">
+                                        <label for="PageId "> PageId  </label>
+                                        <input id="inputPageIdtype=" text" ng-model=PageId name="Input" ng-change="validatefield('PageId','txt')" class="md-input" />
+                                    </div>
+                                    <i id="inputPageId" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                                </div>-->
+
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row">
+                                        <label for="PageId"> PageId  </label>
+                                        <select ng-model="ddlPageName" ng-options="pagesData.PageId as pagesData.PageName for pagesData in PagesData track by pagesData.PageId"
+                                                ng-change="GetAllResourcesOnPageSelection();"></select>
+
+                                        <!--<select id="inputPageId" ng-model="PagesData.ddlPageName" ng-change="GetAllResourcesOnPageSelection();">
+                                            <option value="0">Select</option>
+                                            <option data-ng-repeat="t in PagesData" value="{{t.PageId}}">{{t.PageName}}</option>
+                                        </select>-->
+                                    </div>
+                                    <i id="inputPageId" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                                </div>
+                            </div>
+                            <div class="uk-grid">
+                                <div class="uk-width-large-1-4 uk-width-medium-1-2">
+                                    <div class="uk-input-group">
+                                        <input id="buttonSave" ng-click="RoleWiseFieldAccesssave()" type="button" class="md-btn md-btn-danger" value="Save" />
+                                        <input id="buttonBack" ng-click="reset()" type="button" class="md-btn" value="Reset" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="gridTab">
+
+                            <h2>{{ title }}</h2>
+                            <div>
+                                <br />
+                                <button ng-click="setPageSize()">Set page size</button>
+                                <br />
+                                <br />
+                                <div kendo-grid="mainGrid" k-options="RoleWiseFieldAccessmainGridOptions" k-rebind="RoleWiseFieldAccessmainGridOptions"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div kendo-window="modal" k-title="'Delete Record'" k-visible="false" k-modal="true">
+        Are you sure you want to delete?
+        <button ng-click="SoftDeleteRoleWiseFieldAccessById(PK_RoleWiseFieldAccess)">OK</button>
+    </div>
+</body>
+</html>

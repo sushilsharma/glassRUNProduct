@@ -1,0 +1,376 @@
+﻿<div class="col-md-12" style="padding:0px">
+    <style>
+        .selectedYes {
+            width: 17px;
+            font-size: 14px;
+            margin-right: 6px;
+            color: #39b54a !important;
+            cursor: pointer;
+        }
+
+        .selectedNoButton {
+            width: 17px;
+            font-size: 14px;
+            margin-right: 6px;
+            color: #C1272D !important;
+            cursor: pointer;
+        }
+
+        .selectedNo {
+            width: 17px;
+            font-size: 14px;
+            margin-right: 6px;
+            color: #19211b;
+            cursor: pointer;
+        }
+
+        .transpantcolorbtn {
+            border: 1px solid black;
+            border-radius: 15px;
+            color: black;
+            font-size: 18px;
+        }
+
+        .detailsLableValue {
+            width: 100%;
+        }
+
+        .SelectedRuleButton {
+            background-color: #D4145A !important;
+            color: #fff !important;
+        }
+
+        .SelectedNewConButton {
+            background-color: #F15A24 !important;
+            color: #fff !important;
+        }
+
+        .btn-danger {
+            background-color: #F15A24 !important;
+        }
+
+        .rulebtncontrol {
+            border: 1px solid #F15A24 !important;
+        }
+
+        .ruleValueMissing {
+            border: 1px solid red !important;
+        }
+
+        .ruleValueValid {
+            border: 1px solid #d5d5d5 !important;
+        }
+    </style>
+    <div class="row" style="margin-top: 16px;">
+        <div class="col-md-8 bussinessrightpanel">
+            <div class="col-md-12" ng-if="addnewrulediv">
+
+
+
+                <div class="col-md-12">
+
+                    <div class='bussinessrulecard'>
+                        <div class='bussinessequenceNumber'><div style="transform: rotate(48deg);color: #39b54a;font-size: 21px;margin-top: -17px;"><i class="fa fa-thumb-tack"></i></div>  </div>
+                        <div class='bussinesruleText'>
+                            <div class='bussinessruleheader'>{{resData.res_AddEditBusinessRuleEngine_RulePreview}} : {{FinalValue.DetailsRuleName}}</div>
+                            <div class='bussinessrulecontaint'>
+                                {{DynamicGeneratedRuleString()}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12" style="padding: 0px; margin: 0px">
+                        <div style="float:left;width:100%;border-bottom:1px solid #d5d5d5;padding-bottom:10px;color:#39b54a;font-weight:600">{{resData.res_AddEditBusinessRuleEngine_If}}</div>
+                    </div>
+                    <div ng-repeat="ruleList in RuleListData" ng-init="ruleList.ConditionNumber = $index+1">
+
+
+                        <div class="col-md-12" style="padding: 0px; margin: 0px">
+
+                        </div>
+
+                        <div class="col-md-12" style="padding: 0px; margin: 0px;margin-top: 12px;margin-bottom: 5px;">
+                            Condition {{$index + 1}}:
+                        </div>
+                        <div style="float:left;width:100%;" ng-repeat="ruleConditionList in ruleList.ConditionList" ng-init="ruleConditionList.ConditionNumber = $index">
+                            <div class="col-md-12" style="padding: 0px; margin: 0px">
+
+
+                                <div class="col-md-3" style="padding-left: 0px;">
+
+                                    <select class="ruleselectcontrol" style="margin:0px !important" ng-model="ruleConditionList.ObjectName" ng-class="{'ruleValueMissing' : ruleConditionList.ObjectNameValid}" ng-change="LoadPropertiesByObject(ruleConditionList.ObjectName,ruleList.RuleId,ruleConditionList.ConditionId)" ng-options="obj.Name as obj.Name for obj in RuleObjectsList">
+                                        <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectObjectName}}
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3">
+
+                                    <select class="ruleselectcontrol" style="margin:0px !important" ng-model="ruleConditionList.PropertyName" ng-class="{'ruleValueMissing' : ruleConditionList.PropertyNameValid}" ng-options="obj.Name as obj.Name for obj in ruleConditionList.ObjectPropertiesList">
+                                        <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectPropertyName}}
+                                    </select>
+
+
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="ruleselectcontrol" style="margin:0px !important" ng-class="{'ruleValueMissing' : ruleConditionList.ComparisonValueValid}" ng-model="ruleConditionList.ComparisonValue" ng-change="SelectComparisonValue()" ng-options="obj.Value as obj.Value for obj in ComparisonDataList">
+                                        <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectOperand}}
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="divcontrol" style="width: 125px;margin-top:0px">
+                                        <input ng-model="ruleConditionList.OutPutValue" ng-class="{'ruleValueMissing' : ruleConditionList.OutPutValueValid , 'ruleValueValid' : !ruleConditionList.OutPutValueValid || ruleConditionList.OutPutValueValid === undefined}" class="underlinetextbox" style="padding-left: 10px;width: 100%;height: 29px !important;" placeholder="Please enter value">
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+
+                                    <a class="ruleremoveicon" style="margin-left: 20px;" ng-click="RemoveRuleConditions(ruleList.RuleId,ruleConditionList.ConditionId,$index,$parent.$index)">
+                                        <i class="fa fa-times-circle-o"></i>
+                                    </a>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-12" style="padding: 0px;margin-top: 5px;" ng-if="HideControl{{$parent.$index}}{{$index}}">
+                                <!--<div class="col-md-12" style="padding: 0px;margin-top: 5px;" ng-show="ruleList.ConditionNumber !== ConditionIndexId && ruleConditionList.ConditionNumber !== RuleIndexId">-->
+                                <!--<div style="float:left;width:50%;padding-top: 10px;padding-bottom: 13px;" ng-hide="ruleConditionList.SelectedButton === ''">-->
+                                <div style="float:left;width:50%;padding-top: 10px;padding-bottom: 13px;" ng-if="($index+1)!=ruleList.ConditionList.length">
+                                    <div style="float:left;width:60px">
+
+                                        <a ng-click="UpdateRuleConditions(ruleList.RuleId,ruleConditionList.ConditionId,$index,$parent.$index,'&')" class="btn rulebtncontrol" style="border: 1px solid #D4145A" ng-class="{'SelectedRuleButton' : ruleConditionList.SelectedButton === '&'}">{{resData.res_AddEditBusinessRuleEngine_AND}}</a>
+                                    </div>
+                                    <div style="float:left;width:60px">
+
+                                        <a ng-click="UpdateRuleConditions(ruleList.RuleId,ruleConditionList.ConditionId,$index,$parent.$index,'||')" class="btn rulebtncontrol" style="border: 1px solid #D4145A" ng-class="{'SelectedRuleButton' : ruleConditionList.SelectedButton === '||'}">{{resData.res_AddEditBusinessRuleEngine_OR}}</a>
+                                    </div>
+                                </div>
+                                <div style="float:right;width:36%;" ng-if="($index+1)==ruleList.ConditionList.length">
+                                    <div style="float: left; width: 130px; text-align: right; padding-right: 15px;margin-top: 2px;">{{resData.res_AddEditBusinessRuleEngine_NewCondition}}</div>
+                                    <div style="float:left;width:60px">
+                                        <a ng-click="UpdateNewRuleConditions(ruleList.RuleId,'&')" class="btn rulebtncontrol" ng-class="{'SelectedNewConButton' : ruleConditionList.SelectedButton === '&'}">{{resData.res_AddEditBusinessRuleEngine_AND}}</a>
+                                    </div>
+                                    <div style="float:left;width:60px">
+                                        <a ng-click="UpdateNewRuleConditions(ruleList.RuleId,'||')" class="btn rulebtncontrol" ng-class="{'SelectedNewConButton' : ruleConditionList.SelectedButton === '||'}" style="border: 1px solid #F15A24;">{{resData.res_AddEditBusinessRuleEngine_OR}}</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" style="padding: 0px; margin-top: 15px;" ng-hide="HideControl{{$parent.$index}}{{$index}}">
+
+                                <div style="float:left;width:50%;">
+                                    <div style="float:left;width:60px">
+                                        <a class="btn rulebtncontrol" style="border: 1px solid #D4145A" ng-class="{'SelectedRuleButton' : ruleConditionList.SelectedRuleButton === '&'}" ng-click="AddAndConditionInExistingCondtion(ruleList.RuleId,ruleConditionList.ConditionId,$index,$parent.$index)">{{resData.res_AddEditBusinessRuleEngine_AND}}</a>
+                                    </div>
+                                    <div style="float:left;width:60px">
+                                        <a class="btn rulebtncontrol" style="border: 1px solid #D4145A" ng-class="{'SelectedRuleButton' : ruleConditionList.SelectedRuleButton === '||'}" ng-click="AddOrConditionInExistingCondtion(ruleList.RuleId,ruleConditionList.ConditionId,$index,$parent.$index)">{{resData.res_AddEditBusinessRuleEngine_OR}}</a>
+                                    </div>
+                                </div>
+                                <div style="float:right;width:36%;">
+                                    <div style="float: left; width: 130px; text-align: right; padding-right: 15px;margin-top: 2px;">{{resData.res_AddEditBusinessRuleEngine_NewCondition}}</div>
+                                    <div style="float:left;width:60px">
+                                        <a class="btn rulebtncontrol" ng-click="AddNewConditionCriteria('&',ruleList.RuleId,ruleConditionList.ConditionId, $event,$index,$parent.$index);">{{resData.res_AddEditBusinessRuleEngine_AND}}</a>
+                                    </div>
+                                    <div style="float:left;width:60px">
+                                        <a class="btn rulebtncontrol" style="border: 1px solid #F15A24;" ng-click="AddNewConditionCriteria('||',ruleList.RuleId,ruleConditionList.ConditionId, $event,$index,$parent.$index);">{{resData.res_AddEditBusinessRuleEngine_OR}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding: 0px; margin: 0px; color: #39b54a; font-weight: 600; border-top: 1px solid #d5d5d5; margin-top: 15px; padding-top: 10px;">{{resData.res_AddEditBusinessRuleEngine_Then}}</div>
+                    <div class="col-md-12" style="padding: 0px; margin: 0px">
+                        <div style="float:left;width:100%;margin-top: 5px;">
+                            <div class="col-md-3" style="padding-left: 0px;">
+
+                                <select class="ruleselectcontrol" ng-disabled="OutputObjectNameIsDisable" style="margin:0px !important" ng-model="FinalValue.OutputObjectName" ng-change="LoadObjectPropertiesByObject(FinalValue.OutputObjectName,1)" ng-options="obj.Name as obj.Name for obj in RuleObjectsList">
+                                    <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectObjectName}}
+                                </select>
+
+                            </div>
+                            <div class="col-md-3">
+
+                                <select class="ruleselectcontrol" ng-disabled="OutputPropertyNameIsDisable" style="margin:0px !important" ng-model="FinalValue.OutputPropertyName" ng-options="obj.Name as obj.Name for obj in ThenRuleObjectsPropertiesList">
+                                    <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectPropertyName}}
+                                </select>
+
+                            </div>
+                            <div class="col-md-1" style="margin-left: -29px;">
+                                <div style="text-align: center;margin-top: 5px;">=</div>
+
+                            </div>
+                            <div class="col-md-3 finalvalue" style="margin-left: -31px;width: 30%;">
+
+                                <select class="form-control" style="margin:0px !important" ng-model="FinalValue.FunctionType" ng-change="LoadOutputModalPopup()" ng-options="obj.FunctionText as obj.FunctionText for obj in RuleFunctionList">
+                                    <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectOutputFunction}}
+
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+
+
+                                <a style="cursor:pointer;" ng-click="FinalThenValueSplite(FinalValue.FinalThenValue);">{{FinalValue.FinalThenValue}}</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="bussinessrulerightpaneldetails" style="margin-top:0px;">
+                <div class="col-md-12 ruletypeheading">
+                    <div class="col-md-6" style="margin-top: 10px;">
+                        <h2>{{resData.res_AddEditBusinessRuleEngine_Details}}</h2>
+                    </div>
+                    <div class="col-md-6" style="display: flex; justify-content: flex-end">
+                        <div class="footerbuttons" style="margin: 0px;margin-right: 12px;">
+                            <a class="buttonstext transpantcolorbtn" style="width: 55px;text-align: center;" ng-click="BackView();">
+                                <i class="fa fa-arrow-circle-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12 removepadding">
+                        <div class="bussinessdetailsLable">{{resData.res_AddEditBusinessRuleEngine_RuleType}}</div>
+                        <div class="col-md-12 detailsLableValue" style="padding: 0px;">
+                            <div class="col-md-11" style="padding: 0px;">
+
+                                <select class="form-control" ng-disabled="RuleListData.IsEdit" ng-model="FinalValue.Id" ng-change="onChangeRuleType()" ng-options="ruleType.Code as ruleType.Name for ruleType in  RulesEngineType">
+                                    <option value="">{{resData.res_AddEditBusinessRuleEngine_Selectruletype}}
+                                </select>
+                            </div>
+                            <div class="col-md-1" style="color:#C1272D">*</div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 removepadding">
+                        <!--<div class="bussinessdetailsLable">
+                            Rule Name:
+                        </div>-->
+                        <div class="col-md-11 detailsLableValue" style="padding: 0px;width:91%;">
+                            <input class="underlinetextbox" ng-model="FinalValue.DetailsRuleName" placeholder="Rule Name/ Header">
+                        </div>
+                        <div class="col-md-1" style="color:#C1272D">*</div>
+                    </div>
+                    <div class="col-md-12 removepadding">
+                        <!--<div class="bussinessdetailsLable">
+                            Description:
+                        </div>-->
+                        <div class="detailsLableValue greentextcolor">
+                            <input class="underlinetextbox" ng-model="FinalValue.DetailsDescription" placeholder="Description">
+                        </div>
+                    </div>
+                    <!--<div class="col-md-12 removepadding">
+                        <div class="bussinessdetailsLable">
+                            Active:
+                        </div>
+                        <div class="detailsLableValue greentextcolor">
+                            <a><i class="fa fa-check-circle" aria-hidden="true" style="width: 17px; font-size: 14px; margin-right: 6px; color: #39b54a;"></i>YES</a>
+                            <a><i class="fa fa-times-circle" aria-hidden="true" style="width: 17px; font-size: 14px; margin-right: 6px; color: #39b54a;"></i>No</a>
+                        </div>
+                    </div>-->
+
+                    <div class="col-md-12 removepadding" style="margin-top: 10px;padding-bottom: 0px;">
+                        <!--<div class="bussinessdetailsLable">
+                            From Date:
+                        </div>-->
+                        <div class="detailsLableValue greentextcolor">
+                            <div class="ConditionsBox" style="margin-right: 20px;width: 100% !important;">
+                                <div class="ConditionControlsBox">
+                                    <div class="selectobject" style="width: 100%;">
+                                        <div class="prepend-icon">
+                                            <input type="text" id="RuleStartDate" style="width:100%" autocomplete="off" ng-model='FinalValue.RuleStartDate' name="datepicker" class="form-control" placeholder="Select a from date...">
+                                            <i class="icon-calendar" style="float: right;right: 0;left: auto;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detailsLableValue greentextcolor" style="margin-top:10px;">
+                            <div class="ConditionsBox" style="width: 100% !important;">
+                                <div class="ConditionControlsBox">
+                                    <div class="selectobject" style="width: 100%;">
+                                        <div class="prepend-icon">
+                                            <input type="text" id="RuleEndDate" style="width:100%" autocomplete="off" ng-model='FinalValue.RuleEndDate' name="datepicker" class="form-control" placeholder="Select a end date...">
+                                            <i class="icon-calendar" style="float: right;right: 0;left: auto;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div ng-show="false" class="col-md-12 removepadding" style="">
+                        <div class="bussinessdetailsLable">{{resData.res_AddEditBusinessRuleEngine_ResponseRequired}}</div>
+                        <div class="detailsLableValue greentextcolor">
+                            <div class="col-md-12" style="padding: 0px;">
+                                <div class="col-md-6" style="display: flex; justify-content: flex-start">
+                                    <a style="width: 26%;font-size: 18px;" ng-class="{'selectedYes': FinalValue.IsResponseRequired}" ng-click="SetResponseRequired(true);" class="selectedNo"><i class="fa fa-check-circle" aria-hidden="true"></i>{{resData.res_AddEditBusinessRuleEngine_YES}}</a>
+                                </div>
+
+                                <div class="col-md-6" style="display: flex; justify-content: flex-end">
+                                    <a style="width: 24%;font-size: 18px;" ng-class="{'selectedYes': !FinalValue.IsResponseRequired}" ng-click="SetResponseRequired(false);" class="selectedNo"><i class="fa fa-times-circle" aria-hidden="true"></i>{{resData.res_AddEditBusinessRuleEngine_No}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 removepadding">
+                        <div class="bussinessdetailsLable">{{resData.res_AddEditBusinessRuleEngine_EnableDisable}}</div>
+                        <div class="detailsLableValue greentextcolor">
+
+                            <div class="col-md-12" style="padding:0px">
+                                <div class="col-md-6" style="display: flex; justify-content: flex-start">
+                                    <a style="width: 26%;font-size: 18px;display: flex; justify-content: flex-start" ng-class="{'selectedYes': FinalValue.Enable}" ng-click="SetEnable(true);" class="selectedNo"><i class="fa fa-check-circle" style="font-size: 22px;margin-right: 10px;" aria-hidden="true"></i><span style="font-size: 14px;">{{resData.res_AddEditBusinessRuleEngine_YES}}</span></a>
+                                </div>
+                                <div class="col-md-6" style="display: flex; justify-content: flex-end">
+                                    <a style="width: 24%;font-size: 18px;display: flex; justify-content: flex-end" ng-class="{'selectedNoButton': !FinalValue.Enable}" ng-click="SetEnable(false);" class="selectedNo"><i class="fa fa-times-circle" style="font-size: 22px;margin-right: 10px;" aria-hidden="true"></i><span style="font-size: 14px;">{{resData.res_AddEditBusinessRuleEngine_No}}</span></a>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <div ng-show="false" class="col-md-12 removepadding" style="margin-top: 15px;border-bottom:none !important">
+                        <div class="bussinessdetailsLable">{{resData.res_AddEditBusinessRuleEngine_ResponsePropertyName}}</div>
+                        <div class="detailsLableValue greentextcolorbold">
+                            {{DynamicGeneratedThenString()}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-12 ActionButtons" ng-if="IsControlVisible" style="border-top: 1px solid #d5d5d5;padding-top: 14px;">
+        <div class="col-md-6" style="display: flex; justify-content: flex-start;padding-left:15px;">
+            <div class="footerbuttons" style="margin: 0px;margin-right: 12px;">
+                <a class="buttonstext transpantcolorbtn" style="width: 55px;text-align: center;" ng-click="ResetRuleControl();">
+                    <i class="fa fa-repeat"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6" style="display: flex; justify-content: flex-end">
+            <div class="footerbuttons" style="margin: 0px;margin-right: 12px;">
+                <a class="buttonstext transpantcolorbtn" style="text-align: center;" ng-click="BackView();">{{resData.res_AddEditBusinessRuleEngine_Cancel}}</a>
+            </div>
+
+            <div class="footerbuttons" style="margin: 0px;">
+                <a class="buttonstext bggreencolorbtn" ng-click="SaveRule();">{{resData.res_AddEditBusinessRuleEngine_Save}}</a>
+            </div>
+        </div>
+    </div>
+</div>

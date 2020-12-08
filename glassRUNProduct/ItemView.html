@@ -1,0 +1,823 @@
+﻿<div class="panel-content">
+
+    <div style="float:left;width:15%">
+        <div class="md-card-content">
+            <div class="uk-margin-bottom uk-text-center campusVendorProduct uk-position-relative">
+                <div class="user_heading_avatar productImages fileinput fileinput-new" style="float: none" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail">
+                        <img class="" ng-src="{{ItemData.image}}">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                    <div class="user_avatar_controls">
+                        <div class="cameraiconcss">
+                            <span class="btn-file">
+                                <span class="fileinput-new" style="margin-left: 11px;position: relative;top: 10px;">
+                                    <i class="fa fa-camera" style="font-size:16px">
+                                    </i>
+                                </span>
+                                <span class="fileinput-exists" style="margin-left: 11px;position: relative;top: 10px;">
+                                    <i class="fa fa-camera" style="font-size:16px">
+                                    </i>
+                                </span>
+
+                                <input type="file" id="fileUpload" ng-file-select-image="onFileSelect($files)" ng-model="ItemMasterForm.Input_ImageUrl" accept="image/png, image/jpeg" />
+
+                            </span>
+                        </div>
+
+                        <a id="btn2" class="btn-file fileinput-exists" ng-click="ClearUploadProfileImage()" ng-hide="CheckFileUploaded()" style="display: inline">
+                            <div class="deleteiconcss">
+                                <div style="margin-left: 11px;position: relative;top: 10px;">
+                                    <i class="fa fa-times" style="font-size: 20px;">
+                                    </i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="float:left;width:100%;margin-top: 12px;">
+
+            </div>
+            <div style="float:left;width:100%">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="formcontrols form-horizontal ng-pristine ng-valid" style="padding-bottom: 51px!important;">
+            <div class="col-lg-12">
+                <div ng-if="pageContrlAcessData.ItemName !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                <span>{{resData.res_CreateInquiryPage_ItemName}} :</span>
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-model="ItemMasterForm.Input_ItemName" class="form-control" ng-readonly="pageContrlAcessData.ItemName =='0' || pageContrlAcessData.ItemName =='1'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="pageContrlAcessData.ItemNameEnglishLanguage !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_ItemEnglishLanguage}} :
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-model="ItemMasterForm.Input_ItemEnglishLanguage" class="form-control" ng-readonly="pageContrlAcessData.ItemNameEnglishLanguage =='0' || pageContrlAcessData.ItemNameEnglishLanguage =='1'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-lg-12">
+                <div ng-if="pageContrlAcessData.ItemCode !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_CreateInquiryPage_ItemCode}} :
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-model="ItemMasterForm.Input_ItemCode" class="form-control" ng-readonly="pageContrlAcessData.ItemCode =='0' || pageContrlAcessData.ItemCode =='1'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="pageContrlAcessData.Input_ItemShortCode !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                <span>{{resData.res_createinquirypage_Item_Short_Code}} :</span>
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-model="ItemMasterForm.Input_ItemShortCode" class="form-control" ng-readonly="pageContrlAcessData.Input_ItemShortCode =='0' || pageContrlAcessData.Input_ItemShortCode =='1'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="col-lg-12">
+
+
+
+                <div ng-if="pageContrlAcessData.Input_ItemType !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_SelectItemType}} :
+                            </div>
+                            <div class="labelcontrol">
+                                <select id="txtItemCode" class="gray_border_selectbox" ng-disabled="pageContrlAcessData.Input_ItemType =='0' || pageContrlAcessData.Input_ItemType =='1'">
+                                    <option value="">Select Item Type</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div ng-if="pageContrlAcessData.Branch_Plant !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_Branch_Plant}} :
+                            </div>
+                            <div class="labelcontrol">
+                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                    <div class="form-group MultiSelectControl" style="width: 100%;margin-left:5px ;margin-top:10px">
+                                        <div ng-dropdown-multiselect="" ng-readonly="pageContrlAcessData.Branch_Plant =='0' || pageContrlAcessData.Branch_Plant =='1'" options="LoadedBranchPlantList" selected-model="BranchPlantDataSelectedList" checkboxes="false" extra-settings="SortByListSetting"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12">
+
+                <div ng-if="pageContrlAcessData.ShelfLife !='0'">
+
+
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                <span>{{resData.res_ItemView_ShelfLife}} :</span>
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-model="ItemMasterForm.Input_ShelfLife" class="form-control" ng-readonly="pageContrlAcessData.ShelfLife =='0' || pageContrlAcessData.ShelfLife =='1'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="pageContrlAcessData.BBD !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                <span>{{resData.res_ItemView_BBD}} :</span>
+                            </div>
+                            <div class="labelcontrol">
+
+                                <input type="text" ng-model="ItemMasterForm.Input_BBD" class="form-control" ng-readonly="pageContrlAcessData.BBD =='0' || pageContrlAcessData.BBD =='1'" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="col-lg-12">
+
+                <div ng-if="pageContrlAcessData.Barcode !='0'">
+
+
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                <span>{{resData.res_ItemView_Barcode}} :</span>
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-model="ItemMasterForm.Input_Barcode" class="form-control" ng-readonly="pageContrlAcessData.Barcode =='0' || pageContrlAcessData.Barcode =='1'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-if="pageContrlAcessData.ItemOwner !='0'">
+
+
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                <span>{{resData.res_ItemView_ItemOwner}} :</span>
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-model="ItemMasterForm.Input_ItemOwner" class="form-control" ng-readonly="pageContrlAcessData.ItemOwner =='0' || pageContrlAcessData.ItemOwner =='1'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="col-lg-12">
+
+
+
+
+
+                <div ng-if="pageContrlAcessData.Brand !='0'">
+
+
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                <span>{{resData.res_ItemView_Brand}} :</span>
+                            </div>
+                            <div class="labelcontrol">
+                                <!--<input type="text"  ng-model="ItemMasterForm.Input_Brand" class="form-control" ng-readonly="pageContrlAcessData.Input_Brand =='0' || pageContrlAcessData.Input_Brand =='1'" />-->
+
+                                <select id="ddlBrandId" ng-model="ItemMasterForm.Input_Brand" class="form-control" name="val_SelectObject" ng-disabled="pageContrlAcessData.Brand =='0' || pageContrlAcessData.Brand =='1'">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="pageContrlAcessData.Description !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_Description}} :
+                            </div>
+                            <div class="labelcontrol">
+                                <textarea id="txtItemName" type="text" style="height:100px" ng-model="ItemMasterForm.Input_ItemDescription" class="form-control" ng-readonly="pageContrlAcessData.Description =='0' || pageContrlAcessData.Description =='1'"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="col-lg-12">
+
+
+                <div ng-if="pageContrlAcessData.Field1 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field1}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-readonly="pageContrlAcessData.Field1 =='0' || pageContrlAcessData.Field1 =='1'" ng-model="ItemMasterForm.Input_Field1" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-if="pageContrlAcessData.Field2 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field2}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-readonly="pageContrlAcessData.Field2 =='0' || pageContrlAcessData.Field2 =='1'" ng-model="ItemMasterForm.Input_Field2" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12">
+
+
+
+
+
+
+                <div ng-if="pageContrlAcessData.Field3 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field3}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-readonly="pageContrlAcessData.Field3=='0' || pageContrlAcessData.Field3 =='1'" ng-model="ItemMasterForm.Input_Field3" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div ng-if="pageContrlAcessData.Field4 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field4}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-readonly="pageContrlAcessData.Field4 =='0' || pageContrlAcessData.Field4 =='1'" ng-model="ItemMasterForm.Input_Field4" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="col-lg-12">
+
+                <div ng-if="pageContrlAcessData.Field5 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field5}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-readonly="pageContrlAcessData.Field5 =='0' || pageContrlAcessData.Field5 =='1'" ng-model="ItemMasterForm.Input_Field5" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-if="pageContrlAcessData.Field6 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field6}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-readonly="pageContrlAcessData.Field6 =='0' || pageContrlAcessData.Field6 =='1'" ng-model="ItemMasterForm.Input_Field6" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-12">
+
+
+
+
+
+
+
+                <div ng-if="pageContrlAcessData.Field7 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field7}}
+                            </div>
+                            <div class="labelcontrol">
+
+                                <input type="text" ng-readonly="pageContrlAcessData.Field7 =='0' || pageContrlAcessData.Field7 =='1'" ng-model="ItemMasterForm.Input_Field7" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-if="pageContrlAcessData.Field8 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field8}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-readonly="pageContrlAcessData.Field8 =='0' || pageContrlAcessData.Field8 =='1'" ng-model="ItemMasterForm.Input_Field8" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+
+                <div ng-if="pageContrlAcessData.Field9 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field9}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-readonly="pageContrlAcessData.Field9 =='0' || pageContrlAcessData.Field9 =='1'" ng-model="ItemMasterForm.Input_Field9" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-if="pageContrlAcessData.Field10 !='0'">
+                    <div class="col-lg-6">
+                        <div class="columnfulldata  margintopdata">
+                            <div class="labelname reasonlable">
+                                {{resData.res_ItemView_Field10}}
+                            </div>
+                            <div class="labelcontrol">
+                                <input type="text" ng-readonly="pageContrlAcessData.Field10 =='0' || pageContrlAcessData.Field10 =='1'" ng-model="ItemMasterForm.Input_Field10" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div ng-if="pageContrlAcessData.UnitOfMeasureDetails !='0'">
+                <div class="col-lg-12">
+                    <div class="columnfulldata  margintopdata">
+                        <div class="labelname reasonlable">
+                            <b>  {{resData.res_ItemView_UnitOfMeasureDetails}}</b>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-12">
+                    <div ng-if="pageContrlAcessData.PrimaryUnitOfMeasure !='0'">
+                        <div class="col-lg-6">
+                            <div class="columnfulldata  margintopdata">
+                                <div class="labelname reasonlable">
+                                    {{resData.res_ItemView_BaseUnitOfMeasure}}
+                                </div>
+                                <div class="labelcontrol">
+                                    <select id="ddlContacttype" ng-model="ItemMasterForm.Input_PrimaryUnitOfMeasureItem" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ItemUnitOfMeasureList | orderBy:'Name'" ng-disabled="pageContrlAcessData.PrimaryUnitOfMeasure =='0' || pageContrlAcessData.PrimaryUnitOfMeasure =='1'">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div ng-if="pageContrlAcessData.PricingUnit !='0'">
+                        <div class="col-lg-6">
+                            <div class="columnfulldata  margintopdata">
+                                <div class="labelname reasonlable">
+                                    {{resData.res_Pricing_Unit}}
+                                </div>
+                                <div class="labelcontrol">
+                                    <select id="ddlContacttype" ng-model="ItemMasterForm.Input_PricingUnit" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ItemUnitOfMeasureList | orderBy:'Name'" ng-disabled="pageContrlAcessData.PricingUnit =='0' || pageContrlAcessData.PricingUnit =='1'">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12">
+                    <div ng-if="pageContrlAcessData.ShippingUnit !='0'">
+                        <div class="col-lg-6">
+                            <div class="columnfulldata  margintopdata">
+                                <div class="labelname reasonlable">
+                                    {{resData.res_Shipping_Unit}}
+                                </div>
+                                <div class="labelcontrol">
+                                    <select id="ddlContacttype" ng-model="ItemMasterForm.Input_ShippingUnit" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ItemUnitOfMeasureList | orderBy:'Name'" ng-disabled="pageContrlAcessData.ShippingUnit =='0' || pageContrlAcessData.ShippingUnit =='1'">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div ng-if="pageContrlAcessData.ComponentUnit !='0'">
+                        <div class="col-lg-6">
+                            <div class="columnfulldata  margintopdata">
+                                <div class="labelname reasonlable">
+                                    {{resData.res_Component_Unit}}
+                                </div>
+                                <div class="labelcontrol">
+                                    <select id="ddlContacttype" ng-model="ItemMasterForm.Input_ComponentUnit" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ItemUnitOfMeasureList | orderBy:'Name'" ng-disabled="pageContrlAcessData.ComponentUnit =='0' || pageContrlAcessData.ComponentUnit =='1'">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12">
+                    <div ng-if="pageContrlAcessData.AutomatedWareHouseUOM !='0'">
+                        <div class="col-lg-6">
+                            <div class="columnfulldata  margintopdata">
+                                <div class="labelname reasonlable">
+                                    {{resData.res_ItemView_AutomatedWareHouseUOM}}
+                                </div>
+                                <div class="labelcontrol">
+                                    <select id="ddlContacttype" ng-model="ItemMasterForm.Input_AutomatedWareHouseUOM" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ItemUnitOfMeasureList | orderBy:'Name'" ng-disabled="pageContrlAcessData.AutomatedWareHouseUOM =='0' || pageContrlAcessData.AutomatedWareHouseUOM =='1'">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="multilanguage_table" ng-if="pageContrlAcessData.ItemMultiLanguage !='0'">
+                <div class="col-lg-12" style="margin-top: 35px;">
+                    <div class="columnfulldata  margintopdata">
+                        <div class="labelname reasonlable">
+                            <b>Item Multi Language</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="conatinerheader headerdataconatiner">
+                    <div class="UOMContainer  rightaling">
+                        {{resData.res_ItemView_SrNo}}
+                    </div>
+                    <div class="Company_AddCompany">
+                        {{resData.res_ItemView_SelectLanguage}}
+                    </div>
+                    <div class="Company_AddCompany">
+                        {{resData.res_ItemView_ItemName}}
+                    </div>
+                </div>
+
+                <div class="conatinerbody">
+                    <div class="conatinerheader itemrowcontainer" style="height: auto;padding: 0px !important;">
+                        <div class="UOMContainer  rightaling">
+                            {{resData.res_ItemView_SrNo}}
+                        </div>
+                        <div class="Company_AddCompany">
+                            <select id="ddlContacttype" ng-model="ItemMasterForm.Input_SelectItemLanguage" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in LookupCultureList  | orderBy:'Name'">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="Company_AddCompany">
+                            <input class="form-control form-white" ng-model="ItemMasterForm.Input_ItemNameLanguage" type="text">
+                        </div>
+                        <div class="removeItemicon">
+                            <a ng-click="AddItemNameInMultiLanguage()">
+                                {{resData.res_ItemLanguage_Add}}
+                            </a>
+                        </div>
+                        <div class="removeItemicon">
+                            <a ng-click="ClearItemNameInMultiLanguage()">
+                                {{resData.res_ItemLanguage_Clear}}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="conatinerheader itemrowcontainer multilanguage_data" style="padding-top: 0px !important;padding-bottom: 0px !important;" ng-repeat="itemlanugage in ItemNameMultiLanguageList">
+                        <div class="UOMContainer  rightaling">
+                            {{$index + 1}}
+                        </div>
+                        <div class="Company_AddCompany">
+                            {{itemlanugage.Name}}
+                        </div>
+                        <div class="Company_AddCompany">
+                            {{itemlanugage.ItemName}}
+                        </div>
+                        <div class="removeItemicon">
+                            <a ng-click="EditItemNameInMultiLanguage(itemlanugage.CultureId)">
+                                {{resData.res_ItemLanguage_Edit}}
+                            </a>
+                        </div>
+                        <div class="removeItemicon">
+                            <a ng-click="RemoveItemNameInMultiLanguage(itemlanugage.CultureId)">
+                                {{resData.res_ItemLanguage_Delete}}
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div ng-if="pageContrlAcessData.ConversionFactor !='0'">
+                <div class="col-lg-12" style="margin-top: 35px;">
+                    <div class="columnfulldata  margintopdata">
+                        <div class="labelname reasonlable">
+                            <b>  {{resData.res_ItemView_ConversionFactor}}</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="conatinerheader headerdataconatiner">
+
+                    <div class="UOMContainer  rightaling">
+                        {{resData.res_ItemView_SrNo}}
+                    </div>
+
+                    <div class="Company_AddCompany">
+                        {{resData.res_createinquirypage_Unit_Of_Measure}}
+                    </div>
+                    <div class="Company_AddCompany">
+                        {{resData.res_Related_Unit_Of_Measure}}
+                    </div>
+                    <div class="Company_AddCompany">
+                        {{resData.res_Conversion_Factor}}
+                    </div>
+
+                </div>
+                <div class="conatinerbody">
+                    <div class="conatinerheader itemrowcontainer" ng-if="pageContrlAcessData.ConversionFactorButtons !='0'">
+                        <div class="UOMContainer rightaling">
+                            &nbsp;
+                        </div>
+                        <div class="Company_AddCompany">
+                            <select id="ddlContacttype" ng-model="ItemMasterForm.Input_PrimaryUnitOfMeasure" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ItemUnitOfMeasureList  | orderBy:'Name'">
+                                <option value="">Select</option>
+                            </select>
+                            <!--<input class="form-control form-white" ng-model="AddCompanyDeailsJSON.Email" type="text">-->
+                        </div>
+
+                        <div class="Company_AddCompany">
+                            <select id="ddlContacttype" ng-model="ItemMasterForm.Input_RelatedUnitOfMeasure" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ItemUnitOfMeasureList  | orderBy:'Name'">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="Company_AddCompany">
+                            <input class="form-control form-white" ng-model="ItemMasterForm.Input_ConversionFactor" type="text">
+                        </div>
+                        <div class="removeItemicon" ng-if="pageContrlAcessData.ConversionFactorButtons !='0'">
+                            <a ng-click="AddItemConversionInfo()">
+                                <!--<i class="fa fa-plus" aria-hidden="true"></i>--> Add
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="conatinerheader itemrowcontainer" ng-repeat="ConversionInfo in ConversionInformationList">
+                        <div class="UOMContainer rightaling">
+                            {{$index + 1}}
+                        </div>
+                        <div class="Company_AddCompany">
+                            {{ConversionInfo.PrimaryUOMName}}
+                        </div>
+
+                        <div class="Company_AddCompany">
+                            {{ConversionInfo.RelatedUOMName}}
+                        </div>
+                        <div class="Company_AddCompany">
+                            {{ConversionInfo.Conversion}}
+                        </div>
+
+                        <div class="removeItemicon" ng-if="pageContrlAcessData.ConversionFactorButtons !='0'">
+                            <a ng-click="EditContactPersonInfo(ConversionInfo.ConversionInfoGUID)">
+                                <!--<i class="fa fa-pencil" aria-hidden="true"></i>--> Edit
+                            </a>&nbsp;| &nbsp;
+                            <a ng-click="DeleteContactInfo(ConversionInfo.ConversionInfoGUID)">
+                                <!--<i class="fa fa-trash" aria-hidden="true"></i>--> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div ng-if="pageContrlAcessData.ItemBasePrice !='0'">
+                <div class="col-lg-12" style="    margin-top: 35px;">
+                    <div class="columnfulldata  margintopdata">
+                        <div class="labelname reasonlable">
+                            <b>  {{resData.res_ItemView_ItemBasePrice}}</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="conatinerheader headerdataconatiner">
+
+                    <div class="UOMContainer  rightaling">
+                        {{resData.res_ItemView_SrNo}}
+                    </div>
+
+                    <div class="Company_AddCompany">
+                        {{resData.res_createinquirypage_Item_Price}}
+                    </div>
+                    <div class="Company_AddCompany">
+                        {{resData.res_Effective_Date}}
+                    </div>
+                    <div class="Company_AddCompany">
+                        {{resData.res_Expire_Date}}
+                    </div>
+
+                    <div class="removeItemicon" ng-if="pageContrlAcessData.ItemBasePriceButtons !='0'">
+                        {{resData.res_ItemView_Action}}
+                    </div>
+                </div>
+                <div class="conatinerbody">
+                    <div class="conatinerheader itemrowcontainer" ng-if="pageContrlAcessData.ItemBasePriceButtons !='0'">
+                        <div class="UOMContainer rightaling">
+                            &nbsp;
+                        </div>
+                        <div class="Company_AddCompany">
+                            <input type="text" ng-model="ItemMasterForm.Input_ItemPrice" class="form-control" ng-readonly="pageContrlAcessData.Input_ItemPrice =='0' || pageContrlAcessData.Input_ItemPrice =='1'" />
+                            <!--<input class="form-control form-white" ng-model="AddCompanyDeailsJSON.Email" type="text">-->
+                        </div>
+
+
+                        <div class="Company_AddCompany">
+                            <input type="text" ng-model='ItemMasterForm.Input_EffectiveDate' name="datepicker" class="form-control form-white date-picker effectiveDate" style="width:89% !important;" autocomplete="off" ng-click="BindEffectiveDate()">
+                            <i class="icon-calendar" style="float: right;right: 0;left: auto;"></i>
+
+                            <!--<input class="form-control form-white" ng-model="AddCompanyDeailsJSON.Email" type="text">-->
+                        </div>
+
+                        <div class="Company_AddCompany">
+                            <input type="text" id="EffectiveDate" ng-model='ItemMasterForm.Input_ExpireDate' name="datepicker" class="form-control form-white date-picker expireDate" style="width:89% !important;" autocomplete="off">
+                            <i class="icon-calendar" style="float: right;right: 0;left: auto;" ng-click="GetExpireDateControl(ItemMasterForm.Input_EffectiveDate)"></i>
+                            <!--<input class="form-control form-white" ng-model="AddCompanyDeailsJSON.Email" type="text">-->
+                        </div>
+
+
+                        <div class="removeItemicon" ng-if="pageContrlAcessData.ItemBasePriceButtons !='0'">
+                            <a ng-click="AddItemBasePriceInfo()">
+                                <!--<i class="fa fa-plus" aria-hidden="true"></i>--> Add
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="conatinerheader itemrowcontainer" ng-repeat="Contactinfo in ItemBaseInfoList">
+                        <div class="UOMContainer rightaling">
+                            {{$index + 1}}
+                        </div>
+                        <div class="Company_AddCompany">
+                            {{Contactinfo.ItemPrice}}
+                        </div>
+
+                        <div class="Company_AddCompany">
+                            {{Contactinfo.EffectiveDate}}
+                        </div>
+                        <div class="Company_AddCompany">
+                            {{Contactinfo.ExpireDate}}
+                        </div>
+
+                        <div class="removeItemicon" ng-if="pageContrlAcessData.ItemBasePriceButtons !='0'">
+                            <a ng-click="EditItemBasePriceInfo(Contactinfo.ItemBasePriceInfoGUID)">
+                                <!--<i class="fa fa-pencil" aria-hidden="true"></i>--> Edit
+                            </a>&nbsp;| &nbsp;
+                            <a ng-click="DeleteItemBasePriceInfo(Contactinfo.ItemBasePriceInfoGUID)">
+                                <!--<i class="fa fa-trash" aria-hidden="true"></i>--> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!--<div class="ActionButtons">
+                <div class="clearbtn" ng-if="pageContrlAcessData.BackButton !='0'">
+                    <button type="button" ng-click="CleaeAddItemForm()" class="btn btn-default">{{resData.res_AddNotification_BtnBack}}</button>
+                </div>
+                <div class="successbtn" ng-if="pageContrlAcessData.SaveButton !='0'">
+                    <button type="button" ng-click="AddItemInList()" class="btn btn-success">Save</button>
+                </div>
+
+            </div>-->
+
+            <div class="footerbuttons" style="float:right !important;">
+
+                <a class="buttonstext drop-shadow redcolorbtntext" ng-if="pageContrlAcessData.BackButton !='0'" ng-click="CleaeAddItemForm()" style="background-color: #fff;">
+                    <i class="fa fa-arrow-circle-left fa-icon" aria-hidden="true"></i> {{resData.res_AddNotification_BtnBack}}
+                </a>
+
+            </div>
+
+            <div class="footerbuttons" style="float:right !important;">
+
+                <a class="buttonstext drop-shadow greencolorbtntext" ng-if="pageContrlAcessData.SaveButton !='0'" ng-click="AddItemInList()" style="background-color: #fff;">
+                    <i class="fa fa-check fa-icon" aria-hidden="true"></i> {{resData.res_TruckUI_Save}}
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

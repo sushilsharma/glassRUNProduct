@@ -1,0 +1,80 @@
+﻿<div class="fullwidth"   ng-if="pageContrlAcessData.ContactTypeDropDown !='0'">
+    <div class="col-lg-12">
+        <div class="columnfulldata  margintopdata">
+            <div class="labelname reasonlable">
+                <b>  {{resData.res_AddCompany_ContactPersonDetails}}</b>
+            </div>
+        </div>
+    </div>
+    <div class="conatinerheader headerdataconatiner">
+
+        <div class="UOMContainer  rightaling">
+            {{resData.res_AddCompany_ContactType_SrNo}}
+        </div>
+
+        <div class="GridColumnWithBorder_AddCompany">
+            {{resData.res_AddCompany_ContactType}}
+        </div>
+        <div class="GridColumnWithBorder_AddCompany">
+            {{resData.res_AddCompany_ContactPersonName}}
+        </div>
+        <div class="GridColumnWithBorder_AddCompany">
+            {{resData.res_AddCompany_ContactPersonNumber}}
+        </div>
+        <div class="removeItemicon" style="width:16%">
+            {{resData.res_AddCompany_ContactType_Action}}
+        </div>
+    </div>
+    <div class="conatinerbody">
+        <div class="conatinerheader itemrowcontainer">
+            <div class="UOMContainer rightaling">
+                &nbsp;
+            </div>
+            <div class="GridColumnWithBorder_AddCompany">
+                <select id="ddlContacttype" ng-model="ContactInformationObject.ContactTypeId" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ContactTypeList  | orderBy:'Name'">
+                    <option value="">Select</option>
+                </select>
+                <!--<input class="form-control form-white" ng-model="AddCompanyDeailsJSON.Email" type="text">-->
+            </div>
+
+            <div class="GridColumnWithBorder_AddCompany">
+                <input class="form-control form-white" ng-model="ContactInformationObject.ContactPersonName" type="text">
+            </div>
+            <div class="GridColumnWithBorder_AddCompany">
+                <input class="form-control form-white" ng-model="ContactInformationObject.ContactPersonNumber" type="text">
+            </div>
+            <div class="removeItemicon" style="width:16%">
+                <a ng-click="AddContactPersonInfo()">
+                    <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
+                    <span ng-if="ContactInformationObject.EditContactinfoGUID ===''">Add</span>
+                    <span ng-if="ContactInformationObject.EditContactinfoGUID !==''">Update</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="conatinerheader itemrowcontainer" ng-repeat="Contactinfo in ContactInformationList">
+            <div class="UOMContainer rightaling">
+                {{$index + 1}}
+            </div>
+            <div class="GridColumnWithBorder_AddCompany">
+                {{Contactinfo.ContactType}}
+            </div>
+
+            <div class="GridColumnWithBorder_AddCompany">
+                {{Contactinfo.ContactPersonName}}
+            </div>
+            <div class="GridColumnWithBorder_AddCompany">
+                {{Contactinfo.ContactPersonNumber}}
+            </div>
+
+            <div class="removeItemicon" style="width:16%">
+                <a ng-click="EditContactPersonInfo(Contactinfo.ContactinfoGUID)">
+                    <!--<i class="fa fa-pencil" aria-hidden="true"></i>--> Edit
+                </a>&nbsp;| &nbsp;
+                <a ng-click="DeleteContactInfo(Contactinfo.ContactinfoGUID)">
+                    <!--<i class="fa fa-trash" aria-hidden="true"></i>--> Delete
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

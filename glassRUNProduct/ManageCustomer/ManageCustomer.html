@@ -1,0 +1,355 @@
+﻿<ion-view>
+    <ion-content class="main-content" style="overflow-y:hidden">
+        <link href="ManageCustomer/style/style.css" rel="stylesheet" />
+        <style>
+            .treeSelection {
+                background-color: green;
+                color: #fff;
+            }
+
+            .highlighted {
+                background: yellow;
+                position: relative;
+                top: -3px;
+            }
+
+            .ob-right {
+                text-align: left;
+            }
+        </style>
+        <div class="pageview" style="margin-bottom: 60px;height:calc(100% - 50px)">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="col-md-12 rulesjs" style="min-height: 979px;">
+                        <div class="fullwidth">
+                            <div class="left_side_tab_icon">
+
+                                <div class="tab_header_section tab_top_border" ng-class="{'selected_tab_box': SelectedTabIndex === 1}" ng-click="ActiveTab(1)">
+                                    <div class="tab_header_section_inner">
+                                        <span class="icononly"><i class="fa fa-user" aria-hidden="true"></i></span><span class="icontextonly">{{resData.res_ManageCustomer_Title}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="tab_header_section" ng-class="{'selected_tab_box': SelectedTabIndex === 2}" ng-click="ActiveTab(2)">
+                                    <div class="tab_header_section_inner">
+                                        <span class="icononly"><i class="fa fa-users" aria-hidden="true"></i></span> <span class="icontextonly">{{resData.res_ManageCustomer_CustomerGroups}}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="left_side_tab_icon left_filterdata_section" ng-if="SelectedTabIndex === 1">
+                                <div class="filter_section_ui">
+                                    <div class="actual_data_popup complex_actual_data_popup">
+                                        <div class="heading_row_list_popup">
+                                            <div class="heading_sorting_section_data">
+                                                <div class="heading_data_label_popup">
+                                                    {{resData.res_ManageCustomer_Status}}
+                                                </div>
+                                                <div class="data_selection_popup">
+                                                    <i style="display:none !important;" class="fa fa-caret-up"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="data_row_list_popup">
+                                            <div class="sorting_section_data" ng-click="ContractedNonContractectfilter('CONTRECTICON','C')">
+                                                <div class="data_label_popup">
+                                                    {{resData.res_ManageCustomer_Contracted}}
+                                                </div>
+                                                <div ng-if="IsSelectedContractedCompany === false" class="data_selection_popup">
+                                                    <img src="../Images/Asset 237.png" />
+                                                </div>
+                                                <div ng-if="IsSelectedContractedCompany === true" class="data_selection_popup">
+                                                    <img src="../Images/Asset 238.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data_row_list_popup" ng-click="ContractedNonContractectfilter('CONTRECTICON','NC')">
+                                            <div class="sorting_section_data">
+                                                <div class="data_label_popup">
+                                                    {{resData.res_ManageCustomer_NonContracted}}
+                                                </div>
+                                                <div ng-if="IsSelectedNonContractedCompany === false" class="data_selection_popup">
+                                                    <img src="../Images/Asset 237.png" />
+                                                </div>
+                                                <div ng-if="IsSelectedNonContractedCompany === true" class="data_selection_popup" ng-if="false">
+                                                    <img src="../Images/Asset 238.png">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="actual_data_popup complex_actual_data_popup" ng-repeat="filter in FilterParameters track by $index">
+                                        <div class="heading_row_list_popup">
+                                            <div class="heading_sorting_section_data">
+                                                <div class="heading_data_label_popup">
+                                                    {{filter.FilterDescription}}
+                                                </div>
+                                                <div class="data_selection_popup">
+                                                    <i style="display:none !important;" class="fa fa-caret-up"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data_row_list_popup" ng-repeat="childfilter in filter.ChildFilterList track by $index" ng-click="ChildSelectFilter(filter,childfilter)">
+                                            <div class="sorting_section_data">
+                                                <div class="data_label_popup">
+                                                    {{childfilter.FilterDescription}}
+                                                </div>
+                                                <div class="data_selection_popup" ng-if="childfilter.Selected==true">
+                                                    <img src="../Images/Asset 238.png" />
+                                                </div>
+                                                <div class="data_selection_popup" ng-if="childfilter.Selected==false || childfilter.Selected==undefined">
+                                                    <img src="../Images/Asset 237.png" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div id="ManageCustomer_Container" class="uk-width-large-10-10 uk-row-first uk-grid-margin">
+                        <div class="profile_details_scrollable_div no_bottom_buttons">
+                            <div ng-if="SelectedTabIndex === 1" class="nopaddingindesktop full_screen_width">
+
+
+                                <div class="filter_main_section_div filtersection">
+
+                                    <div class="sorting_section_div" ng-click="SortCustomerName()">
+                                        <div class="filter_icon_section">
+                                            <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="sorting_text_section" ng-if="IsSortByAsc === false">
+                                            {{resData.res_ManageCustomer_SortByAsending}}
+                                        </div>
+                                        <div class="sorting_text_section" ng-if="IsSortByAsc === true">
+                                            {{resData.res_ManageCustomer_SortByDescending}}
+                                        </div>
+                                    </div>
+                                    <div class="search_control_section">
+                                        <div class="searchbar_control" ng-if="pageContrlAcessData.SerchCustomerList !='0'">
+                                            <input class="app_text_white_bgcolor" type="text" placeholder="{{resData.res_ManageCustomer_SearchCustomers}}" ng-keypress='SearchList()' ng-keydown='SearchList()' ng-keyup='SearchList()' ng-model="SearchValue.search">
+                                            <div class="productsearchicon_order" ng-if="SearchValue.search.length==0 || SearchValue.search.length==undefined">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="productsearchicon_order" ng-if="SearchValue.search.length > 0" ng-click="ClearSearch()">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="total_count_text_rightside">
+                                        <div class="total_count app_text_dark_color">
+                                            {{resData.res_ManageCustomer_TotalCount}}
+                                            <span class="app_text_whitebg_normal_color" ng-if="TotalFilteredItemCount > 0">{{TotalFilteredItemCount}} / </span> {{TotalChildCustcount}}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div ng-if="true" class="fullwidthcontainer setup_screen_paddingbottom_10_space" style="margin-top: 15px;">
+                                    <div class="customerlistheader_div">
+                                        <div id="ManageCustomer_Section" class="homepage_accesssection cutomer_list_header_ui" ng-repeat="Customer in GroupCustomerList  track by $index">
+                                            <div class="accessimage app_text_white_bgcolor" style="display: none;">
+                                                <img class="imgicon" ng-if="Customer.ChildCustomer[0].Img!=null" ng-src="data:image/png;base64,{{Customer.ChildCustomer[0].Img}}">
+                                                <img class="imgicon" ng-if="Customer.ChildCustomer[0].Img==null" src="img/green/Asset 2.png">
+                                            </div>
+                                            <div style="width: 100%;" class="HomePageAccessControl app_text_normal_gradiantbgcolor">
+
+                                                <div style="padding-left: 10px;" class="accesstextlink" ng-if="Customer.ChildCustomer.length === Customer.ChildCustomerTotalCount" ng-class="{'app_text_white_color': Customer.ShowCustomerList === true, 'app_text_dark_color': Customer.ShowCustomerList !== true}">
+                                                    {{Customer.CustomerGroupName}} ({{Customer.ChildCustomer.length}})
+                                                </div>
+                                                <div class="accesstextlink" ng-if="Customer.ChildCustomer.length !== Customer.ChildCustomerTotalCount" ng-class="{'app_text_white_color': Customer.ShowCustomerList === true, 'app_text_dark_color': Customer.ShowCustomerList !== true}">
+                                                    {{Customer.CustomerGroupName}} ({{Customer.ChildCustomer.length}}/{{Customer.ChildCustomerTotalCount}})
+                                                </div>
+                                                <div class="accordion_close_icon" ng-class="{'app_text_white_color': Customer.ShowCustomerList === true, 'app_text_dark_color': Customer.ShowCustomerList !== true}">
+                                                    <i style="display:none !important;" class="fa " ng-class="{'fa-caret-up': Customer.ShowCustomerList === true, 'fa-caret-down': Customer.ShowCustomerList !== true}" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+
+                                            <div ng-if="true" class="cartItemDetailsContainer setup_screen_margintop_20_space">
+                                                <div class="col-md-4 col-sm-6 cartcontainer product_item_card app_text_white_bgcolor" ng-repeat="childCustomer in Customer.ChildCustomer track by $index">
+                                                    <div class="maincartbox" style="padding-bottom:0px">
+                                                        <div class="supplierfirstcolumncontainer" ng-if="childCustomer.ContractOrNonContract=='C'">
+                                                            <img src="../Images/contracted.png" class="supplier_icon">
+                                                            <div class="Contracted_Noncontracted_Text">{{resData.res_ManageCustomer_Contracted}}</div>
+                                                        </div>
+                                                        <div class="supplierfirstcolumncontainer" ng-if="childCustomer.ContractOrNonContract=='NC'">
+                                                            <img src="../Images/noncontracted.png" class="supplier_icon">
+                                                            <div class="Contracted_Noncontracted_Text">{{resData.res_ManageCustomer_NonContracted}}</div>
+                                                        </div>
+                                                        <div class="suppliersecondcolumncontainer manage_catalog_product_info">
+                                                            <div class="secondcolumnbox">
+                                                                <div class="productname app_text_dark_color font_bold_text">
+                                                                    {{childCustomer.CompanyName}}
+                                                                </div>
+                                                                <div class="customer_priority_section">
+                                                                    <div class="setpriority_icon_text app_text_dark_color">{{resData.res_ManageCustomer_Priority}}</div>
+                                                                    <div id="Set_Priority_Button" class="setdefault_icon">
+                                                                        <div class="fa_star_icon_ui" ng-repeat="priority in PriorityList">
+                                                                            <i class="fa fa-star" ng-class="{'app_text_gradiant_text_color': SetPriorityColor(priority.Id,childCustomer.PriorityRating) === true}" aria-hidden="true"></i>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="fullspace_addressline">
+                                                                    <div class="selected_cutomer_heading app_text_dark_color">
+                                                                        {{Customer.CustomerGroupName}}
+                                                                    </div>
+                                                                    <div class="full_row_width_section">
+                                                                        <div class="addresses_section">
+                                                                            <div class="addresslinefirst app_text_dark_color">
+                                                                                {{childCustomer.AddressLine1}}
+                                                                            </div>
+                                                                            <div class="addresslinesecond app_text_dark_color">
+                                                                                {{childCustomer.AddressLine2}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="contact_info_btn_section">
+                                                                            <div class="contact_info_btn_card">
+                                                                                {{resData.res_ManageCustomer_ContactInfo}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="Quick_Action_Button">
+                                                                <div class="call_quick_action_bar" ng-click="ShowQuickActionPopOver(childCustomer, Customer); $event.stopPropagation();">
+                                                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class="quick_action_card" ng-if="childCustomer.ShowQuickAction === true">
+                                                                    <div class="quick_action_card_row" ng-click="GoToManagePricing(childCustomer.CompanyMnemonic,'Customer'); $event.stopPropagation();">
+                                                                        <div class="quick_action_icon_ui">
+                                                                            <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                        </div>
+                                                                        <div class="quick_action_text_ui">
+                                                                            {{resData.res_ManageCustomer_ManagePricing}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-if="SelectedTabIndex === 2" class="nopaddingindesktop full_screen_width">
+
+                                <div class="filter_main_section_div filtersection">
+
+                                    <div class="sorting_section_div" ng-click="SortCustomerGroupName()">
+                                        <div class="filter_icon_section">
+                                            <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="sorting_text_section" ng-if="IsSortByAsc === false">
+                                            {{resData.res_ManageCustomer_SortByAsending}}
+                                        </div>
+                                        <div class="sorting_text_section" ng-if="IsSortByAsc === true">
+                                            {{resData.res_ManageCustomer_SortByDescending}}
+                                        </div>
+                                    </div>
+                                    <div class="search_control_section">
+                                        <div class="searchbar_control">
+                                            <input class="app_text_white_bgcolor" type="text" placeholder="{{resData.res_ManageCustomer_SearchCustomers}}" ng-model="SearchValue.search">
+                                            <div class="productsearchicon_order" ng-if="SearchValue.search.length==0 || SearchValue.search.length==undefined">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="productsearchicon_order" ng-if="SearchValue.search.length > 0" ng-click="ClearSearch()">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="total_count_text_rightside">
+                                        <div class="total_count app_text_dark_color">
+                                            {{resData.res_ManageCustomer_TotalCount}}
+                                            <span class="app_text_whitebg_normal_color" ng-if="TotalFilteredItemCount > 0">{{TotalFilteredItemCount}} / </span> {{TotalChildCustcount}}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="Save_Button" style="padding-right: 0px !important;padding-left: 0px !important;float: left;width: 158px;margin-top: 10px;" class="confirmationbtn">
+                                    <a class="continuebtn app_button_white_bgcolor app_button_text_dark_color app_2px_border_dark_color" style="float: left;width: 100%;padding: 8px 10px;border-radius: 4px;" ng-click="GoToCreateCustomerGroup()">
+                                        <div class="button_text_ui_container">{{resData.res_CustomerGroupList_AddCustomerGroup}}</div>
+                                    </a>
+                                </div>
+
+                                <div ng-if="true" class="fullwidthcontainer setup_screen_paddingbottom_10_space" style="margin-top: 15px;">
+                                    <div class="customerlistheader_div" ng-repeat="customerGroup in GroupCustomerList | filter: SearchValue.search">
+                                        <div class="product_item_price_card_ui app_text_white_bgcolor">
+                                            <div class="card_left_text manage_catalog_product_info">
+                                                <div class="product_name_text_ui app_text_dark_color normal_line_height">
+                                                    {{customerGroup.CustomerGroupName}}
+                                                </div>
+
+                                                <div class="price_list_section_validity">
+                                                    {{resData.res_ManageCustomer_NumberOfCustomers}} : {{customerGroup.CustomerMasterForPricingList.length}}
+                                                </div>
+                                                <div class="Quick_Action_Button">
+                                                    <div class="call_quick_action_bar" ng-click="ShowQuickActionPopOverCustomerGroup(customerGroup); $event.stopPropagation();">
+                                                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="quick_action_card" ng-if="customerGroup.ShowQuickAction === true">
+                                                        <div class="quick_action_card_row" ng-click="GoToManagePricing(customerGroup.CustomerPriceGroup,'CustomerGroup'); $event.stopPropagation();">
+                                                            <div class="quick_action_icon_ui">
+                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                            </div>
+                                                            <div class="quick_action_text_ui">
+                                                                {{resData.res_ManageCustomer_ManagePricing}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="quick_action_card_row" ng-click="EditCustomerGroup(customerGroup.CustomerPriceGroup); $event.stopPropagation();">
+                                                            <div class="quick_action_icon_ui">
+                                                                <img src="../Images/Edit.png" />
+                                                            </div>
+                                                            <div class="quick_action_text_ui">
+                                                                {{resData.res_ManageCustomer_EditPart}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="Product_Variations setup_screen_margintop_10_space">
+                                                <div class="product_variations_modification">
+                                                    <div class="pricing_variation_count">
+                                                        {{customerGroup.NumberOfPricingVariations}} {{resData.res_ManageCatalog_PricingVariations}}
+                                                    </div>
+                                                    <div class="pricing_modified_data">
+                                                        {{resData.res_ManageCustomer_Modified}}: {{DateParse(customerGroup.CreatedDate) | date:'dd-MMM-yyyy'}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,135 @@
+﻿<!--Added By Chetan Tambe (17 Sept 2019)-->
+<ion-view>
+    <ion-content class="main-content">
+        <link href="Styles/console_tracker.css" rel="stylesheet">
+        <style>
+            .activeTab {
+                background-color: #394C4A !important;
+                color: #6cbf43 !important;
+            }
+
+            .visiblehiddentxt1 {
+                height: 1px;
+                right: 0px;
+                left: 0px;
+                top: 8px;
+                background-color: #fff !important;
+                border: 1px solid #fff !important;
+            }
+
+            #ui-datepicker-div.ui-datepicker {
+                margin-top: 8px !important;
+            }
+
+            .UnreadMsgs {
+                color: black;
+                font-weight: bold;
+            }
+
+            .ReadMsgs {
+                color: gray;
+            }
+
+            .UnreadMsgsIcons {
+                width: 20px;
+                height: 20px;
+                background-color: black !important;
+                border-radius: 50%;
+                color: #fff !important;
+                text-align: center !important;
+                padding-top: 5.5px !important;
+                padding-left: 6px !important;
+                font-weight: normal;
+                font-size: 10px !important;
+            }
+
+        </style>
+        <div class="pageview orderlist_page" style="padding: 20px 30px 0;overflow-y:hidden">
+            <div class="row">
+
+                <div class="col-md-12 pagecontainerdiv" style="margin-top:0px">
+
+                    <div class="gridheaderactionbuttons">
+
+                        <div style="float:left;margin-bottom: 24px;">
+                            <div class="footerbuttons footerbtnrightborder" style="margin:0px">
+                                <a class="buttonstext drop-shadow greencolorbtntext toprefreshbuttons" ng-click="RefreshDataGrid()">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="portalview" class="PortalView">
+                        <div class="panel drop-shadow" style="background: #fff;float: left;width: 100%;">
+
+                            <div class="MultiSelectControlRow">
+                                <a class="btn createinquirybtn_solidbg card_Section aling_float_right space_right border_icon_color_green" ng-click="MarkAsReadUnRead(1)" style="float:right; color:black !important">
+                                    <i class="fa fa-check fa-icon" aria-hidden="true"></i> Mark as Read
+                                </a>
+                                <a class="btn createinquirybtn_solidbg card_Section aling_float_right space_right border_icon_color_green" ng-click="MarkAsReadUnRead(0)" style="float:right; color:black !important">
+                                    <i class="fa fa-check fa-icon" aria-hidden="true"></i> Mark as Unread
+                                </a>
+                            </div>
+
+                            <div class="panel-content" style="padding:0px;float:left;width: 100%;">
+                                <div class="dx-viewport">
+                                    <div class="demo-container">
+                                        <div id="NotificationsListGrid" class="SalesAdminApproval_Grid" dx-data-grid="NotificationsDataGrid" dx-item-alias="NotificationsData">
+                                            <div data-options="dxTemplate:{ name:'CheckBoxTemplate' }">
+                                                <input type="checkbox" />
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'CheckBoxHeaderTemplate' }">
+                                                <input type="checkbox" />
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'ReadUnReadTemplate' }">
+                                                <span ng-show="NotificationsData.data.IsAck != '0'" class="greenbgfont"></span>
+                                                <span ng-show="NotificationsData.data.IsAck == '0'" class="orangebgfont"><i class="fa fa-info UnreadMsgsIcons"></i></span>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'TitleTemplate' }">
+                                                <div style="float:left;width:100%">
+
+                                                    <span ng-show="NotificationsData.data.IsAck == '0'" class="UnreadMsgs">{{NotificationsData.data.Title}}</span>
+                                                    <span ng-show="NotificationsData.data.IsAck != '0'" class="ReadMsgs">{{NotificationsData.data.Title}}</span>
+                                                    
+                                                </div>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'CreatedDateTemplate' }">
+                                                <div style="float:left;width:100%">
+
+                                                    <span ng-show="NotificationsData.data.IsAck == '0'" class="UnreadMsgs">{{NotificationsData.data.CreatedDate | date:'dd/MM/yyyy'}}</span>
+                                                    <span ng-show="NotificationsData.data.IsAck != '0'" class="ReadMsgs">{{NotificationsData.data.CreatedDate | date:'dd/MM/yyyy'}}</span>
+
+                                                </div>
+                                            </div>
+
+                                            <div data-options="dxTemplate:{ name:'IsAckDatetimeTemplate' }">
+                                                <div style="float:left;width:100%">
+
+                                                    <span ng-show="NotificationsData.data.IsAck == '0'" class="UnreadMsgs">-</span>
+                                                    <span ng-show="NotificationsData.data.IsAck != '0'" class="ReadMsgs">{{NotificationsData.data.IsAckDatetime | date:'dd/MM/yyyy'}}</span>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </ion-content>
+</ion-view>

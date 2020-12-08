@@ -1,0 +1,103 @@
+﻿<style type="text/css">
+    .Enquiry_list {
+        height: calc(100% - 135px);
+        float: left;
+        width: 100%;
+        height: 90%!important;
+        overflow-y: auto;
+    }
+</style>
+
+<ion-view>
+    <ion-content class="main-content">
+        <div id="portalview" class="CreateInquiryPage">
+            <!--<div id="CommonHeader" class="row topheaderbalancerow">
+                <div class="col-md-4">
+                    <span class="textbold_600">Available Credit:</span>
+                </div>
+            </div>-->
+            <div id="CreateInquiryFirstView" class="FirstSection" style="top: 36px!important;">
+                <div id="RightPanelFirstView" class="portalView col-md-4 col-sm-4" ng-class="{'mobileview' : MobileView === false}">
+                    <div class="AddItemLeftView ScrollbarUI" style="margin-top: 0px!important;">
+                        <div class="card_Section additem_view section_width_100 margin_bottom_10">
+                            <div class="section_width_100 margin_bottom_10 margin_top_bottom_5 note_ui">
+                               {{resData.res_ObjectVariableController_GridHeaderName}}
+                            </div>
+                            <div class="section_width_100 margin_bottom_10">
+                                <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                   {{resData.res_ObjectVariableController_SelectEvent}}
+                                </span>
+                                <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                    <select class="dropdown-toggle btn btn-default" ng-model="EventObjectPropertyMappingInfo.EventMasterId" ng-options="Eventdetails.Id as Eventdetails.Name for Eventdetails in EventMasterList">
+                                        <option value="">Select
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="section_width_100 margin_bottom_10">
+                                <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                    {{resData.res_ObjectVariableController_SelectObject}}
+                                </span>
+                                <!--<div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                    <div class="form-group MultiSelectControl" style="width: 100%;margin-left:0px">
+                                        <div ng-dropdown-multiselect="" options="ObjectList" selected-model="SelectedObjectList" checkboxes="true" extra-settings="SortByListSetting" events="ObjectEvent"></div>
+                                    </div>
+                                </div>-->
+                                <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                    <select ng-disabled="disableControl" class="dropdown-toggle btn btn-default" ng-model="EventObjectPropertyMappingInfo.ObjectId" ng-options="ObjectValue.Id as ObjectValue.Name for ObjectValue in ObjectList" ng-change="LoadObjectPropertiesbyFilter(EventObjectPropertyMappingInfo.ObjectId)">
+                                        <option value="">Select
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="section_width_100 margin_bottom_10">
+                                <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                   {{resData.res_ObjectVariableController_SelectObjectVariable}}
+                                </span>
+                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                    <div class="form-group MultiSelectControl" style="width: 100%;margin-left:0px">
+                                        <div ng-dropdown-multiselect="" options="ObjectPropertiesList" selected-model="ObjectPropertiesSelectedList" checkboxes="true" extra-settings="SortByListSetting" ></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section_width_100">
+                                <div class="TwoSection padding_top_bottom_10">
+                                    <div class="Left_Third_Aling">
+                                        <a class="createinquirybtn_solidbg card_Section dark_blue space_left aling_float_left" ng-click="Save()">
+                                            <i class="fa fa-clone white"></i> <span class="icon_text white_text">Save</span>
+                                        </a>
+                                    </div>
+                                    <div class="Right_One_Aling">
+                                        <!--ng-click="OpenProductCatalogModalPopup()"-->
+                                        <a class="createinquirybtn_solidbg card_Section aling_float_right space_right border_icon_color_green" ng-click="Clear()">
+                                            <span class="icon_text">Clear</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="LeftPanelFirstView" class="portalView col-md-8 col-sm-8" ng-class="{'mobileview' : MobileView === true}">
+                    <div class="RightSideView">
+                        <div class="EnquiryCountSection TwoSection">
+                            <div class="RightAling">
+                                <span class="textbold_600">{{resData.res_AddEditEventController_GridHeaderName}}</span>
+                            </div>
+                        </div>
+                        <div class="Enquiry_list ScrollbarUI">
+                            <div class="Enquiry_data">
+                                <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                    <div class="col-md-12">
+                                        <div id="ObjectMappingGrid" class="Company_Grid" style="height: 70vh;" dx-data-grid="ObjectMappingGrid" dx-item-alias="ObjectMappingDataGrid">
+                                        </div>
+                                        <!--<div id="ViewUserGrid" kendo-grid="Grid" k-options="ViewUserGrid" k-rebind="ViewUserGrid"></div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

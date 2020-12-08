@@ -1,0 +1,450 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <style>
+            .treeSelection {
+                background-color: green;
+                color: #fff;
+            }
+
+            .highlighted {
+                background: yellow;
+                position: relative;
+                top: -3px;
+            }
+        </style>
+        <div class="pageview" style="margin-bottom: 60px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="nav-tabs2">
+                        <div>
+
+                            <div class="col-md-12 rulesjs" style="min-height: 979px;">
+                                <!-- ADD / Edit Panel-->
+                                <div class="col-md-12" ng-show="HideAddControl">
+                                    <div style="float: left; width: 100%; margin-top: 20px;">
+                                        <div style="float: left; width: 100%; font-weight: bold">
+                                            {{resData.res_GridConfigurationPage_New_Configuration_Setup}}
+                                        </div>
+                                        <div class="FinalOutPutValue" style="float: left; width: 100%;">
+                                            <div class="conditionstart">&nbsp;</div>
+
+                                            <div style="float:left;width:100%;height: auto;margin: 0px 0px 5px;">
+                                                <div style="float: left; width: 100%; margin: 6px 10px; color: #4d4d4d; font-weight: 600">
+                                                    <i class="fa fa-file-code-o" style="width: 17px;margin-right: 6px;font-size: 14px;color: #39b54a;"></i>{{resData.res_GridConfiguration_SelectPage}} :
+                                                </div>
+                                                <div style="float: left; width: 100%">
+                                                    <div class="itemcontrols">
+                                                        <div class="padded-row" style="position: relative;width: 100%;">
+                                                            <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                    <input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_GridConfiguration_SelectPage}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="SearchControl.InputPageItem" ng-disabled="EditPageDisable" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="PageInputSelecteChangeEvent(SearchControl.InputPageItem)" style="border: 1px solid #bec1c3;border-radius: 20px;">
+                                                                    <div id="ItemListAutoCompleteBox_dropdown" ng-show="showPagebox" class="angucomplete-dropdown" style="height: auto !important;top:40px !important">
+                                                                        <div class="angucomplete-searching" ng-show="searchingPage" ng-bind="textPageSearching" style="">{{resData.res_GridConfiguration_SelectObject}}</div>
+                                                                        <div class="angucomplete-searching" ng-show="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                        <div class="angucomplete-row" ng-repeat="result in WorkflowList | filter:SearchControl.InputPageItem" key-navigation="" ng-click="LoadRoleList(result.WorkFlowName,result.WorkFlowId)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+                                                                            <div class="angucomplete-title" style="">
+                                                                                {{result.WorkFlowName}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <a class="clearautosearchbox" ng-show="SearchControl.InputPageItem.length==0 || SearchControl.InputPageItem === undefined" ng-click="ShowPageSearchList()">
+                                                                <i class="fa fa-caret-down" style="width: 17px;font-size: 14px;"></i>
+                                                            </a>
+                                                            <a class="clearautosearchbox" ng-show="SearchControl.InputPageItem.length>0 && !EditRoleDisable" ng-click="ClearPageInputSearchbox()">
+                                                                <i class="fa fa-times" style="width: 17px;font-size: 14px;"></i>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--<div style="float: left; width: 100%; height: auto; margin: 10px 0px 5px;">
+
+                                                <div style="float: left; width: 100%; margin: 6px 10px; color: #4d4d4d; font-weight: 600">
+                                                    <i class="fa fa-sticky-note-o" style="width: 17px;font-size: 14px;color: #39b54a;margin-right: 6px;"></i>{{resData.res_GridConfiguration_SelectObject}} :
+                                                </div>
+                                                <div style="float:left;width:100%">
+                                                    <div class="itemcontrols">
+                                                        <div class="padded-row" style="position: relative;width:100%;">
+                                                            <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                    <input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_GridConfiguration_SelectObject}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="SearchControl.InputItem" ng-disabled="EditObjectDisable" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="ItemInputSelecteChangeEvent(SearchControl.InputItem)" style="border: 1px solid #bec1c3;border-radius: 20px;">
+                                                                    <div id="ItemListAutoCompleteBox_dropdown" ng-show="showItembox" class="angucomplete-dropdown" style="height: auto !important;top:40px !important">
+                                                                        <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching" style="">{{resData.res_GridConfiguration_SelectObject}}</div>
+                                                                        <div class="angucomplete-searching" ng-show="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                        <div class="angucomplete-row" ng-repeat="result in ObjectList | filter:SearchControl.InputItem" key-navigation="" ng-click="LoadObjectDropdown(result.DisplayName,result.ObjectId)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRoleRow}" style="">
+                                                                            <div class="angucomplete-title" style="">
+                                                                                {{result.DisplayName}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <a class="clearautosearchbox" ng-show="SearchControl.InputItem.length==0 || SearchControl.InputItem === undefined" ng-click="ShowObjectSearchList()">
+                                                                <i class="fa fa-caret-down" style="width: 17px;font-size: 14px;"></i>
+                                                            </a>
+                                                            <a class="clearautosearchbox" ng-show="SearchControl.InputItem.length>0 && !EditRoleDisable" ng-click="ClearItemInputSearchbox()">
+                                                                <i class="fa fa-times" style="width: 17px;font-size: 14px;"></i>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>-->
+
+                                            <div style="float: left; width: 100%; height: auto; margin: 10px 0px 5px;">
+
+                                                <div style="float: left; width: 100%; margin: 6px 10px; color: #4d4d4d; font-weight: 600;">
+                                                    <i class="fa fa-user" style="width: 17px; font-size: 14px; margin-right: 6px; color: #39b54a;"></i>{{resData.res_GridConfiguration_SelectRole}}:
+                                                </div>
+                                                <div style="float:left;width:100%">
+                                                    <div class="itemcontrols">
+                                                        <div class="padded-row" style="position: relative;width:100%;">
+                                                            <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                    <input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_GridConfiguration_SelectRole}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-disabled="EditRoleDisable" ng-model="SearchControl.InputRoleItem" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="RoleInputSelecteChangeEvent(SearchControl.InputRoleItem)" style="border: 1px solid #bec1c3;border-radius: 20px;">
+                                                                    <div id="ItemListAutoCompleteBox_dropdown" ng-show="showRolebox" class="angucomplete-dropdown" style="height: auto !important;top:40px !important">
+                                                                        <div class="angucomplete-searching" ng-show="searchingRole" ng-bind="textRoleSearching" style="">{{resData.res_GridConfiguration_SelectObject}}</div>
+                                                                        <div class="angucomplete-searching" ng-show="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                        <div class="angucomplete-row" ng-repeat="result in RoleMasterList | filter:SearchControl.InputRoleItem" key-navigation="" ng-click="LoadPagesByRole(result.RoleName,result.RoleMasterId)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+                                                                            <div class="angucomplete-title" style="">
+                                                                                {{result.RoleName}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <a class="clearautosearchbox" ng-show="SearchControl.InputRoleItem.length==0 || SearchControl.InputRoleItem === undefined" ng-click="ShowRoleSearchList()">
+                                                                <i class="fa fa-caret-down" style="width: 17px;font-size: 14px;"></i>
+                                                            </a>
+                                                            <a class="clearautosearchbox" ng-show="SearchControl.InputRoleItem.length>0 && !EditRoleDisable" ng-click="ClearRoleInputSearchbox()">
+                                                                <i class="fa fa-times" style="width: 17px;font-size: 14px;"></i>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="float: left; width: 100%; height: auto; margin: 10px 0px 5px;">
+                                                <div style="float: left; width: 100%; margin: 6px 10px; color: #4d4d4d; font-weight: 600">
+                                                    <i class="fa fa-users" style="width: 17px;font-size: 14px;margin-right: 6px;color: #39b54a;"></i>{{resData.res_GridConfiguration_Users}} :
+                                                </div>
+                                                <div style="float:left;width:100%">
+
+                                                    <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small" ng-show="EditRoleDisable" style="width: 86%;">
+                                                        <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                            <input id="ItemListAutoCompleteBox_value" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-disabled="EditRoleDisable" ng-model="SelectedUsername" type="text" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" autocapitalize="off" autocorrect="off" autocomplete="off" style="border: 1px solid #bec1c3;border-radius: 20px;">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small" style="width: 86%;" ng-show="checkedForRoleData">
+                                                        <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                            <input id="ItemListAutoCompleteBox_value" value="Select" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-disabled=true type="text" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" autocapitalize="off" autocorrect="off" autocomplete="off" style="border: 1px solid #bec1c3;border-radius: 20px;">
+
+                                                        </div>
+                                                        <span>{{resData.res_GridConfiguration_Users_SelectionWarning}} </span>
+                                                    </div>
+
+                                                    <div ng-show="!EditRoleDisable && !checkedForRoleData" class="form-group MultiSelectControl" style="width: 85%;margin-left:0px;margin-bottom:0px !important;">
+                                                        <div ng-dropdown-multiselect="" options="UserList" selected-model="UserSelectedList" checkboxes="true" extra-settings="MultiSelectUserDropdownSetting"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Existing Data Panel-->
+                                <div class="col-md-12" ng-show="Gridexistinglist">
+                                    <div style="float:left;width:100%;height: 45px;">
+
+                                        <div class="footerbuttons" style="width: 100%;float: left;margin: 0px;">
+                                            <a ng-click="AddNewGridConfiguration()" class="buttonstext greencolorbtn" style="width: 100%; margin: 0px !important;padding: 8px !important; text-align: center; background-color: #fff;">
+                                                <div style="color: #39b54a;font-size: 14px;">
+                                                    <i style="border: 1px solid #39b54a; padding: 2px; font-size: 14px; margin-right: 8px;padding-bottom: 0px;" class="fa fa-plus"></i> {{resData.res_GridConfigurationPage_Add_Grid_Configuration}}
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div style="float:left;width:100%">
+
+                                        <div class="drop-shadowrightpanel gridconfigrightsection" style="background-color: #888181; border-radius: 25px 25px 0px 0px; height: 50px; padding: 6px 25px;">
+                                            <div style="float: left; width: 96%;">
+                                                <input type="text" style="width: 100%;padding-left: 10px; height: 36px;padding-right: 11%; border: 1px solid #fff; border-radius: 18px;" placeholder="Search" ng-model="SearchControl.SearchBox" />
+                                            </div>
+                                            <!--<div ng-show="SearchControl.SearchBox.length==0 || SearchControl.SearchBox === undefined" style="float: left; padding-left: 8px; padding-top: 8px; background-color: #fff; border-radius: 50%; height: 32px; width: 10%; margin-left: 5px; margin-top: 3px">
+                                                <i class="fa fa-search" style="margin-top: 1px; float: left; margin-left: 2px;">
+                                                </i>
+
+                                            </div>-->
+                                            <!--<div ng-show="SearchControl.SearchBox.length>0" ng-click="ClearSearchBox();" style="float: left; padding-left: 8px; padding-top: 8px; background-color: #fff; border-radius: 50%; height: 32px; width:  10%; margin-left: 5px; margin-top: 3px">
+                                                <i class="fa fa-times" style="margin-top: 1px; float: left; margin-left: 2px;">
+                                                </i>
+                                            </div>-->
+                                            <div ng-show="SearchControl.SearchBox.length>0" ng-click="ClearSearchBox();" style="float: left;padding-left: 8px;padding-top: 8px;background-color: #fff;border-radius: 50%;height: 36px;width: 11%;margin-left: -33px;margin-top: 0px;">
+                                                <i class="fa fa-times" style="margin-top: 4px;float: left;margin-left: 5px;">
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <div class="drop-shadowrightpanel gridconfigrightsection" style="float: left; width: 100%;">
+                                            <div id="PageList" class="drop-shadowrightpanel gridconfigrightsection" ng-repeat="pagelist in GridColumnPageList | filter:SearchControl.SearchBox">
+
+                                                <div class="te-header">
+                                                    {{pagelist.WorkFlowName}}
+                                                </div>
+                                                <div id="simple-treeview" class="dx-widget dx-collection dx-treeview" style="width: 100%;float: left;margin: 10px 15px;">
+                                                    <ul class="dx-treeview-node-container" role="group">
+                                                        <li class="dx-treeview-node" ng-repeat="objectlist in pagelist.GridColumnRoleList | filter:SearchControl.SearchBox">
+                                                            <div class="dx-item dx-treeview-item" style="font-weight: 600;cursor: pointer;" ng-click="OpenPageAndObjectDetails(objectlist)">
+                                                                <div class="dx-item-content dx-treeview-item-content"><span ng-bind-html="objectlist.RoleName | highlight:SearchControl.SearchBox"> {{objectlist.RoleName}}</span></div>
+                                                            </div>
+                                                            <div class="dx-treeview-toggle-item-visibility" ng-class="{'dx-treeview-toggle-item-visibility-opened':objectlist.isChecked == '1' , '':objectlist.isChecked == '0'}" ng-click="OpenPageAndObjectDetails(objectlist)"></div>
+                                                            <ul class="dx-treeview-node-container" style="border-left: 1px solid #000" ng-class="{'dx-treeview-node-container-opened':objectlist.isChecked == '1' , '':objectlist.isChecked == '0'}" role="group">
+                                                                <li class="dx-treeview-node dx-treeview-node-is-leaf" style="padding-left: 0px;" ng-repeat="rolelist in objectlist.GridColumnUsersList | filter:SearchControl.SearchBox">
+                                                                    <div class="dx-item dx-treeview-item" ng-class="{'treeSelection':treeSelectedValue==rolelist.rowguid}" style="padding: 0px; padding-left: 10px !important; font-weight: 600;cursor: pointer;width: 96% !important;" ng-click="LoadRecordOnEdit(rolelist.ColumnCount,rolelist.RoleMasterId,0,rolelist.PageId,rolelist.ObjectId,'', rolelist.PageName, rolelist.RoleName,objectlist.DisplayName,rolelist.rowguid);">
+                                                                        <span ng-bind-html="rolelist.Username | highlight:SearchControl.SearchBox"> {{rolelist.Username}}</span>
+                                                                    </div>
+                                                                    <!--<div id="UserList" class="dx-item dx-treeview-item" ng-class="{'treeSelection':treeSelectedValue==userlist.rowguid}" style="padding: 0px; padding-left: 10px !important;cursor: pointer;width: 96% !important;" ng-repeat="userlist in rolelist.GridColumnUsersList | filter:SearchControl.SearchBox">
+                                                                        <div class="dx-item-content dx-treeview-item-content" ng-click="LoadRecordOnEdit(userlist.ColumnCount,userlist.RoleId,userlist.LoginId,userlist.PageId,userlist.ObjectId,userlist.Username, userlist.PageName, rolelist.RoleName,objectlist.DisplayName,userlist.rowguid);">
+                                                                            -- <span ng-bind-html="userlist.Username | highlight:SearchControl.SearchBox">{{userlist.Username}}</span>
+                                                                        </div>
+                                                                    </div>-->
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="nav-tabs2">
+                        <div class="">
+
+                            <div class="col-md-12 rulesjs">
+
+
+
+                                <div class="col-md-12">
+
+
+                                    <!--Button Panel-->
+                                    <div>
+                                        <div class="conatinerfooter" ng-show="ShowSaveButton" id="AddButtonDiv">
+                                            <div style="float:left;margin-bottom: 10px;">
+
+                                                <div class="footerbuttons" style="margin: 0px;" ng-click="OpenSaveConfirmationPopup()">
+                                                    <a class="buttonstext greencolorbtn">
+                                                        <i class="fa fa-check" aria-hidden="true"></i> <spna style="color:#4d4d4d"> {{resData.res_GridConfigurationPage_Save}}</spna>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div style="float:right;margin-bottom: 10px;">
+
+                                                <div class="footerbuttons" ng-click="ClearGrid()">
+                                                    <a class="buttonstext redcolorbtn">
+                                                        <i class="fa fa-times fa-icon" aria-hidden="true"></i> <spna style="color:#4d4d4d">{{resData.res_GridConfigurationPage_Clear}}</spna>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="conatinerfooter" ng-show="ShowEditButton" id="EditButtonDiv">
+                                            <div style="float:left;margin-bottom: 10px;">
+                                                <div class="footerbuttons" style="margin: 0px;" ng-click="DropdownSection()">
+                                                    <a class="buttonstext greencolorbtn">
+                                                        <i class="fa fa-pencil fa-icon" aria-hidden="true"></i> <spna style="color:#4d4d4d">{{resData.res_GridConfigurationPage_Edit}}</spna>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div style="float:right;margin-bottom: 10px;">
+
+                                                <div class="footerbuttons" ng-click="OpenDeleteConfirmationModalPopup()">
+                                                    <a class="buttonstext redcolorbtn">
+                                                        <i class="fa fa-times fa-icon" aria-hidden="true"></i> <spna style="color:#4d4d4d">{{resData.res_GridConfigurationPage_Delete}}</spna>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Preview Section-->
+                                    <div class="previewSection" style="border:none" ng-show="GridColumnPreviewList.length > 0">
+                                        <div class="CreateNewRule previewheader" style="border:none">
+                                            <label> {{resData.res_GridConfiguration_GridPreview}} </label>
+                                        </div>
+
+                                        <div class="panel drop-shadow">
+                                            <div style="margin-top: 10px; margin-left: 17px;margin-right: 17px;">
+                                                {{resData.res_GridConfiguration_GridPreview_Description}}
+                                            </div>
+                                            <div></div>
+                                           Details
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <div class="CreateNewRule" style="float: left; width: 100%; margin-bottom: 10px;">
+                                            <label> {{resData.res_GridConfiguration_ConfigureGrid}} </label>
+
+                                        </div>
+                                        <!--Grid to set configuration Section-->
+                                        <div class="panel drop-shadow" style="background: #f5f5f5;float: left;width: 100%;">
+                                            <div class="panel-content" style="padding:0px" ng-show="!Ispageload">
+                                                <div kendo-grid="Grid" id="GridColumnList" k-options="GridColumnList" k-rebind="GridColumnList" k-on-change="onSelection(kendoEvent)"></div>
+                                            </div>
+                                            <div class="panel-content" style="padding:23px" ng-show="Ispageload">
+                                                <label>{{resData.res_GridConfiguration_ConfigureGrid_PageLoad}}</label>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div ng-show="false">
+
+                                        <div class="panel drop-shadow" style="background: #f5f5f5;float: left;width: 100%;">
+                                            <div class="panel-content" style="padding:0px">
+                                                <div class="dx-viewport">
+                                                    <div class="demo-container">
+
+                                                        <div id="dataGridOptions" dx-data-grid="dataGridOptions" dx-item-alias="GridataConfiguration">
+                                                            <div data-options="dxTemplate:{ name:'cellTemplate' }">
+                                                                <i ng-show="GridataConfiguration.IsSystemMandatory === true" class="fa fa-times">
+
+                                                                </i>
+                                                                <i ng-show="GridataConfiguration.IsSystemMandatory !== false" class="fa fa-check">
+
+                                                                </i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        <script id="templates/SaveConfirmation.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">{{resData.res_GridConfiguration_SaveConfirmation_Header}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseSaveConfirmationModalPopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+
+                                    <div>
+                                        {{resData.res_GridConfiguration_SaveConfirmation_Message}} :
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveGridConfiguration()">
+                                {{resData.res_GridConfigurationPage_Save}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseSaveConfirmationModalPopup()">
+                                {{resData.res_GridConfigurationPage_Close}}
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+
+
+        <script id="templates/DeleteConfirmation.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">{{resData.res_GridConfiguration_DeleteConfirmation_Header}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmationModalPopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+
+                                    <div>
+                                        {{resData.res_GridConfiguration_DeleteConfirmation_Message}}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SoftDeleteGridColumnConfiguration()">
+                                {{resData.res_GridConfigurationPage_Confirm}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseDeleteConfirmationModalPopup()">
+                                {{resData.res_GridConfigurationPage_Close}}
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+    </ion-content>
+</ion-view>

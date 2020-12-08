@@ -1,0 +1,748 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div class="pageview">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+                        <div class="timelineview">
+                            <div class="row">
+                                
+
+
+                                <div class="row fixheaderbox" style="margin:auto !important;display:none">
+
+                                    <div class="col-md-6 col-sm-2 halfbox nopaddingleft">
+                                        <div class="widget widget-stats purple-bg">
+
+                                            <div class="col-lg-6">
+                                                <div class="stats-title textalingcenter paddingfordetails">{{resData.res_CreateInquiryAfterApprovalForOM_TotalCreditLimit}}</div>
+                                                <div class="stats-number textalingcenter paddingfordetails">
+                                                    <span class="bigcurrencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_CreateInquiryAfterApprovalForOM_9000}}</div>
+                                            </div>
+                                            <div class="sepratorline">
+                                                &nbsp;
+                                            </div>
+                                            <div class="stats-desc paddingfordetails col-lg-6">
+                                                <div class="stats-title textalingcenter">{{resData.res_CreateInquiryAfterApprovalForOM_AvailableCredit}}</div>
+                                                <div class="stats-number textalingcenter"><span class="bigcurrencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_CreateInquiryAfterApprovalForOM_6285}}</div>
+                                            </div>
+
+                                            <div class="stats-progress progress" style="margin: auto !important;    width: 100%;    padding: 0px !important;">
+                                                <div style="width: 69.83333333333334%;" class="progress-bar"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-sm-2 halfbox secondbox nopaddingright">
+                                        <div class="widget widget-stats red-bg">
+                                            
+                                            <div class="col-lg-6">
+                                                <div class="stats-title textalingcenter paddingfordetails">{{resData.res_CreateInquiryAfterApprovalForOM_EmptiesLimit}}</div>
+                                                <div class="stats-number textalingcenter paddingfordetails">{{resData.res_CreateInquiryAfterApprovalForOM_6285}}</div>
+                                            </div>
+                                            <div class="sepratorline">
+                                                &nbsp;
+                                            </div>
+                                            <div class="stats-desc paddingfordetails col-lg-6">
+                                                <div class="stats-title textalingcenter">{{resData.res_CreateInquiryAfterApprovalForOM_ActualEmpties}}</div>
+                                                <div class="stats-number textalingcenter">{{resData.res_CreateInquiryAfterApprovalForOM_10}}</div>
+                                            </div>
+
+                                            <div class="stats-progress progress" style="margin: auto !important;width: 100%;padding: 0px !important;">
+                                                <div style="width: 5%;" class="progress-bar"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="CreateOrderView">
+
+                            
+
+                            <div class="row PortalView">
+                                <div class="panel fullwithwithoutpadding">
+                                    <div class="panel-header bg-primary">
+                                        <h3>{{resData.res_CreateInquiryAfterApprovalForOM_InquiryDetails}}</h3>
+                                    </div>
+
+                                    <div class="panel-content fullwithwithoutpadding">
+
+                                        <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+
+
+                                            <div class="ibox float-e-margins" ng-repeat="orderdata in OrderData">
+                                                <div id="demo6" class="ibox-content collapse in">
+
+
+                                                    <div class="panel widget-weather">
+                                                        <div class="panel-header background-primary ui-sortable-handle" style="background-color: rgb(49, 157, 181);">
+                                                            <h3>
+                                                                <i class="icon-30"></i> <strong>{{resData.res_CreateInquiryAfterApprovalForOM_Truck1}}</strong>{{resData.res_CreateInquiryAfterApprovalForOM_2Ton}}<span> <strong class="sonumber">{{resData.res_CreateInquiryAfterApprovalForOM_SO}}</strong>{{resData.res_CreateInquiryAfterApprovalForOM_3635}}</span>
+                                                                <span class="removetruck">
+                                                                    <span class="text-right">
+                                                                        <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                        <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                    </span>
+                                                                </span>
+                                                            </h3>
+                                                            <h3>
+                                                                <span> <strong class="sonumber">{{resData.res_CreateInquiryAfterApprovalForOM_OrderStatus}}</strong>{{resData.res_CreateInquiryAfterApprovalForOM_AwaitingApproval}}</span>
+                                                            </h3>
+                                                            <div class="weather panel-content">
+                                                                <ul class="weather-forecast clearfix">
+                                                                    <li class="first">
+                                                                        <a id="day-0" class="today-day active" href="javascript:;">
+                                                                            <strong>{{resData.res_CreateInquiryAfterApprovalForOM_CreditLimit}}</strong>
+                                                                            <span class="today-img">
+                                                                                <i class="fa fa-money" aria-hidden="true"></i>
+                                                                            </span><span class="today-temp-low"><i class="fa fa-check"></i></span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="day-1" class="1-days-day active" href="javascript:;">
+                                                                            <strong>{{resData.res_CreateInquiryAfterApprovalForOM_ReceivingLocationCapacity}}</strong><span class="1-days-image">
+                                                                                <i class="fa fa-industry" aria-hidden="true"></i>
+                                                                            </span><span class="1-days-temp-low"><i class="fa fa-check"></i></span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="day-2" class="2-days-day active" href="javascript:;">
+                                                                            <strong>{{resData.res_CreateInquiryAfterApprovalForOM_Palettes}}</strong>
+                                                                            <span class="2-days-image">
+                                                                                <i class="fa fa-object-ungroup"></i>
+                                                                            </span>
+                                                                            <span class="2-days-temp-low">{{resData.res_CreateInquiryAfterApprovalForOM_44}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="day-3" href="javascript:;" class="3-days-day active">
+                                                                            <strong>{{resData.res_CreateInquiryAfterApprovalForOM_Weight}}</strong><span class="3-days-image"><i class="fa fa-truck" aria-hidden="true"></i></span><span class="3-days-temp-low">{{resData.res_CreateInquiryAfterApprovalForOM_98100}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="last">
+                                                                        <a id="day-4" href="javascript:;" class="4-days-day active">
+                                                                            <strong>{{resData.res_CreateInquiryAfterApprovalForOM_Stock}}</strong>
+                                                                            <span class="4-days-image">
+                                                                                <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                            </span><span class="4-days-temp-low">{{resData.res_CreateInquiryAfterApprovalForOM_55}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                        <div class="weather panel-content" style="background-color: rgb(49, 157, 181);">
+                                                            <div class="weather-highlighted">
+                                                                <div class="day-0 weather-item clearfix active">
+
+                                                                    <div class="columnfulldata margintopdata">
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_CreateInquiryAfterApprovalForOM_ShipTo}}</div>
+                                                                            <div class="labelcontrol labeltext">{{resData.res_CreateInquiryAfterApprovalForOM_PHUONG1QUAN5TPHCM}}</div>
+
+                                                                        </div>
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_CreateInquiryAfterApprovalForOM_BranchPlant}}</div>
+
+                                                                            <div class="labelcontrol labeltext">{{resData.res_CreateInquiryAfterApprovalForOM_B003}}</div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="columnfulldata margintopdata">
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_CreateInquiryAfterApprovalForOM_ProposedETD}}</div>
+                                                                            <div class="labelcontrol">{{resData.res_CreateInquiryAfterApprovalForOM_09142017}}</div>
+
+                                                                        </div>
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_CreateInquiryAfterApprovalForOM_SchedulingDate}}</div>
+
+                                                                            <div class="labelcontrol labeltext">{{resData.res_CreateInquiryAfterApprovalForOM_05102017}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="columnfulldata margintopdata" style="margin-top: -1px;">
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_CreateInquiryAfterApprovalForOM_LoadNumber}}</div>
+                                                                            <div class="labelcontrol labeltext">
+                                                                                -
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_CreateInquiryAfterApprovalForOM_PlateNumber}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                -
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="weather-location clearfix">
+                                                                <div class="columnfulldata margintopdata">
+                                                                    <table class="table table-hover">
+                                                                        <thead>
+                                                                            <tr>
+
+                                                                                <th class="srno">{{resData.res_CreateInquiryAfterApprovalForOM_SrNo}}</th>
+                                                                                <th>{{resData.res_CreateInquiryAfterApprovalForOM_ItemCode}}</th>
+                                                                                <th>{{resData.res_CreateInquiryAfterApprovalForOM_ItemName}}</th>
+                                                                                <th>{{resData.res_CreateInquiryAfterApprovalForOM_UOM}}</th>
+                                                                                <th>{{resData.res_CreateInquiryAfterApprovalForOM_Quantity}}</th>
+                                                                                <th>{{resData.res_CreateInquiryAfterApprovalForOM_AvailableStock}}</th>
+                                                                                <th>{{resData.res_CreateInquiryAfterApprovalForOM_Price}}</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="srno">{{resData.res_CreateInquiryAfterApprovalForOM_1}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_0001}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_Tiger330x24BCrtUnc}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_CR}}</td>
+
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_20}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_30}}</td>
+                                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_CreateInquiryAfterApprovalForOM_25}}</td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="srno">{{resData.res_CreateInquiryAfterApprovalForOM_1}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_0001}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_Tiger330x24BCrtUnc}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_CR}}</td>
+
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_20}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_30}}</td>
+                                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_CreateInquiryAfterApprovalForOM_25}}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="srno">{{resData.res_CreateInquiryAfterApprovalForOM_1}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_0001}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_Tiger330x24BCrtUnc}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_CR}}</td>
+
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_20}}</td>
+                                                                                <td>{{resData.res_CreateInquiryAfterApprovalForOM_30}}</td>
+                                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_CreateInquiryAfterApprovalForOM_25}}</td>
+                                                                            </tr>
+
+
+
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <div class="totalamountdiv">
+                                                                        <span>{{resData.res_CreateInquiryAfterApprovalForOM_Total}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_CreateInquiryAfterApprovalForOM_75}}</div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="weather-highlighted weatherapprovebth">
+                                                                <div class="groupbtn last-column">
+                                                                    <div style="width:100%;float:right">
+
+                                                                        
+                                                                        <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-click="ShowRPMItemCollection()">{{resData.res_CreateInquiryAfterApprovalForOM_ViewRPMDetails}}</a> </div>
+                                                                        <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-click="OpenAddFeedbackpopup()">{{resData.res_CreateInquiryAfterApprovalForOM_ViewFeedback}}</a> </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <script id="templates/modal.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Items</h1>
+                        <button class="button button-clear button-primary" ng-click="modalpopup.hide()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+                            <div class="customlistview" style="border: 1px solid #d5d5d5">
+                                <div class="paddingcontainer">
+                                    <div class="listviewContainer">
+                                        <span class="listviewtitle">
+                                            Affligem Double 300x24B Ctn
+                                        </span>
+                                    </div>
+                                    <div class="listviewContainer">
+                                        <span class="listviewdatafield">
+                                            Item Code : A0001
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Price : <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png" /></span>200
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Quantity : 1000
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            UOM : -
+                                        </span>
+
+                                        <span class="listviewdatafield">
+                                            Quantity in stock :20
+                                        </span>
+
+                                        <span class="listviewdatafield">
+                                            <span class="text-right">
+                                                <a class="edit btn btn-sm btn-default" href="javascript:;"><i class="icon-note"></i></a>  <a class="delete btn btn-sm btn-danger" href="javascript:;"><i class="icons-office-52"></i></a>
+                                            </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="customlistview" style="border: 1px solid #d5d5d5">
+                                <div class="paddingcontainer">
+                                    <div class="listviewContainer">
+                                        <span class="listviewtitle">
+                                            Affligem Double 300x24B Ctn
+                                        </span>
+                                    </div>
+                                    <div class="listviewContainer">
+                                        <span class="listviewdatafield">
+                                            Item Code : A0001
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Price : <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png" /></span>200
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Quantity : 1000
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            UOM : -
+                                        </span>
+
+                                        <span class="listviewdatafield">
+                                            Quantity in stock :20
+                                        </span>
+
+                                        <span class="listviewdatafield">
+                                            <span class="text-right">
+                                                <a class="edit btn btn-sm btn-default" href="javascript:;"><i class="icon-note"></i></a>  <a class="delete btn btn-sm btn-danger" href="javascript:;"><i class="icons-office-52"></i></a>
+                                            </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </ion-content>
+                </ion-modal-view>
+            </script>
+
+            <script id="templates/reasoncodepopup.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryModalView bgcolorheaderandfooter" style="min-height:300px !important;height:300px !important">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Items</h1>
+                        <button class="button button-clear button-primary" ng-click="ClosReasoncodepopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+                            <div class="customlistcontrolview">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata popuplabel  margintopdata">
+                                        <div class="labelname" style="padding-top: 5px; width: 34%;">
+                                            Please choose reason code :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control">
+                                                <option value="Select">Select</option>
+                                                <option value="Reason 1">Reason 1</option>
+                                                <option value="Reason 1">Reason 2</option>
+                                                <option value="Reason 1">Reason 3</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ion-content>
+
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="ClosReasoncodepopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="ClosReasoncodepopup()">
+                                <button class="button btn btn-default redclosebtn">Clear</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+
+            <script id="templates/AddFeedback.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryMeadiumModalView CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Add Feedback</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseAddFeedbackpopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list" style="float:left;width:100%;border:1px solid #d5d5d5;border-bottom:none;margin-bottom:0px">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Inquiry Number :
+                                        </div>
+                                        <div class="labelcontrol" style="margin-top: 6px;">
+                                            INQ0007
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+
+                                        <button type="button" class="btn  btn-square" ng-class="{'btn-success' : FeedbackVariable.OverAll === true, 'btn-default' : FeedbackVariable.OverAll === false}" ng-click="setoverall()">Overall Feedback</button>
+
+                                        <button type="button" class="btn btn-default btn-square" ng-class="{'btn-success' : FeedbackVariable.Specific === true, 'btn-default' : FeedbackVariable.Specific === false}" ng-click="setspecific()">Specific Item</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Item :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Affligem Double 300x24B Ctn</option>
+                                                <option value="Tiger 330x24B Crt Unc">Tiger 330x24B Crt Unc</option>
+                                                <option value="Tiger Crystl 330x24B Crt">Tiger Crystl 330x24B Crt</option>
+                                                <option value="Tiger Crystl 330x24C Ctn">Tiger Crystl 330x24C Ctn</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Quantity :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" placeholder="Quantity" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Feedback :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Good, no complain !</option>
+                                                <option value="Tiger 330x24B Crt Unc">Wrong Invoice !</option>
+                                                <option value="Tiger 330x24B Crt Unc">Driver behavior is in appropriate</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Feedback :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Missing beer</option>
+                                                <option value="Tiger 330x24B Crt Unc">Damage</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Attachment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                <div class="form-control" data-trigger="fileinput">
+                                                    <i class="glyphicon glyphicon-file fileinput-exists"></i><span class="fileinput-filename"></span>
+                                                </div>
+                                                <span class="input-group-addon btn btn-default btn-file">
+                                                    <span class="fileinput-new">Choose...</span><span class="fileinput-exists">Change</span>
+                                                    <input type="file" name="...">
+                                                </span>
+                                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Comment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div style="float:left;width:100%;border:1px solid #d5d5d5;">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            HVBL Comment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="CloseAddFeedbackpopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="CloseAddFeedbackpopup()">
+                                <button class="button btn btn-default">Reset</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+            <script id="templates/ShowRPMQuantity.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquirySmallModalView CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">View RPM Collection </h1>
+                        <button class="button button-clear button-primary" ng-click="CloseViewRPMQuantitypopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+
+                            <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                <div class="table-scrollable">
+                                    <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+                                        <div class="progressbarcontainers">
+                                            <div class="palettesfullpopupview">
+                                                <div class="labelview">
+                                                    No. of Palettes :
+                                                </div>
+                                                <div class="controlview">
+                                                    <div class="palattes">
+                                                        <div class="palatesui">
+                                                            <div class="progress progress-bar-thin">
+                                                                <div class="progress-bar progress-bar-success progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                                    <span class="sr-only"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="palatesui">
+                                                            <div class="progress progress-bar-thin">
+                                                                <div class="progress-bar progress-bar-success progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                                    <span class="sr-only"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="palatesui">
+                                                            <div class="progress progress-bar-thin">
+                                                                <div class="progress-bar progress-bar-primary progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                                    <span class="sr-only"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="palatesui">
+                                                            <div class="progress progress-bar-thin">
+                                                                <div class="progress-bar progress-bar-primary progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                                    <span class="sr-only"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="lastpalatesui palatesui">
+                                                            <div class="progress progress-bar-thin">
+                                                                <div class="progress-bar progress-bar-primary progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                                    <span class="sr-only"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                <div class="table-scrollable">
+                                    <div class="col-lg-12">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="srno"> Sr. No. </th>
+                                                    <th> Item Code </th>
+                                                    <th> Item Name </th>
+                                                    <th> UOM </th>
+                                                    <th> RPM Quantity </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="srno"> 1 </td>
+                                                    <td> 0001 </td>
+                                                    <td> Tiger 330x24B Crt Unc </td>
+                                                    <td> CR </td>
+                                                    <td> 20 </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="srno"> 2 </td>
+                                                    <td> 0002 </td>
+                                                    <td> Affligem Double 300x24B Ctn </td>
+                                                    <td> CR </td>
+                                                    <td> 22 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="srno"> 3 </td>
+                                                    <td> 0003 </td>
+                                                    <td> Tiger Crystl 330x24B Crt </td>
+                                                    <td> CR </td>
+                                                    <td> 30 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="srno"> 4 </td>
+                                                    <td> 0004 </td>
+                                                    <td> Tiger Crystl 330x24C Ctn </td>
+                                                    <td> CR </td>
+                                                    <td> 35 </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn" ng-click="CloseViewRPMQuantitypopup()">
+                                <button class="button btn btn-default">Close</button>
+                            </div>
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+        </div>
+
+
+        <div class="fabbutton">
+
+            <ion-fab class="firstfab" bottom="" left="">
+                <a ng-click="OpenModalpopup()" class="carticon MobileView">
+                    <i class="fa fa-shopping-cart bg-blue"></i>
+                </a>
+            </ion-fab>
+
+            <ion-fab class="secondfab" bottom="" left="">
+                <a ui-sref="ViewInquiryForOM" class="carticon MobileView">
+                    <i class="fa fa-truck bg-blue"></i>
+                </a>
+            </ion-fab>
+
+        </div>
+
+    </ion-content>
+</ion-view>

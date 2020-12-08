@@ -1,0 +1,331 @@
+﻿<style type="text/css">
+	.GridColumnWithBorder_AddCompany {
+		float: left;
+		width: 25%;
+		padding: 0px 20px;
+		border-right: 2px dashed #d5d5d5;
+		height: 36px;
+		padding-top: 5px;
+	}
+</style>
+
+<style>
+	.ta-editor {
+		height: 306px !important;
+	}
+
+	.selectedYes {
+		width: 17px;
+		font-size: 14px;
+		margin-right: 6px;
+		color: #39b54a !important;
+		cursor: pointer;
+	}
+
+	.col-md-6 {
+		padding-left: 0px;
+	}
+
+	.selectedNo {
+		width: 17px;
+		font-size: 14px;
+		margin-right: 6px;
+		color: #19211b;
+		cursor: pointer;
+	}
+
+	.transpantcolorbtn {
+		border: 1px solid black;
+		border-radius: 15px;
+		color: black;
+		font-size: 18px;
+	}
+
+	.ActionButtons {
+		float: right;
+		margin-top: 25px;
+		margin-bottom: 10px;
+	}
+
+	.dropdown-multiselect {
+		height: 25px;
+	}
+</style>
+
+
+
+<ion-view>
+	<ion-content class="main-content">
+		<div class="pageview">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="nav-tabs2">
+						<ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+							<li class="active" ng-class="{'active': ViewTab}">
+								<a ng-click="ViewForm()" class="">
+									<tab-heading>
+										<i class="fa fa-eye"></i>{{resData.res_EmailDynamicColumn_View}}
+									</tab-heading>
+								</a>
+							</li>
+							<li class="" ng-class="{'active': AddTab}">
+								<a ng-click="AddForm()">
+									<tab-heading>
+										<i class="fa fa-plus"></i>{{resData.res_EmailDynamicColumn_Add}}
+									</tab-heading>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane" ng-class="{'active': AddTab}">
+								<div class="panel-content">
+									<div class="row">
+										<div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+											<!--<div ng-include="'Location/DeliveryLocationDropdownView.html'" ng-controller="DeliveryLocationDropdownController"></div>-->
+
+											<div class="fullwidth">
+												<div ng-if="pageContrlAcessData.TransporterId !='0'">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">{{resData.res_ShowCaseUI_Type}} </label>
+															<div class="col-sm-9">
+																<select id="ddlTransporterId" ng-model="ShowCaseJSON.ShowCaseType" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ShowCaseTypeList" ng-disabled="pageContrlAcessData.ShowCaseType =='0' || pageContrlAcessData.ShowCaseType =='1'">
+																	<option value="">{{resData.res_ShowCaseUI_Select}}
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div ng-if="pageContrlAcessData.VehicleTypeId !='0'">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">{{resData.res_CreateInquiryPage_ItemName}} </label>
+															<div class="col-sm-9">
+																<item-Drop-Down-Component res-data="resData" page-Contrl-Acess-Data="pageContrlAcessData" selecteditemevent="selectedItemEvent(ItemCode,ItemName)" input-item="SearchControl.InputItem" is-disabled="disableInput || pageContrlAcessData.ItemSectionVisibility === '1'" filter-auto-completebox="SearchControl.FilterAutoCompletebox"></item-Drop-Down-Component>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="fullwidth">
+												<div ng-if="pageContrlAcessData.FromDate !='0'">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">{{resData.res_ShowCaseUI_FromDate}} </label>
+															<div class="col-sm-9">
+																<!--<input id="FromDate" type="text" ng-readonly="true" name="datepicker" ng-click="BindCalendarFromDate()" ng-model="ShowCaseJSON.FromDate" class="form-control form-white date-picker" style="width:89% !important;">
+																<a class="createinquirybtn_solidbg card_Section circlebg_icon" ng-click="BindCalendarFromDate()" style="float:right !important">
+																	<i class="fa fa-calendar green" aria-hidden="true"></i>
+																</a>-->
+
+																<input type="text" id="FromDate" autocomplete="off" ng-model='ShowCaseJSON.FromDate' name="datepicker" class="form-control form-white date-picker" style="width:89% !important;">
+																<i class="icon-calendar" style="float: right;right: 0;left: auto;"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div ng-if="pageContrlAcessData.ToDate !='0'">
+
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">{{resData.res_ShowCaseUI_ToDate}} </label>
+															<div class="col-sm-9">
+																<!--<input id="ToDate" type="text" ng-readonly="true" name="datepicker" ng-click="BindCalendarToDate()" ng-model="ShowCaseJSON.ToDate" class="form-control form-white date-picker" style="width:89% !important;">
+																<a class="createinquirybtn_solidbg card_Section circlebg_icon" ng-click="BindCalendarToDate()" style="float:right !important">
+																	<i class="fa fa-calendar green" aria-hidden="true"></i>
+																</a>-->
+
+																<input type="text" id="ToDate" autocomplete="off" ng-model='ShowCaseJSON.ToDate' ng-click="BindCalendarToDate()" name="datepicker" class="form-control form-white date-picker" style="width:89% !important;">
+																<i class="icon-calendar" ng-click="BindCalendarToDate()" style="float: right;right: 0;left: auto;"></i>
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+
+
+
+
+											<div class="fullwidth">
+
+
+
+												<div ng-if="pageContrlAcessData.SmallImage !='0'">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">{{resData.res_ShowCase_SmallImage}}({{documenttypeforvehiclecertificate}})</label>
+															<div class="labelcontrol" ng-readonly="pageContrlAcessData.SmallImage =='0' || pageContrlAcessData.VehicleCertificate =='1' ">
+																<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+																	<div class="form-control" data-trigger="fileinput">
+																		<i class="glyphicon glyphicon-file fileinput-exists"></i>
+																		<span class="fileinput-filename">{{ShowCaseJSON.labelFilename}}</span>
+																	</div>
+																	<span class="input-group-addon btn btn-default btn-file">
+																		<span class="fileinput-new">Choose...</span>
+																		<span class="fileinput-exists">Change</span>
+																		<input type="file" id="fileUpload" onchange="angular.element(this).scope().FileNameChanged(this)" file-model="fileupload.Filesmall" />
+																	</span>
+																	<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+
+																</div>
+															</div>
+															<a style="margin-left: 10px;" ng-if="ShowCaseJSON.SmallImageBlob != '' && TransportVehicleJSON.SmallImageBlob != null" class="linktext" ng-click="DownloadDocument()"> View </a>
+														</div>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="fullwidth">
+
+												<div ng-if="pageContrlAcessData.BigImage !='0'">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">{{resData.res_ShowCase_BigImage}}({{documenttypeforvehiclecertificate}})</label>
+															<div class="labelcontrol" ng-readonly="pageContrlAcessData.BigImage =='0' || pageContrlAcessData.BigImage =='1' ">
+																<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+																	<div class="form-control" data-trigger="fileinput">
+																		<i class="glyphicon glyphicon-file fileinput-exists"></i>
+																		<span class="fileinput-filename">{{ShowCaseJSON.labelBigImageFilename}}</span>
+																	</div>
+																	<span class="input-group-addon btn btn-default btn-file">
+																		<span class="fileinput-new">Choose...</span>
+																		<span class="fileinput-exists">Change</span>
+																		<input type="file" id="fileUpload" onchange="angular.element(this).scope().FileNameChangedBig(this)" file-model="fileupload.Filebig" />
+																	</span>
+																	<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+
+																</div>
+															</div>
+															<a style="margin-left: 10px;" ng-if="ShowCaseJSON.BigImageBlob != '' && ShowCaseJSON.BigImageBlob != null" class="linktext" ng-click="DownloadDocument()"> View </a>
+														</div>
+													</div>
+												</div>
+
+
+
+											</div>
+
+
+
+											<div class="fullwidth">
+
+
+
+
+												<div ng-if="pageContrlAcessData.Title !='0'">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="col-sm-3 control-label">{{resData.res_ShowCaseUI_Title}}  </label>
+															<div class="col-sm-9">
+																<input class="green_border_textbox" ng-model="ShowCaseJSON.Title" style="border: 1px solid #d5d5d5 !important;" ng-readonly="pageContrlAcessData.Title =='0' || pageContrlAcessData.Title =='1'" />
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="fullwidth">
+												<div class="row">
+													<div class="section_width_100 margin_bottom_10" ">
+														<span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">{{resData.res_ShowCaseUI_Description}} <span style="color:red;"> * </span></span>
+														<div class="section_width_100 margin_top_bottom_5 position_relative">
+															<div text-angular ng-model="ShowCaseJSON.Description" name="EmailHeader-editor" ta-text-editor-class="border-around " ta-html-editor-class="border-around" class="BorderAround smallheight_NotRequired"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="ActionButtons">
+												<div class="clearbtn">
+													<button type="button" ng-click="ClearControls()" class="btn btn-default">Clear</button>
+												</div>
+												<div class="successbtn">
+													<button type="button" ng-click="Save()" class="btn btn-success">Save</button>
+												</div>
+											</div>
+											<div class="fullwidth">
+												<div class="col-md-12">
+													<br />
+													<br />
+													<br />
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane active" ng-class="{'active': ViewTab}">
+								<div class="panel-content">
+									<div class="row">
+										<div class="formcontrols form-horizontal ng-pristine ng-valid">
+											<div class="col-md-12">
+												<div id="ShowCaseGrid" class="Company_Grid" style="height: 70vh;" dx-data-grid="ShowCaseGrid" dx-item-alias="ShowCaseData">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+
+	<script id="WarningMessage.html" type="text/ng-template">
+		<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+			<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+				<h1 class="title">{{resData.res_AddCompany_Warning}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="false" class="popioncontainer">
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+					{{resData.res_AddCompany_DeleteWarning}}
+				</div>
+			</ion-content>
+			<ion-footer-bar class="popupfooter">
+
+				<div class="popupbtnstyle">
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="DeleteYes()">
+							{{resData.res_AddCompany_DeleteYes}}
+						</a>
+						<a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+							{{resData.res_AddCompany_DeleteNo}}
+						</a>
+					</div>
+
+
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+
+
+	<div class="modal-backdrop active" ng-if="PickupAddedModalPopupControl">
+		<div class="modal-backdrop-bg"></div>
+		<div class="modal-wrapper">
+			<ion-modal-view class="confirmationmsgmodalview ShowBulkChangeDriverPickupDateAndShift bgcolorheaderandfooter modal fade-in-scale ng-enter active ng-enter-active" style="z-index: 1000000 !important;width: 80% !important; height: auto !important; min-height: 651px !important; top: 100px;">
+				<ion-header-bar class="bar bar-header bar-positive">
+					<h1 class="title">{{resData.res_createinquirypage_Add_Location}}</h1>
+					<button class="button button-clear button-primary" ng-click="CloseAddLocationInMasterPopup()"><i class="icons-office-52"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="hidden" class="padding IonicPopupHeight popup_scrollbar">
+					<div ng-include="'AddLocation.html'" ng-controller="AddLocationController"></div>
+				</ion-content>
+			</ion-modal-view>
+		</div>
+	</div>
+
+</ion-view>

@@ -1,0 +1,224 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview customscreen">
+            <div class="header">
+                <h2>{{resData.res_ProcessConfigurationUI_Process}}<strong>{{resData.res_ProcessConfigurationUI_Configuration}}</strong></h2>
+            </div>
+
+
+            <div class="row">
+
+                <div class="md-card-content large-padding">
+
+
+
+                    <div class="uk-grid" data-uk-grid-margin="" style="display:none">
+                    <div class="uk-width-medium-1-2">
+                        <div class="parsley-row">
+                            <label for="CompanyType ">{{resData.res_ProcessConfigurationUI_CompanyType}}</label>
+                            <input id="inputCompanyType" type="text" ng-model="CompanyType" name="Input" ng-change="validatefield('CompanyType','txt')" class="md-input">
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="uk-width-medium-1-2">
+                        <div class="parsley-row">
+                            <label for="OrderType ">{{resData.res_ProcessConfigurationUI_OrderType}}</label>
+                            <input id="inputOrderType" type="text" ng-model="OrderType" name="Input" ng-change="validatefield('OrderType','txt')" class="md-input">
+                        </div>
+                    </div>
+
+
+                </div>
+                    <div class="uk-grid" data-uk-grid-margin="" style="display:none">
+                    <div class="uk-width-medium-1-2">
+                        <div class="parsley-row">
+                            <label for="CompanyId ">{{resData.res_ProcessConfigurationUI_CompanyId}}</label>
+                            <input id="inputCompanyIdtype=" text"="" ng-model="CompanyId" name="Input" ng-change="validatefield('CompanyId','txt')" class="md-input">
+                        </div>
+                        <i id="inputCompanyId" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                    </div>
+
+
+
+
+                    <div class="uk-width-medium-1-2">
+                        <div class="parsley-row">
+                            <label for="ModeOfDelivery ">{{resData.res_ProcessConfigurationUI_ModeOfDelivery}}</label>
+                            <input id="inputModeOfDelivery" type="text" ng-model="ModeOfDelivery" name="Input" ng-change="validatefield('ModeOfDelivery','txt')" class="md-input">
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                    <div class="uk-grid" data-uk-grid-margin="">
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row">
+                                <label for="ProcessCategory ">{{resData.res_ProcessConfigurationUI_ProcessCategory}}</label>
+                                <input id="inputProcessCategory" type="text" ng-model="ProcessCategory" name="Input" ng-change="validatefield('ProcessCategory','txt')" class="md-input">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row">
+                                <label for="LastStageId ">{{resData.res_ProcessConfigurationUI_LastStageId}}</label>
+                                <input id="inputLastStageIdtype=" text"="" ng-model="LastStageId" name="Input" ng-change="validatefield('LastStageId','txt')" class="md-input">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="uk-grid" data-uk-grid-margin="">
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row">
+                                <label for="ProcessName ">{{resData.res_ProcessConfigurationUI_ProcessName}}</label>
+                                <input id="inputProcessName" type="text" ng-model="ProcessName" name="Input" ng-change="validatefield('ProcessName','txt')" class="md-input">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row">
+                                <label for="NextStageId ">{{resData.res_ProcessConfigurationUI_NextStageId}}</label>
+                                <input id="inputNextStageIdtype=" text"="" ng-model="NextStageId" name="Input" ng-change="validatefield('NextStageId','txt')" class="md-input">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="uk-grid" data-uk-grid-margin="" style="display:none">
+                    <div class="uk-width-medium-1-2">
+                        <div class="parsley-row">
+                            <label for="RuleId ">{{resData.res_ProcessConfigurationUI_RuleId}}</label>
+                            <input id="inputRuleIdtype=" text"="" ng-model="RuleId" name="Input" ng-change="validatefield('RuleId','txt')" class="md-input">
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="uk-width-medium-1-2">
+                        <div class="parsley-row">
+                            <label for="NotificationId ">{{resData.res_ProcessConfigurationUI_NotificationId}}</label>
+                            <input id="inputNotificationIdtype=" text"="" ng-model="NotificationId" name="Input" ng-change="validatefield('NotificationId','txt')" class="md-input">
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                    <div class="uk-grid" data-uk-grid-margin="">
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row">
+                                <label for="Remarks ">{{resData.res_ProcessConfigurationUI_Remarks}}</label>
+                                <input id="inputRemarks" type="text" ng-model="Remarks" name="Input" ng-change="validatefield('Remarks','txt')" class="md-input">
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <div class="uk-width-medium-1-2" style="display:none">
+                        <div class="parsley-row">
+                            <label for="ModifiedBy ">{{resData.res_ProcessConfigurationUI_ModifiedBy}}</label>
+                            <input id="inputModifiedBytype=" text"="" ng-model="ModifiedBy" name="Input" ng-change="validatefield('ModifiedBy','txt')" class="md-input">
+                        </div>
+                    </div>
+
+
+                    </div>
+
+
+                    <div class="uk-grid" data-uk-grid-margin="" style="display:none">
+                        <div class="uk-width-medium-1-2">
+                        <div class="parsley-row">
+                            <label for="ModifiedDate ">{{resData.res_ProcessConfigurationUI_ModifiedDate}}</label>
+                            <input type="text" id="inputModifiedDate class=" md-input"="" data-parsley-americandate="" data-parsley-americandate-message="This value should be a valid date (MM.DD.YYYY)" data-uk-datepicker="{format:'MM.DD.YYYY'}">
+                        </div>
+                    </div>
+                        <div class="uk-width-medium-1-2">
+                        <div class="parsley-row">
+                            <label for="IsActive ">{{resData.res_ProcessConfigurationUI_IsActive}}</label>
+                            <span class="icheck-inline"><input type="checkbox" name="IsActive" id="IsActive" data-md-icheck="" data-parsley-mincheck="2"></span>
+                        </div>
+                        <i id="inputIsActive" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                    </div>
+
+
+                    </div>
+
+
+                    <div class="uk-grid" data-uk-grid-margin="">
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row">
+                                <label for="SequenceNo ">{{resData.res_ProcessConfigurationUI_SequenceNo}}</label>
+                                <input id="inputSequenceNotype=" text"="" ng-model="SequenceNo" name="Input" ng-change="validatefield('SequenceNo','txt')" class="md-input">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="uk-width-medium-1-2" style="display:none">
+                        <div class="parsley-row">
+                            <label for="Field1 ">{{resData.res_ProcessConfigurationUI_Field1}}</label>
+                            <input id="inputField1" type="text" ng-model="Field1" name="Input" ng-change="validatefield('Field1','txt')" class="md-input">
+                        </div>
+                    </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+                <div id="AddButton" class="md-fab-wrapper">
+                    <button type="button" class="btn btn-success" ng-click="ProcessConfigurationsave()">{{resData.res_ProcessConfigurationUI_Success}}</button>
+
+
+                </div>
+
+
+            </div>
+            <!--<div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+                    <div id="portalview" class="PortalView">
+                        <div class="panel">
+                            <div class="md-card-content">
+                                <div class="uk-overflow-container">
+                                    <div kendo-grid="mainGrid" k-options="mainGridOptions" k-rebind="mainGridOptions"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+                    </div>
+                    
+
+
+                </div>
+            </div>-->
+        </div>
+    </ion-content>
+</ion-view>

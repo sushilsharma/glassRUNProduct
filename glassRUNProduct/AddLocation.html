@@ -1,0 +1,595 @@
+﻿<div class="panel-content">
+	<div class="row">
+		<div class="formcontrols form-horizontal ng-pristine ng-valid" style="padding-bottom: 51px!important;">
+			<div class="col-lg-12">
+				<div ng-if="pageContrlAcessData.LocationName !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								<span>{{resData.res_LocationUI_LocationName}}</span>
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-model="AddLocationJSON.LocationName" class="form-control" ng-readonly="pageContrlAcessData.LocationName =='0' || pageContrlAcessData.LocationName =='1'" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-if="pageContrlAcessData.DisplayName !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_DisplayName}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-model="AddLocationJSON.DisplayName" class="form-control" ng-readonly="pageContrlAcessData.DisplayName =='0' || pageContrlAcessData.DisplayName =='1'" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+
+				<div ng-if="pageContrlAcessData.LocationCode !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_LocationCode}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-model="AddLocationJSON.LocationCode" class="form-control" ng-readonly="pageContrlAcessData.LocationCode =='0' || pageContrlAcessData.LocationCode =='1'" />
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+
+				<div ng-if="pageContrlAcessData.LocationType !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_LocationType}}
+							</div>
+							<div class="labelcontrol">
+								<select id="ddlLocationTypeId" ng-model="AddLocationJSON.LocationType" class="form-control" name="val_SelectObject" ng-options="obj.Id as obj.Name for obj in LocationtypeList  | orderBy:'Name'">
+									<option value="">Select</option>LocationtypeList
+								</select>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+			<div class="col-lg-12">
+
+				<div ng-if="pageContrlAcessData.CompanyId !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Company}}
+							</div>
+							<div class="labelcontrol">
+								<div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+									<div class="form-group MultiSelectControl" style="width: 100%;margin-left:5px ;margin-top:10px">
+
+										<div ng-dropdown-multiselect="" options="LoadedDistributorsList" selected-model="SelectLoadedDistributorsList" checkboxes="false" extra-settings="SortByListSetting" events="ObjectRoleMasterEvent"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+
+				<div ng-if="pageContrlAcessData.AddressLine1 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_AddressLine1}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.AddressLine1 =='0' || pageContrlAcessData.AddressLine1 =='1'" ng-model="AddLocationJSON.AddressLine1" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-lg-12">
+
+
+				<div ng-if="pageContrlAcessData.AddressLine2 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_AddressLine2}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.AddressLine2 =='0' || pageContrlAcessData.AddressLine2 =='1'" ng-model="AddLocationJSON.AddressLine2" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div ng-if="pageContrlAcessData.AddressLine3 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_AddressLine3}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.AddressLine3 =='0' || pageContrlAcessData.AddressLine3 =='1'" ng-model="AddLocationJSON.AddressLine3" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+			<div class="col-lg-12">
+
+				<div ng-if="pageContrlAcessData.AddressLine4 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_AddressLine4}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.AddressLine4 =='0' || pageContrlAcessData.AddressLine4 =='1'" ng-model="AddLocationJSON.AddressLine4" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div ng-if="pageContrlAcessData.State !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_State}}
+							</div>
+							<div class="labelcontrol">
+								<select id="ddlStateId" ng-readonly="pageContrlAcessData.State =='0' || pageContrlAcessData.State =='1'" ng-model="AddLocationJSON.State" class="form-control" name="val_SelectObject" ng-change="GetAllCityDetailsByStateId(AddLocationJSON.State)" ng-options="obj.StateId as obj.StateName for obj in StateList">
+									<option value="">Select</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+			</div>
+
+
+			<div class="col-lg-12">
+				<div ng-if="pageContrlAcessData.City !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_City}}
+							</div>
+							<div class="labelcontrol">
+								<select id="ddlCityId" ng-readonly="pageContrlAcessData.City =='0' || pageContrlAcessData.City =='1'" ng-model="AddLocationJSON.City" class="form-control" name="val_SelectObject" ng-options="obj.CityId as obj.CityName for obj in CityList | orderBy:'CityName'">
+									<option value="">Select</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+				<div ng-if="pageContrlAcessData.PostCode !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_PostCode}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-keypress="filterValue($event)" ng-readonly="pageContrlAcessData.PostCode =='0' || pageContrlAcessData.PostCode =='1'" ng-model="AddLocationJSON.PostCode" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
+
+			<div class="col-lg-12">
+				<div ng-if="pageContrlAcessData.SelectedProductList !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_ProductType}}
+							</div>
+							<div class="labelcontrol">
+								<div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+									<div class="form-group MultiSelectControl" ng-readonly="pageContrlAcessData.SelectedProductList =='0' || pageContrlAcessData.SelectedProductList =='1'" style="width: 100%;margin-left:5px ;margin-top:10px">
+										<div ng-dropdown-multiselect="" options="ProductTypeList" selected-model="SelectedProductList" checkboxes="true" extra-settings="SortByListSetting"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div ng-if="pageContrlAcessData.SelectedProductCategoryList !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_ProductCategory}}
+							</div>
+							<div class="labelcontrol">
+								<div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+									<div class="form-group MultiSelectControl" ng-readonly="pageContrlAcessData.SelectedProductCategoryList =='0' || pageContrlAcessData.SelectedProductCategoryList =='1'" style="width: 100%;margin-left:5px ;margin-top:10px">
+										<div ng-dropdown-multiselect="" options="ProductCategoryList" selected-model="SelectedProductCategoryList" checkboxes="true" extra-settings="SortByListSetting"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="col-lg-12">
+
+
+				<div ng-if="pageContrlAcessData.Capacity !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Capacity}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-keypress="filterValue($event)" ng-readonly="pageContrlAcessData.Capacity =='0' || pageContrlAcessData.Capacity =='1'" ng-model="AddLocationJSON.Capacity" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div ng-if="pageContrlAcessData.Safefill !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Safefill}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-keypress="filterValue($event)" ng-readonly="pageContrlAcessData.Safefill =='0' || pageContrlAcessData.Safefill =='1'" ng-model="AddLocationJSON.Safefill" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-lg-12">
+
+
+				<div ng-if="pageContrlAcessData.Field1 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field1}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.Field1 =='0' || pageContrlAcessData.Field1 =='1'" ng-model="AddLocationJSON.Field1" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div ng-if="pageContrlAcessData.Field2 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field2}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.Field2 =='0' || pageContrlAcessData.Field2 =='1'" ng-model="AddLocationJSON.Field2" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-lg-12">
+
+
+
+
+
+
+				<div ng-if="pageContrlAcessData.Field3 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field3}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.Field3 =='0' || pageContrlAcessData.Field3 =='1'" ng-model="AddLocationJSON.Field3" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div ng-if="pageContrlAcessData.Field4 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field4}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.Field4 =='0' || pageContrlAcessData.Field4 =='1'" ng-model="AddLocationJSON.Field4" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+			<div class="col-lg-12">
+
+				<div ng-if="pageContrlAcessData.Field5 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field5}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.Field5 =='0' || pageContrlAcessData.Field5 =='1'" ng-model="AddLocationJSON.Field5" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div ng-if="pageContrlAcessData.Field6 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field6}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.Field6 =='0' || pageContrlAcessData.Field6 =='1'" ng-model="AddLocationJSON.Field6" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-lg-12">
+
+
+
+
+
+
+
+				<div ng-if="pageContrlAcessData.Field7 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field7}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-model="AddLocationJSON.Field7" ng-readonly="pageContrlAcessData.Field7 =='0' || pageContrlAcessData.Field7 =='1'" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div ng-if="pageContrlAcessData.Field8 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field8}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.Field8 =='0' || pageContrlAcessData.Field8 =='1'" ng-model="AddLocationJSON.Field8" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+
+				<div ng-if="pageContrlAcessData.Field9 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field9}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.Field9 =='0' || pageContrlAcessData.Field9 =='1'" ng-model="AddLocationJSON.Field9" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div ng-if="pageContrlAcessData.Field10 !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_Field10}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.Field10 =='0' || pageContrlAcessData.Field10 =='1'" ng-model="AddLocationJSON.Field10" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-12">
+
+				<div ng-if="pageContrlAcessData.WMSBranchPlantCode !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_WMSBranchPlantCode}}
+							</div>
+							<div class="labelcontrol">
+								<input type="text" ng-readonly="pageContrlAcessData.WMSBranchPlantCode =='0' || pageContrlAcessData.WMSBranchPlantCode =='1'" ng-keypress="filterValue($event)" ng-model="AddLocationJSON.WMSBranchPlantCode" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div ng-if="pageContrlAcessData.WareHouseType !='0'">
+					<div class="col-lg-6">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								{{resData.res_LocationUI_WareHouseType}}
+							</div>
+							<div class="labelcontrol">
+								<select id="ddlCityId" ng-readonly="pageContrlAcessData.WareHouseType =='0' || pageContrlAcessData.WareHouseType =='1'" ng-model="AddLocationJSON.WareHouseType" class="form-control" name="val_SelectObject" ng-options="obj.CityId as obj.CityName for obj in CityList">
+									<option value="">Select</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div ng-if="pageContrlAcessData.ContactPersonDetails !='0'">
+					<div class="col-lg-12">
+						<div class="columnfulldata  margintopdata">
+							<div class="labelname reasonlable">
+								<b>  {{resData.res_AddCompany_ContactPersonDetails}}</b>
+							</div>
+						</div>
+					</div>
+					<div class="conatinerheader headerdataconatiner">
+
+						<div class="UOMContainer  rightaling">
+							{{resData.res_AddCompany_ContactType_SrNo}}
+						</div>
+
+						<div class="Company_AddCompany">
+							{{resData.res_AddCompany_ContactType}}
+						</div>
+						<div class="Company_AddCompany">
+							{{resData.res_AddCompany_ContactPersonName}}
+						</div>
+						<div class="Company_AddCompany">
+							<!--{{resData.res_AddCompany_ContactPersonNumber}}-->
+							{{LabelTxtName}}
+						</div>
+						<div class="removeItemicon">
+							{{resData.res_AddCompany_ContactType_Action}}
+						</div>
+					</div>
+					<div class="conatinerbody">
+						<div class="conatinerheader itemrowcontainer">
+							<div class="UOMContainer rightaling">
+								&nbsp;
+							</div>
+							<div class="Company_AddCompany">
+								<select id="ddlContacttype" ng-model="AddCompanyDeailsJSON.ContactTypeId" ng-change="ChangelabelName()" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ContactTypeList  | orderBy:'Name'">
+									<option value="">Select</option>
+								</select>
+								<!--<input class="form-control form-white" ng-model="AddCompanyDeailsJSON.Email" type="text">-->
+							</div>
+
+							<div class="Company_AddCompany">
+								<input class="form-control form-white" ng-model="AddCompanyDeailsJSON.ContactPersonName" type="text">
+							</div>
+							<div class="Company_AddCompany">
+								<input class="form-control form-white" ng-model="AddCompanyDeailsJSON.ContactPersonNumber" type="text">
+							</div>
+							<div class="removeItemicon">
+								<a ng-click="AddContactPersonInfo()">
+									<!--<i class="fa fa-plus" aria-hidden="true"></i>--> Add
+								</a>
+							</div>
+						</div>
+
+						<div class="conatinerheader itemrowcontainer" style="margin-top: 20px;" ng-repeat="Contactinfo in ContactInformationList">
+							<div class="UOMContainer rightaling">
+								{{$index + 1}}
+							</div>
+							<div class="Company_AddCompany">
+								{{Contactinfo.ContactType}}
+							</div>
+
+							<div class="Company_AddCompany">
+								{{Contactinfo.ContactPersonName}}
+							</div>
+							<div class="Company_AddCompany">
+								{{Contactinfo.ContactPersonNumber}}
+							</div>
+
+							<div class="removeItemicon">
+								<a ng-click="EditContactPersonInfo(Contactinfo.ContactinfoGUID)">
+									<!--<i class="fa fa-pencil" aria-hidden="true"></i>--> Edit
+								</a>&nbsp;| &nbsp;
+								<a ng-click="DeleteContactInfo(Contactinfo.ContactinfoGUID)">
+									<!--<i class="fa fa-trash" aria-hidden="true"></i>--> Delete
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+
+
+
+
+
+			<div class="ActionButtons">
+				<div class="clearbtn">
+					<button type="button" ng-click="ClearControls()" class="btn btn-default">Clear</button>
+				</div>
+				<div class="successbtn">
+					<button type="button" ng-click="Save()" class="btn btn-success">Save</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

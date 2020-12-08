@@ -1,0 +1,26 @@
+﻿<div class="col-md-12">
+    <div class="fullwidth">
+        <label class="control-label">{{resData.res_AddRoleAccess_Setrolepermissiontoaccessreadwriteanddelete}}</label>
+    </div>
+
+    <table class="table tablegrid table-hover">
+        <thead>
+            <tr>
+                <th style="    width: 668px !important;">{{resData.res_AddRoleAccess_PageName}}</th>
+                <th style="text-align: center; width: 58px !important;">{{resData.res_AddRoleAccess_View}}</th>
+                <!--<th>{{resData.res_AddRoleAccess_Edit}}</th>
+                <th>{{resData.res_AddRoleAccess_Add}}</th>
+                <th>{{resData.res_AddRoleAccess_Delete}}</th>-->
+                <th style="    width: 368px !important;">{{resData.res_AddRoleAccess_Action}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="page in PageDetails">
+                <td>{{page.PageName}}</td>
+                <td><input class="form-white"  ng-click="SetSelectedRow(page)" type="checkbox" ng-model="page.IsActive" ></td>
+
+                <td><a ng-if="page.IsActive === true " ng-click="OpenPageControlAccessModalpopup(page.PageId)" style="color: #0071bc !important;" class="controllink">{{resData.res_AddRoleAccess_AddControlLevelAccess}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

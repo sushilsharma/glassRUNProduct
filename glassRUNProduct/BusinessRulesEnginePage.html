@@ -1,0 +1,422 @@
+﻿<ion-view>
+    <ion-content class="main-content" style="overflow-y:hidden">
+        <style type="text/css">
+            .detailsLable {
+                float: left;
+                color: #4d4d4d;
+                font-weight: 600
+            }
+
+            #bussinessruleui .dx-treeview-node-is-leaf {
+                display: none;
+            }
+
+            #bussinessruleui .dx-cell-focus-disabled {
+                background-color: #fff;
+            }
+
+            #bussinessruleui .dx-row td {
+                border: 0px !important
+            }
+
+            #bussinessruleui .dx-viewport {
+                border: 0px !important;
+            }
+
+            #bussinessruleui .dx-datagrid-headers {
+                display: none !important
+            }
+
+            #bussinessruleui .dx-datagrid-rowsview {
+                border: 0px !important
+            }
+
+            #bussinessruleui .dx-datagrid-filter-row td {
+                display: none !important
+            }
+
+            #bussinessruleui .selectobject {
+                margin-left: 0px !important;
+            }
+
+            #bussinessruleui .removepadding {
+                padding-right: 0px !important;
+                padding-left: 0px !important;
+                border-bottom: 1px solid #f1f0f0;
+                padding-bottom: 20px;
+                padding-top: 15px;
+            }
+
+            #bussinessruleui .dx-datagrid-content .dx-datagrid-table .dx-row > td {
+                vertical-align: top;
+                border: 0px !important;
+            }
+
+            #bussinessruleui .dx-datagrid-rowsview .dx-selection.dx-row.dx-row-lines > td {
+                background-color: #fff;
+            }
+
+            #bussinessruleui .selectedYes {
+                width: 17px;
+                font-size: 14px;
+                margin-right: 6px;
+                color: #39b54a !important;
+                cursor: pointer;
+            }
+
+            #bussinessruleui .selectedNo {
+                width: 17px;
+                font-size: 14px;
+                margin-right: 6px;
+                color: #19211b;
+                cursor: pointer;
+            }
+
+            #bussinessruleui .underlinetextbox {
+                width: 100%;
+                height: 30px;
+                font-size: 14px;
+                color: #4d4d4d !important;
+                font-weight: normal;
+                padding-left: 5px !important;
+            }
+        </style>
+        <link href="Styles/jquery-ui.css" rel="stylesheet">
+        <div id="bussinessruleui" class="pageview" style="margin-bottom: 50px;">
+            <div class="row">
+                <div class="col-md-12 ruleEnginePage" style="margin-bottom:100px">
+                    <div class="nav-tabs2">
+                        <div class="tab-content" style="padding-bottom: 25px;">
+                            <!--Loading Grid and view rule section-->
+                            <div class="col-md-12" ng-if="RedirectToRulePage" style="margin-top: 10px; margin-left: 18px;margin-bottom: 10px;">
+                                <span style="float: left; width: auto; margin-right: 28px;cursor: pointer;">
+                                    <a ng-click="RedirectToWorkflow();">
+                                        <i style="color: #5b5b5b;font-size: 20px;font-weight: normal;" class="fa fa-arrow-left"></i>
+                                    </a>
+                                </span>
+                                <span style="float: left; width: auto; font-size: 18px; margin-bottom: 10px;">{{WorkflowBreadCrumb}}</span>
+                            </div>
+                            <div class="tab-pane" ng-class="{'active': FirstTab}">
+                                <div class="panel-content bussinessrule">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-8 bussinessrightpanel">
+                                                <div class="col-md-12">
+                                                    <h2 class="ruletypeheading" style="font-size: 20px;margin-bottom: 5px;">Rule Config</h2>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div style="float:left;width:100%;margin-bottom: 25px;margin-top: 15px;"  ng-if="pageContrlAcessData.AddNewBusinessRulesVisibility !='0'">
+                                                        <div class="footerbuttons" style="margin: 0px;">
+                                                            <a class="buttonstext bggreencolorbtn" ng-click="AddNewBusinessRules();">{{resData.res_BusinessRulesEnginePage_AddNewRule}}</a>
+                                                        </div>
+                                                        <div class="footerbuttons" style="display:none">
+                                                            <a class="buttonstext bggreencolorbtn" ng-click="RedirectToWorkflow();">Back To Workflow</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="grbussinessrulecontrol" style="position: relative;padding-bottom: 0px;" ng-if="pageContrlAcessData.SearchRulesVisibility !='0'">
+
+                                                        <span style="position: absolute;top: -12px;background-color: #fff; padding-right: 5px;"> {{resData.res_BusinessRulesEnginePage_filterlabel}}</span>
+
+                                                        <div class="col-md-12" style="padding: 0px">
+                                                            <div class="grMasterPagelable grlabelWidth" style="width: 107px !important;margin-top: -3px;">{{resData.res_AddEditBusinessRuleEngine_RuleType}}</div>
+                                                            <div class="grMasterPagecontrol grcontrolwidth" style="width: 82% !important;">
+                                                                <div class="form-group">
+                                                                    <select class="dropdown-toggle btn btn-default" style="border-radius:0px !important;" ng-model="Filter.FilterByRuleType" ng-change="LoadRuleTypeToFilter(Filter.FilterByRuleType)" ng-options="ruleType.Code as ruleType.Name for ruleType in RulesEngineType">
+                                                                        <option value="">{{resData.res_AddEditBusinessRuleEngine_Selectruletype}}
+                                                                    </select>
+                                                                    <!--<div ng-dropdown-multiselect="" options="RulesEngineType" selected-model="FilterByListSelectedList" checkboxes="true" extra-settings="FilterByListSetting"></div>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12" style="padding: 0px">
+                                                            <div class="col-md-6">
+                                                                <div class="grMasterPagelable grlabelWidth" style="width: 107px !important;margin-top: -5px;">{{resData.res_AddEditBusinessRuleEngine_SelectObjectName}}</div>
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 56% !important;">
+                                                                    <div class="form-group">
+                                                                        <select class="dropdown-toggle btn btn-default" style="border-radius:0px !important;" ng-change="LoadFilterObjectPropertiesByObject(Filter.SortByObject);" ng-model="Filter.SortByObject" ng-options="objectType.Name as objectType.Name for objectType in RuleFilterObjectDataList">
+                                                                            <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectObjectName}}
+                                                                        </select>
+                                                                        <!--<div ng-dropdown-multiselect="" options="RulesEngineType" selected-model="FilterByListSelectedList" checkboxes="true" extra-settings="FilterByListSetting"></div>-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="grMasterPagelable grlabelWidth" style="width: 120px !important;margin-top: -5px;">{{resData.res_AddEditBusinessRuleEngine_SelectPropertyName}}</div>
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 60% !important;">
+                                                                    <div class="form-group">
+                                                                        <select class="dropdown-toggle btn btn-default" style="border-radius:0px !important;" ng-model="Filter.GroupByProperty" ng-options="objectProperty.Name as objectProperty.Name for objectProperty in RuleFilterObjectsPropertiesList">
+                                                                            <option value="">{{resData.res_AddEditBusinessRuleEngine_SelectPropertyName}}
+                                                                        </select>
+                                                                        <!--<div ng-dropdown-multiselect="" options="RulesEngineType" selected-model="FilterByListSelectedList" checkboxes="true" extra-settings="FilterByListSetting"></div>-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+														<div class="col-md-12" style="padding: 0px">
+															<div class="col-md-6">
+																<div class="grMasterPagelable grlabelWidth" style="width: 107px !important;margin-top: -5px;">Rule Text</div>
+																<div class="grMasterPagecontrol grcontrolwidth" style="width: 56% !important;">
+																	<div class="form-group">
+																		<input class="form-control form-white" ng-model="Filter.FilterByRuleValue" type="text" placeholder="Value">										
+																	</div>
+																</div>
+															</div>
+															
+														</div>
+
+
+
+                                                        <div class="col-md-12" style="padding: 0px">
+
+                                                            <div class="grMasterPagecontrol" style="width: 100%">
+                                                                <div style="width: 50%;float: left;">
+                                                                    <div class="grMasterPagelable grlabelWidth" style="width: 98px;margin-top:-3px">{{resData.res_AddEditBusinessRuleEngine_EnableDisable}}</div>
+                                                                    <div class="form-group" style="margin-top: -16px;">
+                                                                        <span class='selectedNo' ng-class="{'selectedYes': FilterEnable}" ng-if="FilterEnable" style='font-size:35px !important;' ng-click="FilterEnableSetButton(false)">
+                                                                            <i class='fa fa-toggle-on'></i>
+                                                                        </span>
+                                                                        <span class='selectedNo' ng-class="{'selectedNoButton': !FilterEnable}" ng-if="!FilterEnable" style='font-size:35px !important;' ng-click="FilterEnableSetButton(true)">
+                                                                            <i class='fa fa-toggle-off'></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div style="width: 50%;float: left;display: flex; justify-content: flex-end">
+                                                                    <div class="footerbuttons" style="margin: 0px;">
+                                                                        <a class="buttonstext bggreencolorbtn" ng-click="FilterData();"><i class='fa fa-search'></i> Search</a>
+                                                                    </div>
+                                                                    <div class="footerbuttons">
+                                                                        <a class="buttonstext bggreencolorbtn" style="    border: 1px solid #C1272D;background-color:#C1272D !important" ng-click="ClearData();"><i class='fa fa-refresh'></i> Clear</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12" style="padding:0px">
+                                                        <div class="CreateNewRule" style="padding-left:10px">
+                                                            View Existing Rules Of {{SelectedRuleName}}
+                                                        </div>
+                                                      
+                                                        <div class="dx-viewport">
+                                                            <div class="demo-container">
+                                                                <div id="RuleGrid" class="SalesAdminApproval_Grid" dx-data-grid="RuleGrid" dx-item-alias="RuleGridData">
+                                                                    <div data-options="dxTemplate:{ name:'RuleTemplate' }">
+                                                                        <div class='bussinessrulecard' ng-class="{'SelectedCard' : RuleGridData.data.RuleId=== SelectedRuleId}">
+                                                                            <div class='bussinessequenceNumber'>
+                                                                                {{RuleGridData.data.rownumber}}
+                                                                            </div>
+                                                                            <div class='bussinesruleText'>
+                                                                                <div class='bussinessruleheader'>
+                                                                                    <div class="col-md-6" style="padding: 0px;">
+                                                                                        <span style='font-size: 17px !important;'>{{RuleGridData.data.RuleName}}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-6" style="display: flex; justify-content: flex-end">
+                                                                                        <span style="margin-right: 15px; font-weight: normal;">{{RuleGridData.data.RuleTypeName}}</span>
+                                                                                        <span class='ruletypeicon' style='font-size:22px !important;cursor: pointer;' ng-click="OpenDeleteConfirmationModalPopup({{RuleGridData.data.RuleId}})" ng-if="pageContrlAcessData.DeleteRulesVisibility !='0'">
+                                                                                            <i class='fa fa-trash'></i>
+                                                                                        </span>
+                                                                                    </div>
+
+
+                                                                                </div>
+                                                                                <div class='bussinessrulecontaint'>{{RuleGridData.data.RuleText}} </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-12" style="display:none">
+                                                    <div ng-repeat="ruleEngineType in RulesEngineType" class="ruletypetext">
+                                                        <div class="ruleicon">
+                                                            <i class="fa fa-angle-right"></i>
+                                                        </div>
+                                                        <div class="ruleName">
+                                                            <a ng-click="LoadRuleTypeToCreateNewRule(ruleEngineType.Code, ruleEngineType.Name)">
+                                                                {{ruleEngineType.DescriptionText}}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="col-md-4" ng-if="ShowEditPanel">
+                                                <div>
+                                                    <h2 class="ruletypeheading" style="font-size: 20px;margin-bottom: 5px;">  {{FinalValue.RuleName}}</h2>
+                                                </div>
+                                                <div class="col-md-12" style="padding: 0px;margin-top: 20px;" ng-if="pageContrlAcessData.EditiRulesVisibility !='0'">
+                                                    <div style="float:left;width:100%;margin-bottom: 20px;">
+                                                        <div class="footerbuttons" style="margin: 0px;">
+                                                            <a class="buttonstext bggreencolorbtn" ng-click="LoadEditRecord();">{{resData.res_BusinessRulesEnginePage_EditRuleCondition}}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bussinessrulerightpaneldetails bussinessrulerightpaneldetailsUI">
+                                                    <h2 class="ruletypeheading" style="font-size: 18px;">
+                                                        {{resData.res_BusinessRulesEnginePage_Details}}
+                                                        <!--<span style="float:right;height:45px;width:45px;border:1px solid #39b54a;border-radius:50%;color:#fff">
+                                                            <i class="fa fa-pencil" style="font-size: 20px;color: #39b54a; padding: 11px 14px;text-align: center;">
+                                                            </i>
+                                                        </span>-->
+                                                    </h2>
+                                                    <div class="col-md-12" style="padding: 0px !important">
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable" style="padding-bottom: 8px;">{{resData.res_BusinessRulesEnginePage_RuleType}}</div>
+                                                            <div class="detailsLableValue greentextcolor">
+                                                                {{FinalValue.RuleTypeName}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable">{{resData.res_BusinessRulesEnginePage_Description}}</div>
+                                                            <div class="detailsLableValue" style="font-weight: 505 !important;">
+                                                                {{FinalValue.DetailsDescription}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding" ng-show="false">
+                                                            <div class="bussinessdetailsLable">{{resData.res_BusinessRulesEnginePage_Active}}</div>
+                                                            <div class="detailsLableValue greentextcolor">
+                                                                <a ng-if="FinalValue.IsActive" class="selectedYes">{{resData.res_BusinessRulesEnginePage_YES}}</a>
+                                                                <a ng-if="!FinalValue.IsActive" class="selectedYes">{{resData.res_BusinessRulesEnginePage_No}}</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable">{{resData.res_BusinessRulesEnginePage_From}}</div>
+                                                            <div class="detailsLableValue greentextcolorbold" style="font-weight: 505 !important;">
+                                                                {{FinalValue.RuleStartDate | date : "fullDate" }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable">{{resData.res_BusinessRulesEnginePage_To}}</div>
+                                                            <div class="detailsLableValue greentextcolorbold" style="font-weight: 505 !important;">
+                                                                {{FinalValue.RuleEndDate | date : "fullDate" }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding" ng-show="false">
+                                                            <div class="bussinessdetailsLable">{{resData.res_BusinessRulesEnginePage_ResponseRequired}}</div>
+                                                            <div class="detailsLableValue greentextcolor">
+                                                                <a ng-if="FinalValue.IsResponseRequired" class="selectedYes">{{resData.res_BusinessRulesEnginePage_YES}}</a>
+                                                                <a ng-if="!FinalValue.IsResponseRequired" class="selectedYes">{{resData.res_BusinessRulesEnginePage_No}}</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding">
+                                                            <div class="bussinessdetailsLable">{{resData.res_BusinessRulesEnginePage_Enable}}</div>
+                                                            <div class="detailsLableValue greentextcolor">
+                                                                <a ng-if="FinalValue.Enable" class="selectedYes">{{resData.res_BusinessRulesEnginePage_YES}}</a>
+                                                                <a ng-if="!FinalValue.Enable" class="selectedYes">{{resData.res_BusinessRulesEnginePage_No}}</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 removepadding" ng-show="false">
+                                                            <div class="bussinessdetailsLable">{{resData.res_BusinessRulesEnginePage_ResponsePropertyName}}</div>
+                                                            <div class="detailsLableValue greentextcolorbold">{{resData.res_BusinessRulesEnginePage_CompanyId}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Loading Page for add and edit rule-->
+                            <div class="tab-pane" ng-class="{'active': SecondTab}">
+                                <div class="col-md-12 rulesjs">
+                                    <div ng-include="'AddEditBusinessRuleEngine.html'" ng-controller="AddEditBusinessRuleEngineController"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Loading Popup for then value section-->
+                    <div ng-include="'ViewRuleFunctionPopup.html'" ng-controller="ViewRuleFunctionController"></div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+    </ion-content>
+
+    <!--validation for selecting Criteria For New Condition-->
+    <script id="templates/contact-popover.html" type="text/ng-template">
+        <ion-popover-view style="width: 400px !important; height: 150px !important;">
+            <ion-content>
+                <div class="list">
+                    <div style="float:left;width:100%;padding:10px">
+                        Please choose the Criteria For New Condition.
+                    </div>
+                    <div class="newcondition">
+                        <a class="btn btn-default itemlistdata" ng-click="AddNewConditionCriteria('&', $event)">
+                            And
+                        </a>
+                        <a class="btn btn-default itemlistdata" ng-click="AddNewConditionCriteria('||', $event)">
+                            Or
+                        </a>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-popover-view>
+    </script>
+
+    <!--Delete confirmation popup-->
+    <script id="templates/DeleteConfirmation.html" type="text/ng-template">
+        <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:200px !important">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">{{resData.res_GridConfiguration_DeleteConfirmation_Header}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmationModalPopup()"><i class="icons-office-52"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                <div class="list">
+                    <div class="customlistcontrolview">
+
+                        <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                            <div class="columnfulldata  margintopdata">
+
+                                <div>
+                                    {{resData.res_GridConfiguration_DeleteConfirmation_Message}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ion-content>
+
+            <ion-footer-bar align-title="left" class="popupfooter">
+
+                <div class="popupbtnstyle">
+
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteRuleOnConfirm()">
+                            <i class="fa fa-check"></i> {{resData.res_GridConfigurationPage_Confirm}}
+                        </a>
+                    </div>
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square redclosebtn" ng-click="CloseDeleteConfirmationModalPopup()">
+                            <i class="fa fa-times"></i> {{resData.res_GridConfigurationPage_Close}}
+                        </a>
+                    </div>
+                </div>
+
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+
+</ion-view>

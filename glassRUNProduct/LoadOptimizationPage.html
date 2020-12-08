@@ -1,0 +1,65 @@
+﻿
+<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+
+                            <div class="panel-content">
+                                <div class="row">
+                                    <div class="form-horizontal ng-pristine ng-valid">
+                                        <div class="fullwidth">
+                                            <div class="col-md-2">
+                                                <div class="prepend-icon">
+                                                    <input type="text" name="datepicker" onkeypress="return false;" ng-readonly="true" ng-model="LoadOptiimizationJson.OrderDate" class="date-picker form-control" style="cursor: pointer; background-color: white;" placeholder="{{resData.res_LoadOptimization_SelectOrderDate}}">
+                                                    <i style="left: 0px;" class="icon-calendar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a class="btn btn-Approve" ng-click="LoadOptimization()">Load Optimization</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="fullwidth">
+                                            <div class="fullwidth wavecontainer" ng-repeat="wave in WaveList">
+                                                <div class="fullwidth">
+                                                    <span>Wave Name :</span>  {{ wave.WaveDateTime | date : 'HH:mm'}}
+                                                </div>
+                                                <div class="fullwidth">
+                                                    <div class="col-md-4" ng-repeat="waveDefination in wave.WaveDefinitionDetailList">
+                                                        <div class="fullwidth">
+                                                            <div class="fullwidth">
+                                                                <span>Truck Size :</span> {{waveDefination.TruckSize}} ({{waveDefination.TruckCapacityWeight}}T)
+                                                            </div>
+                                                            <div class="fullwidth">
+                                                                <span>Number Of Truck Size :</span> {{waveDefination.NumbersOfTruck}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="fullwidth">
+                                                            <div class="fullwidth" ng-repeat="order in waveDefination.OrderList">
+                                                                <div class="fullwidth">
+                                                                    <span> Order Number : </span> {{order.SalesOrderNumber}}
+                                                                </div>
+                                                                <div class="fullwidth">
+                                                                    <span> Order Weight : </span> {{order.TruckWeight}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

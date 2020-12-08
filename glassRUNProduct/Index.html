@@ -1,0 +1,737 @@
+﻿<!DOCTYPE html>
+<html ng-app="glassRUNProduct">
+<head>
+    <title></title>
+    <style type="text/css">
+        .confirmationmsgmodalviewforloginas {
+            min-height: 248px !important;
+            height: 290px !important;
+            width: 743px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            top: 84px !important;
+            position: relative !important;
+            border-radius: 8px !important;
+        }
+
+        #autoProfileList.angucomplete-holder {
+            position: relative !important;
+        }
+
+        #autoProfileList.angucomplete-dropdown {
+            border-bottom: 2px solid #d5d5d5 !important;
+            top: 41px !important;
+        }
+
+        input[type=file] {
+            line-height: 25px !important;
+        }
+
+        .fileuploadcontrol input {
+            margin-top: 8px !important;
+        }
+    </style>
+    <meta charset="utf-8" />
+    
+    <link href="FormBuilder/dist/ngFormBuilder-full.css" rel="stylesheet" />
+    <link href="Scripts/Ckeditor/textAngular.css" rel="stylesheet" />
+    <link href="Styles/Ionic/ionic.min.css" rel="stylesheet" />
+    <link href="Styles/Ionic/Ionic-datetimepicker.css" rel="stylesheet" />
+    <link href="Styles/nifty-modal.css" rel="stylesheet" />
+    <link href="Styles/style.css" rel="stylesheet" />
+    <link href="Styles/theme.css" rel="stylesheet">
+    <link href="Styles/ui.css" rel="stylesheet">
+    <link href="Scripts/js/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="Scripts/js/rateit/rateit.css" rel="stylesheet" />
+    <link href="Scripts/js/bootstrap-tags-input/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="Scripts/js/step-form-wizard/css/step-form-wizard.css" rel="stylesheet" />
+    <link href="Scripts/js/step-form-wizard/plugins/parsley/parsley.css" rel="stylesheet" />
+    <link href="Scripts/js/bootstrap-loading/lada.min.css" rel="stylesheet" />
+    <link href="Scripts/js/select2/dist/css/select2.css" rel="stylesheet" />
+    <link href="Scripts/js/dropzone/dropzone.min.css" rel="stylesheet" />
+    <link href="Scripts/js/input-text/style.min.css" rel="stylesheet" />
+    <link href="Styles/font-awesome-animation/demo/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="Styles/css/angular-theme.css" rel="stylesheet" />
+    <link href="Styles/layout.css" rel="stylesheet" />
+    <link href="Styles/grStyle.css" rel="stylesheet" />
+    <link href="Styles/InquiryStyle.css" rel="stylesheet" />
+    <link href="Styles/font-awesome-4.5.0/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="Styles/Kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="Styles/Kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="Styles/Kendo/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="Styles/Kendo/kendo.dataviz.default.min.css" rel="stylesheet" />
+
+    <script src="Scripts/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <link href="GridControl/dx.common.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="http://web.hostdmk.net/github/colorpicker_v3/css/colorpicker.css" />-->
+    <link href="Styles/ColorPicker/colorpicker.css" rel="stylesheet" />
+    <link href="EntityRelationship/Scripts/ng-multiselect.css" rel="stylesheet" />
+    <link href="EntityRelationship/Scripts/dualmultiselect.css" rel="stylesheet" />
+    <link href="GridControl/dx.light.css" rel="stylesheet" />
+
+    <!--<link rel="dx-theme" data-theme="generic.light" href="https://cdn3.devexpress.com/jslib/18.1.6/css/dx.light.css" />-->
+
+</head>
+<body class="sidebar-condensed fixed-topbar fixed-sidebar theme-sdtl color-default sidebar-collapsed ng-cloak app_body_container" ng-animate-children="true" ng-cloak ng-controller="mainCtrl" data-color="green" data-background-color="green" data-image="green" ng-init="PageLoadEvent()">
+
+    <!--<div ng-if="alert.visible" ng-repeat="alert in ModelNotification" ng-click="RemoveAlert()" class="uk-notify uk-notify-top-center">
+        <div class="uk-notify-message {{alert.MessageType}}">
+            <a class="uk-close" style="display:block;visibility: visible;"></a><div>{{alert.Message}}</div>
+        </div>
+    </div>-->
+
+    <div class="modal-backdrop modal-open" ng-class="{'active': alert.visible === true}" ng-if="alert.visible" ng-repeat="alert in ModelNotification">
+        <div class="modal-backdrop-bg"></div><div class="modal-wrapper" ng-transclude="">
+            <ion-modal-view class="modalpopup modal fade fade-in-scale ng-enter active ng-enter-active">
+                <div class="modaldialog modal-dialog modal-lg">
+                    <div class="modalcontent modal-content" style="border: 1px solid #39b54a !important;border-radius: 12px;border-top: 2px solid #39b54a !important;">
+                        <div class="modalheader modal-header" style="border-bottom: 1px solid #cac3c3;padding: 6px 15px;">
+                            <button type="button" class="close" style="margin-top: 6px;" ng-click="RemoveAlert()"><i class="icons-office-52"></i></button>
+                            <h4 class="modal-title"><strong>{{alert.MeassageHeader}}</strong></h4>
+                        </div>
+                        <div class="modalbody modal-body">
+                            {{alert.Message}}
+                            <div style="height: 1px;">
+                                <input class="textboxwithoutborder" id="addentereventpopupclose" ng-keypress="ClosePopupModal($event)" type="text" />
+                                <input class="textboxwithoutborder" id="removeEnterEventPopupclose" type="text" />
+                            </div>
+                        </div>
+                        <div class="modalfooter modal-footer">
+                            <a class="buttonstext greencolorbtn" ng-click="RemoveAlert()" style="float: right;padding: 10px 14px;">
+                                <i class="fa fa-check" style="margin-right: 10px;font-size: 18px;font-weight: normal;"></i> {{resData.res_ValidationPopup_ok}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </ion-modal-view>
+        </div>
+    </div>
+
+    <div ng-spinner-loader class="page-spinner-loader">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+
+    <div ng-show="Throbber.Visible" class="page-spinner-loader">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+
+    <section>
+
+        <div class="sidebar" ng-hide="InvisibleComponentForLoginScreen">
+            <div class="logopanel">
+                <h1>
+                    <a>
+                        <img src="Images/glassRUN245.png" />
+                    </a>
+                </h1>
+            </div>
+            <div class="sidebar-inner" ng-hide="InvisibleMenuForFirstLoginScreen">
+                <div class="sidebar-top big-img" ng-if="RoleName !== 'Customer'">
+                    <div class="user-image">
+                        <img src="Images/download.jpg" class="img-responsive img-circle" data-ng-src="data:image/png;base64,{{userProfilePhoto}}" data-err-src="Images/download.jpg" ng-model="userProfilePhoto" alt="friend 8" />
+                    </div>
+                    <h4> {{ActiveUserName}} </h4>
+                </div>
+
+                <div class="sidebar-top big-img" ng-if="RoleName === 'Customer'">
+                    <div class="user-image">
+                        <h4>{{resData.res_MenuPage_CurrentMode}}</h4>
+                    </div>
+                    <div class="user-image">
+                        <select id="ddlUserPersonaMasterId" ng-model="UserPersonaJson.SelectedUserPersonaMasterId" ng-change="SwitchMode(UserPersonaJson.SelectedUserPersonaMasterId)" class="form-control" name="val_SelectObject" ng-options="obj.UserPersonaMasterId as obj.UserPersona for obj in UserPersonaList">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <h4 ng-if="UserPersonaJson.SelectedUserPersonaMasterId === 1">{{resData.res_MenuPage_SellerModePageDescription}}</h4>
+                    <h4 ng-if="UserPersonaJson.SelectedUserPersonaMasterId === 2">{{resData.res_MenuPage_BuyerModePageDescription}}</h4>
+                </div>
+
+                <ul class="nav nav-sidebar" style="margin: 0px" ng-if="RoleName === 'Customer'">
+
+                    <li ng-repeat="menu in MenuList" ng-class="{'nav-parent': menu.PagesList.length > 0 , 'selected_menu' : menu.IsSelectedMenu === true}" ng-if="menu.UserPersonaMasterId === '' || menu.UserPersonaMasterId === undefined || menu.UserPersonaMasterId === null || menu.UserPersonaMasterId === 0">
+                        <a ng-click="RedirectPageFromMenu(menu.ControllerName, menu.PageName ,menu.ResourcePageName)">
+                            <i class="{{menu.PageIcon ? menu.PageIcon : 'icon-home'}}"></i>
+                            <span>{{menu.ResourcePageName}}</span>
+                            <span ng-if="menu.PagesList.length > 0" class="fa arrow"></span>
+                        </a>
+                        <ul class="children collapse" ng-if="menu.PagesList.length > 0">
+                            <li ng-repeat="childMenu in menu.PagesList">
+                                <a ng-click="RedirectPageFromMenu(menu.ControllerName, menu.PageName ,menu.ResourcePageName)"> {{childMenu.PageName}} </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li ng-repeat="menu in MenuList" ng-class="{'nav-parent': menu.PagesList.length > 0 , 'selected_menu' : menu.IsSelectedMenu === true}" ng-if="menu.UserPersonaMasterId === UserPersonaJson.SelectedUserPersonaMasterId">
+                        <a ng-click="RedirectPageFromMenu(menu.ControllerName, menu.PageName ,menu.ResourcePageName)">
+                            <i class="{{menu.PageIcon ? menu.PageIcon : 'icon-home'}}"></i>
+                            <span>{{menu.ResourcePageName}}</span>
+                            <span ng-if="menu.PagesList.length > 0" class="fa arrow"></span>
+                        </a>
+                        <ul class="children collapse" ng-if="menu.PagesList.length > 0">
+                            <li ng-repeat="childMenu in menu.PagesList">
+                                <a ng-click="RedirectPageFromMenu(menu.ControllerName, menu.PageName ,menu.ResourcePageName)"> {{childMenu.PageName}} </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav nav-sidebar" style="margin: 0px" ng-if="RoleName !== 'Customer'">
+
+                    <li ng-repeat="menu in MenuList" ng-class="{'nav-parent': menu.PagesList.length > 0 , 'selected_menu' : menu.IsSelectedMenu === true}">
+                        <a ng-click="RedirectPageFromMenu(menu.ControllerName, menu.PageName ,menu.ResourcePageName)">
+                            <i class="{{menu.PageIcon ? menu.PageIcon : 'icon-home'}}"></i>
+                            <span>{{menu.ResourcePageName}}</span>
+                            <span ng-if="menu.PagesList.length > 0" class="fa arrow"></span>
+                        </a>
+                        <ul class="children collapse" ng-if="menu.PagesList.length > 0">
+                            <li ng-repeat="childMenu in menu.PagesList">
+                                <a ng-click="RedirectPageFromMenu(menu.ControllerName, menu.PageName ,menu.ResourcePageName)"> {{childMenu.PageName}} </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="sidebar-footer clearfix" style="background: #2b2e33;">
+                    <!--<a class="pull-left footer-settings" href="#" data-rel="tooltip" data-placement="top" data-original-title="Settings">
+                        <i class="icon-settings"></i>
+                    </a>
+                    <a class="pull-left toggle_fullscreen" href="#" data-rel="tooltip" data-placement="top" data-original-title="Fullscreen">
+                        <i class="icon-size-fullscreen"></i>
+                    </a>
+                    <a class="pull-left" href="#" data-rel="tooltip" data-placement="top" data-original-title="Lockscreen">
+                        <i class="icon-lock"></i>
+                    </a>
+                    <a class="pull-left btn-effect" href="#" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="Logout">
+                        <i class="icon-power"></i>
+                    </a>-->
+                    <div class="cloudlogo" style="display:none;position:relative;bottom:8px">
+                        <img src="Images/DisrptivLogotransp - Copy.png" style="width:45px" />
+                    </div>
+                    <div class="fulllogowithcontent" style="position:relative;bottom:5px">
+                        <div style="float:left;width:100%;text-align: center;margin-bottom:6px">
+                            <img src="Images/DisrptivLogotransp.png" style="width: 175px;" />
+                        </div>
+                        <div style="float:left;width:100%;text-align: center;color: #fff;opacity:0.62">
+                            @ Copyright <span>Disrptiv Exchange PTE LTD </span> , 2018.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SIDEBAR -->
+        <div class="main-content" style="margin:0px" ng-class="{'nomarginleft' : InvisibleComponentForLoginScreen}">
+            <!-- BEGIN TOPBAR -->
+            <div class="topbar" ng-hide="InvisibleComponentForLoginScreen">
+                <div class="header-left">
+                    <div class="topnav">
+                        <a class="menutoggle" data-toggle="sidebar-collapsed">
+                            <img class="showgRIcon" src="Images/gr_images.png" />
+                            <i class="fa fa-arrow-right showCloseArrow"></i>
+                        </a>
+                        <!--<ul class="nav nav-icons">
+                            <li><a href="mailbox.html"><span class="octicon octicon-mail-read"></span></a></li>
+                            <li><a href="#"><span class="octicon octicon-flame"></span></a></li>
+                            <li><a href="builder-page.html"><span class="octicon octicon-rocket"></span></a></li>
+                        </ul>-->
+                    </div>
+                    <div class="TopPageHeadingName">
+                        <h2>{{res_PageHeaderTitle}}</h2>
+                    </div>
+                </div>
+                <div class="header-right">
+
+                    <!--<div class="fileinput fileinput-new input-group" data-provides="fileinput" style="    width: 100px;    float: left;    margin-right: 105px !important;    margin-top: 5px;margin-bottom: 2px;">
+
+                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                        <span class="fileinput-filename" style="width: 100%!important;float: left;margin-right: 33px;margin-top: 6px;">{{PhotoJson.labelFilename}}</span>
+
+                        <span class="input-group-addon btn btn-default btn-file">
+                            <span class="fileinput-new">Choose...</span>
+                            <span class="fileinput-exists">Change</span>
+                            <input type="file" id="fileUpload" onchange="angular.element(this).scope().FileNameChanged(this)" file-model="fileupload.File" />
+                        </span>
+                        <a ng-click="UploadPhoto()" style="  width: 50% !important;    float: left !important;    margin-left: 13px;    font-size: 21px;"><i class="fa fa-upload" aria-hidden="true"></i></a>
+                    </div>-->
+
+                    <ul class="header-menu nav navbar-nav portalView">
+                        <li style="margin-top: 10px;" ng-show="logInAsflag">
+                            <span ng-click="OpenLoginConfirmation()">Login As</span>
+                        </li>
+                        <!-- BEGIN NOTIFICATION DROPDOWN -->
+                        <li class="dropdown" id="notifications-header">
+                            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-bell"></i>
+                                <span class="badge badge-danger badge-header" ng-if="EventNotificationList.length > 0">{{EventNotificationList[0].TotalCount}}</span>
+                            </a>
+                            <!--Changed By Chetan Tambe (20 Sept 2019) : For Increasing the Size for alert popup of notification-->
+                            <ul class="dropdown-menu" style="width: 450px !important; max-width: 400px !important;">
+                                <li class="dropdown-header clearfix">
+                                    <p class="pull-left">{{EventNotificationList.length === null ? 0 : EventNotificationList[0].TotalCount}} Pending Notifications</p>
+                                </li>
+                                <li class="clearfix" style="max-height:400px; overflow:auto;">
+                                    <ul class="dropdown-menu-list">
+                                        <li ng-repeat="eventNotification in EventNotificationList | limitTo : 10">
+
+                                            <a ng-click="UpdateNotificationDetails(eventNotification.NotificationRequestId)">
+                                                <div>
+                                                    <span class="SalesOrderNumber" style="font-weight: bold;">
+                                                        {{eventNotification.Title}}
+                                                    </span>
+                                                    <span class="FeedbackName">
+
+                                                        {{eventNotification.BodyContent | htmlToPlaintext}}
+                                                    </span>
+                                                </div>
+
+                                                <!--<span class="dropdown-time" ng-class="{'customernotification': RoleName === 'Customer'}">{{feedback.CreatedDate}}</span>-->
+                                            </a>
+
+
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!--Changed By: Chetan Tambe
+                                Changed Date: 17/09/2019
+                                New Buttons Added    -->
+                                <li class="dropdown-footer clearfix" ng-if="EventNotificationList.length === 0">
+                                    <a data-target="#" class="pull-left">No Notification Found</a>
+                                    <a data-target="#" class="pull-right">
+                                        <i class="icon-settings"></i>
+                                    </a>
+                                </li>
+                                <li class="dropdown-footer clearfix">
+                                    <a ui-sref="ViewNotifications" class="pull-left">See all Notifications</a>
+                                    <a ng-click="MarkAllAsRead()" class="pull-right" ng-if="EventNotificationList.length > 0">
+                                        Mark All as read
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown" id="user-header">
+                            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="fa fa-language fa-2" aria-hidden="true"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="lookup in AllLookUpData | filter: { LookupCategoryName: 'Language' }" ng-click="ChangeLang(lookup.LookUpId)">
+                                    <a><i class="fa fa-unlock-alt"></i><span>{{lookup.Name}}</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown" id="user-header">
+                            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img src="Images/download.jpg" alt="user image" data-ng-src="data:image/png;base64,{{userProfilePhoto}}" data-err-src="Images/download.jpg" ng-model="userProfilePhoto">
+
+                                <span class="username">{{resData.res_Common_Hi}}, {{ActiveUserName}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a ng-click="ChangePassword()"><i class="fa fa-unlock-alt"></i><span>{{resData.res_Common_ChangePassword}}</span></a>
+                                </li>
+                                <li ng-if="RoleName === 'Customer' || RoleName === 'Carrier' || RoleName === 'TransportManager'">
+                                    <a ng-click="LoadContactInformation()"><i class="icon-logout"></i><span>{{resData.res_Common_EditContact}}</span></a>
+                                </li>
+                                <li>
+                                    <a ng-click="ShowPopupUploadPhoto()"><i class="icon-logout"></i><span>{{resData.res_Common_UploadPhoto}}</span></a>
+                                </li>
+                                <li>
+                                    <a ng-click="LogoutUser()"><i class="icon-logout"></i><span>{{resData.res_Common_Logout}}</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER DROPDOWN -->
+                        <!-- CHAT BAR ICON -->
+                        <li id="quickview-toggle">
+                            <a href="#" style="padding-left:0px;padding-left:1px">
+                                <img src="{{LogoBaseImage}}" style="height:40px;">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- header-right -->
+            </div>
+            <!-- END TOPBAR -->
+            <!-- BEGIN PAGE CONTENT -->
+            <!--<div ng-view class="at-view-slide-in-left" ng-view-class=" page-wizard : /forms-wizard , page-thin : / , page-contact : /pages-contact,
+            page-profil : /user-profile, page-app : /user-profile" >-->
+
+            <ion-nav-view animation="slide-left-right" class="at-view-slide-in-left page-content" ng-view-class="page-wizard : /forms-wizard , page-thin : / , page-contact : /pages-contact, page-profil : /user-profile, page-app : /user-profile"></ion-nav-view>
+        </div>
+
+        <!-- END PAGE CONTENT -->
+        <!-- END MAIN CONTENT -->
+    </section>
+
+    <!-- BEGIN PRELOADER -->
+    <div class="loader-overlay">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    
+    <script src="Scripts/js/RSA/Barrett.js"></script>
+    <script src="Scripts/js/RSA/BigInt.js"></script>
+    <script src="Scripts/js/RSA/RSA.js"></script>
+    <script src="Scripts/Jquery.js"></script>
+    <script src="Scripts/Ionic/ionic.bundle.min.js"></script>
+    <script src="Scripts/Ionic/ionic.material.min.js"></script>
+    <script src="Scripts/Ionic/ion-datetime-picker.min.js"></script>
+    <script src="Scripts/jquery-ui/jquery-ui.min.js"></script>
+    <script src="Scripts/sortable.js"></script>
+    <script src="Scripts/Angular/angular-theme-spinner.min.js"></script>
+    <script src="Scripts/Angular/angular-ui-router.min.js"></script>
+    <script src="Scripts/Angular/angular-cookies/angular-cookies.js"></script>
+    <script src="Scripts/Angular/angular-sanitize.min.js"></script>
+    <script src="Scripts/Angular/angular-bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+    <script src="Scripts/Angular/ocLazyLoad.min.js"></script>
+    <script src="Scripts/Angular/ngStorage.min.js"></script>
+    <script src="Scripts/Module.js"></script>
+    <script src="Scripts/directives/ngViewClass.js"></script>
+    <script src="Scripts/Jquery/jquery-3.1.0.min.js"></script>
+    <!--<script src="Scripts/jquery-2.1.4.min.js"></script>-->
+    <script src="Scripts/Jquery/jquery-migrate-3.0.0.min.js"></script>
+    <script src="Scripts/jquery-ui/jquery-ui.min.js"></script>
+    <script src="Scripts/bootstrap/js/bootstrap.min.js"></script>
+    <script src="Scripts/js/appear/jquery.appear.js"></script>
+    <script src="Scripts/jquery-cookies/jquery.cookies.min.js"></script>
+    <script src="Scripts/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!--<script src="Scripts/js/select2/select2.full.min.js"></script>
+    <script src="Scripts/js/icheck/icheck.min.js"></script>
+    <script src="Scripts/js/icheck/icheck.js"></script>-->
+
+    <script src="Scripts/js/switchery/switchery.js"></script>
+
+    <script src="Scripts/js/timepicker/jquery-ui-timepicker-addon.js"></script>
+    <script src="Scripts/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="Scripts/js/step-form-wizard/js/step-form-wizard.js"></script>
+    <script src="Scripts/js/step-form-wizard/plugins/parsley/parsley.min.js"></script>
+
+    <script src="Scripts/js/bootstrap-loading/lada.min.js"></script>
+
+    <script src="Scripts/js/bootstrap-tags-input/bootstrap-tagsinput.js"></script>
+
+    <script src="Scripts/js/rateit/jquery.rateit.min.js"></script>
+
+    <script src="Scripts/js/dropzone/dropzone.min.js"></script>
+    <script src="Scripts/lodash.js"></script>
+    <script src="Scripts/angularjsdropdownmultiselect.js"></script>
+
+    <script src="Scripts/angucomplete.js"></script>
+    <script src="Scripts/angucomplete-alt.js"></script>
+
+    <script src="Scripts/Common.js"></script>
+    <script src="Scripts/Controller/ConfirmationPopupController.js"></script>
+    <!--<script src="Scripts/FastClick.js"></script>-->
+    <script src="Scripts/js/builder.js"></script>
+    <script src="Scripts/js/application.js"></script>
+    <script src="Scripts/js/plugins.js"></script>
+    <script src="Scripts/js/quickview.js"></script>
+
+    <script src="Scripts/mainCtrl.js"></script>
+
+    <script src="Scripts/Kendo/kendo.all.min.js"></script>
+    <script src="Scripts/Services/ManageEnquiryService.js"></script>
+    <script src="Scripts/Services/ManageCustomerService.js"></script>
+    <script src="Scripts/Services/GrRequestService.js"></script>
+    <script src="Scripts/Services/ManageOrderService.js"></script>
+    <script src="Scripts/Services/ControlTowerService.js"></script>
+    <script src="EntityRelationship/Scripts/ng-multiselect.js"></script>
+    <script src="Scripts/accounting.js"></script>
+    <!--<script src="Scripts/js/FileSaver.min.js"></script>-->
+    <script src="Scripts/js/FileSaver.js"></script>
+    <script src="Scripts/directives/validNumber.js"></script>
+    <script src="Scripts/directives/glassRunLogger.js"></script>
+    <script src="Scripts/uikit_fileinput.min.js"></script>
+    <script src="Scripts/angular-base64.js"></script>
+    <script src="Scripts/Ckeditor/textAngular.min.js"></script>
+    <script src="GridControl/jszip.min.js"></script>
+    <script src="GridControl/dx.all.js"></script>
+    <script src="GridControl/dx.aspnet.data.js"></script>
+    <script src="EntityRelationship/Scripts/dualmultiselect.min.js"></script>
+    <script src="Directives/ContactInformationComponent/ContactInformationComponent.js"></script>
+    <script src="Directives/DocumentInformationComponent/DocumentInformationComponent.js"></script>
+    <script src="Scripts/directives/ngFileSelect.js"></script>
+    <script src="Directives/LoginGridComponent/LoginGridComponent.js"></script>
+    <script src="Directives/PageAccessComponent/PageAccessComponent.js"></script>
+    <script src="Directives/ItemDropDownComponent/ItemDropDownComponent.js"></script>
+    <script src="FormBuilder/src/ckeditor.js"></script>
+    <script src="FormBuilder/src/signature_pad.min.js"></script>
+    <script src="FormBuilder/dist/ngFormBuilder-full.js"></script>
+    <script src="Scripts/ng-pattern-validation.js"></script>
+    <script src="FormBuilder/src/angular-json-explorer.min.js"></script>
+    <script src="Scripts/bootstrap-colorpicker-module.js"></script>
+    <script src="Directives/EventDocumentComponent/EventDocumentComponent.js"></script>
+
+    <script src="Scripts/build/SendBird.min.js"></script>
+    <script src="Scripts/build/widget.SendBird.js"></script>
+    <script id="ViewContactInformation.html" type="text/ng-template">
+        <ion-modal-view class="confirmationmsgmodalviewDriverDetail bgcolorheaderandfooter" style="width:75% !important;height:350px !important">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">Contact Information</h1>
+                <button class="button button-clear button-primary" ng-click="CloseViewContactInformationControl()"><i class="fa fa-times"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="hidden" class="padding">
+                <div class="row">
+                    <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                        <div class="customlistcontrolview">
+
+                            <div class="fullwidth">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        <div class="col-sm-12">
+                                            <div class="col-md-12" style="padding:0px">
+                                                <div class="form-group">
+
+                                                    <div class="col-sm-12" style="padding:0px">
+
+                                                        <div class="col-md-3">
+                                                            <select id="val_Object" ng-model="ManageCustomerJson.ContactType" class="form-control" name="val_SelectObject">
+                                                                <option value="">Select Contact Type</option>
+                                                                <option value="Email">Email</option>
+                                                                <option value="Phone">Phone</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <input class="form-control form-white" ng-model="ManageCustomerJson.ContactPerson" type="text" placeholder="Contact Person">
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <input class="form-control form-white" ng-model="ManageCustomerJson.Contacts" type="text" placeholder="Contacts">
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <button type="button" ng-click="AddNewContactInformation()" class="btn btn-success"> Add</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fullwidth" ng-if="ContactInformationList.length > 0">
+
+                                <div class="col-md-12">
+                                    <div class="form-group" style="margin-bottom: 50px;">
+
+                                        <div class="col-sm-8">
+
+                                            <div class="listviewContainer RecipientList">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="srno"> Sr. No. </th>
+                                                            <th>Contact Type </th>
+                                                            <th>Contact Person </th>
+                                                            <th> Contacts </th>
+                                                            <th class="lasttd"> Remove </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="contactInformation in ContactInformationList" ng-if="contactInformation.IsActive === '1' || contactInformation.IsActive === true">
+                                                            <td class="srno"> {{$index +1}} </td>
+                                                            <td>{{contactInformation.ContactType}}</td>
+                                                            <td>{{contactInformation.ContactPerson}}</td>
+                                                            <td> {{contactInformation.Contacts}} </td>
+                                                            <td class="lasttd"> <a class="btn btn-default" ng-click="RemoveNewContactInformation(contactInformation.ContactInformationId,contactInformation.ContactInformationIdGUID)"><i class="icons-office-52"></i></a> </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-content>
+
+            <ion-footer-bar align-title="left" class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="SaveContactInformation()">
+                            Save
+                        </a>
+                    </div>
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square redclosebtn" ng-click="CloseViewContactInformationControl()">
+                            Close
+                        </a>
+                    </div>
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+    <div class="modal-backdrop active" ng-if="ShowUploadPhoto">
+        <div class="modal-backdrop-bg"></div>
+        <div class="modal-wrapper">
+            <ion-modal-view class="confirmationmsgmodalview ShowBulkChangePickupDateAndShift bgcolorheaderandfooter modal fade-in-scale ng-enter active ng-enter-active" style="min-height:300px !important;z-index: 100000;">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title" style="left: 29px; right: 29px;">{{resData.res_Common_UploadPhoto}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseChangeUploadPhotoPopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight scroll-content ionic-scroll overflow-scroll  has-header has-footer">
+                    <div class="scroll">
+                        <div class="list">
+                            <div class="customlistcontrolview">
+                                <div class="fileinput fileinput-new input-group" data-provides="fileinput" style="width: 153px;float: right;margin-right: 215px !important;margin-top: 40px;margin-bottom: 6px;">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="input-group-addon btn btn-default btn-file">
+                                        <span class="fileinput-new">Choose...</span>
+                                        <span class="fileinput-exists">Change</span>
+                                        <input type="file" id="fileUpload" onchange="angular.element(this).scope().FileNameChanged(this)" file-model="fileupload.File" />
+                                    </span>
+                                </div>
+                                <div style="float:left;width:100%">
+                                    <span class="fileinput-filename" style="width: 100%!important;float: left;text-align: center;margin-right: 33px;margin-top: 6px;">{{PhotoJson.labelFilename}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter bar bar-footer">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="UploadPhoto()">
+                                {{resData.res_TruckUI_Save}}
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseChangeUploadPhotoPopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </div>
+    </div>
+    <script id="loginaspopup.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalviewforloginas bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">Login As</h1>
+                <button class="button button-clear button-primary" ng-click="CloseloginaspopupConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                    <div class="col-lg-12">
+                        <!--<input id="inputUserName" ng-model="loginAs.UserName" class="form-control form-white " style="margin-top:10px;" min="0" placeholder="Trip Cost" name="Input" md-input="" />-->
+
+                        <div angucomplete-alt id="autoProfileList"
+                             placeholder="Search customer by: Name"
+                             maxlength="50"
+                             pause="100"
+                             selected-object="SelectedProfile"
+                             local-data="LoginDetailsListForLoginAs"
+                             search-fields="Name"
+                             title-field="Name"
+                             minlength="1"
+                             image-field=""
+                             input-class="form-control form-control-small"
+                             match-class="highlight">
+                        </div>
+                    </div>
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="btnLoginAs(loginAs.UserName)">
+                            {{resData.res_btnLoginAs_Yes}}
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+                            {{resData.res_btnLoginAs_Close}}
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+    <script>
+        var hoverTimeout;
+        $(document).on("mouseenter", ".nav-sidebar > li", function () {
+            // hover starts code here
+            $(this).siblings().removeClass('nav-hover');
+            $(this).addClass('nav-hover');
+        });
+
+        $(document).on("mouseleave", ".nav-sidebar > li", function () {
+            // hover ends code here
+            var $self = $(this);
+            hoverTimeout = setTimeout(function () {
+                $self.removeClass('nav-hover');
+            }, 200);
+        });
+
+
+                //$(document).on("click", ".nav-sidebar > li", function () {
+                //    $(this).siblings().removeClass('selected_menu');
+                //    $(this).addClass('selected_menu');
+
+                //});
+
+                //$(document).ready(function () {
+                //    debugger;
+                //    var $self = $(this);
+                //    $(this).siblings().removeClass('selected_menu');
+                //    $(this).addClass('selected_menu');
+                //});
+
+
+
+
+
+                                                            //window.addEventListener("beforeunload", function (e) {
+
+                                                            //    var sessionObject = "";
+
+                                                            //    $.ajax({
+                                                            //        method: 'POST',
+                                                            //        async: false,
+                                                            //        url: 'http://localhost:43595/api/AllSession/FocLogout',
+                                                            //        success: function (data) {
+
+                                                            //        }
+                                                            //    });
+
+                                                            //    return sessionObject;
+
+                                                            //});
+
+
+                                                            //$(document).keydown(function (e) {
+                                                            //    var key = e.which || e.keyCode;
+                                                            //    if (key == 116) {
+                                                            //        validNavigation = 1;
+                                                            //        alert("hi");
+                                                            //    }
+                                                            //});
+
+
+    </script>
+</body>
+</html>

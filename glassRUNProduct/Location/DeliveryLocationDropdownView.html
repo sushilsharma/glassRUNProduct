@@ -1,0 +1,26 @@
+﻿<div class="UseFull_Space">
+	<div class="section_width_100 position_relative angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+		<input id="ShipToLocationListAutoCompleteBox_value" type="text" class="gray_border_textbox" placeholder="{{resData.res_CreateInquiryPage_SearchShipToLocation}}" ng-class="{'open_panel green_border_textbox': showShipToLocationbox, 'green_border_textbox': SearchControl.InputShipToLocation.length > 0 && SearchControl.InputShipToLocation !== '', 'gray_border_box': SearchControl.InputShipToLocation.length === 0 && SearchControl.InputShipToLocation === ''}" ng-model="SearchControl.InputShipToLocation" arrow-selector-delivery="" ng-focus="onFocusHandler()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="ShipToLocationInputSelecteChangeEvent(SearchControl.InputShipToLocation)" />
+		<span class="textbox_down_angle">
+			<a ng-click="ShowShipToLocationListBox()">
+				<i class="fa fa-angle-down icon_size_20" ng-hide="IsShipToLocationSearchInputFilled === true"></i>
+			</a>
+			<a ng-click="ClearShipToLocationInputSearchbox()" class="remove_ion_icon">
+				<i class="icons-office-52" ng-show="IsShipToLocationSearchInputFilled"></i>
+			</a>
+		</span>
+		<div id="DeliveryListAutoCompleteBox_dropdown" ng-show="showShipToLocationbox" class="angucomplete-dropdown autocompltedropdown ScrollbarUI" style="">
+			<div class="angucomplete-searching no_resultfound" ng-show="ShipToFoundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+			<div class="angucomplete-row" ng-repeat="result in (filteredDeliveryLocation = (bindDeliverylocation | multipleTagsDeliveryLocation:SearchControl.FilterShipToLocationAutoCompletebox))" key-navigation="" ng-mouseenter="hoverRow($index)" ng-click="SavedEditEnquiry || SelectedShipToLocation(result.DeliveryLocationId,result.DeliveryLocationCode,result.DeliveryName,result.DeliveryLocationName)" ng-class="{'autocompleteboxselectedrow':$index == selectedShipToLocationRow}" style="">
+				<div class="angucomplete-title" style="">
+					<span class=""> <span>{{result.DeliveryName}}</span><span ng-if="pageContrlAcessData.ShipToLocationCodeSection !='0'  &&   result.DeliveryLocationCode !=''  &&   result.DeliveryLocationCode !=null"> [{{result.DeliveryLocationCode}}]</span></span>
+				</div>
+			</div>
+			<div class="angucomplete-searching add_new_item_btn" ng-show="ShipToFoundResult" ng-if="pageContrlAcessData.DropoffLocation !='0'">
+				<a ng-click="OpenModalPopupToAddNewLocation('Drop Off')" class="add_new_item_btn_text">
+					{{resData.res_createinquirypage_Add_New_DropoffLocation}}
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

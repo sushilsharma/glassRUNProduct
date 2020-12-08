@@ -1,0 +1,547 @@
+﻿<ion-view>
+    <ion-content class="main-content" style="overflow-y:hidden">
+        <!--<link href="ManageCustomer/style/style.css" rel="stylesheet" />-->
+        <style>
+
+            .main-content .pageview {
+                padding: 20px !important;
+            }
+
+            @media (max-width: 767px) and (min-width: 481px) {
+                .modal {
+                    min-height: 225px !important;
+                    height: 225px !important;
+                    width: 80% !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                    top: 100px;
+                    position: relative;
+                }
+            }
+
+            @media (max-width: 480px) and (min-width: 320px) {
+                .modal {
+                    min-height: 225px !important;
+                    height: 225px !important;
+                    width: 80% !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                    top: 100px;
+                    position: relative;
+                }
+            }
+
+            .treeSelection {
+                background-color: green;
+                color: #fff;
+            }
+
+            .highlighted {
+                background: yellow;
+                position: relative;
+                top: -3px;
+            }
+
+            .ob-right {
+                text-align: left;
+            }
+
+            .profile_details_scrollable_div {
+                float: left;
+                width: 100%
+            }
+
+            .no_bottom_buttons {
+                bottom: 0px
+            }
+
+            .full_screen_width {
+                float: left;
+                width: 100%;
+            }
+
+            .searchbar_control {
+                float: left;
+                width: 100%;
+            }
+
+            .productsearchicon_order {
+                position: absolute;
+                top: 8px;
+                right: 14px;
+                color: #a9a9a9;
+                line-height: 21px;
+            }
+
+            .productsearchicon_order {
+                position: absolute;
+                top: 8px;
+                right: 30px;
+                color: #a9a9a9;
+            }
+
+                .productsearchicon_order img {
+                    width: 15px;
+                }
+
+            .fullwidthcontainer {
+                float: left;
+                width: 100%
+            }
+
+            .setup_screen_paddingbottom_10_space {
+                padding-bottom: 10px;
+            }
+
+            .customerlistheader_div {
+                float: left;
+                width: 100%;
+                padding-top: 2px;
+            }
+
+            .homepage_accesssection {
+                float: left;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+                .homepage_accesssection.cutomer_list_header_ui .HomePageAccessControl.app_text_normal_gradiantbgcolor {
+                    margin-bottom: 20px
+                }
+
+            .cutomer_list_header_ui {
+                position: relative
+            }
+
+                .cutomer_list_header_ui .accessimage {
+                    position: absolute
+                }
+
+            .setup_screen_margintop_20_space {
+                margin-top: 20px;
+            }
+
+            .cartItemDetailsContainer.setup_screen_margintop_20_space {
+                margin-top: 0px;
+            }
+
+            .product_item_card {
+                float: left;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .app_body_container[data-background-color=blue] .app_text_white_bgcolor {
+                border-color: #fff;
+                background-color: #fff;
+                box-shadow: 0px 0px 10px 0.1px rgba(0, 0, 0, 0.1);
+                -webkit-appearance: none;
+            }
+
+            .app_body_container[data-background-color=green] .app_text_white_bgcolor {
+                border-color: #fff;
+                background-color: #fff;
+                box-shadow: 0px 0px 10px 0.1px rgba(0, 0, 0, 0.1);
+                -webkit-appearance: none;
+            }
+
+            .suppliersecondcolumncontainer {
+                float: left;
+                width: calc(100% - 75px);
+                padding-left: 10px;
+            }
+
+                .suppliersecondcolumncontainer .quick_action_card {
+                    right: 0px;
+                }
+
+                .suppliersecondcolumncontainer .fullspace_addressline {
+                    padding-top: 10px;
+                }
+
+
+            .manage_catalog_product_info {
+                position: relative;
+            }
+
+                .manage_catalog_product_info .Quick_Action_Button {
+                    position: absolute;
+                    top: 0px;
+                    float: none;
+                    width: auto;
+                    right: 0px;
+                    margin-right: 0px;
+                }
+
+                .manage_catalog_product_info .product_name_text_ui {
+                    width: calc(100% - 30px);
+                    line-height: 18px;
+                }
+
+                .manage_catalog_product_info .Quick_Action_Button .call_quick_action_bar {
+                    width: 30px;
+                }
+
+            .secondcolumnbox {
+                padding-bottom: 5px !important;
+            }
+
+            .ProductName {
+                color: #101417;
+                font-size: 14px;
+                font-weight: bold
+            }
+
+            .productname {
+                float: left;
+                width: 100%;
+                font-size: 14px;
+                text-align: left;
+                letter-spacing: 0.2px;
+                line-height: 20px;
+            }
+
+            .app_body_container[data-color=blue] .app_text_dark_color {
+                color: #053e5d;
+            }
+
+            .app_body_container[data-color=green] .app_text_dark_color {
+                color: #101417;
+            }
+
+            .font_bold_text {
+                font-weight: bold;
+            }
+
+            .customer_priority_section {
+                float: left;
+                width: 100%;
+            }
+
+            .setpriority_icon_text {
+                float: left;
+                width: auto;
+                margin-right: 10px;
+                line-height: 26px;
+            }
+
+            .fullspace_addressline {
+                float: left;
+                width: 100%;
+                margin-top: 5px;
+                line-height: 18px;
+            }
+
+            .suppliersecondcolumncontainer .fullspace_addressline {
+                padding-top: 10px;
+            }
+
+            .selected_cutomer_heading {
+                font-size: 14px;
+                opacity: 0.6;
+            }
+
+            .full_row_width_section {
+                float: left;
+                width: 100%;
+                position: relative;
+            }
+
+            .addresses_section {
+                float: left;
+                width: calc(100% - 120px);
+            }
+
+            .addresslinefirst {
+                float: left;
+                width: 100%;
+                font-size: 12px;
+            }
+
+            .addresslinesecond {
+                float: left;
+                width: 100%;
+                font-size: 12px;
+            }
+
+            .Quick_Action_Button {
+                float: right;
+                width: auto;
+                font-size: 20px;
+                top: 0px;
+                margin-right: -10px;
+                position: relative;
+            }
+
+            .quick_action_card {
+                position: absolute;
+                top: 25px;
+                right: -5px;
+                background-color: #fff;
+                z-index: 10000;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px 0.1px rgba(0, 0, 0, 0.2);
+                padding: 5px 5px;
+            }
+
+            .quick_action_card_row {
+                float: left;
+                width: 180px;
+                display: inline-block;
+                white-space: normal;
+                padding: 0px 10px;
+            }
+
+            .quick_action_icon_ui {
+                float: left;
+                width: 20px;
+                display: inline-block;
+                padding: 8px 0px;
+            }
+
+            .quick_action_text_ui {
+                float: left;
+                font-size: 12px;
+                display: inline-block;
+                width: 120px;
+                padding-left: 5px;
+                border-bottom: 1px solid #e8e8e8;
+                padding: 8px 0px;
+                padding-left: 5px;
+                padding-bottom: 7px;
+            }
+
+            .quick_action_card_row img {
+                height: 15px;
+                width: auto;
+                margin: auto;
+                float: left;
+                margin-top: 6px;
+            }
+
+            .call_quick_action_bar {
+                float: left;
+                width: 45px;
+                height: auto;
+                text-align: center;
+                margin-top: -10px;
+                padding-top: 10px;
+            }
+
+        </style>
+        <div class="pageview" style="margin-bottom: 60px;height:calc(100% - 50px)">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="ManageCustomer_Container" class="uk-width-large-10-10 uk-row-first uk-grid-margin">
+                        <div class="profile_details_scrollable_div no_bottom_buttons">
+                            <div class="nopaddingindesktop full_screen_width">
+
+                                <div class="search_control_section" style="width: 100% !important; margin-left:0px !important;">
+                                    <div class="searchbar_control">
+                                        <input class="app_text_white_bgcolor" type="text" placeholder="{{resData.res_ActivateDeactivateUser_SearchByCodeAndName}}" ng-model="SearchValue.search" ng-change="SearchList()">
+                                        <div class="productsearchicon_order" ng-if="SearchValue.search.length==0 || SearchValue.search.length==undefined">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="productsearchicon_order" ng-if="SearchValue.search.length > 0" ng-click="ClearSearch()">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div ng-if="true" class="fullwidthcontainer setup_screen_paddingbottom_10_space" style="margin-top: 15px;">
+                                    <div class="customerlistheader_div">
+                                        <div id="ManageCustomer_Section" class="homepage_accesssection cutomer_list_header_ui">
+
+                                            <div class="cartItemDetailsContainer setup_screen_margintop_20_space">
+                                                <div class="col-md-4 col-sm-6 cartcontainer product_item_card app_text_white_bgcolor" ng-repeat="company in AllCompanyDetailsList | filter: SearchValue.search">
+                                                    <div class="maincartbox" style="padding-bottom:0px">
+                                                        <div class="suppliersecondcolumncontainer manage_catalog_product_info" style="width: calc(100% - 0px) !important;">
+                                                            <div class="secondcolumnbox">
+                                                                <div class="productname app_text_dark_color">
+                                                                    {{resData.res_ActivateDeactivateUser_Code}}: <span class="app_text_dark_color font_bold_text">{{company.CompanyMnemonic}}</span>
+                                                                </div>
+                                                                <div class="productname app_text_dark_color">
+                                                                    {{resData.res_ActivateDeactivateUser_Name}}: <span class="app_text_dark_color font_bold_text">{{company.CompanyName}}</span>
+                                                                </div>
+                                                                <div class="productname app_text_dark_color">
+                                                                    {{resData.res_ActivateDeactivateUser_Role}}: <span class="app_text_dark_color font_bold_text">{{company.RoleName}}</span>
+                                                                </div>
+                                                                <div class="productname app_text_dark_color">
+                                                                    {{resData.res_ActivateDeactivateUser_Username}}: <span class="app_text_dark_color" ng-if="company.IsActive === '1'">{{company.Username}}</span>
+                                                                    <span class="app_text_dark_color" ng-if="company.IsActive === '0'">-</span>
+                                                                </div>
+                                                                <div class="productname app_text_dark_color">
+                                                                    {{resData.res_ActivateDeactivateUser_OTP}}: <span ng-if="company.OTP !== '' && company.OTP !== null && company.OTP !== undefined && company.IsActive === '1'" class="app_text_dark_color">{{company.OTP}}</span>
+                                                                    <span ng-if="(company.OTP === '' || company.OTP === null || company.OTP === undefined) && company.IsActive === '1'" class="app_text_dark_color">-</span>
+                                                                </div>
+                                                                <div class="productname app_text_dark_color">
+                                                                    {{resData.res_ActivateDeactivateUser_OTPValidity}}: <span ng-if="company.OTPValidTill !== '' && company.OTPValidTill !== null && company.OTPValidTill !== undefined && company.IsActive === '1'" class="app_text_dark_color">{{company.OTPValidTill | date:'dd/MM/yyyy'}}</span>
+                                                                    <span ng-if="(company.OTPValidTill === '' || company.OTPValidTill === null || company.OTPValidTill === undefined) && company.IsActive === '1'" class="app_text_dark_color">-</span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="Quick_Action_Button">
+                                                                <div class="call_quick_action_bar" ng-click="ShowQuickActionPopOver(company, AllCompanyDetailsList); $event.stopPropagation();">
+                                                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class="quick_action_card" ng-if="company.ShowQuickAction === true">
+                                                                    <div class="quick_action_card_row" ng-if="company.IsActive === '0'" ng-click="OpenActivateDeactivatPopup(company,'1'); $event.stopPropagation();">
+                                                                        <div class="quick_action_icon_ui">
+                                                                            <img src="/Images/Activate Deactivate.png">
+                                                                        </div>
+                                                                        <div class="quick_action_text_ui">
+                                                                            {{resData.res_ManageCatalog_Activate}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="quick_action_card_row" ng-if="company.IsActive === '1'" ng-click="OpenActivateDeactivatPopup(company,'0'); $event.stopPropagation();">
+                                                                        <div class="quick_action_icon_ui">
+                                                                            <img src="/Images/Activate Deactivate.png">
+                                                                        </div>
+                                                                        <div class="quick_action_text_ui">
+                                                                            {{resData.res_ManageCatalog_DeActivate}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="quick_action_card_row" ng-if="company.IsActive === '1'" ng-click="Regen_OTP(company.LoginId); $event.stopPropagation();">
+                                                                        <div class="quick_action_icon_ui">
+                                                                            <i class="fa fa-key" aria-hidden="true"></i>
+                                                                        </div>
+                                                                        <div class="quick_action_text_ui">
+                                                                            {{resData.res_LoginGridComponent_RegenerateOTP}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="quick_action_card_row" ng-if="company.IsActive === '1'" ng-click="ChangeLanguage(company.CompanyId, company.DefaultLanguage); $event.stopPropagation();">
+                                                                        <div class="quick_action_icon_ui">
+                                                                            <img src="/Images/Language.png">
+                                                                        </div>
+                                                                        <div class="quick_action_text_ui">
+                                                                            {{resData.res_ActivateDeactivateUser_ChangeLanguage}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="quick_action_card_row" style="display:none !important">
+                                                                        <div class="quick_action_icon_ui">
+                                                                            <img src="/Images/About_Details.png">
+                                                                        </div>
+                                                                        <div class="quick_action_text_ui">
+                                                                            {{resData.res_ManageCustomerOrders_ViewDetails}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script id="templates/CompanyActiveDeactiveModal.html" type="text/ng-template">
+                <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                        <h1 ng-if="ActiveOrDeactive === '1'" class="title">{{resData.res_ManageCatalog_Activate}}</h1>
+                        <h1 ng-if="ActiveOrDeactive === '0'" class="title">{{resData.res_ManageCatalog_DeActivate}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseActivateDeactivatPopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="false" class="popioncontainer">
+                        <div ng-if="ActiveOrDeactive === '1'" class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                            {{resData.res_ActivateDeactivateUser_ActivateMsg}}
+                        </div>
+                        <div ng-if="ActiveOrDeactive === '0'" class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                            {{resData.res_ActivateDeactivateUser_DeActivateMsg}}
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar class="popupfooter">
+                        <div class="popupbtnstyle">
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square" ng-click="SaveActivateDeactivatesCompany()">
+                                    {{resData.res_InquirySummary_YesBtn}}
+                                </a>
+                            </div>
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square redclosebtn" ng-click="CloseActivateDeactivatPopup()">
+                                    {{resData.res_InquirySummary_NoBtn}}
+                                </a>
+                            </div>
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+            <script id="templates/ChangeLanguageModal.html" type="text/ng-template">
+                <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                        <h1 class="title">{{resData.res_ActivateDeactivateUser_ChangeLanguage}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseChangeLanguagePopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="false" class="popioncontainer">
+                        <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+
+                            <ul>
+                                <li style="display:inline;float: left !important;width: 40%;" ng-repeat="lang in LanguageList">
+                                    <input type="radio" name="radioList" style="position: relative;top: 2px;" ng-model="LanaguageParams.DefaultLanguage" value="{{lang.Id}}">  <span>{{lang.Name}} </span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar class="popupfooter">
+                        <div class="popupbtnstyle">
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square" ng-click="SaveLangauge()">
+                                    {{resData.res_InquirySummary_YesBtn}}
+                                </a>
+                            </div>
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square redclosebtn" ng-click="CloseChangeLanguagePopup()">
+                                    {{resData.res_InquirySummary_NoBtn}}
+                                </a>
+                            </div>
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+            <script id="ViewGrid_OTPWarningMessage.html" type="text/ng-template">
+                <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                    <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                        <h1 class="title">{{resData.res_PaymentSlab_Warning}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseOTPReConfirmation_ViewGrid()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="false" class="popioncontainer">
+                        <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                            {{OTPWarningMessage}}
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar class="popupfooter">
+
+                        <div class="popupbtnstyle">
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square" ng-click="RegenOTPYes_ViewGrid()">
+                                    {{resData.res_PaymentSlab_DeleteYes}}
+                                </a>
+                                <a class="btn btn-success btn-square" style="border:1px solid red !important" ng-click="CloseOTPReConfirmation_ViewGrid()">
+                                    {{resData.res_PaymentSlab_DeleteNo}}
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+        </div>
+
+
+    </ion-content>
+</ion-view>

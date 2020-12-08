@@ -1,0 +1,150 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+
+        <div class="pageview">
+            <div class="fixrighttopbutton">
+                <div class="col-sm-2 singlebtn col-md-2" style="float:right">
+                    <a class="btn btn-success btn-square" ng-click="GetAllRecordApproved()">{{resData.res_OMInquiryPage_Approve}}</a>
+                    <a class="btn btn-success btn-square" style="margin-right: 15px;" ng-click="RejectAllSelectedEnquiry()">{{resData.res_OMInquiryPage_Reject}}</a>
+                    <a class="btn btn-success btn-square" style="margin-right: 15px;" ng-click="RefreshGrid()">{{resData.res_OMInquiryPage_Refresh}}</a>
+                    <a class="btn btn-success btn-square" style="margin-right: 15px;" ng-click="ChangeAllEnquiryBranchPlant()">{{resData.res_OMInquiryPage_ChangeBranchPlant}}</a>
+                </div>
+            </div>
+
+            <div class="header">
+               <h2>{{resData.res_OMInquiryPage_CleanOrderCheck}}</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+                    <div id="portalview" class="PortalView">
+                        <div class="panel">
+                            <div class="MultiSelectControlRow">
+                                <div class="form-group MultiSelectControl">
+                                    <div ng-dropdown-multiselect="" options="ProductList" selected-model="ProductSelectedList" checkboxes="true" extra-settings="MultiSelectDropdownSetting"></div>
+                                </div>
+                                <a class="btn btn-success btn-square" ng-click="SearchEnquiryIncludeByProductName()">{{resData.res_OMInquiryPage_Include}}</a>
+                                <a class="btn btn-success btn-square" ng-click="SearchEnquiryExcludeByProductName()">{{resData.res_OMInquiryPage_Exclude}}</a>
+                                <a class="btn btn-success btn-square" ng-click="ClearProductSearch()">{{resData.res_OMInquiryPage_Clear}}</a>
+                            </div>
+                            <div class="panel-content">
+                                <!--<kendo-tooltip options="tooltipOptions">  </kendo-tooltip>-->
+                                <div id="InquiryDetailsGrid" kendo-grid="grid" k-options="InquiryDetailsGrid" k-rebind="rebindGrid" k-on-change="onSelection(kendoEvent)"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script id="templates/reasoncodepopup.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Reason Code</h1>
+                    <button class="button button-clear button-primary" ng-click="ClosReasoncodepopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Please choose reason code :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="ReasonCodeJson.ReasonCode" ng-options="obj.ReasonCodeId as obj.ReasonName for obj in ReasonCodeList">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+
+                                    <div class="labelname reasonlable">
+                                        Description :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <textarea type="text" class="form-control form-white" rows="4" cols="50" ng-model="ReasonCodeJson.ReasonDescription"></textarea>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveReasonCode()">
+                                Save
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="ClosReasoncodepopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+        <script id="templates/ChangeBranchPlantCode.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Change Branch Plant</h1>
+                    <button class="button button-clear button-primary" ng-click="ClosChangeBranchPlantCodePopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Branch Plant :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="SelectedBranchPlant.BranchPlantForSelectedEnquiry" ng-options="obj.DeliveryLocationId as obj.DeliveryLocationCode for obj in bindAllBranchPlant">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveBranchPlantForSelectedEnquiry()">
+                                Save
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="ClosChangeBranchPlantCodePopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+    </ion-content>
+</ion-view>

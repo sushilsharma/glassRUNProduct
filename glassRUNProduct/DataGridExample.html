@@ -1,0 +1,196 @@
+﻿<!--<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DevExtreme Demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.6/css/dx.common.css" />
+    <link rel="dx-theme" data-theme="generic.light" href="https://cdn3.devexpress.com/jslib/18.1.6/css/dx.light.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/18.1.6/js/dx.all.js"></script>
+    <script src="https://unpkg.com/devextreme-aspnet-data@1.4.7"></script>
+
+    <script>
+        var DemoApp = angular.module('DemoApp', ['dx']);
+
+        DemoApp.controller('DemoController', function DemoController($scope, $http, $q) {
+            var orders = new DevExpress.data.CustomStore({
+                load: function (loadOptions) {
+
+                    console.log("1 " + new Date());
+
+                    var parameters = {};
+
+                    if (loadOptions.sort) {
+                        parameters.orderby = loadOptions.sort[0].selector;
+                        if (loadOptions.sort[0].desc)
+                            parameters.orderby += " desc";
+                    }
+
+                    parameters.skip = loadOptions.skip || 0;
+                    parameters.take = loadOptions.take || 12;
+
+                    var config = {
+                        params: parameters
+                    };
+
+                    console.log("2 " + new Date());
+
+                    return $http.get("https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems", config)
+                        .then(function (response) {
+                            console.log("3 " + new Date());
+                            return { data: response.data.items, totalCount: response.data.totalCount };
+                        }, function (response) {
+                            return $q.reject("Data Loading Error");
+                        });
+                }
+            });
+            console.log("4 " + new Date());
+            $scope.dataGridOptions = {
+                dataSource: {
+                    store: orders
+                },
+                showBorders: true,
+                remoteOperations: {
+                    sorting: true,
+                    paging: true
+                },
+                paging: {
+                    pageSize: 12
+                },
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [8, 12, 20]
+                },
+                columns: [
+                    "OrderNumber", "OrderDate", "StoreCity", "StoreState", "Employee", {
+                        dataField: "SaleAmount",
+                        format: "currency"
+                    }
+                ]
+
+            };
+            console.log("4 " + new Date());
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body class="dx-viewport">
+    <div class="demo-container" ng-app="DemoApp" ng-controller="DemoController">
+        <div id="gridContainer" dx-data-grid="dataGridOptions"></div>
+    </div>
+</body>
+</html>-->
+<style>
+
+</style>
+<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+            <div class="row aggrid">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+                    <div id="portalview" class="PortalView" style="overflow-y:hidden">
+                        <div class="panel" style="float:left;width:100%">
+
+                            <div class="panel-content" style="float:left;width:100%">
+
+                                <!--<div style="padding-bottom: 4px;">
+                                    <label>
+                                        File Name:
+                                        <input type="text" id="fileName" />
+                                    </label>
+                                    <label>
+                                        Sheet Name:
+                                        <input type="text" id="sheetName" />
+                                    </label>
+                                    <label style="margin-left: 20px;">
+                                        <button class="btn btn-success btn-square" ng-click="onBtExport()">Export to Excel</button>
+                                    </label>
+                                </div>-->
+
+                                <div class="dx-viewport">
+                                    <div class="demo-container">
+                                        <div id="gridContainer" dx-data-grid="dataGridOptions" dx-item-alias="orders">
+
+                                            <div data-options="dxTemplate:{ name:'cellTemplate' }">
+                                                <i ng-if="orders.value === 'INQ002106'" class="fa fa-times">
+
+                                                </i>
+                                                <i ng-if="orders.value !== 'INQ002106'" class="fa fa-check">
+
+                                                </i>
+                                            </div>
+
+
+                                            <div ng-show="loadProductDetails" data-options="dxTemplate: {name: 'detail'}">
+                                                <table class="table table-hover">
+                                                    <tr>
+                                                        <th>
+                                                            Product Code
+                                                        </th>
+                                                        <th>
+                                                            Product Name
+                                                        </th>
+                                                        <th>
+                                                            Quantity
+                                                        </th>
+                                                        <th>
+                                                            Price
+                                                        </th>
+                                                        <th>
+                                                            UOM
+                                                        </th>
+                                                        <th>
+                                                            Stock
+                                                        </th>
+                                                    </tr>
+                                                    <tr ng-repeat="item in ProductListInfo">
+                                                        <td>
+                                                            {{item.ProductCode}}
+                                                        </td>
+                                                        <td>
+                                                            {{item.ItemName}}
+                                                        </td>
+                                                        <td>
+                                                            {{item.ProductQuantity}}
+                                                        </td>
+                                                        <td>
+                                                            {{item.ItemPricesPerUnit}}
+                                                        </td>
+                                                        <td>
+                                                            {{item.PrimaryUnitOfMeasure}}
+                                                        </td>
+                                                        <td>
+                                                            {{item.StockInQuantity}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                            <div ng-show="loadgridInfo" data-options="dxTemplate: {name: 'detail'}">
+                                                <div>
+                                                    grid set up data
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </ion-content>
+</ion-view>

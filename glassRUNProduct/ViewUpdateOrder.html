@@ -1,0 +1,275 @@
+﻿
+
+<div ng-include="'ViewCreditLimitAndEmptiesForOrder.html'" ng-controller="ViewCreditLimitAndEmptiesForOrderController"></div>
+
+<div class="pageview">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ContainerView">
+
+                <div class="CreateOrderView scrollablecontainer">
+
+                    <div class="row">
+                        <div class="panel fullwithwithoutpadding">
+                            <div class="panel-header bg-primary">
+                                <h3>{{resData.res_UpdateOrder_CreateInquiry}}</h3>
+                            </div>
+
+                            <div class="panel-content fullwithwithoutpadding">
+
+                                <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+                                    <div class="ibox float-e-margins">
+                                        <div id="demo6" class="ibox-content collapse in">
+
+
+                                            <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                <div class="table-scrollable">
+                                                    <div ng-include="'ViewDeliveryLocationForOrder.html'" ng-controller="ViewDeliveryLocationForOrderController"></div>
+
+
+
+                                                    <div ng-include="'ViewOrderProposedDateForOrder.html'" ng-controller="ViewOrderProposedDateForOrderController"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="borderedTable" style="float: left;width:100%;padding: 0px 15px;">
+                                                <div class="table-scrollable">
+                                                    <div ng-include="'ViewTruckSizeForOrder.html'" ng-controller="ViewTruckSizeForOrderController"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                <div class="table-scrollable">
+                                                    <div ng-include="'ViewPalletAndWeightGraphForOrder.html'">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="borderedTable" style="float: left;width:100%;">
+                                                <div class="table-scrollable PortalView">
+
+                                                    <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+
+                                                        <span class="sectionheader">{{resData.res_UpdateOrder_ItemSelection}}</span>
+                                                    </div>
+                                                    <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+                                                        <div class="collg4">
+                                                            <div class="labeldata">{{resData.res_UpdateOrder_Item}}</div>
+                                                            <div class="itemcontrols">
+                                                                <!--<select class="form-control" style="margin:0px !important"
+                                                                        ng-model="ordermanagement.itemsName"
+                                                                        ng-change="getItemPrice(obj.ItemId,obj.Amount)"
+                                                                        ng-options="obj.ItemId as obj.ItemName for obj in bindallproduct">
+                                                                    <option value="">Select</option>
+                                                                </select>-->
+
+                                                                <div class="padded-row" style="position: relative;width: 100%;">
+                                                                    <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                        <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                            <input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_UpdateOrder_SearchItemPlaceholder}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="SearchControl.InputItem" ng-disabled="disableInput" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="ItemInputSelecteChangeEvent(SearchControl.InputItem)" style="border: 1px solid #bec1c3;">
+                                                                            <div id="ItemListAutoCompleteBox_dropdown" ng-show="showItembox" class="angucomplete-dropdown" style="">
+                                                                                <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching" style="">{{resData.res_UpdateOrder_Searching}}</div>
+                                                                                <div class="angucomplete-searching" ng-show="foundResult">{{resData.res_UpdateOrder_Noresultsfound}}</div>
+                                                                                <div class="angucomplete-row" ng-repeat="result in (filteredItems = (bindallproduct | multipleTags:SearchControl.FilterAutoCompletebox))" ng-if="result.ItemCode !== WoodenPalletCode" key-navigation="" ng-click="getItemPrice(result.ItemId,0)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+                                                                                    <div class="angucomplete-title" style="">
+                                                                                        {{result.ItemNameCode}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <a class="clearautosearchbox" ng-hide="IsItemEdit" ng-click="ClearAutoSearchbox()">
+                                                                        <i class="fa fa-times"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="collg4" style="width:12%">
+                                                            <div class="labeldata">{{resData.res_UpdateOrder_Allocation}}</div>
+                                                            <div class="itemcontrols" style="margin-top: 10px;">
+                                                                {{Allocation=='NA' ? 'N/A' : Allocation}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="collg4" style="width:12%">
+                                                            <div class="labeldata">{{resData.res_UpdateOrder_Price}}</div>
+                                                            <div class="itemcontrols" style="margin-top: 10px;">
+                                                                <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{ItemPrices  | currency: CurrencyFormatCode}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="collg4" style="width:12%">
+                                                            <div class="labeldata">{{resData.res_UpdateOrder_UOM}}</div>
+                                                            <div class="itemcontrols" style="margin-top: 10px;">
+                                                                {{UOM}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="collg4">
+                                                            <div class="labeldata">{{resData.res_UpdateOrder_Quantity}}</div>
+                                                            <div class="itemcontrols">
+
+                                                                <input id="inputItemsQty" class="form-control form-white" ng-enter="CheckingExtraPalettesBeforeAddingItem(ItemField.itemId,ItemField.inputItemsQty,0,32,0,'')" onkeypress='return validateQty(event);' type="number" placeholder="Quantity" ng-init="ItemField.inputItemsQty=''" ng-model="ItemField.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <div class="collgbtn">
+                                                            <div class="labeldata">
+                                                                &nbsp;
+                                                            </div>
+                                                            <div style="float:left">
+                                                                <a class="btn btn-default" ng-click="CheckingExtraPalettesBeforeAddingItem(ItemField.itemId,ItemField.inputItemsQty,0,32,0,'')"><i class="fa fa-plus"></i></a>
+                                                                <a ng-show="IsItemEdit" class="btn btn-default" ng-click="ClearItem()"><i class="icons-office-52"></i></a>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="srno">{{resData.res_UpdateOrder_SrNo}}</th>
+                                                                <th>{{resData.res_UpdateOrder_ItemCode}}</th>
+                                                                <th>{{resData.res_UpdateOrder_ItemName}}</th>
+                                                                <th>{{resData.res_UpdateOrder_UOM}}</th>
+                                                                <th>{{resData.res_UpdateOrder_Quantity}}</th>
+                                                                <th>{{resData.res_UpdateOrder_Price}}</th>
+                                                                <th> </th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody ng-repeat="orderdata in OrderData" ng-if='orderdata.OrderGUID == CurrentOrderGuid'>
+                                                            <tr ng-repeat="product in orderdata.OrderProductsList | filter: RemoveWoodenPalletItem" ng-if='product.IsActive==true || product.IsActive==1'>
+                                                                <td class="srno">
+                                                                    {{$index +1}}
+                                                                    <i class="fa fa-gift" style="color:green" aria-hidden="true" ng-show="product.ItemType == 31 || product.ItemType == '31'"></i>
+                                                                    <i class="fa fa-google" aria-hidden="true" ng-show="product.ItemType == 30 || product.ItemType == '30'"></i>
+                                                                </td>
+                                                                <td> {{product.ProductCode}} </td>
+                                                                <td> {{product.ItemName}} </td>
+                                                                <td> {{product.PrimaryUnitOfMeasure}} </td>
+                                                                <td> {{product.ProductQuantity | currency: CurrencyFormatCode}} </td>
+                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{product.ItemPrices | currency: CurrencyFormatCode }} </td>
+
+                                                                <td class="text-right">
+                                                                    <a class="edit btn btn-sm btn-default"  ng-hide="product.ProductCode == WoodenPalletCode || product.ItemType == 31 || product.ItemType =='31'" ng-click="EditProduct(product.OrderGUID,product.ItemId,product.OrderProductGUID)"><i class="icon-note"></i></a>
+                                                                    <a class="delete btn btn-sm btn-danger" ng-hide="product.ProductCode == WoodenPalletCode || product.ItemType == 31 || product.ItemType == '31'" ng-click="RemoveProduct(product.OrderGUID,product.ItemId,product.GratisOrderId)"><i class="icons-office-52"></i></a>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr ng-repeat="product in orderdata.OrderProductsList | filter: { ProductCode: WoodenPalletCode }" ng-if='product.IsActive==true || product.IsActive==1'>
+                                                                <td class="srno">
+                                                                    {{orderdata.OrderProductsList.length}}
+                                                                    <i class="fa fa-gift" aria-hidden="true" ng-show="product.ItemType == 31 || product.ItemType == '31'"></i>
+                                                                    <i class="fa fa-google" aria-hidden="true" ng-show="product.ItemType == 30 || product.ItemType == '30'"></i>
+                                                                </td>
+                                                                <td> {{product.ProductCode}} </td>
+                                                                <td> {{product.ItemName}} </td>
+                                                                <td> {{product.PrimaryUnitOfMeasure}} </td>
+                                                                <td> {{product.ProductQuantity | currency: CurrencyFormatCode}} </td>
+                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{product.ItemPrices | currency: CurrencyFormatCode }} </td>
+
+                                                                <td class="text-right">
+                                                                    <a class="edit btn btn-sm btn-default" ng-hide="product.ProductCode == WoodenPalletCode || product.ItemType == 31 || product.ItemType =='31'" ng-click="EditProduct(product.OrderGUID,product.ItemId,product.OrderProductGUID)"><i class="icon-note"></i></a>
+                                                                    <a class="delete btn btn-sm btn-danger" ng-hide="product.ProductCode == WoodenPalletCode || product.ItemType == 31 || product.ItemType == '31'" ng-click="RemoveProduct(product.OrderGUID,product.ItemId,product.GratisOrderId)"><i class="icons-office-52"></i></a>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td> </td>
+                                                                <td>  </td>
+                                                                <td>  </td>
+                                                                <td>  </td>
+                                                                <td> {{resData.res_UpdateOrder_TotalTax}} ({{ItemTaxInPec}} %)</td>
+                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span> {{calcTotalTax(orderdata.OrderGUID)| currency: CurrencyFormatCode}} </td>
+                                                                <td class="text-right"></td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td> </td>
+                                                                <td>  </td>
+                                                                <td>  </td>
+                                                                <td>  </td>
+                                                                <td>{{resData.res_UpdateOrder_TotalDeposit}}</td>
+                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span> {{calcTotalDepositeAmount(orderdata.OrderGUID)| currency: CurrencyFormatCode}} </td>
+                                                                <td class="text-right"></td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td> </td>
+                                                                <td>  </td>
+                                                                <td>  </td>
+                                                                <td>  </td>
+                                                                <td>{{resData.res_UpdateOrder_Total}}</td>
+                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span> {{((calcTotalAmount(orderdata.OrderGUID) + calcTotalTax(orderdata.OrderGUID)) + calcTotalDepositeAmount(orderdata.OrderGUID))  | currency: CurrencyFormatCode}} </td>
+                                                                <td class="text-right"></td>
+
+                                                            </tr>
+
+                                                        </tbody>
+
+                                                    </table>
+                                                    <div class="totalamountdiv" style="color:#5b5b5b;margin-top:5px;display:none">
+                                                        <span>{{resData.res_UpdateOrder_Total}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_UpdateOrder_75}}
+                                                    </div>
+                                                </div>
+
+                                                <div class="weather-highlighted weatherapprovebth">
+                                                    <div class="groupbtn last-column">
+
+                                                        <!--<div style="width:100%;float:right">
+                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right">
+                                                                <a ng-click="ClearAllItem()" class="btn btn-success btn-square">{{resData.res_UpdateOrder_ClearItem}}</a>
+                                                            </div>
+                                                        </div>-->
+
+                                                        <div style="width:100%;float:right">
+                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right">
+                                                                <a ng-click="UpdateOrder()" class="btn btn-success btn-square">{{resData.res_UpdateOrder_Update}}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fabbutton">
+
+    <ion-fab class="firstfab" bottom="" left="">
+        <a ng-click="OpenModalpopup()" class="carticon MobileView">
+            <i class="fa fa-shopping-cart bg-blue"></i>
+        </a>
+    </ion-fab>
+
+    <ion-fab class="thirdfab" bottom="" left="" style="display:none">
+        <a ng-click="AddInquiry()" class="carticon">
+            <i class="fa fa-plus bg-blue"></i>
+        </a>
+    </ion-fab>
+
+    <ion-fab class="secondfab" bottom="" left="" style="display:none">
+        <a ng-click="ViewInquiry()" class="carticon">
+            <i class="fa fa-truck bg-blue"></i>
+        </a>
+    </ion-fab>
+
+</div>
+
+
+
+
+

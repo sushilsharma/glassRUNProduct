@@ -1,0 +1,1078 @@
+﻿<style type="text/css">
+    /*.Company_AddCompany {
+        float: left;
+        width: 25%;
+        padding: 0px 20px;
+        border-right: 2px dashed #d5d5d5;
+        height: 36px;
+        padding-top: 5px;
+    }
+
+    .GridColumnWithBorder_AddCompanyForAccountSection {
+        float: left;
+        width: 20%;
+        padding: 0px 20px;
+        border-right: 2px dashed #d5d5d5;
+        height: 36px;
+        padding-top: 5px;
+    }*/
+
+    .popupbuttonstyleforimg {
+        float: right;
+        width: auto;
+        margin-right: 33px;
+    }
+
+    .confirmationmsgmodalviewforimg {
+        min-height: 180px !important;
+        height: 238px !important;
+        width: 148px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        top: 100px;
+        position: relative;
+    }
+</style>
+
+<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_SettingMaster_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a ng-click="AddForm()">
+                                    <tab-heading>
+                                        <i ng-show="!EditMode" class="fa fa-plus"></i><span ng-show="!EditMode">{{resData.res_SettingMaster_Add}}</span><i ng-show="EditMode" class="fa fa-pencil"></i><span ng-show="EditMode">{{resData.res_TransportVehicleUI_Edit}}</span>
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid" style="padding-bottom: 51px!important;">
+                                            <div class="col-lg-12">
+
+                                                <div ng-if="pageContrlAcessData.CompanyName !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                <span>{{resData.res_AddCompany_CompanyName}}</span>
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-model="AddCompanyDeailsJSON.CompanyName" class="form-control" ng-readonly="pageContrlAcessData.CompanyName =='0' || pageContrlAcessData.CompanyName =='1'" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.CompanyMnemonic !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_CompanyMnemonic}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+
+                                                                <input type="text" ng-model="AddCompanyDeailsJSON.CompanyMnemonic" class="form-control" ng-readonly="pageContrlAcessData.CompanyMnemonic =='0' || pageContrlAcessData.CompanyMnemonic =='1' || AddCompanyDeailsJSON.CompanyId!==0" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.CompanyType !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_CompanyType}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <select id="ddlPaymentPlanId" ng-model="AddCompanyDeailsJSON.CompanyType" ng-disabled="disableControl" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Code for obj in CompanyTypeList | orderBy:'Code'" ng-readonly="pageContrlAcessData.CompanyType =='0' || pageContrlAcessData.CompanyType =='1'">
+                                                                    <option value="">Select</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.ParentCompany !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_ParentCompany}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <select id="ddlPaymentPlanId" ng-model="AddCompanyDeailsJSON.ParentCompany" class="form-control" name="val_SelectObject" ng-options="obj.CompanyId as obj.CompanyName for obj in ParentCompanyList | orderBy:'CompanyName'">
+                                                                    <option value="">Select</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.AddressLine1 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_AddressLine1}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.AddressLine1 =='0' || pageContrlAcessData.AddressLine1 =='1'" ng-model="AddCompanyDeailsJSON.AddressLine1" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.AddressLine2 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_AddressLine2}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.AddressLine2 =='0' || pageContrlAcessData.AddressLine2 =='1'" ng-model="AddCompanyDeailsJSON.AddressLine2" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.AddressLine3 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_AddressLine3}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.AddressLine3 =='0' || pageContrlAcessData.AddressLine3 =='1'" ng-model="AddCompanyDeailsJSON.AddressLine3" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.State !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_State}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <select id="ddlPaymentPlanId" ng-disabled="pageContrlAcessData.State =='0' || pageContrlAcessData.State =='1'" ng-model="AddCompanyDeailsJSON.State" class="form-control" name="val_SelectObject" ng-change="GetAllCityDetailsByStateName(AddCompanyDeailsJSON.State)" ng-options="obj.StateName as obj.StateName for obj in StateList | orderBy:'StateName'">
+                                                                    <option value="">Select</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.City !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_City}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <select id="ddlPaymentPlanId" ng-disabled="pageContrlAcessData.City =='0' || pageContrlAcessData.City =='1'" ng-model="AddCompanyDeailsJSON.City" class="form-control" name="val_SelectObject" ng-options="obj.CityName as obj.CityName for obj in CityList | orderBy:'CityName'">
+                                                                    <option value="">Select</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.PostCode !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_PostCode}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-keypress="filterValue($event)" ng-readonly="pageContrlAcessData.PostCode =='0' || pageContrlAcessData.PostCode =='1'" ng-model="AddCompanyDeailsJSON.PostCode" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.Region !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Region}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <select id="ddlPaymentPlanId" ng-disabled="pageContrlAcessData.Region =='0' || pageContrlAcessData.Region =='1'" ng-model="AddCompanyDeailsJSON.Region" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in RegionDataList | orderBy:'Name'">
+                                                                    <option value="">Select</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.ZoneCode !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_ZoneCode}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                                                    <div class="form-group MultiSelectControl" ng-readonly="pageContrlAcessData.SelectedZoneList =='0' || pageContrlAcessData.SelectedZoneList =='1'" style="width: 100%;margin-left:5px ;margin-top:10px">
+                                                                        <div ng-dropdown-multiselect="" options="ZoneDataList" selected-model="SelectedZoneList" checkboxes="false" extra-settings="SortByListSetting"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.CategoryCode !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_CategoryCode}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.CategoryCode =='0' || pageContrlAcessData.CategoryCode =='1'" ng-model="AddCompanyDeailsJSON.CategoryCode" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.BranchPlant !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_BranchPlant}}
+
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                                                    <div class="form-group MultiSelectControl" style="width: 100%;margin-left:5px ;margin-top:10px">
+                                                                        <div ng-dropdown-multiselect="" options="LocationList" selected-model="SelectedLocationList" checkboxes="true" extra-settings="SortByListSetting"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.TaxId !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_TaxID}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-keypress="filterValue($event)" ng-readonly="pageContrlAcessData.TaxId =='0' || pageContrlAcessData.TaxId =='1'" ng-model="AddCompanyDeailsJSON.TaxId" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.SelectedProductList !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_ProductType}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                                                    <div class="form-group MultiSelectControl" ng-readonly="pageContrlAcessData.SelectedProductList =='0' || pageContrlAcessData.SelectedProductList =='1'" style="width: 100%;margin-left:5px ;margin-top:10px">
+                                                                        <div ng-dropdown-multiselect="" options="ProductTypeList" selected-model="SelectedProductList" checkboxes="true" extra-settings="SortByListSetting"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.TaxId !='0'" style="display:none">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_ItemCategory}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-keypress="filterValue($event)" ng-readonly="pageContrlAcessData.TaxId =='0' || pageContrlAcessData.TaxId =='1'" ng-model="AddCompanyDeailsJSON.TaxId" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.SelectedItemcategory !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_ItemCategory}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                                                    <div class="form-group MultiSelectControl" ng-readonly="pageContrlAcessData.SelectedItemcategory =='0' || pageContrlAcessData.SelectedItemcategory =='1'" style="width: 100%;margin-left:5px ;">
+                                                                        <div ng-dropdown-multiselect="" options="ProductCateGoryList" selected-model="SelectedProductcategory" checkboxes="true" extra-settings="SortByListSetting"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.SiteUrl !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_SiteURL}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.SiteUrl =='0' || pageContrlAcessData.SiteUrl =='1'" ng-model="AddCompanyDeailsJSON.SiteUrl" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.Logo !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_AddCompany_Logo}}</label>
+                                                            <div class="labelcontrol" style="position:relative">
+                                                                <div class="fileinput fileinput-new input-group" ng-readonly="pageContrlAcessData.Logo =='0' || pageContrlAcessData.Logo =='1'" data-provides="fileinput">
+                                                                    <div class="form-control" data-trigger="fileinput" style="margin-left: 69px;width: 73%;">
+                                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                                        <span class="fileinput-filename">{{TransportVehicleJson.labelFilename}}</span>
+                                                                    </div>
+                                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                                        <span class="fileinput-new">Choose...</span>
+                                                                        <span class="fileinput-exists">Change</span>
+                                                                        <input type="file" id="fileUpload" ng-file-select-image="onFileSelect($files)" ng-model="imageSrc" />
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group" style="margin-top:-66px; margin-bottom: 0px;float:left;">
+                                                            <div class="labelcontrol">
+                                                                <div class="fileinput-new thumbnail" style="height:122px!important; width: 109px;">
+                                                                    <img ng-src="{{TransportVehicleJson.image}}" ng-if="TransportVehicleJson.image !== '' && TransportVehicleJson.image !== undefined && TransportVehicleJson.image !== null" alt="Red dot" data-err-src="Images/No_image.png" />
+                                                                    <img ng-src="../Images/No_image.png" ng-if="TransportVehicleJson.image === '' || TransportVehicleJson.image === undefined || TransportVehicleJson.image === null" />
+                                                                    <a ng-click="RemoveImageFromJson()" ng-if="TransportVehicleJson.image !== '' && TransportVehicleJson.image !== undefined && TransportVehicleJson.image !== null" style="cursor:pointer !important;float:left"><i class="fa fa-remove"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--<div class="col-lg-12">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Logo</label>
+                                                <div class="labelcontrol">
+                                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                        <div class="form-control" data-trigger="fileinput" style="margin-left: 69px;width: 73%;">
+                                                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                            <span class="fileinput-filename">{{TransportVehicleJson.labelFilename}}</span>
+                                                        </div>
+                                                        <span class="input-group-addon btn btn-default btn-file">
+                                                            <span class="fileinput-new">Choose...</span>
+                                                            <span class="fileinput-exists">Change</span>
+                                                            <input type="file" id="fileUpload" onchange="angular.element(this).scope().FileNameChanged(this)" file-model="fileupload.File" />
+                                                        </span>
+                                                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.SubChannel !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_SubChannel}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.SubChannel =='0' || pageContrlAcessData.SubChannel =='1'" ng-model="AddCompanyDeailsJSON.SubChannel" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field1 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field1}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Field1 =='0' || pageContrlAcessData.Field1 =='1'" ng-model="AddCompanyDeailsJSON.Field1" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.Field2 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field2}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Field2 =='0' || pageContrlAcessData.Field2 =='1'" ng-model="AddCompanyDeailsJSON.Field2" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field3 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field3}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Field3 =='0' || pageContrlAcessData.Field3 =='1'" ng-model="AddCompanyDeailsJSON.Field3" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.Field4 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field4}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Field4 =='0' || pageContrlAcessData.Field4 =='1'" ng-model="AddCompanyDeailsJSON.Field4" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field5 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field5}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Field5 =='0' || pageContrlAcessData.Field5 =='1'" ng-model="AddCompanyDeailsJSON.Field5" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.Field6 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field6}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Field6 =='0' || pageContrlAcessData.Field6 =='1'" ng-model="AddCompanyDeailsJSON.Field6" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field7 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field7}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-model="AddCompanyDeailsJSON.Field7" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.Field8 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field8}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Field8 =='0' || pageContrlAcessData.Field8 =='1'" ng-model="AddCompanyDeailsJSON.Field8" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field9 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field9}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Field9 =='0' || pageContrlAcessData.Field9 =='1'" ng-model="AddCompanyDeailsJSON.Field9" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.Field10 !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_Field10}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Field10 =='0' || pageContrlAcessData.Field10 =='1'" ng-model="AddCompanyDeailsJSON.Field10" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.AvailableCreditLimit !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_AvailableCreditLimit}}
+
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.AvailableCreditLimit =='0' || pageContrlAcessData.AvailableCreditLimit =='1'" ng-keypress="filterValue($event)" ng-model="AddCompanyDeailsJSON.AvailableCreditLimit" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.CreditLimit !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_CreditLimit}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.CreditLimit =='0' || pageContrlAcessData.CreditLimit =='1'" ng-keypress="filterValue($event)" ng-model="AddCompanyDeailsJSON.CreditLimit" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.EmptiesLimit !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_EmptiesLimit}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.EmptiesLimit =='0' || pageContrlAcessData.EmptiesLimit =='1'" ng-keypress="filterValue($event)" ng-model="AddCompanyDeailsJSON.EmptiesLimit" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.ActualEmpties !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_ActualEmpties}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.ActualEmpties =='0' || pageContrlAcessData.ActualEmpties =='1'" ng-keypress="filterValue($event)" ng-model="AddCompanyDeailsJSON.ActualEmpties" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.PaymentTermCode !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                {{resData.res_AddCompany_PaymentTermCode}}
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <select id="ddlPaymentPlanId" ng-disabled="pageContrlAcessData.PaymentTermCode =='0' || pageContrlAcessData.PaymentTermCode =='1'" ng-model="AddCompanyDeailsJSON.PaymentTermCode" class="form-control" name="val_SelectObject" ng-options="obj.PaymentTermId as obj.Name for obj in PaymentTermList | orderBy:'Name'">
+                                                                    <option value="">Select</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-if="pageContrlAcessData.ContactPersonDetails !='0'">
+                                                <div class="col-lg-12">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            <b>  {{resData.res_AddCompany_ContactPersonDetails}}</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerheader headerdataconatiner">
+
+                                                    <div class="UOMContainer  rightaling">
+                                                        {{resData.res_AddCompany_ContactType_SrNo}}
+                                                    </div>
+
+                                                    <div class="Company_AddCompany">
+                                                        {{resData.res_AddCompany_ContactType}}
+                                                    </div>
+                                                    <div class="Company_AddCompany">
+                                                        {{resData.res_AddCompany_ContactPersonName}}
+                                                    </div>
+                                                    <div class="Company_AddCompany">
+                                                        <!--{{resData.res_AddCompany_ContactPersonNumber}}-->
+                                                        {{LabelTxtName}}
+                                                    </div>
+                                                    <div class="removeItemicon">
+                                                        {{resData.res_AddCompany_ContactType_Action}}
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerbody">
+                                                    <div class="conatinerheader itemrowcontainer">
+                                                        <div class="UOMContainer rightaling">
+                                                            &nbsp;
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            <select id="ddlContacttype" ng-model="AddCompanyDeailsJSON.ContactTypeId" ng-change="ChangelabelName()" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in ContactTypeList  | orderBy:'Name'">
+                                                                <option value="">Select</option>
+                                                            </select>
+                                                            <!--<input class="form-control form-white" ng-model="AddCompanyDeailsJSON.Email" type="text">-->
+                                                        </div>
+
+                                                        <div class="Company_AddCompany">
+                                                            <input class="form-control form-white" ng-model="AddCompanyDeailsJSON.ContactPersonName" type="text">
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            <input class="form-control form-white" ng-model="AddCompanyDeailsJSON.ContactPersonNumber" type="text">
+                                                        </div>
+                                                        <div class="removeItemicon">
+                                                            <a ng-click="AddContactPersonInfo()">
+                                                                <!--<i class="fa fa-plus" aria-hidden="true"></i>--> Add
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="conatinerheader itemrowcontainer" ng-repeat="Contactinfo in ContactInformationList">
+                                                        <div class="UOMContainer rightaling">
+                                                            {{$index + 1}}
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            {{Contactinfo.ContactType}}
+                                                        </div>
+
+                                                        <div class="Company_AddCompany">
+                                                            {{Contactinfo.ContactPersonName}}
+                                                        </div>
+                                                        <div class="Company_AddCompany">
+                                                            {{Contactinfo.ContactPersonNumber}}
+                                                        </div>
+
+                                                        <div class="removeItemicon">
+                                                            <a ng-click="EditContactPersonInfo(Contactinfo.ContactinfoGUID)">
+                                                                <!--<i class="fa fa-pencil" aria-hidden="true"></i>--> Edit
+                                                            </a>&nbsp;| &nbsp;
+                                                            <a ng-click="DeleteContactInfo(Contactinfo.ContactinfoGUID)">
+                                                                <!--<i class="fa fa-trash" aria-hidden="true"></i>--> Delete
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <document-Information document-information-list="AddCompanyDeailsJSON.DocumentInformationList" document-type-list="DocumentTypeList" res-data="resData"></document-Information>
+
+                                            <div ng-if="pageContrlAcessData.TransporterAccountDetails !='0'">
+                                                <div class="col-lg-12">
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            <b> {{resData.res_AddCompany_AddBankDetails}} </b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerheader headerdataconatiner">
+
+                                                    <div class="UOMContainer  rightaling">
+                                                        {{resData.res_AddCompany_AccountDetails_SrNo}}
+                                                    </div>
+
+                                                    <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                        {{resData.res_AddCompany_BankName}}
+                                                    </div>
+                                                    <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                        {{resData.res_AddCompany_AccountName}}
+                                                    </div>
+                                                    <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                        {{resData.res_AddCompany_AccountNumber}}
+                                                    </div>
+                                                    <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                        {{resData.res_AddCompany_AccountType}}
+                                                    </div>
+                                                    <div class="removeItemicon">
+                                                        {{resData.res_AddCompany_AccountDetails_Action}}
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerbody">
+                                                    <div class="conatinerheader itemrowcontainer">
+                                                        <div class="UOMContainer rightaling">
+                                                            &nbsp;
+                                                        </div>
+                                                        <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                            <input class="form-control form-white" ng-model="AddCompanyDeailsJSON.BankName" type="text">
+                                                        </div>
+                                                        <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                            <input class="form-control form-white" ng-model="AddCompanyDeailsJSON.AccountName" type="text">
+                                                        </div>
+
+                                                        <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                            <input ng-keypress="filterValue($event)" class="form-control form-white" ng-model="AddCompanyDeailsJSON.AccountNumber" type="text">
+                                                        </div>
+                                                        <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                            <select id="AccountTypeId" ng-model="AddCompanyDeailsJSON.AccountType" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in AccountTypeList| orderBy:'Name' ">
+                                                                <option value="">Select</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="removeItemicon">
+                                                            <a ng-click="AddTransporterAccountDetails()">
+                                                                <!--<i class="fa fa-plus" aria-hidden="true"></i>--> Add
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="conatinerheader itemrowcontainer" ng-repeat="AccountDetails in TransporterAccountDetails">
+                                                        <div class="UOMContainer rightaling">
+                                                            {{$index + 1}}
+                                                        </div>
+                                                        <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                            {{AccountDetails.BankName}}
+                                                        </div>
+                                                        <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                            {{AccountDetails.AccountName}}
+                                                        </div>
+
+                                                        <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                            {{AccountDetails.AccountNumber}}
+                                                        </div>
+                                                        <div class="GridColumnWithBorder_AddCompanyForAccountSection">
+                                                            {{AccountDetails.AccountType}}
+                                                        </div>
+
+                                                        <div class="removeItemicon">
+                                                            <a ng-click="EditAccountdetail(AccountDetails.AccountdetailGUID)">
+                                                                <!--<i class="fa fa-pencil" aria-hidden="true"></i>--> Edit
+                                                            </a>&nbsp;| &nbsp;
+                                                            <a ng-click="DeleteAccountDetails(AccountDetails.AccountdetailGUID)">
+                                                                <!--<i class="fa fa-trash" aria-hidden="true"></i>--> Delete
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-if="pageContrlAcessData.AddFinanceDetails !='0'">
+                                                <div class="col-lg-12">
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="columnfulldata  margintopdata">
+                                                        <div class="labelname reasonlable">
+                                                            <h4><b>{{resData.res_FinancePartner_AddFinanceDetail}} : </b></h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerheader headerdataconatiner">
+
+                                                    <div class="UOMContainer  rightaling">
+                                                        Sr. No.
+                                                    </div>
+
+                                                    <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+
+                                                        {{resData.res_FinancePartner_Transporter}}
+                                                    </div>
+                                                    <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+
+                                                        {{resData.res_FinancePartner_Amount}} ({{resData.res_CurrencyCode}})
+                                                    </div>
+                                                    <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                        {{resData.res_FinancePartner_From}}
+                                                    </div>
+
+                                                    <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                        {{resData.res_FinancePartner_To}}
+                                                    </div>
+                                                    <div class="removeItemicon">
+                                                        {{resData.res_FinancePartner_Action}}
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerbody">
+                                                    <div class="conatinerheader itemrowcontainer">
+                                                        <div class="UOMContainer rightaling">
+                                                            &nbsp;
+                                                        </div>
+                                                        <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                            <select id="ddlTransporterId" ng-model="FinancePartnerJSON.Transporter" class="form-control" name="val_SelectObject" ng-options="obj.TransporterId as obj.TransporterName for obj in TransporterList">
+                                                                <option value="">Select</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                            <input class="form-control form-white" ng-keypress="filterValue($event)" ng-model="FinancePartnerJSON.Amount" type="text">
+
+                                                        </div>
+                                                        <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                            <input type="text" id="FromDate" ng-model="FinancePartnerJSON.FromDate" name="datepicker" class="form-control form-white date-picker" style="width:89% !important;">
+                                                            <i class="icon-calendar" style="float: right;right: 0;left: auto;"></i>
+                                                        </div>
+
+                                                        <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                            <input type="text" id="ToDate" ng-model='FinancePartnerJSON.ToDate' name="datepicker" class="form-control form-white date-picker" style="width:89% !important;">
+                                                            <i class="icon-calendar" style="float: right;right: 0;left: auto;"></i>
+                                                        </div>
+                                                        <div class="removeItemicon">
+                                                            <a ng-click="AddTransporterFinanceMappingtDetails()">
+                                                                Add
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="conatinerheader itemrowcontainer" ng-repeat="FinanceTransporter in TransporterFinanceMappingInfo">
+                                                        <div class="UOMContainer rightaling">
+                                                            {{$index + 1}}
+                                                        </div>
+                                                        <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                            {{FinanceTransporter.Transporter}}
+                                                        </div>
+
+                                                        <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                            ({{resData.res_CurrencyCode}}) {{FinanceTransporter.Amount  | currency: CurrencyFormatCode}}
+                                                        </div>
+                                                        <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                            {{FinanceTransporter.FromDate}}
+                                                        </div>
+                                                        <div class="TotalConatiner_FinancePartnerTransporterMappingDetail">
+                                                            {{FinanceTransporter.ToDate}}
+                                                        </div>
+
+                                                        <div class="removeItemicon" style="width:12% !important">
+                                                            <a ng-click="EditTransporterFinanceMappingdetail(FinanceTransporter.TransporterFinanceGUID)">
+                                                                Edit
+                                                            </a>&nbsp;| &nbsp;
+                                                            <a ng-click="DeleteTransporterFinanceMappingDetails(FinanceTransporter.TransporterFinanceGUID)">
+                                                                Delete
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="ActionButtons">
+                                                <div class="clearbtn">
+                                                    <button type="button" ng-click="ClearControls()" class="btn btn-default">Clear</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="Save()" class="btn btn-success">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12">
+                                                <div id="CompanyGrid" class="Company_Grid" style="height: 70vh;" dx-data-grid="CompanyGrid" dx-item-alias="CompanyData">
+
+                                                    <div data-options="dxTemplate: {name: 'RoleTemplate'}">
+                                                        <span>{{CompanyData.data.RoleName}}</span>
+                                                    </div>
+
+                                                    <div style="width:20% !important;" data-options="dxTemplate: {name: 'UsernameTemplate'}">
+                                                        <span ng-show="CompanyData.data.IsActive=='1'">{{CompanyData.data.Username}}</span>
+                                                        <span ng-show="CompanyData.data.IsActive=='0'"></span>
+                                                    </div>
+
+                                                    <div data-options="dxTemplate: {name: 'OTPTemplate'}">
+                                                        <span ng-show="CompanyData.data.IsActive=='1'">{{CompanyData.data.OTP}}</span>
+                                                        <span ng-show="CompanyData.data.IsActive=='0'"></span>
+                                                    </div>
+
+                                                    <div data-options="dxTemplate: {name: 'OTPValidityTemplate'}">
+                                                        <span ng-show="CompanyData.data.IsActive=='1'">{{CompanyData.data.OTPValidTill | date:'dd/MM/yyyy'}}</span>
+                                                        <span ng-show="CompanyData.data.IsActive=='0'"></span>
+                                                    </div>
+
+                                                    <div data-options="dxTemplate: {name: 'ActivateDeactivate'}">
+                                                        <a style="float:left;width:100px" ng-show="CompanyData.data.IsActive=='0'" ng-click="OpenActivateDeactivatPopup(CompanyData.data,'1')" class="greenbgfont approvebtn"> {{resData.res_ManageCatalog_Activate}} </a>
+                                                        <a style="float:left;width:100px" ng-show="CompanyData.data.IsActive=='1'" ng-click="OpenActivateDeactivatPopup(CompanyData.data,'0')" class="greenbgfont approvebtn"> {{resData.res_ManageCatalog_DeActivate}} </a>
+                                                    </div>
+
+                                                    <div data-options="dxTemplate: {name: 'RegenerateOTP'}">
+                                                        <a style="float:left;width:100px" ng-show="CompanyData.data.IsActive=='1'" ng-click="Regen_OTP(CompanyData.data.LoginId);" class="greenbgfont approvebtn"> {{resData.res_LoginGridComponent_RegenerateOTP}} </a>
+                                                        <span ng-show="CompanyData.data.IsActive=='0'"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script id="templates/CompanyActiveDeactiveModal.html" type="text/ng-template">
+                <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                        <h1 ng-if="ActiveOrDeactive === '1'" class="title">{{resData.res_ManageCatalog_Activate}}</h1>
+                        <h1 ng-if="ActiveOrDeactive === '0'" class="title">{{resData.res_ManageCatalog_DeActivate}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseActivateDeactivatPopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="false" class="popioncontainer">
+                        <div ng-if="ActiveOrDeactive === '1'" class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                            {{resData.res_ActivateDeactivateUser_ActivateMsg}}
+                        </div>
+                        <div ng-if="ActiveOrDeactive === '0'" class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                            {{resData.res_ActivateDeactivateUser_DeActivateMsg}}
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar class="popupfooter">
+                        <div class="popupbtnstyle">
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square" ng-click="SaveActivateDeactivatesCompany()">
+                                    {{resData.res_InquirySummary_YesBtn}}
+                                </a>
+                            </div>
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square redclosebtn" ng-click="CloseActivateDeactivatPopup()">
+                                    {{resData.res_InquirySummary_NoBtn}}
+                                </a>
+                            </div>
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+            <script id="ViewGrid_OTPWarningMessage.html" type="text/ng-template">
+                <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                    <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                        <h1 class="title">{{resData.res_PaymentSlab_Warning}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseOTPReConfirmation_ViewGrid()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="false" class="popioncontainer">
+                        <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                            {{OTPWarningMessage}}
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar class="popupfooter">
+
+                        <div class="popupbtnstyle">
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square" ng-click="RegenOTPYes_ViewGrid()">
+                                    {{resData.res_PaymentSlab_DeleteYes}}
+                                </a>
+                                <a class="btn btn-success btn-square" style="border:1px solid red !important" ng-click="CloseOTPReConfirmation_ViewGrid()">
+                                    {{resData.res_PaymentSlab_DeleteNo}}
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+        </div>
+
+    </ion-content>
+
+    <script id="WarningMessage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">{{resData.res_AddCompany_Warning}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                    {{resData.res_AddCompany_DeleteWarning}}
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteYes()">
+                            {{resData.res_AddCompany_DeleteYes}}
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+                            {{resData.res_AddCompany_DeleteNo}}
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+    <script id="ViewImage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" style="height: 340px !important; width: 340PX !important;" class="confirmationmsgmodalviewforimg bgcolorheaderandfooter">
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">View Image</h1>
+                <button class="button button-clear button-primary" ng-click="CloseViewImage()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="padding: 10px;margin: 0px;">
+                    <div class="fileinput-new thumbnail" style="margin:0px">
+                        <img ng-src="{{ViewLogo}}" style="height: 220px;" ng-if="ViewLogo !== '' && ViewLogo !== undefined && ViewLogo !== null" alt="Red dot" data-err-src="Images/No_image.png" />
+                        <img ng-src="../Images/No_image.png" style="height: 220px;" ng-if="ViewLogo === '' || ViewLogo === undefined || ViewLogo === null" />
+                        <!--<a ng-click="RemoveImageFromJson()" ng-if="TransportVehicleJson.image !== '' && TransportVehicleJson.image !== undefined && TransportVehicleJson.image !== null" style="cursor:pointer !important;float:left"><i class="fa fa-remove"></i></a>-->
+                    </div>
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyleforimg" style="margin-right:0px">
+                        <a class="btn btn-success btn-square" ng-click="CloseViewImage()">
+                            Close
+                        </a>
+                    </div>
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+</ion-view>

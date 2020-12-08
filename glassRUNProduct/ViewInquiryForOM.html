@@ -1,0 +1,302 @@
+﻿
+<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+                        <div class="row">
+                            <div class="fullwithwithoutpadding searchcontrol">
+                                <input class="bluetextbox form-control" placeholder="Search by product" type="text">
+                            </div>
+                        </div>
+
+
+                        <div class="CreateOrderView">
+
+
+                            <div class="row">
+                                <div class="panel fullwithwithoutpadding">
+                                    <div class="panel-header bg-primary">
+                                        <h3>{{resData.res_ViewInquiryForOM_InquiryList}}</h3>
+                                    </div>
+
+                                    <div class="panel-content fullwithwithoutpadding">
+
+                                        <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+
+
+                                            <div class="ibox float-e-margins" ng-repeat="orderdata in OrderData">
+                                                <div id="demo6" class="ibox-content collapse in">
+
+
+                                                    <div class="panel widget-weather">
+                                                        <div class="panel-header background-primary ui-sortable-handle" style="background-color: rgb(49, 157, 181);">
+                                                            <h3>
+                                                                <i class="icon-30"></i> <strong>{{resData.res_ViewInquiryForOM_Truck1}}</strong>{{resData.res_ViewInquiryForOM_2Ton}}<span> <strong class="sonumber">{{resData.res_ViewInquiryForOM_SO}}</strong>{{resData.res_ViewInquiryForOM_3635}}</span>
+                                                                <span class="removetruck">
+                                                                    <span class="text-right">
+                                                                        <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                        <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                    </span>
+                                                                </span>
+                                                            </h3>
+                                                            <h3>
+                                                                <span> <strong class="sonumber">{{resData.res_ViewInquiryForOM_OrderStatus}}</strong>{{resData.res_ViewInquiryForOM_AwaitingApproval}}</span>
+                                                            </h3>
+                                                            <div class="weather panel-content">
+                                                                <ul class="weather-forecast clearfix">
+                                                                    <li class="first">
+                                                                        <a id="day-0" class="today-day active" href="javascript:;">
+                                                                            <strong>{{resData.res_ViewInquiryForOM_CreditLimit}}</strong>
+                                                                            <span class="today-img">
+                                                                                <i class="fa fa-money" aria-hidden="true"></i>
+                                                                            </span><span class="today-temp-low"><i class="fa fa-check"></i></span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="day-1" class="1-days-day active" href="javascript:;">
+                                                                            <strong>{{resData.res_ViewInquiryForOM_ReceivingLocationCapacity}}</strong><span class="1-days-image">
+                                                                                <i class="fa fa-industry" aria-hidden="true"></i>
+                                                                            </span><span class="1-days-temp-low"><i class="fa fa-check"></i></span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="day-2" class="2-days-day active" href="javascript:;">
+                                                                            <strong>{{resData.res_ViewInquiryForOM_Pallet}}</strong>
+                                                                            <span class="2-days-image">
+                                                                                <i class="fa fa-object-ungroup"></i>
+                                                                            </span>
+                                                                            <span class="2-days-temp-low">{{resData.res_ViewInquiryForOM_44}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="day-3" href="javascript:;" class="3-days-day active">
+                                                                            <strong>{{resData.res_ViewInquiryForOM_Weight}}</strong><span class="3-days-image"><i class="fa fa-truck" aria-hidden="true"></i></span><span class="3-days-temp-low">{{resData.res_ViewInquiryForOM_98100}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="last">
+                                                                        <a id="day-4" href="javascript:;" class="4-days-day active">
+                                                                            <strong>{{resData.res_ViewInquiryForOM_Stock}}</strong>
+                                                                            <span class="4-days-image">
+                                                                                <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                            </span><span class="4-days-temp-low">{{resData.res_ViewInquiryForOM_55}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                        <div class="weather panel-content" style="background-color: rgb(49, 157, 181);">
+                                                            <div class="weather-highlighted">
+                                                                <div class="day-0 weather-item clearfix active">
+
+                                                                    <div class="columnfulldata margintopdata">
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_ViewInquiryForOM_ShipTo}}</div>
+                                                                            <div class="labelcontrol labeltext">{{resData.res_ViewInquiryForOM_PHUONG1QUAN5TPHCM}}</div>
+
+                                                                        </div>
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_ViewInquiryForOM_BranchPlant}}</div>
+
+                                                                            <div class="labelcontrol labeltext">{{resData.res_ViewInquiryForOM_B003}}</div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="columnfulldata margintopdata">
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_ViewInquiryForOM_ProposedETD}}</div>
+                                                                            <div class="labelcontrol">{{resData.res_ViewInquiryForOM_09142017}}</div>
+
+                                                                        </div>
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_ViewInquiryForOM_SchedulingDate}}</div>
+
+                                                                            <div class="labelcontrol" style="position:relative !important" data-tap-disabled="true">
+
+                                                                                <div class="prepend-icon">
+                                                                                    <input type="text" name="datepicker" class="date-picker form-control" placeholder="Select a date...">
+                                                                                    <i class="icon-calendar"></i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="columnfulldata margintopdata" style="margin-top: -1px;">
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_ViewInquiryForOM_LoadNumber}}</div>
+                                                                            <div class="labelcontrol labeltext">
+                                                                                -
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_ViewInquiryForOM_PlateNumber}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                -
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="weather-location clearfix">
+                                                                <div class="columnfulldata margintopdata">
+                                                                    <table class="table table-hover">
+                                                                        <thead>
+                                                                            <tr>
+
+                                                                                <th class="srno hidecolumnformobile">{{resData.res_ViewInquiryForOM_SrNo}}</th>
+                                                                                <th class="hidecolumnformobile">{{resData.res_ViewInquiryForOM_ItemCode}}</th>
+                                                                                <th>{{resData.res_ViewInquiryForOM_ItemName}}</th>
+                                                                                <th>{{resData.res_ViewInquiryForOM_UOM}}</th>
+                                                                                <th>{{resData.res_ViewInquiryForOM_Quantity}}</th>
+                                                                                <th>{{resData.res_ViewInquiryForOM_AvailableStock}}</th>
+                                                                                <th>{{resData.res_ViewInquiryForOM_Price}}</th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="srno hidecolumnformobile">{{resData.res_ViewInquiryForOM_1}}</td>
+                                                                                <td class="hidecolumnformobile">{{resData.res_ViewInquiryForOM_0001}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_Tiger330x24BCrtUnc}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_CR}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_20}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_30}}</td>
+                                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_ViewInquiryForOM_25}}</td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="srno hidecolumnformobile">{{resData.res_ViewInquiryForOM_2}}</td>
+                                                                                <td class="hidecolumnformobile">{{resData.res_ViewInquiryForOM_0001}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_Tiger330x24BCrtUnc}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_CR}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_20}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_30}}</td>
+                                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_ViewInquiryForOM_25}}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="srno hidecolumnformobile">{{resData.res_ViewInquiryForOM_3}}</td>
+                                                                                <td class="hidecolumnformobile">{{resData.res_ViewInquiryForOM_0001}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_Tiger330x24BCrtUnc}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_CR}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_20}}</td>
+                                                                                <td>{{resData.res_ViewInquiryForOM_30}}</td>
+                                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_ViewInquiryForOM_25}}</td>
+                                                                            </tr>
+
+                                                                            
+
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                    <div class="totalamountdiv">
+                                                                        <span>{{resData.res_ViewInquiryForOM_TotalPrice}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_ViewInquiryForOM_75}}</div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="weather-highlighted weatherapprovebth">
+                                                                <div class="groupbtn last-column">
+                                                                    <div style="width:100%;float:right">
+
+                                                                        <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve">{{resData.res_ViewInquiryForOM_SaveAsDraft}}</a> </div>
+                                                                        <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve">{{resData.res_ViewInquiryForOM_ApproveOrder}}</a> </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script id="templates/reasoncodepopup.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryModalView bgcolorheaderandfooter" style="min-height:300px !important;height:300px !important">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Reason Code</h1>
+                        <button class="button button-clear button-primary" ng-click="ClosReasoncodepopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+                            <div class="customlistcontrolview">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata popuplabel  margintopdata">
+                                        <div class="labelname" style="padding-top: 5px; width: 34%;">
+                                            Please choose reason code :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control">
+                                                <option value="Select">Select</option>
+                                                <option value="Reason 1">Reason 1</option>
+                                                <option value="Reason 1">Reason 2</option>
+                                                <option value="Reason 1">Reason 3</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ion-content>
+
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="ClosReasoncodepopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="ClosReasoncodepopup()">
+                                <button class="button btn btn-default redclosebtn">Clear</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+        </div>
+
+        <div class="fabbutton">
+
+            <ion-fab class="firstfab" bottom="" left="">
+                <a ui-sref="CreateInquiryForOM" class="carticon MobileView">
+                    <i class="fa fa-chevron-left bg-blue"></i>
+                </a>
+            </ion-fab>
+
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="PageTopContainer">
+        <div class="titlebar">
+            <div id="bottom_section">
+                <div class="uk-container uk-container-center">
+
+                    <h3 class="heading_b uk-margin-bottom">Pages</h3>
+                </div>
+            </div>
+        </div>
+        <div class="uk-container uk-container-center">
+            <div class="uk-width-large-10-10 uk-row-first uk-grid-margin">
+
+                <div class="headerAddButtons">
+                    <div id="AddButton" class="md-fab-wrapper md-fab-wrapperAdd">
+                        <a class="md-fab md-fab-accent md-fab-small md-fab-wave-light" ng-click="PagesAddForm()">
+                            <i class="material-icons"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="form">
+
+                    <div class="md-card-content large-padding md-card padding15px">
+
+
+                        <div class="uk-grid large-padding" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ModuleId "> ModuleId  </label>
+                                    <input id="inputModuleId" type="text" ng-model="ModuleId" name="Input" md-input="" class="md-input" />
+                                </div>
+                                <!--<i id="inputModuleId" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>-->
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="PageName "> PageName  </label>
+                                    <input id="inputPageName" type="text" ng-model="PageName" name="Input" md-input="" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid large-padding" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ParentPageId "> ParentPageId  </label>
+                                    <input id="inputParentPageId" type="text" ng-model="ParentPageId" name="Input" md-input="" class="md-input" />
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ControllerName "> ControllerName  </label>
+                                    <input id="inputControllerName" type="text" ng-model="ControllerName" name="Input" md-input="" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid large-padding" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ActionName "> ActionName  </label>
+                                    <input id="inputActionName" type="text" ng-model="ActionName" name="Input" md-input="" class="md-input" />
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="IsReport "> IsReport  </label>
+                                    <input id="chkIsReport" type="checkbox" name="Input" ng-model="IsReport" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid large-padding" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="Description "> Description  </label>
+                                    <input id="inputDescription" type="text" ng-model="Description" name="Input" md-input="" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div id="SaveDetail" class="md-fab-wrapper left-md-Add-button">
+                            <a class="md-fab md-fab-accent md-fab-small md-fab-wave-light" id="pages_edit_submit" ng-click="Pagessave()">
+                                <i class="material-icons">&#xE161;</i>
+                            </a>
+                        </div>
+
+                        <div ng-show="IsShowBackButton" class="md-fab-wrapper left-md-Refresh-button">
+                            <a class="md-fab md-fab-accent md-fab-small md-fab-wave-light" id="backbutton" ng-click="back()">
+                                <i class="fa fa-chevron-circle-left"></i>
+                            </a>
+                        </div>
+
+                        <div ng-show="IsShowButton" class="md-fab-wrapper left-md-back-button">
+                            <a class="md-fab md-fab-accent md-fab-small md-fab-wave-light" id="refresh" ng-click="reset()">
+                                <i class="uk-icon-refresh"></i>
+                            </a>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div id="grid" class="md-card uk-margin-medium-bottom">
+                    <div class="md-card-content">
+                        <div class="uk-overflow-container">
+                            <div kendo-grid="mainGrid" k-options="PagesmainGridOptions" k-rebind="PagesmainGridOptions"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div kendo-window="modal" k-title="'Delete Record'" style="display:none" k-visible="false" k-modal="true">
+            Are you sure you want to delete?
+            <button ng-click="SoftDeletePageById(PK_Pages)">OK</button>
+        </div>
+    </div>
+    <script src="Scripts/common.min.js"></script>
+    <script src="Scripts/altair_admin_common.min.js"></script>
+    <script src="Scripts/jquery-ui.js"></script>
+
+    <script src="Scripts/uikit_custom.min.js"></script>
+    <script src="Scripts/Bootstrap/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<ul class="nav nav-tabs">
+    <li id="Viewform"><a onclick="ShowGrid()" data-toggle="tab" id="lnkViewAll">View All</a></li>
+    <li id="Addform" class="active"><a onclick="ShowForm()" data-toggle="tab" id="lnkAddNew">Add New</a></li>
+</ul>
+
+<div class="row-fluid">
+    <div class="uk-tab uk-tab-flip">
+        <div class="md-card">
+            <div class="md-card-content">
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="formTab">
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ModuleId "> ModuleId  </label>
+                                    <input id="inputModuleId" type="text" ng-model="ModuleId" name="Input" ng-change="validatefield('ModuleId','txt')" class="md-input" />
+                                </div>
+                                <i id="inputModuleId" class="fa fa-exclamation-circle fa-6 requiredField" style="color: gray"></i>
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="PageName "> PageName  </label>
+                                    <input id="inputPageName" type="text" ng-model="PageName" name="Input" ng-change="validatefield('PageName','txt')" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ParentPageId "> ParentPageId  </label>
+                                    <input id="inputParentPageId" type="text" ng-model="ParentPageId" name="Input" ng-change="validatefield('ParentPageId','txt')" class="md-input" />
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ControllerName "> ControllerName  </label>
+                                    <input id="inputControllerName" type="text" ng-model="ControllerName" name="Input" ng-change="validatefield('ControllerName','txt')" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="ActionName "> ActionName  </label>
+                                    <input id="inputActionName" type="text" ng-model="ActionName" name="Input" ng-change="validatefield('ActionName','txt')" class="md-input" />
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="IsReport "> IsReport  </label>
+                                    <input id="chkIsReport" type="checkbox" name="Input" ng-model="IsReport" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                <div class="parsley-row">
+                                    <label for="Description "> Description  </label>
+                                    <input id="inputDescription" type="text" ng-model="Description" name="Input" ng-change="validatefield('Description','txt')" class="md-input" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="uk-grid">
+                            <div class="uk-width-large-1-4 uk-width-medium-1-2">
+                                <div class="uk-input-group">
+                                    <input id="buttonSave" ng-click="Pagessave()" type="button" class="md-btn md-btn-danger" value="Save" />
+                                    <input id="buttonBack" ng-click="reset()" type="button" class="md-btn" value="Reset" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="gridTab">
+
+                        <h2>{{ title }}</h2>
+                        <div>
+                            <br />
+                            <button ng-click="setPageSize()">Set page size</button>
+                            <br />
+                            <br />
+                            <div kendo-grid="mainGrid" k-options="PagesmainGridOptions" k-rebind="PagesmainGridOptions"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div kendo-window="modal" k-title="'Delete Record'" k-visible="false" k-modal="true">
+    Are you sure you want to delete?
+    <button ng-click="SoftDeletePageById(PK_Pages)">OK</button>
+</div>-->

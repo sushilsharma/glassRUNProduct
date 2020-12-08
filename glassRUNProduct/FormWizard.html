@@ -1,0 +1,170 @@
+﻿
+<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+
+
+
+            <div class="header">
+                <h2>{{resData.res_FormWizard_MasterForms}}<strong>{{resData.res_FormWizard_Component}}</strong></h2>
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">{{resData.res_FormWizard_Make}}</a>
+                        </li>
+                        <li>
+                            <a href="forms.html">{{resData.res_FormWizard_Forms}}</a>
+                        </li>
+                        <li class="active">{{resData.res_FormWizard_MasterPage}}</li>
+                    </ol>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12 portlets">
+                    <div class="panel">
+
+                        <div class="wizard-div wizard-arrow sf-arrow current">
+                            <form class="wizard" data-style="arrow" role="form">
+                                <fieldset class="withScroll show-scroll">
+                                    <legend>{{resData.res_FormWizard_Step1Basicinfo}}</legend>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">{{resData.res_FormWizard_Emailaddress}}</label>
+                                                <input type="email" class="form-control" placeholder="Enter email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">{{resData.res_FormWizard_Password}}</label>
+                                                <input type="password" class="form-control" placeholder="Password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">{{resData.res_FormWizard_Passwordagain}}</label>
+                                                <input type="password" class="form-control" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">{{resData.res_FormWizard_Favoritenumber}}</label>
+                                                <select class="form-control" name="favoriteNumber">
+                                                    <option value="1">{{resData.res_FormWizard_1}}
+                                                    <option value="2">{{resData.res_FormWizard_2}}
+                                                    <option value="3">{{resData.res_FormWizard_3}}
+                                                    <option value="4">{{resData.res_FormWizard_4}}
+                                                    <option value="5">{{resData.res_FormWizard_5}}
+                                                    <option value="6">{{resData.res_FormWizard_6}}
+                                                    <option value="7">{{resData.res_FormWizard_7}}
+                                                    <option value="8">{{resData.res_FormWizard_8}}
+                                                    <option value="9">{{resData.res_FormWizard_9}}
+                                                    <option value="10">{{resData.res_FormWizard_10}}
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{{resData.res_FormWizard_Ownanimals}}</label>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="animal[]" value="goat" data-checkbox="icheckbox_square-blue">{{resData.res_FormWizard_Goat}}</label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="animal[]" value="cow" data-checkbox="icheckbox_square-blue">{{resData.res_FormWizard_Cow}}</label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="animal[]" value="rooster" data-checkbox="icheckbox_square-blue">{{resData.res_FormWizard_Rooster}}</label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="animal[]" value="crocodile" data-checkbox="icheckbox_square-blue">{{resData.res_FormWizard_Crocodile}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">{{resData.res_FormWizard_InpublishingandgraphicdesignloremipsumiscommonplaceholdertextusedtodemonstratethegraphicelementsofadocumentorvisualpresentationsuchaswebpagestypographyandgraphicallayoutItisaformofgreeking}}</div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="withScroll show-scroll">
+                                    <legend>{{resData.res_FormWizard_Step2ProductInfo}}</legend>{{resData.res_FormWizard_InpublishingandgraphicdesignloremipsumiscommonplaceholdertextusedtodemonstratethegraphicelementsofadocumentorvisualpresentationsuchaswebpagestypographyandgraphicallayoutItisaformofgreekingEventhoughusingloremipsumoftenarousescuriosityduetoitsresemblancetoclassicalLatinitisnotintendedtohavemeaningWheretextisvisibleinadocumentpeopletendtofocusonthetextualcontentratherthanuponoverallpresentationsopublishersuseloremipsumwhendisplayingatypefaceordesigninordertodirectthefocustopresentationLoremipsumalsoapproximatesatypicaldistributionoflettersinEnglish}}<div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" value="option1" checked="" data-radio="iradio_square-blue">{{resData.res_FormWizard_Yesitistotalyright}}</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" value="option2" data-radio="iradio_square-blue">{{resData.res_FormWizard_NoIcheckittwiceanditisnotright}}</label>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="withScroll show-scroll">
+                                    <legend>{{resData.res_FormWizard_Step3Payment}}</legend>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>{{resData.res_FormWizard_EventhoughusingloremipsumoftenarousescuriosityduetoitsresemblancetoclassicalLatinitisnotintendedtohavemeaningWheretextisvisibleinadocumentpeopletendtofocusonthetextualcontentratherthanuponoverallpresentationsopublishersuseloremipsumwhendisplayingatypefaceordesigninordertodirectthefocustopresentationLoremipsumalsoapproximatesatypicaldistributionoflettersinEnglish}}</p>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="exampleInputName1">{{resData.res_FormWizard_Yourname}}</label>
+                                                        <input type="text" class="form-control" placeholder="Your name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="exampleInputCat1">{{resData.res_FormWizard_Nameofyourcat}}</label>
+                                                        <input type="text" class="form-control" placeholder="Name of your cat">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="hamster2"></label>
+                                                        <input type="text" id="hamster2" class="form-control" placeholder="Name of your hamster">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="grocery2"></label>
+                                                        <input type="text" id="grocery2" class="form-control" placeholder="Name of your grocery seller">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadios" value="option1" data-radio="iradio_square-blue" checked="">{{resData.res_FormWizard_Optiononeisthisandthatmdashbesuretoincludewhyitsgreat}}</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadios" data-radio="iradio_square-blue" value="option2">{{resData.res_FormWizard_Optiontwocanbesomethingelseandselectingitwilldeselectoptionone}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="superPower" data-checkbox="icheckbox_square-blue">{{resData.res_FormWizard_Iwanthavesuperpower}}</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="moreSuperPower" data-checkbox="icheckbox_square-blue">{{resData.res_FormWizard_Ihaveoneormoresuperpoweralready}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <p>{{resData.res_FormWizard_EventhoughusingloremipsumoftenarousescuriosityduetoitsresemblancetoclassicalLatinitisnotintendedtohavemeaningWheretextisvisibleinadocumentpeopletendtofocusonthetextualcontentratherthanuponoverallpresentationsopublishersuseloremipsumwhendisplayingatypefaceordesigninordertodirectthefocustopresentationLoremipsumalsoapproximatesatypicaldistributionoflettersinEnglish}}</p>
+                                            <p>{{resData.res_FormWizard_UsingloremipsumoftenarousescuriosityduetoitsresemblancetoclassicalLatinitisnotintendedtohavemeaningWheretextisvisibleinadocumentpeopletendtofocusonthetextualcontentratherthanuponoverallpresentationsopublishersuseloremipsumwhendisplayingatypefaceordesigninordertodirectthefocustopresentationLoremipsumalsoapproximatesatypicaldistributionoflettersinEnglish}}</p>
+                                        </div>
+                                        <noscript>
+                                            <input class="nocsript-finish-btn sf-right nocsript-sf-btn" type="submit" name="no-js-clicked" value="finish">
+                                        </noscript>
+                                    </div>
+                                </fieldset>
+                            {{resData.res_FormWizard_form}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </ion-content>
+</ion-view>

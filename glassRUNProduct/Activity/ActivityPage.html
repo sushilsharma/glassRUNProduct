@@ -1,0 +1,476 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <style>
+            .treeSelection {
+                background-color: green;
+                color: #fff;
+            }
+
+            .highlighted {
+                background: yellow;
+                position: relative;
+                top: -3px;
+            }
+
+            .dropdown-multiselect {
+                height: auto;
+            }
+
+            .btn-group > .btn:first-child {
+                padding-left: 20px;
+            }
+
+
+            .itemrowcontainer:nth-child(even) {
+                margin-top: 15px;
+            }
+
+            .gray_border_textbox {
+                border: 1px solid #cdcfd2;
+            }
+
+            .autocompltedropdown {
+                border: 1px solid #cdcfd2 !important;
+            }
+
+            .ui-autocomplete {
+                z-index: 100000 !important;
+                background-color: #fff;
+                width: 366px !important;
+                padding: 0px;
+                border: 1px solid #d5d5d5;
+                height: auto !important;
+                max-height: 200px !important;
+                overflow-y: auto;
+            }
+
+            .ui-menu-item {
+                padding: 0px !important;
+                border-bottom: 1px solid #d5d5d5;
+            }
+
+            .ui-menu-item-wrapper {
+                padding: 5px 15px !important;
+                font-size: 14px !important;
+                border: 0px;
+            }
+
+            .check_control {
+                float: left;
+                width: 25px;
+                text-align: left;
+                position: relative;
+                left: -5px;
+            }
+
+            .wrapper {
+                width: 100%;
+                position: relative;
+            }
+
+                .wrapper .selected-items-box {
+                    cursor: pointer;
+                    border: solid 1px #c7c7c7;
+                    padding: 10px;
+                    background-color: #e2dfdf;
+                    color: #000;
+                }
+
+            .selected-items-box .items-list {
+                list-style-type: none;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+                .selected-items-box .items-list li {
+                    display: inline;
+                }
+
+            .wrapper .list {
+                height: 218px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                border-left: solid 1px #C7C6C7;
+                border-right: solid 1px #C7C6C7;
+                border-bottom: solid 1px #C7C6C7;
+                z-index: 100;
+                position: relative;
+                width: 100%;
+            }
+
+            .list .items-list {
+                list-style-type: none;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+                .list .items-list li {
+                    margin: 0;
+                    width: 100%;
+                    padding: 0;
+                    border-bottom: solid 1px #C7C6C7;
+                    padding: 5px;
+                    background-color: #fff;
+                }
+        </style>
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_EmailDynamicColumn_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a ng-click="AddForm()">
+                                    <tab-heading>
+                                        <i class="fa fa-plus"></i>{{resData.res_EmailDynamicColumn_Add}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid" style="padding-bottom: 51px!important;">
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.Header !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                Header Name
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <div class="UseFull_Space">
+                                                                    <div class="section_width_100 position_relative angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+                                                                        <input id="CompanyListAutoCompleteBox_value" type="text" ng-disabled="ActivityJSON.IsSystemDefined" class="gray_border_textbox" style="border-radius: 0px;" placeholder="Select" ng-class="{'open_panel green_border_textbox': showActivityHeaderbox, 'green_border_textbox': SearchControl.InputHeaderName.length > 0}" arrow-selector-trucksize="" ng-model="SearchControl.InputHeaderName" ng-focus="onFocusHandler()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="SelectedActivityHeader(SearchControl.InputHeaderName)" ng-readonly="pageContrlAcessData.Header =='0' || pageContrlAcessData.Header =='1'" />
+                                                                        <span class="textbox_down_angle" ng-hide="ActivityJSON.IsSystemDefined">
+                                                                            <a ng-click="ShowActivityHeaderListBox()">
+                                                                                <i class="fa fa-angle-down icon_size_20" style="margin-top:2px"></i>
+                                                                                <!--ng-hide="IsActivityHeaderSearchInputFilled === true"-->
+                                                                            </a>
+                                                                            <!--<a ng-click="ClearActivityHeaderInputSearchbox()" class="remove_ion_icon">
+                                                                                <i class="icons-office-52" ng-if="IsActivityHeaderSearchInputFilled"></i>
+                                                                            </a>-->
+                                                                        </span>
+                                                                        <div id="CompanyListAutoCompleteBox_dropdown" ng-if="showActivityHeaderbox" class="angucomplete-dropdown autocompltedropdown ScrollbarUI" style="height: 244px;border-radius:0px">
+                                                                            <div class="angucomplete-searching no_resultfound" ng-if="ActivityHeaderfoundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                            <div class="angucomplete-row" ng-repeat="result in (filteredHeaderList = (ActivityHeaderList | multipleTags:SearchControl.FilterActivityHeaderAutoCompletebox))" key-navigation="" ng-mouseenter="hoverRow($index)" ng-click="SelectActivityHeader(result.Name)" ng-class="{'autocompleteboxselectedrow':$index == selectedActivityHeaderRow}" style="">
+                                                                                <div class="angucomplete-title" style="">
+                                                                                    {{result.Name}}
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.ActivityName !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+
+                                                            <div class="labelname reasonlable">
+                                                                Activity Name
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-model="ActivityJSON.ActivityName" ng-readonly="pageContrlAcessData.ActivityName =='0' || pageContrlAcessData.ActivityName =='1'" ng-disabled="ActivityJSON.IsSystemDefined" ng class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.StatusCode !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                Status Code
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="number" ng-readonly="pageContrlAcessData.StatusCode =='0' || pageContrlAcessData.StatusCode =='1'" ng-model="ActivityJSON.StatusCode" ng-disabled="ActivityJSON.IsSystemDefined" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                <div ng-if="pageContrlAcessData.ServiceAction !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                Service Action
+                                                            </div>
+                                                            <div class="labelcontrol">
+
+                                                                <div class="UseFull_Space">
+                                                                    <div class="section_width_100 position_relative angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+                                                                        <input id="CompanyListAutoCompleteBox_value" ng-readonly="pageContrlAcessData.ServiceAction =='0' || pageContrlAcessData.ServiceAction =='1'" type="text" ng-disabled="ActivityJSON.IsSystemDefined" class="gray_border_textbox" style="border-radius: 0px;" placeholder="Select" ng-class="{'open_panel green_border_textbox': showServiceActionHeaderbox, 'green_border_textbox': SearchControl.InputServiceAction.length > 0}" arrow-selector-trucksize="" ng-model="SearchControl.InputServiceAction" ng-focus="onFocusHandler()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="SelectedServiceAction(SearchControl.InputServiceAction)" />
+                                                                        <span class="textbox_down_angle" ng-hide="ActivityJSON.IsSystemDefined">
+                                                                            <a ng-click="ShowServiceActionHeaderListBox()">
+                                                                                <i class="fa fa-angle-down icon_size_20" style="margin-top:2px" ng-hide="IsServiceActionSearchInputFilled === true"></i>
+                                                                            </a>
+                                                                            <a ng-click="ClearServiceActionHeaderInputSearchbox()" class="remove_ion_icon">
+                                                                                <i class="icons-office-52" ng-if="IsServiceActionSearchInputFilled"></i>
+                                                                            </a>
+                                                                        </span>
+                                                                        <div id="CompanyListAutoCompleteBox_dropdown" ng-if="showServiceActionHeaderbox" class="angucomplete-dropdown autocompltedropdown ScrollbarUI" style="height: 244px;border-radius:0px">
+                                                                            <div class="angucomplete-searching no_resultfound" ng-if="ServiceActionfoundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                            <div class="angucomplete-row" ng-repeat="result in (filteredServiceAction = (ServicesActionList | multipleTags:SearchControl.FilterServiceActionAutoCompletebox))" key-navigation="" ng-mouseenter="hoverRow($index)" ng-click="SelectServiceAction(result.Name)" ng-class="{'autocompleteboxselectedrow':$index == selectedServiceActionHeaderRow}" style="">
+                                                                                <div class="angucomplete-title" style="">
+                                                                                    {{result.Name}}
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!--<input id="ServiceAction" auto-complete class="form-control" ng-model="ActivityJSON.ServiceAction" placeholder="enter name" type="text">-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.ParentId !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                Parent Activity
+                                                            </div>
+                                                            <div class="labelcontrol">
+
+                                                                <div class="UseFull_Space">
+                                                                    <div class="section_width_100 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                                                        <input id="CompanyListAutoCompleteBox_value" type="text" ng-disabled="ActivityJSON.IsSystemDefined" class="gray_border_textbox" style="border-radius: 0px;" placeholder="Select" ng-class="{'open_panel green_border_textbox': showParentActivitybox, 'green_border_textbox': SearchControl.InputParentActivity.length > 0}" arrow-selector-trucksize="" ng-model="SearchControl.InputParentActivity" ng-focus="onFocusHandler()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="SelectedParentActivity(SearchControl.InputParentActivity)" />
+                                                                        <span class="textbox_down_angle" ng-hide="ActivityJSON.IsSystemDefined">
+                                                                            <a ng-click="ShowParentActivityListBox()">
+                                                                                <i class="fa fa-angle-down icon_size_20" style="margin-top:2px" ng-hide="IsParentActivityInputFilled === true"></i>
+                                                                            </a>
+                                                                            <a ng-click="ClearParentActivityInputSearchbox()" class="remove_ion_icon">
+                                                                                <i class="icons-office-52" ng-if="IsParentActivityInputFilled"></i>
+                                                                            </a>
+                                                                        </span>
+                                                                        <div id="CompanyListAutoCompleteBox_dropdown" ng-if="showParentActivitybox" class="angucomplete-dropdown autocompltedropdown ScrollbarUI" style="height: 244px;border-radius:0px">
+                                                                            <div class="angucomplete-searching no_resultfound" ng-if="ParentActivityfoundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                            <div class="angucomplete-row" ng-repeat="result in (filteredServiceAction = (ParentActivityList | multipleTags:SearchControl.FilterParentActivityAutoCompletebox))" key-navigation="" ng-mouseenter="hoverRow($index)" ng-click="SelectParentActivity(result.Name)" ng-class="{'autocompleteboxselectedrow':$index == selectParentActivityRow}" style="">
+                                                                                <div class="angucomplete-title" style="">
+                                                                                    {{result.Name}}
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!--<input id="ParentActivity" auto-complete type="text" ng-model="ActivityJSON.ParentActivity" class="form-control" />-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                <div ng-if="pageContrlAcessData.IconName !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                Icon Name
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-model="ActivityJSON.IconName"ng-readonly="pageContrlAcessData.IconName =='0' || pageContrlAcessData.IconName =='1'" ng-disabled="ActivityJSON.IsSystemDefined" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.Sequence !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                Sequence
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="text" ng-readonly="pageContrlAcessData.Sequence =='0' || pageContrlAcessData.Sequence =='1'"ng-model="ActivityJSON.Sequence" class="form-control" ng-disabled="ActivityJSON.IsSystemDefined" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.IsApp !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                Is App
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="checkbox" ng-readonly="pageContrlAcessData.IsApp =='0' || pageContrlAcessData.IsApp =='1'" ng-model="ActivityJSON.IsAPP" ng-disabled="ActivityJSON.IsSystemDefined" class="form-control check_control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+</div>
+                                                </div>
+
+                                            <div class="col-lg-12">
+                                                <div ng-if="pageContrlAcessData.IsResponseRequired !='0'">
+                                                    <div class="col-lg-6">
+                                                        <div class="columnfulldata  margintopdata">
+                                                            <div class="labelname reasonlable">
+                                                                Is Response Required
+                                                            </div>
+                                                            <div class="labelcontrol">
+                                                                <input type="checkbox" ng-readonly="pageContrlAcessData.IsResponseRequired =='0' || pageContrlAcessData.IsResponseRequired =='1'" ng-model="ActivityJSON.IsResponseRequired" ng-disabled="ActivityJSON.IsSystemDefined" class="form-control check_control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+
+                                            <div class="col-lg-12" style="float: left;width: 100%; margin-top: 20px;margin-bottom: 30px;">
+                                                <div class="col-lg-3">
+                                                    <div class="wrapper">
+                                                        <div class="selected-items-box">
+                                                            Select Possible Previous Steps
+                                                            <span class="dropdown-icon"></span>
+                                                        </div>
+                                                        <div class="list">
+                                                            <ul class="items-list">
+                                                                <li ng-repeat="subActivity in PreviousSubActivityList | orderBy: 'Name'">
+                                                                    <input type="checkbox" ng-model="subActivity.IsPossiblePreviousSelected" ng-click="DisableActivityListCheckbox('Previous', subActivity.ActivityId)" ng-disabled="ActivityJSON.IsSystemDefined || subActivity.IsDisabled" />
+                                                                    <span>{{subActivity.Name}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="wrapper">
+                                                        <div class="selected-items-box">
+                                                            Select Possible Next Steps
+                                                            <span class="dropdown-icon"></span>
+                                                        </div>
+                                                        <div class="list">
+                                                            <ul class="items-list">
+                                                                <li ng-repeat="subActivity in NextSubActivityList | orderBy: 'Name'">
+                                                                    <input type="checkbox" ng-model="subActivity.IsPossibleNextSelected" ng-click="DisableActivityListCheckbox('Next', subActivity.ActivityId)" ng-disabled="ActivityJSON.IsSystemDefined || subActivity.IsDisabled" />
+                                                                    <span>{{subActivity.Name}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="wrapper">
+                                                        <div class="selected-items-box">
+                                                            Select Prerequisite Steps
+                                                            <span class="dropdown-icon"></span>
+                                                        </div>
+                                                        <div class="list">
+                                                            <ul class="items-list">
+                                                                <li ng-repeat="subActivity in PrerequisiteSubActivityList | orderBy: 'Name'">
+                                                                    <input type="checkbox" ng-model="subActivity.IsPossiblePrerequisiteSelected" ng-click="DisableActivityListCheckbox('Prerequisite', subActivity.ActivityId)" ng-disabled="ActivityJSON.IsSystemDefined || subActivity.IsDisabled" />
+                                                                    <span>{{subActivity.Name}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="wrapper">
+                                                        <div class="selected-items-box">
+                                                            Select Pages
+                                                            <span class="dropdown-icon"></span>
+                                                        </div>
+                                                        <div class="list">
+                                                            <ul class="items-list">
+                                                                <li ng-repeat="page in PagesList | orderBy : 'PageName'">
+                                                                    <input type="checkbox" ng-model="page.IsPageSelected" ng-disabled="ActivityJSON.IsSystemDefined" />
+                                                                    <span>{{page.PageName}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="ActionButtons" ng-hide="ActivityJSON.IsSystemDefined">
+                                                <div class="clearbtn">
+                                                    <button type="button" ng-click="Clear()" class="btn btn-default">Clear</button>
+                                                </div>
+                                                <div class="successbtn">
+                                                    <button type="button" ng-click="Save()" class="btn btn-success">Save</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12">
+                                                <div id="ActivityGrid" class="SalesAdminApproval_Grid SalesAdminApprovalConfigurationGrid" dx-data-grid="ActivityGrid" dx-item-alias="ActivityGridData">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <script id="WarningMessage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">{{resData.res_AddCompany_Warning}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                    {{resData.res_AddCompany_DeleteWarning}}
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteActivity()">
+                            {{resData.res_AddCompany_DeleteYes}}
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+                            {{resData.res_AddCompany_DeleteNo}}
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+</ion-view>

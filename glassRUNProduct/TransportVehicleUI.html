@@ -1,0 +1,554 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <div class="pageview">
+            <!--<div class="header">
+                <h2><strong>{{resData.res_TransportVehicleUI_PageHeading}}</strong> ({{Action}})</h2>
+            </div>-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_TransportVehicleUI_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a ng-click="AddForm()">
+                                    <tab-heading>
+                                        <i ng-hide="TransportVehicleJSON.PageTabHeader === 'Edit'" class="fa fa-plus"></i>
+                                        <i ng-show="TransportVehicleJSON.PageTabHeader === 'Edit'" class="fa fa-pencil"></i>
+                                        {{TransportVehicleJSON.PageTabHeader}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.VehicleName !='0'" style="display:none">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_VehicleName}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.VehicleName" type="text" placeholder="Vehicle Name" ng-readonly="pageContrlAcessData.VehicleName =='0' || pageContrlAcessData.VehicleName =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.VehicleRegistrationNumber !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label" style="padding-right: 5px;">{{resData.res_TransportVehicleUI_RegistrationNumber}} <span class="mandentorymark">*</span></label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-pattern-restrict="^[A-Za-z0-9]*$" ng-model="TransportVehicleJSON.VehicleRegistrationNumber" type="text" placeholder="Registration Number" ng-disabled="IsEditMode" ng-readonly="pageContrlAcessData.VehicleRegistrationNumber =='0' || pageContrlAcessData.VehicleRegistrationNumber =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.TransporterId !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_TransporterId}} <span class="mandentorymark">*</span></label>
+                                                            <div class="col-sm-9">
+                                                                <select id="ddlTransporterId" ng-model="TransportVehicleJSON.TransporterId" class="form-control" name="val_SelectObject" ng-options="obj.CompanyId as obj.CompanyName for obj in Company_TransporterList" ng-disabled="pageContrlAcessData.TransporterId =='0' || pageContrlAcessData.TransporterId =='1' || IsEditMode">
+                                                                    <option value="">{{resData.res_TransportVehicleUI_Select}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.VehicleTypeId !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_VehicleTypeId}} <span class="mandentorymark">*</span></label>
+                                                            <div class="col-sm-9">
+                                                                <select id="ddlVehicleTypeId" ng-model="TransportVehicleJSON.VehicleTypeId" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in VehicleTypeList" ng-change="GetTruckSizeListByVehicleType(TransportVehicleJSON.VehicleTypeId)" ng-disabled="pageContrlAcessData.VehicleTypeId =='0' || pageContrlAcessData.VehicleTypeId =='1' ">
+                                                                    <option value="">{{resData.res_TransportVehicleUI_Select}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.TruckSizeId !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_TruckSizeId}} <span class="mandentorymark">*</span></label>
+                                                            <div class="col-sm-9">
+                                                                <select id="ddlTruckSizeId" ng-model="TransportVehicleJSON.TruckSizeId" class="form-control" name="val_SelectObject" ng-options="obj.TruckSizeId as obj.TruckSize for obj in bindTruckSizeList" ng-disabled="pageContrlAcessData.TruckSizeId =='0' || pageContrlAcessData.TruckSizeId =='1' ">
+                                                                    <option value="">{{resData.res_TransportVehicleUI_Select}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.NumberOfCompartments !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_NumberOfCompartments}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-keypress="filterValue($event)" ng-model="TransportVehicleJSON.NumberOfCompartments" type="text" readonly="readonly" placeholder="Number Of Compartments" ng-readonly="pageContrlAcessData.NumberOfCompartments =='0' || pageContrlAcessData.NumberOfCompartments =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.SequenceNumber !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_SequenceNumber}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-keypress="filterValue($event)" ng-model="TransportVehicleJSON.SequenceNumber" type="text" placeholder="Sequence Number" ng-readonly="pageContrlAcessData.SequenceNumber =='0' || pageContrlAcessData.SequenceNumber =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.ProductTypeId !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_VehicleProductType}}</label>
+                                                            <div class="col-sm-9">
+                                                                <!--<select id="ddlVehicleProductType" ng-model="TransportVehicleJSON.ProductTypeId" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in VehicleProductTypeList">
+                                                                    <option value="">{{resData.res_TransportVehicleUI_Select}}
+                                                                </select>-->
+                                                                <!--<div ng-dropdown-multiselect="" options="example8data" selected-model="example8model" extra-settings="example8settings"></div>-->
+                                                                <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                                                    <div class="form-group MultiSelectControl" style="width: 100%;margin-left:5px ;margin-top:10px">
+                                                                        <div ng-dropdown-multiselect="" options="VehicleProductTypeList" selected-model="SelectVehicleProductTypeList" checkboxes="true" extra-settings="SortByListSetting" ng-readonly="pageContrlAcessData.ProductTypeId =='0' || pageContrlAcessData.ProductTypeId =='1' "></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.IsVehicleInsured !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_IsVehicleInsured}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="radio" name="IsVehicleInsured" ng-model="TransportVehicleJSON.IsVehicleInsured" value="1" ng-readonly="pageContrlAcessData.IsVehicleInsured =='0' || pageContrlAcessData.IsVehicleInsured =='1' " />&nbsp;Yes&nbsp;&nbsp;&nbsp;
+                                                                <input type="radio" name="IsVehicleInsured" ng-model="TransportVehicleJSON.IsVehicleInsured" value="0" ng-readonly="pageContrlAcessData.IsVehicleInsured =='0' || pageContrlAcessData.IsVehicleInsured =='1' " />&nbsp;No
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.InsuranceValidityDate !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_InsuranceValidityDate}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input id="InsuranceValidityDate" autocomplete="off" class="form-control form-white date-picker" ng-model="TransportVehicleJSON.InsuranceValidityDate" type="text" name="datepicker" placeholder="Insurance Validity Date" style="width: 97% !important;" ng-readonly="pageContrlAcessData.InsuranceValidityDate =='0' || pageContrlAcessData.InsuranceValidityDate =='1' ">
+                                                                <i class="icon-calendar" style="float: right;right: 0;left: auto;"></i>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.IsFitnessCertificateAvailed !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_IsFitnessCertificateAvailed}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="radio" name="IsFitnessCertificateAvailed" ng-model="TransportVehicleJSON.IsFitnessCertificateAvailed" value="1" ng-readonly="pageContrlAcessData.IsFitnessCertificateAvailed =='0' || pageContrlAcessData.IsFitnessCertificateAvailed =='1' " />&nbsp;Yes&nbsp;&nbsp;&nbsp;
+                                                                <input type="radio" name="IsFitnessCertificateAvailed" ng-model="TransportVehicleJSON.IsFitnessCertificateAvailed" value="0" ng-readonly="pageContrlAcessData.IsFitnessCertificateAvailed =='0' || pageContrlAcessData.IsFitnessCertificateAvailed =='1' " />&nbsp;No
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.FitnessCertificateDate !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_FitnessCertificateDate}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white date-picker" autocomplete="off" ng-model="TransportVehicleJSON.FitnessCertificateDate" type="text" name="datepicker" placeholder="Fitness Certificate Date" style="width: 97% !important;" ng-readonly="pageContrlAcessData.FitnessCertificateDate =='0' || pageContrlAcessData.FitnessCertificateDate =='1' ">
+                                                                <i class="icon-calendar" style="float: right;right: 0;left: auto;"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.VehicleOwnerName !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_VehicleOwnerName}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.VehicleOwnerName" type="text" placeholder="Vehicle Owner Name" ng-readonly="pageContrlAcessData.VehicleOwnerName =='0' || pageContrlAcessData.VehicleOwnerName =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.VehicleOwnerAddress1 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_VehicleOwnerAddress1}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.VehicleOwnerAddress1" type="text" placeholder="Vehicle Owner Address 1" ng-readonly="pageContrlAcessData.VehicleOwnerAddress1 =='0' || pageContrlAcessData.VehicleOwnerAddress1 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.VehicleOwnerAddress2 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_VehicleOwnerAddress2}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.VehicleOwnerAddress2" type="text" placeholder="Vehicle Owner Address 2" ng-readonly="pageContrlAcessData.VehicleOwnerAddress2 =='0' || pageContrlAcessData.VehicleOwnerAddress2 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.VehicleCertificate !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_VehicleCertificate}} ({{documenttypeforvehiclecertificate}})</label>
+                                                            <div class="labelcontrol" ng-readonly="pageContrlAcessData.VehicleCertificate =='0' || pageContrlAcessData.VehicleCertificate =='1' ">
+                                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                                    <div class="form-control" data-trigger="fileinput">
+                                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                                        <span class="fileinput-filename">{{TransportVehicleJSON.labelFilename}}</span>
+                                                                    </div>
+                                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                                        <span class="fileinput-new">Choose...</span>
+                                                                        <span class="fileinput-exists">Change</span>
+                                                                        <input type="file" id="fileUpload" onchange="angular.element(this).scope().FileNameChanged(this)" file-model="fileupload.File" />
+                                                                    </span>
+                                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <a style="margin-left: 10px;" ng-if="TransportVehicleJSON.RegisteredVehicleCertificateBlob != '' && TransportVehicleJSON.RegisteredVehicleCertificateBlob != null" class="linktext" ng-click="DownloadDocument()"> View </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth" ng-if="pageContrlAcessData.CompartmentDetailsSection !='0'">
+                                                <div class="col-md-12">
+                                                    <div class="header">
+                                                        <h2><strong>{{resData.res_TransportVehicleUI_CompartmentDetailsHeading}}</strong></h2>
+                                                    </div>
+                                                    <hr />
+                                                </div>
+                                                <!--</div>
+                                                <div class="col-lg-12" ng-if="pageContrlAcessData.LicenseNumber !='0'">-->
+                                                <div class="conatinerheader headerdataconatiner">
+                                                    <div class="UOMContainer  rightaling">
+                                                        {{resData.res_TransportVehicleUI_SrNo}}
+                                                    </div>
+                                                    <div class="GridColumnWithBorder">
+                                                        {{resData.res_TransportVehicleUI_CompartmentName}}
+                                                    </div>
+                                                    <div class="TotalConatiner">
+                                                        {{resData.res_TransportVehicleUI_Capacity}}
+                                                    </div>
+                                                    <div class="GridColumnWithBorder">
+                                                        {{resData.res_TransportVehicleUI_UnitOfMeasure}}
+                                                    </div>
+                                                    <div class="removeItemicon">
+                                                        {{resData.res_TransportVehicleUI_Actions}}
+                                                    </div>
+                                                </div>
+                                                <div class="conatinerbody">
+                                                    <div class="conatinerheader itemrowcontainer">
+                                                        <div class="UOMContainer rightaling">
+                                                            &nbsp;
+                                                        </div>
+                                                        <div class="GridColumnWithBorder">
+                                                            <input class="form-control form-white" ng-model="TransportVehicleJSON.CompartmentName" type="text" placeholder="Compartment Name">
+                                                        </div>
+
+                                                        <div class="TotalConatiner">
+                                                            <input class="form-control form-white" ng-keypress="filterValue($event)" ng-model="TransportVehicleJSON.Capacity" type="text" placeholder="Capacity">
+                                                        </div>
+                                                        <div class="GridColumnWithBorder">
+                                                            <select id="ddlUnitOfMeasure" ng-model="TransportVehicleJSON.UnitOfMeasureId" class="form-control" name="val_SelectObject" ng-options="obj.LookUpId as obj.Name for obj in UnitOfMeasureList">
+                                                                <option value="">{{resData.res_TransportVehicleUI_Select}}
+                                                            </select>
+                                                        </div>
+                                                        <div class="removeItemicon">
+                                                            <a ng-click="AddCompartment()" ng-if="EditVehicleCompartmentGuid == ''">
+                                                                {{resData.res_TransportVehicleUI_Add}}
+                                                            </a>
+                                                            <a ng-click="AddCompartment()" ng-if="EditVehicleCompartmentGuid != ''">
+                                                                Update
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="conatinerheader itemrowcontainer" style="margin-top: 20px;" ng-repeat="compartment in CompartmentList">
+                                                        <div class="UOMContainer rightaling">
+                                                            {{$index + 1}}
+                                                        </div>
+                                                        <div class="GridColumnWithBorder">
+                                                            {{compartment.CompartmentName}}
+                                                        </div>
+
+                                                        <div class="TotalConatiner">
+                                                            {{compartment.Capacity}}
+                                                        </div>
+                                                        <div class="GridColumnWithBorder">
+                                                            {{compartment.UnitOfMeasure}}
+                                                        </div>
+                                                        <div class="removeItemicon">
+                                                            <a ng-click="EditCompartment(compartment.VehicleCompartmentGuid)">{{resData.res_TransportVehicleUI_Edit}}</a>&nbsp;|&nbsp;
+                                                            <a ng-click="DeleteConfirmationOpen(compartment.VehicleCompartmentGuid)">{{resData.res_TransportVehicleUI_Delete}}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div class="col-md-12">
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth" ng-if="pageContrlAcessData.OtherDetailsHeading !='0'">
+                                                <div class="col-md-12">
+                                                    <div class="header">
+                                                        <h2><strong>{{resData.res_TransportVehicleUI_OtherDetailsHeading}}</strong> </h2>
+                                                    </div>
+                                                    <hr />
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.Field1 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field1}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field1" type="text" placeholder="Field 1" ng-readonly="pageContrlAcessData.Field1 =='0' || pageContrlAcessData.Field1 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field2 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field2}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field2" type="text" placeholder="Field 2" ng-readonly="pageContrlAcessData.Field2 =='0' || pageContrlAcessData.Field2 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.Field3 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field3}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field3" type="text" placeholder="Field 3" ng-readonly="pageContrlAcessData.Field3 =='0' || pageContrlAcessData.Field3 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field4 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field4}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field4" type="text" placeholder="Field 4" ng-readonly="pageContrlAcessData.Field4 =='0' || pageContrlAcessData.Field4 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.Field5 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field5}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field5" type="text" placeholder="Field 5" ng-readonly="pageContrlAcessData.Field5 =='0' || pageContrlAcessData.Field5 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field6 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field6}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field6" type="text" placeholder="Field 6" ng-readonly="pageContrlAcessData.Field6 =='0' || pageContrlAcessData.Field6 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.Field7 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field7}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field7" type="text" placeholder="Field 7" ng-readonly="pageContrlAcessData.Field7 =='0' || pageContrlAcessData.Field7 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field8 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field8}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field8" type="text" placeholder="Field 8" ng-readonly="pageContrlAcessData.Field8 =='0' || pageContrlAcessData.Field8 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div ng-if="pageContrlAcessData.Field9 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field9}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field9" type="text" placeholder="Field 9" ng-readonly="pageContrlAcessData.Field9 =='0' || pageContrlAcessData.Field9 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="pageContrlAcessData.Field10 !='0'">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">{{resData.res_TransportVehicleUI_Field10}}</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control form-white" ng-model="TransportVehicleJSON.Field10" type="text" placeholder="Field 10" ng-readonly="pageContrlAcessData.Field10 =='0' || pageContrlAcessData.Field10 =='1' ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ActionButtons">
+                                                <div class="clearbtn" ng-if="pageContrlAcessData.ClearButton !='0'">
+                                                    <button type="button" ng-click="ClearAllControls()" class="btn btn-default">{{resData.res_TransportVehicleUI_Clear}}</button>
+                                                </div>
+                                                <div class="successbtn" ng-if="pageContrlAcessData.Save !='0'">
+                                                    <button type="button" ng-click="Save()" class="btn btn-success">{{resData.res_TransportVehicleUI_Save}}</button>
+                                                </div>
+                                            </div>
+                                            <div class="fullwidth">
+                                                <div class="col-md-12">
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+                                            <div class="col-md-12">
+                                                <div id="TransportVehicleGrid" class="TransportVehicle_Grid" style="height: 70vh;" dx-data-grid="TransportVehicleGrid" dx-item-alias="TransportVehicleData">
+
+                                                    <div data-options="dxTemplate:{ name:'ActiveInActiveTemplate' }">
+                                                        <a class="greenbgfont approvebtn" ng-if="TransportVehicleData.data.IsActive=='0'">    {{resData.res_ItemUI_Active}} </a>
+                                                        <a class="greenbgfont approvebtn" ng-if="TransportVehicleData.data.IsActive=='1'">    {{resData.res_ItemUI_InActive}} </a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </ion-content>
+    <script id="WarningMessage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">{{resData.res_Compartment_Delete_Warning}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                    {{resData.res_AddCompany_DeleteWarning}}
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="DeleteYesbutton()">
+                            {{resData.res_AddCompany_DeleteYes}}
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()" style="border: 1px solid #adadad !important;">
+                            {{resData.res_AddCompany_DeleteNo}}
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+    <script id="ActiveInActiveWarningMessage.html" type="text/ng-template">
+        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                <h1 class="title">{{resData.res_TransportVehicleUI_ActiveInActiveHeaderMsg}}</h1>
+                <button class="button button-clear button-primary" ng-click="CloseActiveInActiveWarningMessageConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="false" class="popioncontainer">
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;" ng-if="SelectedIdTransportVehicleAction === '1'">
+                    {{resData.res_TransportVehicleUI_ActiveWarning}}
+                </div>
+                <div class="messagebody" style="margin-left: 15px;font-weight: 500;" ng-if="SelectedIdTransportVehicleAction === '0'">
+                    {{resData.res_TransportVehicleUI_InActiveWarning}}
+                </div>
+            </ion-content>
+            <ion-footer-bar class="popupfooter">
+
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="ActiveInActiveLocation()">
+                            {{resData.res_LocationUI_DeleteYes}}
+                        </a>
+                        <a class="btn btn-success btn-square" ng-click="CloseActiveInActiveWarningMessageConfirmation()">
+                            {{resData.res_LocationUI_DeleteNo}}
+                        </a>
+                    </div>
+
+
+                </div>
+            </ion-footer-bar>
+        </ion-modal-view>
+    </script>
+
+</ion-view>

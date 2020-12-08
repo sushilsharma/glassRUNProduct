@@ -1,0 +1,1064 @@
+﻿<div style="float:left;width:100%" ng-controller="EditEnquiryController">
+    <link href="ManageCustomer/style/style.css" rel="stylesheet" />
+    <style type="text/css">
+
+        .reason_code_details_popup .button_icon_ui_container .button_icon_ui {
+            margin: auto;
+            width: 18px;
+            text-align: center;
+            display: block;
+        }
+
+        .fullscreen_popup_whitebg .shoppingcartdiv {
+            bottom: 10px;
+        }
+
+        .show_menu_dots {
+            display: none;
+        }
+
+        .iconRight {
+            float: right;
+        }
+
+        .topMargin {
+            margin-top: 0px;
+        }
+
+        .button_border_red_color {
+            border: 1px solid #ed1c24;
+        }
+
+        .setbackgrounColor {
+            color: #fbb03b !important;
+        }
+
+        .specialInstructionDiv {
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            border-top: 1px solid #e1dddd !important;
+            margin-top: 5px !important;
+            border-bottom: 1px solid #e1dddd !important;
+        }
+
+        .phoneNumberDiv {
+            padding-top: 10px !important;
+            padding-bottom: 5px !important;
+        }
+
+        .Reorder_lable_data {
+            font-weight: bold;
+            float: inherit;
+            margin-right: 3px;
+            font-size: 15px;
+            color: #229146;
+            text-decoration: underline;
+        }
+
+        .Reorder_basic_info {
+            width: 100%;
+            margin: 0 auto;
+            opacity: 0.7;
+            text-align: center;
+            display: inline-block;
+            float: none;
+            line-height: 20px;
+            position: relative;
+            font-size: 15px;
+            font-weight: normal;
+        }
+
+        .imgPhone {
+            height: 18px;
+            position: relative;
+            display: inline-block;
+            float: none;
+            width: auto;
+            position: relative;
+            top: 0px;
+            margin-top: 0px;
+            margin-right: 3px;
+        }
+
+        .sectionHeaderTitles {
+            float: left;
+            width: 100%;
+            font-weight: bold;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .sectionRowTitles {
+            font-size: 15px;
+            margin-left: 25px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .footerWithoutButton {
+            height: 30px !important;
+        }
+
+        .footerWithButton {
+            height: 90px !important;
+        }
+
+        .hasfooterSectionWithBtns {
+            bottom: 90px !important;
+        }
+
+        .hasfooterSectionWithoutBtns {
+            bottom: 30px !important;
+        }
+
+        .confirmationbtnInquiry {
+            margin-right: 0px !important;
+            /* float: right; */
+            width: 100%;
+        }
+
+        .continuebtnInquiry {
+            padding: 8px 8px;
+            border-radius: 9px;
+            text-align: center;
+            margin-bottom: 10px;
+            margin-right: 2px;
+            margin-left: 2px;
+            margin-top: 10px;
+        }
+
+        .button_icon_uiInquiry {
+            width: 18px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .button_text_ui_containerInquiry {
+            display: inline-block;
+            float: none;
+            width: auto;
+            line-height: 20px;
+            position: relative;
+            top: -2px;
+            left: 2px;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .button_border_red_color {
+            border: 1px solid #ed1c24;
+        }
+
+        .button_border_green_color {
+            border: 1px solid #229146;
+        }
+
+        .button_border_orange_color {
+            border: 1px solid #fbb03b;
+        }
+
+        .button_white_bgcolor {
+            background-color: #fff;
+            border-radius: 4px;
+        }
+
+        .button_text_dark_color {
+            color: #012625;
+        }
+
+        .canceluibtn {
+            float: left !important;
+            width: 50% !important;
+        }
+
+        .cancelbutton_icon_ui {
+            width: 20px !important;
+            margin: auto !important;
+            text-align: center !important;
+        }
+
+        @media (min-width:300px) {
+            .button_icon_uiInquiry {
+                width: 15px;
+                margin: auto;
+                text-align: center;
+            }
+
+            .cancelbutton_icon_ui {
+                width: 15px !important;
+                margin: auto !important;
+                text-align: center !important;
+            }
+
+            .button_text_ui_containerInquiry {
+                display: inline-block;
+                float: none;
+                width: auto;
+                line-height: 20px;
+                position: relative;
+                top: -2px;
+                left: 2px;
+                font-size: 10px;
+                font-weight: normal;
+            }
+
+            .continuebtnInquiry {
+                /* margin-top: 10px; */
+                padding: 6px 6px;
+                border-radius: 9px;
+                /* height: 40px; */
+                text-align: center;
+                margin-bottom: 10px;
+                margin-right: 2px;
+                margin-left: 2px;
+                margin-top: 10px;
+            }
+        }
+
+        @media (min-width:350px) {
+            .button_icon_uiInquiry {
+                width: 15px;
+                margin: auto;
+                text-align: center;
+            }
+
+            .cancelbutton_icon_ui {
+                width: 15px !important;
+                margin: auto !important;
+                text-align: center !important;
+            }
+
+            .button_text_ui_containerInquiry {
+                display: inline-block;
+                float: none;
+                width: auto;
+                line-height: 20px;
+                position: relative;
+                top: -2px;
+                left: 2px;
+                font-size: 12px;
+                font-weight: normal;
+            }
+
+            .continuebtnInquiry {
+                /* margin-top: 10px; */
+                padding: 8px 8px;
+                border-radius: 9px;
+                /* height: 40px; */
+                text-align: center;
+                margin-bottom: 10px;
+                margin-right: 2px;
+                margin-left: 2px;
+                margin-top: 10px;
+            }
+        }
+
+        @media (min-width:400px) {
+            .button_icon_uiInquiry {
+                width: 18px;
+                margin: auto;
+                text-align: center;
+            }
+
+            .cancelbutton_icon_ui {
+                width: 18px !important;
+                margin: auto !important;
+                text-align: center !important;
+            }
+
+            .button_text_ui_containerInquiry {
+                display: inline-block;
+                float: none;
+                width: auto;
+                line-height: 20px;
+                position: relative;
+                top: -2px;
+                left: 2px;
+                font-size: 14px;
+                font-weight: normal;
+            }
+
+            .continuebtnInquiry {
+                /* margin-top: 10px; */
+                padding: 8px 8px;
+                border-radius: 9px;
+                /* height: 40px; */
+                text-align: center;
+                margin-bottom: 10px;
+                margin-right: 2px;
+                margin-left: 2px;
+                margin-top: 10px;
+            }
+        }
+
+        .Enquiryconfirmationbtn {
+            margin-right: 0px !important;
+            width: 100%;
+        }
+
+        .Enquirycontinuebtn {
+            padding: 8px 8px;
+            border-radius: 9px;
+            text-align: center;
+            margin-bottom: 10px;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+        .Enquiry_button_border_green_color {
+            border: 1px solid #229146;
+        }
+
+        .Enquiry_button_white_bgcolor {
+            background-color: #fff;
+            border-radius: 4px;
+        }
+
+        .Enquiry_button_text_dark_color {
+            color: #012625;
+        }
+
+        .Enquiry_button_icon_ui_container {
+            display: inline-block;
+            float: none;
+            width: auto;
+            position: relative;
+            top: 2px;
+            margin-top: 0px;
+        }
+
+        .Enquiry_button_icon_ui {
+            width: 18px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .Enquiry_button_text_ui_container {
+            display: inline-block;
+            float: none;
+            width: auto;
+            line-height: 20px;
+            position: relative;
+            top: -2px;
+            left: 2px;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .setexceedQtybackgrounColor {
+            color: #017c28
+        }
+
+        .shipto_name_data {
+            font-family: 'HEINEKEN_Core_0' !important;
+        }
+    </style>
+    <div class="edit_control_tower_section" style="float: left;
+        width: 100%;
+        overflow-y: auto;
+        position: fixed;
+        bottom: 40px;
+        top:40px;">
+        <div class="builder-container">
+            <div class="Console_sidebar_body" style="float:left;width:100%;padding: 0 0px 0 0;">
+                <div style="float:left;width:100%">
+                    <div style="float: left;width: 100%;">
+                        <div class="col-md-12" style="padding: 0px;">
+                            <div class="uk-container track_order_page_ui createInquiry onlineshopcontainer view_catalogue_container uk-container-center">
+                                <div id="View_Catalogue_Container" class="uk-width-large-10-10 uk-row-first uk-grid-margin">
+                                    <div class="profile_details_scrollable_div setup_screen_paddingtop_10_space">
+                                        <div class="fullwidthcontainer manage_catalogue_container">
+                                            <div class="fullwidthcontainer">
+                                                <div class="customerlistheader_div">
+                                                    <div class="OrderListViewUI">
+
+                                                        <div class="OrderListControl">
+                                                            <div class="OrderListControl_Card app_text_white_bgcolor curved_card app_text_dark_color" style="padding:10px 20px !important;">
+                                                                <div>
+                                                                    <div class="track_order_number_date">
+                                                                        <div class="SONumber_value">
+                                                                            <div class="so_number_text" ng-if="EditpageContrlDataAcess.EnquiryAutoNumber !='0'">
+                                                                                {{SelectedInquiryJson.EnquiryAutoNumber}}
+                                                                            </div>
+                                                                            <div class="so_status_text_trackpage" style="background-color : {{EnquiryClass}}" ng-if="EditpageContrlDataAcess.SOStatus !='0'">
+                                                                                <span class="status_text_colot">
+                                                                                    {{EnquiryStatus}}
+                                                                                </span>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="Inquiry_productQuantity_count" ng-if="EditpageContrlDataAcess.TotalProducts !='0'">
+
+                                                                            <span ng-if="EditpageContrlDataAcess.TotalPrice !='0'">
+                                                                                {{SelectedInquiryJson.TotalPrice  | currency: CurrencyFormatCode: DecimalValue}}
+                                                                                {{resData.res_CurrencyCode}}
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="order_basic_info_container">
+                                                                        <div class="order_basic_info less_line_height" ng-if="EditpageContrlDataAcess.RequestedDate !='0'">
+                                                                            <span class="shipto_lable_data" style="display: none;">
+                                                                                <img class="label_icon_ui"
+                                                                                     src="Images/Asset 124@2x.png">
+                                                                            </span>
+                                                                            <span class="order_basic_info_text_ui">
+                                                                                {{resData.res_TrackOrder_RequestedDate}}
+                                                                            </span>
+                                                                            <span class="shipto_name_data">
+                                                                                {{DateParse(SelectedInquiryJson.RequestDate)| date:'dd-MMM-yyyy hh:mm a'}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="order_basic_info less_line_height" ng-if="EditpageContrlDataAcess.ShipTo !='0'">
+                                                                            <span class="shipto_lable_data" style="display: none;">
+                                                                                <img class="label_icon_ui" src="Images/Asset 249.png">
+                                                                            </span>
+                                                                            <span class="order_basic_info_text_ui">
+                                                                                {{resData.res_EditEnquiry_DelerevdTo}}:
+                                                                            </span>
+                                                                            <span class="shipto_name_data" style="width: calc(100% - 85px);">
+                                                                                {{SelectedInquiryJson.ShipToName}}
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="trakorder_status_data_text_section">
+                                                                        <div class="order_basic_info less_line_height" ng-if="EditpageContrlDataAcess.SoldToName !='0'">
+                                                                            <span class="shipto_lable_data" style="display: none;">
+                                                                                <img class="label_icon_ui"
+                                                                                     src="Images/Asset 250.png">
+                                                                            </span>
+                                                                            <span class="order_basic_info_text_ui">
+                                                                                {{resData.res_EditEnquiry_SoldTo}}:
+                                                                            </span>
+                                                                            <span class="shipto_name_data" style="width: calc(100% - 75px);">
+                                                                                {{SelectedInquiryJson.SoldToName}}
+                                                                            </span>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="trakorder_status_data_text_section specialInstructionDiv">
+                                                                        <div class="order_basic_info less_line_height" ng-if="EditpageContrlDataAcess.SpecialInstructions !='0'">
+                                                                            <span class="order_basic_info_text_ui">
+                                                                                {{resData.res_TrackOrder_SpecialInstructions}}:
+                                                                            </span>
+                                                                            <span class="shipto_name_data" style="width: calc(100% - 150px);margin-left: 10px;height: auto;" ng-if="SelectedInquiryJson.InquiryDescription === undefined || SelectedInquiryJson.InquiryDescription === '' || SelectedInquiryJson.InquiryDescription === null">
+                                                                                {{resData.res_CartPage_Nospecialinstructions}}
+                                                                            </span>
+                                                                            <span class="shipto_name_data" style="width: calc(100% - 150px);margin-left: 10px;height: auto;" ng-if="SelectedInquiryJson.InquiryDescription !== undefined && SelectedInquiryJson.InquiryDescription !== '' && SelectedInquiryJson.InquiryDescription !== null">{{SelectedInquiryJson.InquiryDescription}}</span>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="trakorder_status_data_text_section" style="padding-top: 10px !important;">
+                                                                        <div class="order_basic_info less_line_height" ng-if="EditpageContrlDataAcess.PhoneNumber !='0'">
+                                                                            <span class="order_basic_info_text_ui" style="line-height: 20px;">
+                                                                                <img class="imgPhone"
+                                                                                     src="Images/Phone.png" />
+                                                                                {{resData.res_ManageCustomerInquiries_ReceiverPhoneNo}}
+                                                                            </span>
+                                                                            <span class="shipto_name_data" style="width: auto;margin-left: 10px;height: auto;padding-top: 0px !important;" ng-if="SelectedInquiryJson.Field10 === undefined || SelectedInquiryJson.Field10 === '' || SelectedInquiryJson.Field10 === null">
+                                                                                {{resData.res_CartPage_NotAvailable}}
+                                                                            </span>
+                                                                            <span class="shipto_name_data" style="width: auto;margin-left: 10px;height: auto;padding-top: 0px !important;" ng-if="SelectedInquiryJson.Field10 !== undefined && SelectedInquiryJson.Field10 !== '' && SelectedInquiryJson.Field10 !== null">
+                                                                                <a style="color: #229146;border-bottom: 1px solid #229146;"
+                                                                                   href="tel:{{SelectedInquiryJson.Field10}}">{{SelectedInquiryJson.Field10}}</a>
+                                                                            </span>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="trakorder_status_data_text_section phoneNumberDiv" style="display: none;">
+                                                                        <div class="order_basic_info less_line_height" ng-if="EditpageContrlDataAcess.PhoneNumber !='0' && SelectedInquiryJson.Field10 !== undefined && SelectedInquiryJson.Field10 !== '' && SelectedInquiryJson.Field10 !== null">
+                                                                            <div class="Reorder_basic_info">
+                                                                                <span class="Reorder_lable_data">
+                                                                                    <img class="imgPhone"
+                                                                                         src="Images/Phone.png" /> <a style="color: #229146;"
+                                                                                                                      href="tel:{{SelectedInquiryJson.Field10}}">{{SelectedInquiryJson.Field10}}</a>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="fullwidthcontainer" ng-if="EditpageContrlDataAcess.NewRequestedDate !='0'">
+                                                <div class="customerlistheader_div">
+
+                                                    <div class="OrderListViewUI">
+
+                                                        <div class="OrderListControl">
+                                                            <div class="OrderListControl_Card app_text_white_bgcolor curved_card app_text_dark_color" style="padding:10px 20px !important;font-weight: bold;">
+                                                                <div class="order_basic_info_container" style="margin-top: 0px !important;">
+                                                                    <div class="order_basic_info less_line_height" style="margin-bottom: 0px !important;" ng-if="EditpageContrlDataAcess.NewRequestedDate !='0'"
+                                                                         ng-click="ChangeRequestDate()">
+                                                                        <input id="txtPickDate" type="text" name="datepicker" style="right: 0px;left: -8px;" ng-model="InquiryRequestedDate" class="visiblehiddentxt form-control">
+                                                                        <span class="shipto_lable_data">
+                                                                            <img class="label_icon_ui" src="Images/CalendarIcon.png"
+                                                                                 style="margin-right: 8px;margin-left: 2px;width: 18px;">
+                                                                        </span>
+                                                                        <span class="order_basic_info_text_ui" style="padding-top: 1px !important;">
+                                                                            {{resData.res_EditEnquiry_NewRequstDate}}:
+                                                                        </span>
+                                                                        <span class="shipto_name_data LabeltextColor" style="padding-top: 1px !important;">
+                                                                            {{InquiryRequestedDate | date:'dd-MMM-yyyy hh:mm a'}}
+                                                                        </span>
+                                                                        <span class="iconRight" style="padding-top: 1px !important;">
+                                                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="fullwidthcontainer" ng-if="EditpageContrlDataAcess.NewTotalAmount !='0'">
+                                                <div class="customerlistheader_div">
+
+                                                    <div class="OrderListViewUI">
+
+                                                        <div class="OrderListControl">
+                                                            <div class="OrderListControl_Card app_text_white_bgcolor curved_card app_text_dark_color" style="padding:10px 20px !important;font-weight: bold;">
+                                                                <div class="order_basic_info_container" style="margin-top: 0px !important;">
+                                                                    <div class="order_basic_info less_line_height" style="margin-bottom: 0px !important;" ng-if="EditpageContrlDataAcess.NewTotalAmount !='0'">
+                                                                        <span class="shipto_lable_data">
+                                                                            <i class="fa fa-shopping-cart"
+                                                                               style="font-size: 20px;width: 15px;float: left;margin-right: 12px;"
+                                                                               aria-hidden="true"></i>
+                                                                        </span>
+                                                                        <span class="order_basic_info_text_ui" style="padding-top: 3px !important;">
+                                                                            {{resData.res_EditEnquiry_NewTotal}}:
+                                                                        </span>
+                                                                        <span class="shipto_name_data LabeltextColor" style="padding-top: 3px !important;">
+                                                                            {{NewTotalAmount | currency: CurrencyFormatCode: DecimalValue}}
+                                                                            {{resData.res_CurrencyCode}}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="fullwidthcontainer" ng-if="EditpageContrlDataAcess.Items !='0'">
+                                                <div class="customerlistheader_div">
+
+                                                    <div class="OrderListViewUI">
+
+                                                        <div class="OrderListControl edit_enquiry_page">
+                                                            <div class="OrderListControl_Card curved_card app_text_dark_color" style="padding:10px 0px !important;">
+                                                                <div>
+
+                                                                    <div class="product_catalog_card_ui">
+                                                                        <div class="sectionHeaderTitles button_text_dark_color">
+                                                                            {{resData.res_TrackOrder_Items}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div style="float: left;width: 100%">
+
+                                                                        <div class="product_catalog_container_card order_summary_view" style="padding:0px" ng-if="inquiryJson.AdditionalQuantity !== 0" ng-repeat="inquiryJson in SelectedInquiryJson.ProductList">
+                                                                            <div class="product_catalog_card_ui app_text_white_bgcolor">
+
+                                                                                <div class="text full_screen_width">
+                                                                                    <div class="card_left_text">
+                                                                                        <div class="OrderFlow_product_image_thumbnail" ng-class="{'product_image_hidden_adjust_ui' : EditpageContrlDataAcess.ProductImage === '0'}">
+                                                                                            <div class="orderflow_product_image product_image_without_badge" ng-if="EditpageContrlDataAcess.ProductImage  !='0'">
+                                                                                                <img ng-if="inquiryJson.ImageUrl != null && inquiryJson.ImageUrl != ''" src="{{inquiryJson.ImageUrl}}">
+                                                                                                <img ng-if="inquiryJson.ImageUrl == null " src="Images/heineken2.jpg">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="OrderFlow_createinquiry_productcard_ui" ng-class="{'product_image_hidden_adjust_productcard' : EditpageContrlDataAcess.ProductImage === '0'}">
+                                                                                            <div class="product_name_text_ui app_text_dark_color" ng-if="EditpageContrlDataAcess.ProductName  !='0'">
+                                                                                                {{inquiryJson.ProductName}}
+                                                                                            </div>
+                                                                                            <div class="product_price_ui">
+                                                                                                <div class="price_uom app_text_dark_color" ng-if="EditpageContrlDataAcess.UOM !='0'">
+                                                                                                    {{resData.res_EditEnquiry_UOM}}: {{inquiryJson.UOM}}
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        <div class="product_quantity_info_container app_text_dark_color ">
+                                                                                            <div class="order_quantity_header_row ">
+                                                                                                <div class="item_quantity_column" style="width: 125px;">
+                                                                                                    {{resData.res_EditEnquiry_OrderQuantity}}:
+                                                                                                </div>
+                                                                                                <div class="recieve_quantity_column " style="width: calc(100% - 250px)!important; ">
+                                                                                                    {{resData.res_EditEnquiry_AvailableQuantity}}:
+                                                                                                </div>
+                                                                                                <div class="enqual_to_sign ">
+                                                                                                    &nbsp;
+                                                                                                </div>
+                                                                                                <div class="shortfall_quantity_column " style="width: 80px!important; ">
+                                                                                                    {{resData.res_EditEnquiry_Diffrencess}}:
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="order_quantity_data_row " style="padding-bottom: 12px; ">
+                                                                                                <div class="item_quantity_column text_aling_center " style="width: 125px;">
+                                                                                                    {{inquiryJson.AdditionalQuantity | number : 0}}
+                                                                                                </div>
+                                                                                                <div class="recieve_quantity_column " style="width: calc(100% - 250px)!important; ">
+                                                                                                    <div class="btn-group btnplusminus ">
+                                                                                                        <div style="border: 0px solid rgba(0, 0, 0, 0) !important;box-shadow: 0px 0px 1px 0.1px rgba(0, 0, 0, 0) !important;" class="input-group btngroup quantity_change_control">
+                                                                                                            <div ng-click="ChangeReceivedQuantity('Minus',inquiryJson)" class="input-group-addon actionbtn btn plus_minus_control plus_minus_custom_action_btn">
+                                                                                                                <span class="action_icon_data minus_button_quantity">
+                                                                                                                    <img src="Images/Asset 169.png " />
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            <input only-numbers style="font-size: 14px !important;height: 41px !important;text-align: center;" ng-change="ChangeReceivedQuantity( 'Enter',inquiryJson) " class="form-control ng-pristine additemdarktext Quantityinput plus_minus_custom_input_box ng-untouched ng-valid"
+                                                                                                                   ng-model="inquiryJson.AvailableAdditionalQuantity" min="0 " step="1 ">
+                                                                                                            <div ng-click="ChangeReceivedQuantity( 'Add',inquiryJson)" class="input-group-addon actionbtn btn plus_minus_control plus_minus_custom_action_btn">
+                                                                                                                <span class="action_icon_data plus_button_quantity">
+                                                                                                                    <img src="Images/Asset 170.png " />
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="enqual_to_sign text_aling_center ">
+                                                                                                    =
+                                                                                                </div>
+                                                                                                <div class="shortfall_quantity_column text_aling_center " ng-if="!ShowDiffQty(inquiryJson.AvailableAdditionalQuantity,inquiryJson.AdditionalQuantity)" ng-class="{ 'setbackgrounColor': SetTextColor(inquiryJson.AvailableAdditionalQuantity,inquiryJson.AdditionalQuantity)===true} "
+                                                                                                     style="width: 80px!important; ">
+                                                                                                    {{inquiryJson.DifferenceQuantity | number : 0}}
+                                                                                                </div>
+                                                                                                <div class="shortfall_quantity_column text_aling_center setexceedQtybackgrounColor" ng-if="ShowDiffQty(inquiryJson.AvailableAdditionalQuantity,inquiryJson.AdditionalQuantity)" style="width: 70px!important; ">
+                                                                                                    {{positiveLookingValue(inquiryJson.DifferenceQuantity) | number : 0}}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="product_catalog_container_card order_summary_view" style="padding:0px" ng-repeat="promoItem in CustomerActivePromotionGroupList">
+                                                                            <div class="product_catalog_card_ui app_text_white_bgcolor">
+
+                                                                                <div class="text full_screen_width" style="text-align: center !important;margin-bottom: 10px;font-family: HEINEKEN_Core-ExtraBold_0;font-size: 16px;">
+
+                                                                                    <span style="color: #017c28;">
+                                                                                        {{resData.res_catalog_buy}} {{promoItem.BuyQty}}
+                                                                                        {{resData.res_catalog_get}} {{promoItem.GetQty}}
+                                                                                        {{resData.res_catalog_FREE}}
+                                                                                    </span>
+
+                                                                                </div>
+
+                                                                                <div class="text full_screen_width" style="text-align: center !important;background-image: linear-gradient(to right, #01551d , #00a551);margin-bottom: 15px;font-family: HEINEKEN_Core-ExtraBold_0;">
+
+                                                                                    <span style="color: white;">
+                                                                                        {{resData.res_HomePage_Promotionendperiod}}:
+                                                                                        {{PromotionDateParse(promoItem.ToDate) | date:'dd-MMM-yyyy'}}
+                                                                                    </span>
+
+                                                                                </div>
+
+                                                                                <div class="text full_screen_width" style="margin-bottom: 15px;" ng-repeat="bindItem in promoItem.CustomerActivePromotionList | filter: { Action : 'B' }">
+                                                                                    <div class="card_left_text">
+                                                                                        <div class="OrderFlow_product_image_thumbnail" ng-class="{'product_image_hidden_adjust_ui' : EditpageContrlDataAcess.ProductImage === '0'}">
+                                                                                            <div class="orderflow_product_image product_image_without_badge" ng-if="EditpageContrlDataAcess.ProductImage !='0'">
+                                                                                                <img ng-if="bindItem.ImageUrl != null && bindItem.ImageUrl != ''" src="{{bindItem.ImageUrl}}">
+                                                                                                <img ng-if="bindItem.ImageUrl == null " src="Images/heineken2.jpg">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="OrderFlow_createinquiry_productcard_ui" ng-class="{'product_image_hidden_adjust_productcard' : EditpageContrlDataAcess.ProductImage === '0'}">
+                                                                                            <div class="product_name_text_ui app_text_dark_color" ng-if="EditpageContrlDataAcess.ProductName !='0'">
+                                                                                                {{bindItem.ItemName}}
+                                                                                            </div>
+                                                                                            <div class="product_price_ui">
+                                                                                                <div class="price_uom app_text_dark_color" style="font-size: 14px;">
+                                                                                                    {{bindItem.ItemQuantity}} {{bindItem.UOM}}
+                                                                                                </div>
+                                                                                                <div class="price_uom app_text_dark_color" style="font-size: 14px;float: right;margin-right: 15px;margin-left: 15px;">
+                                                                                                    {{bindItem.AvailableQuantity}}
+                                                                                                </div>
+                                                                                                <div class="price_uom app_text_dark_color" style="font-size: 14px;float: right;margin-right: 15px;margin-left: 15px;">
+                                                                                                    =
+                                                                                                </div>
+                                                                                                <div class="price_uom app_text_dark_color" style="font-size: 14px;float: right;margin-right: 15px;margin-left: 15px;">
+                                                                                                    X {{bindItem.AvailableComboQty}}
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="Product_Catalog_Description_Text">
+                                                                                                &nbsp;
+                                                                                            </div>
+
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <div class="text full_screen_width" style="margin-bottom: 15px;">
+
+                                                                                    <div class="card_left_text">
+
+                                                                                        <div style="width: 100px;" class="OrderFlow_product_image_thumbnail" ng-class="{'product_image_hidden_adjust_ui' : EditpageContrlDataAcess.CatalogProductImage === '0'}">
+                                                                                            <div class="orderflow_product_image product_image_without_badge" ng-if="EditpageContrlDataAcess.CatalogProductImage !='0'">
+                                                                                                <div class="Product_Catalog_Description_Text" style="text-align: center;">
+                                                                                                    {{resData.res_HomePage_OrderCombo}}:
+                                                                                                </div>
+                                                                                                <div class="Product_Catalog_Description_Text" style="text-align: center; font-weight: bold;">
+                                                                                                    {{promoItem.ComboProductQuantity}}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="OrderFlow_createinquiry_productcard_ui" style="width: calc(100% - 210px);">
+
+                                                                                            <div class="Product_Catalog_Description_Text" style="height: 20px;">
+                                                                                                {{resData.res_HomePage_NoOfCombo}}:
+                                                                                            </div>
+
+                                                                                            <div class="btn-group btnplusminus">
+                                                                                                <div style="box-shadow: 0px 0px 1px 0.1px rgba(0, 0, 0, 0) !important;" class="input-group btngroup quantity_change_control quantity_change_custom_control">
+                                                                                                    <div class="input-group-addon actionbtn btn plus_minus_control plus_btn plus_minus_custom_action_btn" ng-click="SubtractComboProductQty(promoItem);">
+                                                                                                        <div class="action_icon_data minus_button_quantity">
+                                                                                                            <img src="Images/Asset 169.png" />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <input class="form-control ng-pristine additemdarktext Quantityinput plus_minus_custom_input_box ng-untouched ng-valid" type="number" pattern="\d*" ng-model="promoItem.AvailableComboProductQuantity" ng-change="UpdateComboProductQty(promoItem)" min="0"
+                                                                                                           step="1" ng-keydown="validateNumber($event)">
+                                                                                                    <div class="input-group-addon actionbtn btn plus_minus_control minus_btn plus_minus_custom_action_btn" ng-click="AddComboProductQty(promoItem);">
+                                                                                                        <div class="action_icon_data plus_button_quantity">
+                                                                                                            <img src="Images/Asset 170.png" />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="Product_Catalog_Description_Text" ng-if="EditpageContrlDataAcess.TotalPrice !='0'">
+                                                                                                {{resData.res_ManageCatalogue_Total}}: <span class="product_price_style_ui">
+                                                                                                    {{promoItem.TotalAmount | currency: CurrencyFormatCode: DecimalValue}}
+                                                                                                </span>
+                                                                                                <span class="current_code_icon">{{resData.res_CurrencyCode}}</span>
+                                                                                            </div>
+
+                                                                                        </div>
+
+                                                                                        <div style="width: 90px;" class="OrderFlow_product_image_thumbnail" ng-class="{'product_image_hidden_adjust_ui' : EditpageContrlDataAcess.CatalogProductImage === '0'}">
+                                                                                            <div class="orderflow_product_image product_image_without_badge" ng-if="EditpageContrlDataAcess.CatalogProductImage !='0'">
+                                                                                                <div class="Product_Catalog_Description_Text" style="text-align: center;">
+                                                                                                    {{resData.res_HomePage_Difference}}:
+                                                                                                </div>
+                                                                                                <div class="Product_Catalog_Description_Text" style="text-align: center; font-weight: bold;" ng-if="!ShowDiffQty(promoItem.AvailableComboProductQuantity,promoItem.ComboProductQuantity)" ng-class="{ 'setbackgrounColor': SetTextColor(promoItem.AvailableComboProductQuantity,promoItem.ComboProductQuantity)===true}">
+                                                                                                    {{promoItem.ComboDifferenceQuantity}}
+                                                                                                </div>
+                                                                                                <div class="Product_Catalog_Description_Text setexceedQtybackgrounColor" style="text-align: center; font-weight: bold;" ng-if="ShowDiffQty(promoItem.AvailableComboProductQuantity,promoItem.ComboProductQuantity)">
+                                                                                                    {{promoItem.ComboDifferenceQuantity}}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <div class="text full_screen_width" style="display:none ;text-align: center !important;background-color: red;font-family: HEINEKEN_Core-ExtraBold_0;">
+
+                                                                                    <span style="color: white;">
+                                                                                        {{resData.res_HomePage_Amountyoucanbuy}} 5 {{resData.res_HomePage_Combo}}
+                                                                                    </span>
+
+                                                                                </div>
+
+                                                                                <div class="promotion_info_text_oncard promotion_item_info_data app_text_whitebg_normal_color" ng-repeat="focItem in promoItem.CustomerActivePromotionList | filter: { Action : 'G' }" ng-if="focItem.AppliedPromotion=='1'">
+                                                                                    <div class="promotion_quantity_full_text">
+                                                                                        <div class="Promotion_text_withicon">
+                                                                                            <div class="promotion_icon_ui_oncard" ng-if="EditpageContrlDataAcess.PromotionIndicatorIcon  !='0'" style="width: 50px !important;">
+                                                                                                <img src="Images/FreeItem.png" style="width: 45px !important;height: 40px !important;">
+                                                                                            </div>
+                                                                                            <div class="promotion_text_ui_oncard" style="width: calc(100% - 50px) !important;">
+                                                                                                <div class="promotion_item_image_ui" ng-if="EditpageContrlDataAcess.PromotionProductFocUrl  !='0'">
+                                                                                                    <img ng-if="focItem.FocImageUrl != null && focItem.FocImageUrl != ''" src="{{focItem.FocImageUrl}}">
+                                                                                                    <img ng-if="focItem.FocImageUrl == null || focItem.FocImageUrl == ''" src="Images/Hbg.png">
+                                                                                                </div>
+                                                                                                <div class="promotion_item_info_ui">
+                                                                                                    <div class="Promotion_product_name" style="word-break: break-word;white-space: normal;" ng-if="EditpageContrlDataAcess.PromotionProductName  !='0'">
+                                                                                                        {{focItem.FocItemName}}
+                                                                                                    </div>
+                                                                                                    <div class="promotion_product_qauntity" ng-if="EditpageContrlDataAcess.PromotionQuantityAndUOM  !='0'">
+                                                                                                        {{focItem.AvailableQuantity}} {{focItem.FocUOM}}
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div style="display: none;padding:0px" class="product_catalog_container_card order_summary_view" ng-if="inquiryJson.ItemType !== 31" ng-repeat="inquiryJson in SelectedInquiryJson.ProductList">
+                                                                            <div class="product_catalog_card_ui app_text_white_bgcolor">
+
+                                                                                <div class="text full_screen_width">
+                                                                                    <div class="card_left_text">
+                                                                                        <div class="OrderFlow_product_image_thumbnail" ng-class="{'product_image_hidden_adjust_ui' : EditpageContrlDataAcess.ProductImage === '0'}">
+                                                                                            <div class="orderflow_product_image product_image_without_badge" ng-if="EditpageContrlDataAcess.ProductImage  !='0'">
+                                                                                                <img ng-if="inquiryJson.ImageUrl != null && inquiryJson.ImageUrl != ''" src="{{inquiryJson.ImageUrl}}">
+                                                                                                <img ng-if="inquiryJson.ImageUrl == null " src="Images/heineken2.jpg">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="OrderFlow_createinquiry_productcard_ui" ng-class="{'product_image_hidden_adjust_productcard' : EditpageContrlDataAcess.ProductImage === '0'}">
+                                                                                            <div class="product_name_text_ui app_text_dark_color" ng-if="EditpageContrlDataAcess.ProductName  !='0'">
+                                                                                                {{inquiryJson.ProductName}}
+                                                                                            </div>
+                                                                                            <div class="product_price_ui">
+                                                                                                <div class="price_uom app_text_dark_color" ng-if="EditpageContrlDataAcess.UOM !='0'">
+                                                                                                    {{resData.res_EditEnquiry_UOM}}: {{inquiryJson.UOM}}
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        <div class="product_quantity_info_container app_text_dark_color ">
+                                                                                            <div class="order_quantity_header_row ">
+                                                                                                <div class="item_quantity_column" style="width: 125px;">
+                                                                                                    {{resData.res_EditEnquiry_OrderQuantity}}:
+                                                                                                </div>
+                                                                                                <div class="recieve_quantity_column " style="width: calc(100% - 250px)!important; ">
+                                                                                                    {{resData.res_EditEnquiry_AvailableQuantity}}:
+                                                                                                </div>
+                                                                                                <div class="enqual_to_sign ">
+                                                                                                    &nbsp;
+                                                                                                </div>
+                                                                                                <div class="shortfall_quantity_column " style="width: 80px!important; ">
+                                                                                                    {{resData.res_EditEnquiry_Diffrencess}}:
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="order_quantity_data_row " style="padding-bottom: 12px; ">
+                                                                                                <div class="item_quantity_column text_aling_center " style="width: 125px;">
+                                                                                                    {{inquiryJson.ProductQuantity | number : 0}}
+                                                                                                </div>
+                                                                                                <div class="recieve_quantity_column " style="width: calc(100% - 250px)!important; ">
+                                                                                                    <div class="btn-group btnplusminus ">
+                                                                                                        <div style="border: 0px solid rgba(0, 0, 0, 0) !important;box-shadow: 0px 0px 1px 0.1px rgba(0, 0, 0, 0) !important;" class="input-group btngroup quantity_change_control">
+                                                                                                            <div ng-click="ChangeReceivedQuantity('Minus',inquiryJson)" class="input-group-addon actionbtn btn plus_minus_control plus_minus_custom_action_btn">
+                                                                                                                <span class="action_icon_data minus_button_quantity">
+                                                                                                                    <img src="Images/Asset 169.png " />
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            <input only-numbers style="font-size: 14px !important;height: 37px !important;" ng-change="ChangeReceivedQuantity( 'Enter',inquiryJson) " class="form-control ng-pristine additemdarktext Quantityinput plus_minus_custom_input_box ng-untouched ng-valid"
+                                                                                                                   ng-model="inquiryJson.AvailableQuantity" min="0 " step="1 ">
+                                                                                                            <div ng-click="ChangeReceivedQuantity( 'Add',inquiryJson)" class="input-group-addon actionbtn btn plus_minus_control plus_minus_custom_action_btn">
+                                                                                                                <span class="action_icon_data plus_button_quantity">
+                                                                                                                    <img src="Images/Asset 170.png " />
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="enqual_to_sign text_aling_center ">
+                                                                                                    =
+                                                                                                </div>
+                                                                                                <div class="shortfall_quantity_column text_aling_center " ng-if="!ShowDiffQty(inquiryJson.AvailableQuantity,inquiryJson.ProductQuantity)" ng-class="{ 'setbackgrounColor': SetTextColor(inquiryJson.AvailableQuantity,inquiryJson.ProductQuantity)===true} "
+                                                                                                     style="width: 80px!important; ">
+                                                                                                    {{inquiryJson.DifferenceQuantity | number : 0}}
+                                                                                                </div>
+                                                                                                <div class="shortfall_quantity_column text_aling_center setexceedQtybackgrounColor" ng-if="ShowDiffQty(inquiryJson.AvailableQuantity,inquiryJson.ProductQuantity)" style="width: 70px!important; ">
+                                                                                                    {{positiveLookingValue(inquiryJson.DifferenceQuantity) | number : 0}}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+
+
+                                                                                <div class="promotion_info_text_oncard promotion_item_info_data app_text_whitebg_normal_color" ng-if="bindPromotionItem.IsActive === '1'" ng-repeat="bindPromotionItem in inquiryJson.PromotionItemList | orderBy : ProductName track by $index">
+                                                                                    <div class="promotion_quantity_full_text">
+                                                                                        <span class="Promotion_text_withicon">
+                                                                                            <span class="promotion_icon_ui_oncard"
+                                                                                                  ng-if="EditpageContrlDataAcess.PromotionIndicatorIcon  !='0'">
+                                                                                                <img src="Images/Promotion.png">
+                                                                                            </span>
+                                                                                            <span class="promotion_text_ui_oncard">
+                                                                                                <span class="promotion_item_image_ui"
+                                                                                                      ng-if="EditpageContrlDataAcess.PromotionProductImage  !='0'">
+                                                                                                    <img ng-if="bindPromotionItem.ImageUrl != null && bindPromotionItem.ImageUrl != ''"
+                                                                                                         src="{{bindPromotionItem.ImageUrl}}">
+                                                                                                    <img ng-if="bindPromotionItem.ImageUrl == null || bindPromotionItem.ImageUrl == ''"
+                                                                                                         src="Images/Hbg.png">
+                                                                                                </span>
+                                                                                                <span class="promotion_item_info_ui">
+                                                                                                    <span class="Promotion_product_name"
+                                                                                                          ng-if="EditpageContrlDataAcess.PromotionProductName  !='0'">
+                                                                                                        {{bindPromotionItem.ProductName}}
+                                                                                                    </span>
+                                                                                                    <span class="promotion_product_qauntity" ng-if="EditpageContrlDataAcess.PromotionQuantityAndUOM  !='0'">
+                                                                                                        {{bindPromotionItem.AvailableQuantity}}
+                                                                                                        {{bindPromotionItem.UOM}}
+                                                                                                    </span>
+                                                                                                </span>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="bottom: 0px !important; padding-left: 5px !important; padding-right: 5px !important; position: fixed;" class="navbar-collapse shoppingcartdiv bottombutton_section_div collapse right cart_page_bottom_section order_management_app_bottom_buttons">
+
+        <div id="Save_Inquiry_Button" class="confirmationbtnInquiry">
+            <a class="continuebtnInquiry button_white_bgcolor button_text_dark_color button_border_green_color" ng-click="SelectResonCodePopup()">
+                <div class="button_icon_ui_container">
+                    <img class="button_icon_uiInquiry" src="Images/Tick.png" />
+                </div>
+                <div class="button_text_ui_containerInquiry">
+                    {{resData.res_OrderList_TrackOrder_RejectDelivery_DoneBtnText}}
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="modal-backdrop active" ng-if="OpenConformationPopupView">
+        <div class="modal-backdrop-bg"></div>
+        <div class="modal-wrapper fullscreen_popup_whitebg">
+            <div id="Sorting_Container" class="full_screen_white_popup reason_code_details_popup">
+
+                <div class="actual_data_popup Reason_Code_Popup_Container" style="height: calc(100% - 60px) !important;">
+                    <div class="Product_Info_Data Reason_Code_Popup">
+
+                        <div style="line-height: normal;font-size: 12px;float: left;width: 100%;margin-bottom: 10px;">
+                            <span>
+                                {{resData.res_EditEnquiry_NotetheenquiryshouldbesenttothementionedforApproval}}
+                            </span>
+                        </div>
+
+                        <div class="header_reject_delivery">
+                            <div class="reject_delivery_status">
+                                {{resData.res_EditEnquiry_ConformEdit}}
+                            </div>
+                        </div>
+
+                        <div class="Data_Reject_delivery">
+
+                            <div class="Order_Info_Reject_Order">
+                                <div class="Order_Reject_Info_Card app_text_dark_color">
+                                    <div>
+                                        <div class="track_order_number_date">
+                                            <div class="SONumber_value">
+                                                <div class="so_number_text">
+                                                    {{Enquirynumber}}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="order_basic_info_container" style="margin-top: 0px !important;">
+                                            <div class="order_basic_info less_line_height">
+                                                <span class="order_basic_info_text_ui">
+                                                    {{resData.res_EditEnquiry_SoldTo}}:
+                                                </span>
+                                                <span class="shipto_name_data" style="width: calc(100% - 75px);">
+                                                    {{SoldTo}}
+                                                </span>
+                                            </div>
+                                            <div class="order_basic_info less_line_height">
+                                                <span class="order_basic_info_text_ui">
+                                                    {{resData.res_EditEnquiry_ShipTo}}:
+                                                </span>
+                                                <span class="shipto_name_data">
+                                                    {{Deliverto}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ReasonCode_Selection" ng-class="{'select_reason_code' : IsAnyReasonCodeSelected === false}">
+                                <span class="lable_full_row" style="font-family: HEINEKEN_Core-Bold_0;">
+                                    {{resData.res_ManageCustomerInquiries_ReasonCode}} <span class="asteriskmark">*</span>
+                                </span>
+
+                            </div>
+
+                            <div id="Sub_Catagory_Filter_Selection_{{reasonCodes.Name}}" class="reason_Code_List_Popup" ng-repeat="reasonCodes in ReasonCodes.ReasonCodeList track by $index">
+                                <div class="sorting_section_data" ng-click="SelectReasonCodes(reasonCodes)" style="padding-left: 0px !important;padding-right: 0px !important;">
+                                    <div class="data_label_popup" style="font-size: 14px !important;font-weight: bold !important;" ng-class="{'app_text_whitebg_normal_color': reasonCodes.Selected==true}">
+                                        {{reasonCodes.Name}}
+                                    </div>
+                                    <div class="data_selection_popup" ng-if="reasonCodes.Selected==true" style="top: 3px !important;">
+                                        <img src="Images/Asset 238.png">
+                                    </div>
+                                    <div class="data_selection_popup" ng-if="reasonCodes.Selected==false || reasonCodes.Selected==undefined" style="top: 3px !important;">
+                                        <img src="Images/Asset 237.png">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="ReasonDescription_Other" ng-if="ReasonCodes.IsShowReasonTextBox === true">
+                                <div class="specify_reason_note" ng-class="{'validate_field_text' : PleaseSpecifyReasonDescription === false}">
+                                    {{resData.res_ManageCustomerInquiries_Pleasespecifythereason}}<span class="asteriskmark">*</span>
+                                </div>
+                                <div class="resaoncode_control_ui">
+                                    <textarea id="subject" placeholder="{{resData.res_ManageCustomerInquiries_Pleasespecifythereason}}" class="reason_code_textarea_control" ng-model="ReasonCodes.ReasonDescription"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-collapse shoppingcartdiv bottombutton_section_div collapse right cart_page_bottom_section order_management_app_bottom_buttons" style="background-color: #f4f4f4 !important; padding-left: 5px !important; padding-right: 5px !important;">
+
+                    <div id="Cancel_Button" class="canceluibtn">
+                        <a class="continuebtn app_button_white_bgcolor app_button_text_dark_color button_border_red_color" ng-click="CloseResonPopup()">
+                            <div class="button_icon_ui_container">
+                                <img class="cancelbutton_icon_ui" src="Images/circle_check.png" />
+                            </div>
+                            <div class="button_text_ui_container">
+                                {{resData.res_OrderList_TrackOrder_RejectDelivery_CancelBtnText}}
+                            </div>
+                        </a>
+                    </div>
+                    <div id="Save_Button" class="confirmationbtn">
+                        <a class="continuebtn app_button_white_bgcolor app_button_text_dark_color app_2px_border_dark_color" ng-click="SaveEditEnquiry()">
+                            <div class="button_icon_ui_container">
+                                <img class="button_icon_ui" src="Images/circle_tick.png" />
+                            </div>
+                            <div class="button_text_ui_container">
+                                {{resData.res_OrderList_TrackOrder_RejectDelivery_DoneBtnText}}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

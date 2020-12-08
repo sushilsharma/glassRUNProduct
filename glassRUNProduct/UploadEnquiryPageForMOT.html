@@ -1,0 +1,1579 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div class="row fixheaderbox" style="margin:auto !important">
+
+            <style>
+
+
+                .labelname {
+                    width: 103px !important;
+                }
+            </style>
+            <div class="fixheaderbackground">
+                <div class="col-md-12 col-sm-2 halfbox nopaddingleft">
+                    <div class="widget widget-stats purple-bg" ng-class="{'creditlimitbar_red': IsCreditLimitInNegative === true}">
+
+                        <div class="col-lg-6">
+                            <div class="stats-title textalingcenter paddingfordetails">{{resData.res_UploadEnquiryPageForMOT_TotalCreditLimit}}</div>
+                            <div class="stats-number textalingcenter paddingfordetails">
+                                <span class="bigcurrencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{CreditLimit  === null ? "0" : CreditLimit  | currency: CurrencyFormatCode}}
+                            </div>
+                        </div>
+                        <div class="sepratorline">
+                            &nbsp;
+                        </div>
+                        <div class="stats-desc paddingfordetails col-lg-6">
+                            <div class="stats-title textalingcenter">{{resData.res_UploadEnquiryPageForMOT_AvailableCredit}}</div>
+                            <div class="stats-number textalingcenter"><span class="bigcurrencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{AvailableCreditLimit  === null ? "0" : AvailableCreditLimit-totalorderamount | currency: CurrencyFormatCode}}</div>
+                        </div>
+
+                        <div class="stats-progress progress" style="margin: auto !important;    width: 100%;    padding: 0px !important;">
+                            <div style="width: 100%;" class="progress-bar"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-2 halfbox secondbox nopaddingright" style="display:none">
+                    <div class="widget widget-stats" style="min-height:55px;" ng-class="{'red-bg' : EmptiesCss === true, 'red-bgForEmpties' : EmptiesCss === false}">
+                        <div class="col-lg-12">
+                            <div ng-show="EmptiesCss" style="text-transform: none !important;" class="stats-title textalingcenter paddingfordetails">You can order for {{ActualEmpties.toString().replace("-", "") | currency: CurrencyFormatCode}} more empties before you exhaust your empties limit.</div>
+                            <div ng-hide="EmptiesCss" style="text-transform: none !important;" class="stats-title textalingcenter paddingfordetails">You have {{ActualEmpties.toString().replace("-", "") | currency: CurrencyFormatCode}} empties overdue for returns. Please arrange to return the empties or deposit ( ₫ {{(ActualEmpties * EmptiesAmount).toString().replace("-", "") | currency: CurrencyFormatCode}} ) to ensure your order gets processed.</div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="pageview" style="overflow-y:hidden">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+
+                        <div class="CreateOrderView scrollablecontainer">
+
+                            <div class="uploadedinquirylist">
+
+                                <div class="row">
+                                    <div class="col-lg-12" style="padding: 0px;">
+                                        <div class="groupbtn last-column">
+
+                                            <div class="col-lg-12" style="width:100%;float:right;margin-bottom: 5px;padding: 0px;" ng-if="IsAllTruckFull">
+                                                <div class="col-sm-3 col-md-3" style="float:right"> <a style="padding-top: 15px;" ng-disabled="IsDisabledSubmit" class="btn btn-success btn-square" ng-click="SaveAllInquiry()">{{resData.res_UploadEnquiryPageForMOT_Submitallinquiries}}</a></div>
+                                                <!--<div class="col-sm-3 col-md-3" style="float:right"><a style="padding-top: 15px;" ng-disabled="IsDisabledSubmit" class="btn btn-warning btn-square" ng-click="SaveAllAsDraftInquiry()">{{resData.res_UploadEnquiryPageForMOT_Saveallasdraft}}</a> </div>-->
+                                                <div class="col-sm-3 col-md-3" style="float:right;display:none"><a class="btn btn-success" ng-click="OpenAddFeedbackpopup()">{{resData.res_UploadEnquiryPageForMOT_AddFeedback}}</a> </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="panel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_UploadEnquiryPageForMOT_CreateInquiry}}</h3>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+                                                <div class="ibox float-e-margins">
+                                                    <div id="demo6" class="ibox-content collapse in">
+
+
+                                                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                            <div class="table-scrollable">
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_Customer}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                {{CustomerName}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_TruckSize}}</div>
+                                                                            <div class="labelcontrol labeltext">
+                                                                                {{TruckSize}}
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_OrderDate}}  </div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                <b>{{OrderDate | date:'dd/MM/yyyy HH:mm:ss'}}</b>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+
+                                                                        <div class="columnfulldata  margintopdata" style="display:none;">
+                                                                            <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_SchedulingDate}}</div>
+
+                                                                            <div class="labelcontrol" style="margin-top: -3px;">
+
+                                                                                <div class="prepend-icon">
+                                                                                    <input type="text" name="datepicker" onkeypress="return false;" ng-model="ProposedDate" class="customdate-picker form-control" placeholder="Select a Request date...">
+                                                                                    <i class="icon-calendar"></i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;" ng-if="false">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">Allocation Qty</div>
+
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                <b>{{AllocationQuantity}}</b>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+
+
+
+                                                                <div class="col-lg-12 nopadding">
+
+
+
+
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">PO Number :</div>
+
+
+                                                                            <div class="labelcontrol labeltext" ng-hide="IsHNN=false">
+                                                                                <b>{{PONumber}}</b>
+                                                                            </div>
+
+
+                                                                            <div class="labelcontrol labeltext" ng-show='IsHNN'>
+                                                                                <input class="form-control form-white" ng-model="MotEnquiry.PONumber" placeholder="License Number" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">Comments :</div>
+
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                <textarea type="text" class="form-control form-white" rows="4" cols="50" ng-model="MotEnquiry.Comments"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <div class="panel-content fullwithwithoutpadding">
+                                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+                                                                <div class="ibox float-e-margins">
+                                                                    <div id="demo6" class="ibox-content collapse in">
+                                                                        <div class="borderedTable" style="float: left;width:100%;padding: 0px 15px;">
+                                                                            <div class="table-scrollable">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12" style="margin-top: 15px;">
+                                                                                        <div id="portalview" class="PortalView">
+                                                                                            <div ng-hide="isShowMsg">
+                                                                                                <div class="uk-width-medium-1-2">
+                                                                                                    <div class="fileuploadcontrol" style="margin-top: -72px;">
+
+                                                                                                        <input type="file" id="fileUpload" ng-file-select="onFileSelect($files)" ng-file-name="FileUploadJSON.DocumentName" ng-file-allowextension="FileUploadJSON.SelectFileFormat" ng-file-allowsize="FileUploadJSON.SelectFileSize" ng-file-extension="FileUploadJSON.FileFormat"
+                                                                                                               ng-file-base64="FileUploadJSON.DocumentBase64" />
+
+
+
+                                                                                                    </div>
+
+                                                                                                    <div class="fileuploadbtn" style="float: left;margin-top: -73px;margin-left: 300px;">
+                                                                                                        <button type="button" class="btn btn-success" ng-click="UploadFile()">{{resData.res_UploadEnquiryPageForMOT_Upload}}</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div style="float:left;width:100%;margin-bottom: 20px;">
+                                                                                                    <div class="footerbuttons" style="margin: 0px;">
+                                                                                                        <span>  <b>Note</b>:     {{resData.res_GratisOrder_GratisNote}}</span>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="panel" ng-show="isShowMsg">
+                                                                                            <div class="panel-content">
+                                                                                                <div class="uk-grid" data-uk-grid-margin="">
+                                                                                                    <div class="uk-width-medium-1-1">
+                                                                                                        <span class="sectionheader">
+                                                                                                            {{PopupMessage}}
+                                                                                                        </span>
+                                                                                                        <div class="parsley-row">
+                                                                                                            <button type="button" class="btn btn-success" ng-click="Close()">{{resData.res_UploadEnquiryPageForMOT_Close}}</button>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <a class="btn btn-success btn-square" ng-if="IsGroup==false" style="float: right; margin-right: 5px !important;" ng-click="OpenViewGratisOrderControl()">{{resData.res_UploadEnquiryPageForMOT_AddGratisOrder}}</a>
+
+
+
+
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <div class="borderedTable" style="float: left;width:100%;display:none;">
+                                                            <div class="table-scrollable PortalView">
+
+                                                                <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+
+                                                                    <span class="sectionheader">{{resData.res_UploadEnquiryPageForMOT_ItemSelection}}</span>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+                                                                    <div class="collg4">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPageForMOT_Item}}</div>
+                                                                        <div class="itemcontrols">
+                                                                            <select class="form-control" style="margin:0px !important">
+                                                                                <option value="Select">{{resData.res_UploadEnquiryPageForMOT_Select}}
+                                                                                <option value="Affligem Double 300x24B Ctn">{{resData.res_UploadEnquiryPageForMOT_AffligemDouble300x24BCtn}}
+                                                                                <option value="Tiger 330x24B Crt Unc">{{resData.res_UploadEnquiryPageForMOT_Tiger330x24BCrtUnc}}
+                                                                                <option value="Tiger Crystl 330x24B Crt">{{resData.res_UploadEnquiryPageForMOT_TigerCrystl330x24BCrt}}
+                                                                                <option value="Tiger Crystl 330x24C Ctn">{{resData.res_UploadEnquiryPageForMOT_TigerCrystl330x24CCtn}}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="collg4" style="width:12%">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPageForMOT_Allocation}}</div>
+                                                                        <div class="itemcontrols" style="margin-top: 10px;">{{resData.res_UploadEnquiryPageForMOT_800}}</div>
+                                                                    </div>
+                                                                    <div class="collg4" style="width:12%">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPageForMOT_Price}}</div>
+                                                                        <div class="itemcontrols" style="margin-top: 10px;">
+                                                                            <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPageForMOT_250}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="collg4" style="width:12%">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPageForMOT_UOM}}</div>
+                                                                        <div class="itemcontrols" style="margin-top: 10px;">{{resData.res_UploadEnquiryPageForMOT_CR}}</div>
+                                                                    </div>
+
+                                                                    <div class="collg4">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPageForMOT_Quantity}}</div>
+                                                                        <div class="itemcontrols">
+
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="collg4" style="display:none">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPageForMOT_Nooftruck}}</div>
+                                                                        <div class="itemcontrols">
+
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="collgbtn">
+                                                                        <div class="labeldata">
+                                                                            &nbsp;
+                                                                        </div>
+                                                                        <div style="float:left">
+                                                                            <a class="btn btn-default" ng-click="OpenReasoncodepopup()"><i class="fa fa-plus"></i></a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="srno">{{resData.res_UploadEnquiryPageForMOT_SrNo}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPageForMOT_ItemCode}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPageForMOT_ItemName}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPageForMOT_UOM}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPageForMOT_Quantity}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPageForMOT_Price}}</th>
+                                                                            <th> </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_UploadEnquiryPageForMOT_1}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_0001}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_Tiger330x24BCrtUnc}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_CR}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_20}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPageForMOT_250}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_UploadEnquiryPageForMOT_2}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_0002}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_AffligemDouble300x24BCtn}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_CR}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_22}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPageForMOT_260}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_UploadEnquiryPageForMOT_3}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_0003}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_TigerCrystl330x24BCrt}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_CR}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_30}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPageForMOT_200}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_UploadEnquiryPageForMOT_4}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_0004}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_TigerCrystl330x24CCtn}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_CR}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPageForMOT_35}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPageForMOT_280}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno"> &nbsp; </td>
+                                                                            <td> &nbsp; </td>
+                                                                            <td> &nbsp; </td>
+                                                                            <td> &nbsp; </td>
+                                                                            <td class="text-right">{{resData.res_UploadEnquiryPageForMOT_TotalPrice}}</td>
+                                                                            <td> <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_UploadEnquiryPageForMOT_990}}</td>
+                                                                            <td class="text-right">
+                                                                                &nbsp;
+                                                                            </td>
+
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="totalamountdiv" style="color:#5b5b5b;margin-top:5px;display:none">
+                                                                    <span>{{resData.res_UploadEnquiryPageForMOT_Total}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_UploadEnquiryPageForMOT_75}}
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MobileView">
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_Item}}</div>
+
+                                                                    <div class="labelcontrol">
+                                                                        <select class="form-control">
+                                                                            <option value="Select">{{resData.res_UploadEnquiryPageForMOT_Select}}
+                                                                            <option value="Affligem Double 300x24B Ctn">{{resData.res_UploadEnquiryPageForMOT_AffligemDouble300x24BCtn}}
+                                                                            <option value="Tiger 330x24B Crt Unc">{{resData.res_UploadEnquiryPageForMOT_Tiger330x24BCrtUnc}}
+                                                                            <option value="Tiger Crystl 330x24B Crt">{{resData.res_UploadEnquiryPageForMOT_TigerCrystl330x24BCrt}}
+                                                                            <option value="Tiger Crystl 330x24C Ctn">{{resData.res_UploadEnquiryPageForMOT_TigerCrystl330x24CCtn}}
+                                                                        </select>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="columnhalfdata mobilefullrow" style="width:50%">
+                                                                        <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_Allocation}}</div>
+
+                                                                        <div class="labelcontrol labeltext">{{resData.res_UploadEnquiryPageForMOT_34}}</div>
+                                                                    </div>
+                                                                    <div class="columnhalfdata mobilefullrow" style="width:50%">
+                                                                        <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_Price}}</div>
+                                                                        <div class="labelcontrol labeltext">
+                                                                            <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPageForMOT_40}}
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="columnhalfdata">
+                                                                        <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_Quantity}}</div>
+
+                                                                        <div class="labelcontrol">
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="columnhalfdata">
+                                                                        <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_Nooftruck}}</div>
+
+                                                                        <div class="labelcontrol">
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="addbtnrow">
+                                                                        <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()" style="padding: 10px !important;"><i class="fa fa-plus"></i></a>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row PortalView" set-heightcustom style="width:100%;overflow-y:auto;position:relative">
+                                    <div class="panel inquirylistpanel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_UploadEnquiryPageForMOT_InquiryList}}</h3>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+
+
+                                                <div class="ibox float-e-margins" ng-repeat="orderdata in OrderData" ng-if="orderdata.ShipTo!==0">
+                                                    <div id="demo6" class="ibox-content collapse in">
+
+
+                                                        <div class="panel widget-weather">
+                                                            <div class="panel-header background-primary ui-sortable-handle">
+                                                                <h3 ng-if="Page!=='UploadEnquiry'">
+                                                                    <i class="icon-30"></i> Truck ( {{$index +1}} / {{OrderData.length}} ) <strong>{{orderdata.TruckName}}</strong> ( {{orderdata.TruckCapacity}} Ton ) <span style="margin-left: 96px;">Consume Weight :{{orderdata.TruckWeight | number:2}}</span>
+                                                                    <span class="removetruck">
+                                                                        <span class="text-right">
+                                                                            <!--<a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>-->
+                                                                        </span>
+                                                                    </span>
+                                                                </h3>
+
+                                                                <h3 ng-if="Page==='UploadEnquiry'">
+                                                                    <i class="icon-30"></i> Truck ( {{$index +1}} / {{OrderData.length}} ) <strong>{{orderdata.TruckName}}</strong> ( {{orderdata.TruckCapacity}} Ton ) <span style="margin-left: 96px;">Consume Weight :{{orderdata.TruckWeight | number:2}}</span>
+                                                                    <span class="removetruck">
+                                                                        <span class="text-right">
+                                                                            <!--<a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>-->
+                                                                        </span>
+                                                                    </span>
+                                                                    <span style="float:right;width: 63%; color: red;">
+                                                                        {{orderdata.TruckOverloadedValidation}}
+                                                                    </span>
+                                                                  
+                                                                </h3>
+
+                                                                <h3>                                                                    
+                                                                    <span style="float:right;width: 63%; color: red;margin-top:-28px">
+                                                                        {{orderdata.ItemSoldMappingValidation}}
+                                                                    </span>
+                                                                </h3>
+
+                                                                <div class="weather panel-content">
+                                                                    <ul class="weather-forecast clearfix">
+                                                                        <li class="first">
+                                                                            <a id="day-0" class="today-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_UploadEnquiryPageForMOT_CreditLimit}}</strong>
+                                                                                <span class="today-img">
+                                                                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                                                                </span><span class="today-temp-low"><i class="fa fa-check"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-1" class="1-days-day active" ng-class="{'warningcolor': orderdata.IsRecievingLocationCapacityExceed === '1' || orderdata.IsRecievingLocationCapacityExceed === true , 'successcolor' : orderdata.IsRecievingLocationCapacityExceed === '0' || orderdata.IsRecievingLocationCapacityExceed === false}">
+                                                                                <strong>{{resData.res_UploadEnquiryPageForMOT_ReceivingLocationCapacity}}</strong><span class="1-days-image">
+                                                                                    <i class="fa fa-industry" aria-hidden="true"></i>
+                                                                                </span><span class="1-days-temp-low"><i ng-class="{'fa fa-exclamation-triangle': orderdata.IsRecievingLocationCapacityExceed === '1' || orderdata.IsRecievingLocationCapacityExceed === true}"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-2" class="2-days-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_UploadEnquiryPageForMOT_Pallet}}</strong>
+                                                                                <span class="2-days-image">
+                                                                                    <i class="fa fa-object-ungroup"></i>
+                                                                                </span>
+                                                                                <span class="2-days-temp-low">( {{orderdata.PalletSpace | number:0 }}/{{TruckCapacityPalettes}} )</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="last">
+                                                                            <a id="day-3" href="javascript:;" class="3-days-day successcolor active">
+                                                                                <strong>{{resData.res_UploadEnquiryPageForMOT_Weight}}</strong><span class="3-days-image">
+                                                                                    <i class="fa fa-truck" aria-hidden="true"></i>
+                                                                                </span><span class="3-days-temp-low">{{orderdata.TruckWeight | number:2}} / {{TruckCapacityWeight}} Ton</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li style="display:none">
+                                                                            <a id="day-4" href="javascript:;" class="4-days-day dangercolor active">
+                                                                                <strong>{{resData.res_UploadEnquiryPageForMOT_Stock}}</strong>
+                                                                                <span class="4-days-image">
+                                                                                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                                </span><span class="4-days-temp-low">{{resData.res_UploadEnquiryPageForMOT_55}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                            <div class="weather panel-content" style="background-color: rgb(49, 157, 181);float:left;width:100%;margin-bottom: 10px !important;">
+                                                                <div class="weather-highlighted" style="float:left;width:100%">
+                                                                    <div class="day-0 weather-item clearfix active">
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_ShipTo}}</div>
+                                                                                <div class="labelcontrol labeltext">
+
+                                                                                    {{orderdata.DeliveryLocationName}}
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_SchedulingDate}}</div>
+
+                                                                                <div class="labelcontrol" style="margin-top: -3px;">
+
+                                                                                    <div class="prepend-icon">
+                                                                                        <input type="text" name="datepicker" id="Requesteddatepicker{{orderdata.OrderGUID}}" ng-model="orderdata.ProposedDateValue" class="RequestedDatePicker form-control" placeholder="Select a Request date...">
+                                                                                        <i class="icon-calendar"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <!--<div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_ProposedETD}}</div>
+                                                                                <div class="labelcontrol">
+                                                                                    {{orderdata.OrderProposedETD}}
+                                                                                </div>
+
+                                                                            </div>-->
+                                                                            <!--<div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_SpecialRequest}}</div>
+                                                                                <div class="labelcontrol">
+                                                                                    {{  orderdata.RequestDate  === '' ? '-'  : orderdata.RequestDate | date:'dd/MM/yyyy'}}
+                                                                                </div>
+                                                                            </div>-->
+                                                                        </div>
+                                                                        <div class="columnfulldata margintopdata" style="margin-top: -1px; display:none">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_LoadNumber}}</div>
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPageForMOT_PlateNumber}}</div>
+
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="conatinerfooter" style="position: relative;margin-top: 0px;height: auto;padding-left: 30px;">
+                                                                    <div class="col-lg-6 pallet_graph_info" style="position: relative;bottom: 0px;">
+                                                                        <div class="progressbarcontainers" style="margin-top: 0px;">
+                                                                            <div class="section_width_100 space_bottom" ng-if="IsPalletSpaceLoadCheckVisibility !='0'">
+
+                                                                                <div class="section_width_100">
+                                                                                    <span class="section_width_50">{{resData.res_createinquirypage_Pallet_Space}}:</span>
+                                                                                    <div class="section_width_right_50">
+                                                                                        <span class="textbold_600">{{orderdata.PalletSpace | number:2}}</span> out of <span class="textbold_600">{{TruckCapacityPalettes}}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="section_width_100">
+                                                                                    <div class="control_view">
+                                                                                        <div class="progress progress-striped active progress-bar-large">
+                                                                                            <div class="progress-bar-warning progressive_color" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width' : orderdata.PalettesCorrectWeightInPercentage + '%' }" style="width:{{orderdata.PalettesCorrectWeightInPercentage}}%">
+                                                                                                &nbsp;
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="section_width_100" ng-if="IsWeightLoadCheckVisibility !='0'">
+                                                                                <div class="section_width_100">
+                                                                                    <span class="section_width_50">{{resData.res_CreateInquiryPage_Weight}}:</span>
+                                                                                    <div class="section_width_right_50">
+                                                                                        <span class="textbold_600">{{orderdata.TruckWeight | number : 2}}</span> out of <span class="textbold_600">{{TruckCapacityWeight}}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="section_width_100">
+                                                                                    <div class="control_view">
+                                                                                        <div class="progress progress-striped active progress-bar-large">
+                                                                                            <div class="progress-bar-warning progressive_color" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width' : orderdata.TruckCapacityFullInPercentage + '%' }" style="width:{{orderdata.TruckCapacityFullInPercentage}}%">
+                                                                                                &nbsp;
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="weather-location clearfix" style="float:left;width:100%">
+                                                                    <div class="columnfulldata margintopdata">
+                                                                        <table class="table table-hover">
+                                                                            <thead>
+                                                                                <tr>
+
+                                                                                    <th class="srno">{{resData.res_UploadEnquiryPageForMOT_SrNo}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPageForMOT_ItemCode}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPageForMOT_ItemName}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPageForMOT_UOM}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPageForMOT_Quantity}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPageForMOT_Price}}</th>
+                                                                                    <th style="display:none">{{resData.res_UploadEnquiryPageForMOT_QuantityInStock}}</th>
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <!--<tr class="" ng-repeat="product in orderdata.OrderProductList">
+                                                                                    <td class="srno">{{$index +1}} </td>
+                                                                                    <td> {{product.ProductCode}} </td>
+                                                                                    <td> {{product.ItemName}} </td>
+                                                                                    <td> {{product.PrimaryUnitOfMeasure}} </td>
+                                                                                    <td> {{product.ProductQuantity | number :0 }} </td>
+                                                                                    <td ng-if="product.GratisOrderId === 0">
+                                                                                        <span class="currencyimg">
+                                                                                            <img src="Images/vietnam_vietnamese_dong_currency-256.png">
+                                                                                        </span>{{product.ItemPrices | currency: CurrencyFormatCode}}
+                                                                                    </td>
+                                                                                    <td ng-if="product.GratisOrderId !== 0">
+                                                                                        <span class="currencyimg">
+                                                                                            <img src="Images/vietnam_vietnamese_dong_currency-256.png">
+                                                                                        </span>{{resData.res_UploadEnquiryPageForMOT_0}}
+                                                                                    </td>
+                                                                                    <td style="display:none">{{resData.res_UploadEnquiryPageForMOT_30}}</td>
+
+
+                                                                                </tr>-->
+                                                                                <tr ng-repeat="product in orderdata.OrderProductList | filter: myFilter" ng-if='product.IsActive==true || product.IsActive==1'>
+                                                                                    <td class="srno">
+                                                                                        {{$index +1}} <i class="fa fa-gift" style="color:green" aria-hidden="true" ng-if="product.ItemType == 31 || product.ItemType == '31'"></i>
+                                                                                        <i class="fa fa-google" style="color: rgb(41, 171, 226); " aria-hidden="true" ng-if="product.ItemType == 30 || product.ItemType == '30'"></i>
+                                                                                    </td>
+                                                                                    <td> {{product.ProductCode}} </td>
+                                                                                    <td> {{product.ItemName}} </td>
+                                                                                    <td> {{product.PrimaryUnitOfMeasure}} </td>
+                                                                                    <td> {{product.ProductQuantity }} </td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{product.ItemPrices | currency: CurrencyFormatCode }} </td>
+
+
+                                                                                </tr>
+                                                                                <tr ng-repeat="product in orderdata.OrderProductList | filter: { ProductCode: WoodenPalletCode }" ng-if='product.IsActive==true || product.IsActive==1'>
+                                                                                    <td class="srno">
+                                                                                        {{orderdata.OrderProductList.length}} <i class="fa fa-gift" style="color:green" aria-hidden="true" ng-if="product.ItemType == 31 || product.ItemType == '31'"></i>
+                                                                                        <i class="fa fa-google" style="color: rgb(41, 171, 226); " aria-hidden="true" ng-if="product.ItemType == 30 || product.ItemType == '30'"></i>
+                                                                                    </td>
+                                                                                    <td> {{product.ProductCode}} </td>
+                                                                                    <td> {{product.ItemName}} </td>
+                                                                                    <td> {{product.PrimaryUnitOfMeasure}} </td>
+                                                                                    <td> {{product.ProductQuantity  | number :0}} </td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{product.ItemPrices | currency: CurrencyFormatCode }} </td>
+
+
+                                                                                </tr>
+                                                                                <tr>
+
+                                                                                    <td>  </td>
+                                                                                    <td>  </td>
+                                                                                    <td>  </td>
+                                                                                    <td> Total Tax ({{ItemTaxInPec}} %)</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span> {{calcTotalTax(orderdata.OrderGUID)| currency: CurrencyFormatCode}} </td>
+                                                                                    <td class="text-right"></td>
+
+                                                                                </tr>
+                                                                                <tr>
+
+                                                                                    <td>  </td>
+                                                                                    <td>  </td>
+                                                                                    <td>  </td>
+                                                                                    <td>{{resData.res_CreateInquiryPage_TotalDeposit}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span> {{calcTotalDepositeAmount(orderdata.OrderGUID)| currency: CurrencyFormatCode}} </td>
+                                                                                    <td class="text-right"></td>
+
+                                                                                </tr>
+                                                                                <tr>
+
+                                                                                    <td>  </td>
+                                                                                    <td>  </td>
+                                                                                    <td>  </td>
+                                                                                    <td>{{resData.res_CreateInquiryPage_Total}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span> {{((calcTotalAmount(orderdata.OrderGUID) + calcTotalTax(orderdata.OrderGUID)) + calcTotalDepositeAmount(orderdata.OrderGUID))  | currency: CurrencyFormatCode}} </td>
+                                                                                    <td class="text-right"></td>
+
+                                                                                </tr>
+
+
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="weather-highlighted weatherapprovebth">
+                                                                    <div class="groupbtn last-column">
+                                                                        <div style="width:100%;float:right">
+
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-if="orderdata.IsTruckFull " ng-click="SingleInquiry(orderdata.OrderGUID)">{{resData.res_UploadEnquiryPageForMOT_SubmitInquiry}}</a> </div>
+                                                                            <!--<div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-if="orderdata.IsTruckFull " ng-click="SingleAsDraftInquiry(orderdata.OrderGUID)">{{resData.res_UploadEnquiryPageForMOT_SaveAsDraft}}</a> </div>-->
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-if="orderdata.IsTruckFull " ng-click="OpenAddNotesModalPopup(orderdata.OrderGUID)">{{resData.res_createinquirypage_AddNote}}</a> </div>
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-if="orderdata.IsTruckFull && Page=='UploadEnquiry'" ng-click="OpenViewGratisOrderControlInRepeater(orderdata.OrderGUID)">{{resData.res_UploadEnquiryPageForMOT_AddGratisOrder}}</a> </div>
+                                                                            <!--<a class="btn btn-success btn-square" ng-if="IsGroup==false" style="float: right; margin-right: 5px !important;" ng-click="OpenViewGratisOrderControl()">{{resData.res_UploadEnquiryPageForMOT_AddGratisOrder}}</a>-->
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="remainingitemlist">
+
+                                <div class="row">
+                                    <div class="panel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_UploadEnquiryPageForMOT_ProductList}}</h3>
+
+
+                                            <div class="Recalculatebtn" ng-show="IsRecalculateVisibile" ng-if="IsGroup ==false">
+                                                <a class="btn btn-success btn-square" ng-click="Recalculate();">
+                                                    <span ng-if="IsCalculate ==false"> {{resData.res_UploadEnquiryPageForMOT_Recalculate}} </span>
+                                                    <span ng-if="IsCalculate ==true"> {{resData.res_UploadEnquiryPageForMOT_calculate}} </span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope" style="height: 450px;overflow-y: auto;">
+                                                <div class="table-scrollable PortalView">
+
+                                                    <ul class="list">
+                                                        <li class="item headeritem">
+                                                            <div class="item1">
+                                                                &nbsp;
+                                                            </div>
+                                                            <div class="item2">
+                                                                <span class="itemname">{{resData.res_UploadEnquiryPageForMOT_ItemName}}</span>
+                                                                <span class="itemcode">{{resData.res_UploadEnquiryPageForMOT_ItemCode}}</span>
+
+                                                            </div>
+                                                            <div class="item3">{{resData.res_UploadEnquiryPageForMOT_UOM}}</div>
+                                                            <div class="item4">{{resData.res_UploadEnquiryPageForMOT_Qty}}</div>
+                                                        </li>
+                                                    </ul>
+
+                                                    <ul ui-sortable="sortableOptions" ng-model="MOTOrderJson" class="list">
+
+                                                        <li ng-repeat="item in MOTOrderJson | orderBy:item.SequenceNumber" class="item" style="cursor:move" ng-style="item.IsValidItem =='0' && {'background-color':'red'}">
+                                                            <!--<div class="item1">
+                                                                <div ng-if="$index === 1 || $index === 2" class="fa fa-check greenbgfont">  </div>
+
+                                                                <i ng-if="$index === 0 || $index === 4" class="fa fa-exclamation-triangle orangebgfont"></i>
+
+                                                                <i ng-if="$index === 3 || $index === 5" class="fa fa-times redbgfont"></i>
+                                                            </div>-->
+                                                            <div class="item2">
+                                                                <i class="fa fa-google" style="color: rgb(41, 171, 226); float: left; margin-right: 5px;" aria-hidden="true" ng-if="item.ItemType == 30 || item.ItemType == '30'"></i>
+                                                                <span class="itemname">{{item.ItemName}}</span>
+                                                                <span class="itemcode">({{item.ItemCode}})</span>
+                                                            </div>
+                                                            <div class="item3">
+                                                                {{item.UnitOfMeasureName}}
+                                                            </div>
+                                                            <div class="item4">
+                                                                {{item.Quantity}}
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script id="templates/modal.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Items</h1>
+                        <button class="button button-clear button-primary" ng-click="modalpopup.hide()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+                            <div class="customlistview" style="border: 1px solid #d5d5d5">
+                                <div class="paddingcontainer">
+                                    <div class="listviewContainer">
+                                        <span class="listviewtitle">
+                                            Affligem Double 300x24B Ctn
+                                        </span>
+                                    </div>
+                                    <div class="listviewContainer">
+                                        <span class="listviewdatafield">
+                                            Item Code : A0001
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Price : <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png" /></span>200
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Quantity : 1000
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            UOM : -
+                                        </span>
+
+                                        <span class="listviewdatafield">
+                                            <span class="text-right">
+                                                <a class="edit btn btn-sm btn-default" href="javascript:;"><i class="icon-note"></i></a>
+                                                <a class="delete btn btn-sm btn-danger" href="javascript:;"><i class="icons-office-52"></i></a>
+                                            </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="customlistview" style="border: 1px solid #d5d5d5">
+                                <div class="paddingcontainer">
+                                    <div class="listviewContainer">
+                                        <span class="listviewtitle">
+                                            Affligem Double 300x24B Ctn
+                                        </span>
+                                    </div>
+                                    <div class="listviewContainer">
+                                        <span class="listviewdatafield">
+                                            Item Code : A0001
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Price : <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png" /></span>200
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Quantity : 1000
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            UOM : -
+                                        </span>
+
+                                        <span class="listviewdatafield">
+                                            <span class="text-right">
+                                                <a class="edit btn btn-sm btn-default" href="javascript:;"><i class="icon-note"></i></a>
+                                                <a class="delete btn btn-sm btn-danger" href="javascript:;"><i class="icons-office-52"></i></a>
+                                            </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </ion-content>
+                </ion-modal-view>
+            </script>
+
+            <script id="templates/RPMQuantity.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquirySmallModalView CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">RPM Quantity</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseRPMQuantitypopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-5" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Item :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Affligem Double 300x24B Ctn</option>
+                                                <option value="Tiger 330x24B Crt Unc">Tiger 330x24B Crt Unc</option>
+                                                <option value="Tiger Crystl 330x24B Crt">Tiger Crystl 330x24B Crt</option>
+                                                <option value="Tiger Crystl 330x24C Ctn">Tiger Crystl 330x24C Ctn</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            RPM Quantity :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" placeholder="RFM Quantity" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="labeldata">
+                                        &nbsp;
+                                    </div>
+                                    <div style="float:left">
+                                        <a class="btn btn-default" ng-click="OpenReasoncodepopup()"><i class="fa fa-plus"></i></a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="srno"> Sr. No. </th>
+                                            <th> Item Code </th>
+                                            <th> Item Name </th>
+                                            <th> RPM Quantity </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="srno"> 1 </td>
+                                            <td> 0001 </td>
+                                            <td> Tiger 330x24B Crt Unc </td>
+                                            <td> 20 </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td class="srno"> 2 </td>
+                                            <td> 0002 </td>
+                                            <td> Affligem Double 300x24B Ctn </td>
+                                            <td> 22 </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="srno"> 3 </td>
+                                            <td> 0003 </td>
+                                            <td> Tiger Crystl 330x24B Crt </td>
+                                            <td> 30 </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="CloseRPMQuantitypopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="CloseRPMQuantitypopup()">
+                                <button class="button btn btn-default">Reset</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+
+            <script id="templates/reasoncodepopup.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryModalView bgcolorheaderandfooter" style="min-height:200px !important">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Reason Code</h1>
+                        <button class="button button-clear button-primary" ng-click="ClosReasoncodepopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+                            <div class="customlistcontrolview">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname" style="padding-top: 5px; width: 34%;">
+                                            Please choose reason code :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control">
+                                                <option value="Select">Select</option>
+                                                <option value="Reason 1">Reason 1</option>
+                                                <option value="Reason 1">Reason 2</option>
+                                                <option value="Reason 1">Reason 3</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ion-content>
+
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="ClosReasoncodepopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="ClosReasoncodepopup()">
+                                <button class="button btn btn-default redclosebtn">Reset</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+
+
+            <script id="templates/AddFeedback.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryMeadiumModalView CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Add Feedback</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseAddFeedbackpopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list" style="float:left;width:100%;border:1px solid #d5d5d5;border-bottom:none;margin-bottom:0px">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Inquiry Number :
+                                        </div>
+                                        <div class="labelcontrol" style="margin-top: 6px;">
+                                            INQ0007
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+
+                                        <button type="button" class="btn  btn-square" ng-class="{'btn-success' : FeedbackVariable.OverAll === true, 'btn-default' : FeedbackVariable.OverAll === false}" ng-click="setoverall()">Overall Feedback</button>
+
+                                        <button type="button" class="btn btn-default btn-square" ng-class="{'btn-success' : FeedbackVariable.Specific === true, 'btn-default' : FeedbackVariable.Specific === false}" ng-click="setspecific()">Specific Item</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Item :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Affligem Double 300x24B Ctn</option>
+                                                <option value="Tiger 330x24B Crt Unc">Tiger 330x24B Crt Unc</option>
+                                                <option value="Tiger Crystl 330x24B Crt">Tiger Crystl 330x24B Crt</option>
+                                                <option value="Tiger Crystl 330x24C Ctn">Tiger Crystl 330x24C Ctn</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Quantity :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" placeholder="Quantity" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Feedback :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Good, no complain !</option>
+                                                <option value="Tiger 330x24B Crt Unc">Wrong Invoice !</option>
+                                                <option value="Tiger 330x24B Crt Unc">Driver behavior is in appropriate</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Feedback :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Missing beer</option>
+                                                <option value="Tiger 330x24B Crt Unc">Damage</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Attachment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                <div class="form-control" data-trigger="fileinput">
+                                                    <i class="glyphicon glyphicon-file fileinput-exists"></i><span class="fileinput-filename"></span>
+                                                </div>
+                                                <span class="input-group-addon btn btn-default btn-file">
+                                                    <span class="fileinput-new">Choose...</span><span class="fileinput-exists">Change</span>
+                                                    <input type="file" name="...">
+                                                </span>
+                                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Comment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div style="float:left;width:100%;border:1px solid #d5d5d5;">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            HVBL Comment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="CloseAddFeedbackpopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="CloseAddFeedbackpopup()">
+                                <button class="button btn btn-default">Reset</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+            <script id="ConfirmationPopuScreen.html" type="text/ng-template">
+                <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                    <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+
+                        <h1 class="title">{{PopupVariables.Title}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseConfirmationPopuScreen()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="false" class="popioncontainer">
+                        <div class="messagebody">
+                            {{PopupVariables.Message}}
+                        </div>
+                    </ion-content>
+
+
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+                        <div class="fullwidthrow">
+                            <div class="buttons modalbtn" ng-click="CloseConfirmationPopuScreen()">
+                                <button class="button btn btn-default">{{PopupVariables.Okbtn}}</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+
+                </ion-modal-view>
+            </script>
+
+
+            <script id="ViewGratisOrder.html" type="text/ng-template">
+                <ion-modal-view class="DetailModalViewScreen bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Gratis Order</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseViewGratisOrderControl()"><i class="icons-office-52"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+                            <div class="customlistview" style="border: 1px solid #d5d5d5;cursor: pointer" ng-repeat="AssociatedOrder in AssociatedOrderList" ng-if="!AssociatedOrder.IsSelected" ng-click="AddAssociatedOrder(AssociatedOrder.OrderId)">
+                                <div class="paddingcontainer">
+                                    <div class="listviewContainer">
+
+                                        <span class="listviewtitle">
+                                            {{AssociatedOrder.OrderType}} : {{AssociatedOrder.SalesOrderNumber}}
+                                        </span>
+                                    </div>
+                                    <div class="listviewContainer">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="srno"> Sr. No. </th>
+                                                    <th> Item Code </th>
+                                                    <th> Item Name </th>
+                                                    <th> Desc 1 </th>
+                                                    <th> Desc 2 </th>
+                                                    <th> UOM </th>
+                                                    <th> Quantity </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr ng-repeat="orderProduct in AssociatedOrder.OrderProductsList">
+                                                    <td class="srno"> {{$index +1}} </td>
+                                                    <td> {{orderProduct.ProductCode}} </td>
+                                                    <td> {{orderProduct.ItemName}} </td>
+                                                    <td> {{orderProduct.Description1}} </td>
+                                                    <td> {{orderProduct.Description2}} </td>
+                                                    <td> {{orderProduct.UOM}} </td>
+                                                    <td> {{orderProduct.ProductQuantity}} </td>
+
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </ion-content>
+                </ion-modal-view>
+            </script>
+
+
+            <script id="templates/EnquiryValidation.html" type="text/ng-template">
+                <ion-modal-view class="confirmationmsgmodalviewMOT bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">MOT Validation</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseEnquiryValidationpopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+                            <div class="customlistcontrolview">
+                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+
+                                    <div class="columnfulldata  margintopdata">
+                                        <div>
+                                            Item Allocation exceeded for below items, please revise order
+                                        </div>
+                                        <div class="col-lg-12 feedbackgrid">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th> Item Code </th>
+                                                        <th> Item Name </th>
+                                                        <th> Ordered Qty </th>
+                                                        <th> Allocation </th>
+                                                        <th> Excess Qty </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in AllocationError">
+
+                                                        <td> {{item.ItemCode}} </td>
+                                                        <td> {{item.ItemName}} </td>
+                                                        <td> {{item.Quantity | number:0}} </td>
+                                                        <td> {{item.AllocationQuantity | number:0}} </td>
+                                                        <td> {{(item.Quantity - item.AllocationQuantity) | number:0 }} </td>
+
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </ion-content>
+
+                    <ion-footer-bar align-title="left" class="popupfooter">
+
+                        <div class="popupbtnstyle">
+
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square redclosebtn" ng-click="CloseEnquiryValidationpopup()">
+                                    Close
+                                </a>
+                            </div>
+                        </div>
+
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+        </div>
+        <!--<div class="fabbutton">
+
+            <ion-fab class="firstfab" bottom="" left="">
+                <a ng-click="OpenModalpopup()" class="carticon MobileView">
+                    <i class="fa fa-shopping-cart bg-blue"></i>
+                </a>
+            </ion-fab>
+
+            <ion-fab class="thirdfab" bottom="" left="">
+                <a ui-sref="ViewCreateInquiry" class="carticon">
+                    <i class="fa fa-plus bg-blue"></i>
+                </a>
+            </ion-fab>
+
+            <ion-fab class="secondfab" bottom="" left="">
+                <a ui-sref="ViewCreateInquiry" class="carticon">
+                    <i class="fa fa-truck bg-blue"></i>
+                </a>
+            </ion-fab>
+
+        </div>-->
+
+
+        <div class="modal-backdrop active" ng-if="NotesModalPopupControl">
+            <div class="modal-backdrop-bg"></div>
+            <div class="modal-wrapper">
+                <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important;z-index:10000 !important">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">{{resData.res_ViewInquiryForCustomer_Note}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseAddNotesModalPopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding IonicPopupHeight">
+                        <div class="list">
+                            <div class="customlistcontrolview">
+
+                                <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+
+                                        <div class="labelname" style="width:70px">
+                                            {{resData.res_ViewInquiryForCustomer_Note}} :
+                                        </div>
+                                        <div class="labelcontrol" style="width: 85%;">
+                                            <textarea type="text" class="form-control form-white" style="width:100%;height:140px" ng-readonly="Page.EnquiryApprovebtn === true" ng-model="NoteVariable.NoteText"></textarea>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ion-content>
+
+                    <ion-footer-bar align-title="left" class="popupfooter">
+
+                        <div class="popupbtnstyle">
+
+                            <div class="popupbuttonstyle" ng-hide="Page.EnquiryApprovebtn === true">
+                                <a class="btn btn-success btn-square" ng-click="SaveNote()">
+                                    Save
+                                </a>
+                            </div>
+                            <div class="popupbuttonstyle">
+                                <a class="btn btn-success btn-square redclosebtn" ng-click="CloseAddNotesModalPopup()">
+                                    Close
+                                </a>
+                            </div>
+                        </div>
+
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </div>
+        </div>
+
+
+
+
+        <script id="AddTruck.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{AddTruckHeaderMessage}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseAddTruckControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        {{AddTruckBodymessage}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar class="popupfooter">
+
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle" ng-hide="EnquiryId>0">
+                            <a class="btn btn-success btn-square" ng-click="AddTruck()">
+                                Add new truck
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="CloseAddFinalize()">
+                                Finalize
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="CloseAddTruckControl()">
+                                Edit Order
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+
+    </ion-content>
+</ion-view>

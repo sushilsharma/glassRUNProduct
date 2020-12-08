@@ -1,0 +1,36 @@
+﻿<div class="modal-backdrop active" ng-if="ReasonCodeModalPopup">
+    <div class="modal-backdrop-bg"></div>
+    <div class="modal-wrapper">
+        <ion-modal-view class="confirmationmsgmodalview ShowBulkChangePickupDateAndShift bgcolorheaderandfooter modal fade-in-scale ng-enter active ng-enter-active" style="min-height:300px !important;z-index: 100000;width:800px !important">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">Reason Code</h1>
+                <button class="button button-clear button-primary" ng-click="CloseReasoncodepopup()"><i class="fa fa-times"></i></button>
+            </ion-header-bar>
+            <ion-content scroll="hidden" class="padding IonicPopupHeight scroll-content ionic-scroll overflow-scroll  has-header has-footer">
+                <div class="scroll">
+                    <div class="list">
+                        <div ng-include="'ReasonCodeView.html'">
+                        </div>
+                    </div>
+                </div>
+            </ion-content>
+            <ion-footer-bar align-title="left" class="popupfooter">
+                <div class="popupbtnstyle">
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square" ng-click="SaveReasonCode(InputObject)">
+                            Save
+                        </a>
+                    </div>
+                    <div class="popupbuttonstyle">
+                        <a class="btn btn-success btn-square redclosebtn" ng-click="CloseReasoncodepopup()">
+                            Close
+                        </a>
+
+						
+                    </div>
+                </div>
+				
+            </ion-footer-bar>
+        </ion-modal-view>
+    </div>
+</div>

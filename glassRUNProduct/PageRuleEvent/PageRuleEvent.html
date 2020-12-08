@@ -1,0 +1,231 @@
+﻿<style type="text/css">
+	.GridColumnWithBorder_AddCompany {
+		float: left;
+		width: 25%;
+		padding: 0px 20px;
+		border-right: 2px dashed #d5d5d5;
+		height: 36px;
+		padding-top: 5px;
+	}
+</style>
+
+<ion-view>
+	<ion-content class="main-content">
+		<div class="pageview">
+			<!--<div class="header">
+				<h2>{{Action}} <strong> {{resData.res_TruckSizeHeader_View}}</strong></h2>
+			</div>-->
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="nav-tabs2">
+						<ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+							<li class="active" ng-class="{'active': ViewTab}">
+								<a ng-click="ViewForm()" class="">
+									<tab-heading>
+										<i class="fa fa-eye"></i>{{resData.res_SettingMaster_View}}
+									</tab-heading>
+								</a>
+							</li>
+							<li class="" ng-class="{'active': AddTab}">
+								<a ng-click="AddForm()">
+									<tab-heading>
+										<i ng-show="!EditMode" class="fa fa-plus"></i><span ng-show="!EditMode">{{resData.res_SettingMaster_Add}}</span><i ng-show="EditMode" class="fa fa-pencil"></i><span ng-show="EditMode">{{resData.res_TransportVehicleUI_Edit}}</span>
+									</tab-heading>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane" ng-class="{'active': AddTab}">
+								<div class="panel-content">
+									<div class="row">
+										<div class="formcontrols form-horizontal ng-pristine ng-valid" style="padding-bottom: 51px!important;">
+											
+
+
+											<div class="col-lg-12">
+												<div>
+													<div class="col-lg-6">
+														<div class="columnfulldata  margintopdata">
+															<div class="labelname reasonlable">
+																{{resData.res_DimensionMapping_Page}} : <span style="color:red">*</span>
+															</div>
+															<div class="labelcontrol">
+																<div class="itemcontrols" style="width: 600px;">
+																	<div class="padded-row" style="position: relative;width: 100%;">
+																		<div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+																			<div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+																				<input id="ItemListAutoCompleteBox_value" placeholder="{{resData.res_GridConfiguration_SelectPage}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="SearchControl.InputPageItem" ng-disabled="pageContrlAcessData.InputPageItem =='0' || pageContrlAcessData.InputPageItem =='1' || IsControlDisbaled" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="PageInputSelecteChangeEvent(SearchControl.InputPageItem)" style="border: 1px solid #bec1c3;border-radius: 20px;">
+																				<div id="ItemListAutoCompleteBox_dropdown" ng-if="showPagebox" class="angucomplete-dropdown" style="height: auto !important;top:40px !important;max-height: 220px;">
+																					<div class="angucomplete-searching" ng-if="searchingPage" ng-bind="textPageSearching" style="">{{resData.res_GridConfiguration_SelectObject}}</div>
+																					<div class="angucomplete-searching" ng-if="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+																					<div class="angucomplete-row" ng-repeat="result in PagesList | filter:SearchControl.InputPageItem" ng-hide="pageContrlAcessData.InputPageItem =='0' || pageContrlAcessData.InputPageItem =='1' || IsControlDisbaled" key-navigation="" ng-click="LoadGridColumns(result.PageName,result.PageId)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+																						<div class="angucomplete-title" style="">
+																							{{result.PageName}}
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+
+																		<a class="clearautosearchbox" ng-if="SearchControl.InputPageItem.length==0 || SearchControl.InputPageItem === undefined" ng-click="ShowPageSearchList()">
+																			<i class="fa fa-caret-down" style="width: 17px;font-size: 14px;" ng-disabled="true"></i>
+																		</a>
+																		<a class="clearautosearchbox" ng-if="SearchControl.InputPageItem.length>0 && !IsControlDisbaled" ng-click="ClearPageInputSearchbox()">
+																			<i class="fa fa-times" style="width: 17px;font-size: 14px;" ng-disabled="true"></i>
+																		</a>
+																	</div>
+
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+
+
+
+
+
+											<div class="col-lg-12">
+												<div ng-if="pageContrlAcessData.PageEvent !='0'">
+													<div class="col-lg-6">
+														<div class="columnfulldata  margintopdata">
+															<div class="labelname reasonlable">
+																{{resData.res_PageRuleEvent_PageEvent}}<span style="color:red;">*</span>
+															</div>
+															<div class="labelcontrol">
+																<select id="ddlPaymentPlanId" ng-model="PageRuleEventJSON.PageEvent" ng-disabled="EditMode" class="form-control" name="val_SelectObject" ng-options="objs.PageEventId as objs.EventName for objs in PageEventList " ng-readonly="pageContrlAcessData.PageEvent =='0' || pageContrlAcessData.PageEvent =='1'">
+																	<option value="">Select</option>
+																</select>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-lg-12">
+												<div ng-if="pageContrlAcessData.RuleType !='0'">
+													<div class="col-lg-6">
+														<div class="columnfulldata  margintopdata">
+															<div class="labelname reasonlable">
+																{{resData.res_PageRuleEvent_RuleType}}<span style="color:red;">*</span>
+															</div>
+															<div class="labelcontrol">
+																<select id="ddlPaymentPlanId" ng-model="PageRuleEventJSON.RuleType" ng-disabled="EditMode" class="form-control" name="val_SelectObject" ng-options="objs.LookUpCategoryId as objs.Name for objs in LookTypeDataList | orderBy:'Code'" ng-readonly="pageContrlAcessData.RuleType =='0' || pageContrlAcessData.RuleType =='1'">
+																	<option value="">Select</option>
+																</select>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										
+
+
+
+											<div class="ActionButtons">
+												<div class="clearbtn">
+													<button type="button" ng-click="ClearControls()" class="btn btn-default">Clear</button>
+												</div>
+												<div class="successbtn">
+													<button type="button" ng-click="Save()" class="btn btn-success">Save</button>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane active" ng-class="{'active': ViewTab}">
+								<div class="panel-content">
+									<div class="row">
+										<div class="formcontrols form-horizontal ng-pristine ng-valid">
+											<div class="col-md-12">
+												<div id="PageRuleEventGrid" class="Company_Grid" style="height: 70vh;" dx-data-grid="PageRuleEventGrid" dx-item-alias="PageRuleEventGridData">
+
+
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+
+	<script id="WarningMessage.html" type="text/ng-template">
+		<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+			<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+				<h1 class="title">{{resData.res_AddCompany_Warning}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="false" class="popioncontainer">
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+					{{resData.res_AddCompany_DeleteWarning}}
+				</div>
+			</ion-content>
+			<ion-footer-bar class="popupfooter">
+
+				<div class="popupbtnstyle">
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="DeleteYes()">
+							{{resData.res_AddCompany_DeleteYes}}
+						</a>
+						<a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+							{{resData.res_AddCompany_DeleteNo}}
+						</a>
+					</div>
+
+
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+	<script id="ActiveInActiveWarningMessage.html" type="text/ng-template">
+		<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+			<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+				<h1 class="title">{{resData.res_VehicleSize_Warning}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseActiveInActiveWarningMessageConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="false" class="popioncontainer">
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;" ng-if="SelectedIdVehicleSizeAction === '1'">
+					{{resData.res_VehicleSize_ActiveWarning}}
+				</div>
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;" ng-if="SelectedIdVehicleSizeAction === '0'">
+					{{resData.res_VehicleSize_InActiveWarning}}
+				</div>
+			</ion-content>
+			<ion-footer-bar class="popupfooter">
+
+				<div class="popupbtnstyle">
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="ActiveInActiveVehicleSize()">
+							{{resData.res_VehicleSize_ActiveInActiveYes}}
+						</a>
+						<a class="btn btn-success btn-square" ng-click="CloseActiveInActiveWarningMessageConfirmation()">
+							{{resData.res_VehicleSize_ActiveInActiveNo}}
+						</a>
+					</div>
+
+
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+</ion-view>

@@ -1,0 +1,136 @@
+﻿<ion-view>
+    <ion-content class="main-content">
+        <link href="Styles/console_tracker.css" rel="stylesheet">
+        <style>
+            .activeTab {
+                background-color: #394C4A !important;
+                color: #6cbf43 !important;
+            }
+
+            .visiblehiddentxt1 {
+                height: 1px;
+                right: 0px;
+                left: 0px;
+                top: 8px;
+                background-color: #fff !important;
+                border: 1px solid #fff !important;
+            }
+
+            #ui-datepicker-div.ui-datepicker {
+                margin-top: 8px !important;
+            }
+        </style>
+        <div class="pageview orderlist_page" style="padding: 20px 30px 0;overflow-y:hidden">
+            <div class="row">
+
+                <div class="col-md-12 pagecontainerdiv" style="margin-top:0px">
+                    <div class="gridheaderactionbuttons">
+
+                        <div style="float:left;margin-bottom: 24px;">
+                            <div class="footerbuttons footerbtnrightborder" style="margin:0px">
+                                <a class="buttonstext drop-shadow greencolorbtntext toprefreshbuttons" ng-click="RefreshDataGrid()">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+                            </div>
+							<div class="footerbuttons">
+								<a class="buttonstext drop-shadow greencolorbtntext" ng-click="ExportToExcelSalesAdminApprovalData()">
+									<i class="fa fa-file-excel-o fa-icon"></i> {{resData.res_OMInquiryPage_ExportToExcel}}
+								</a>
+							</div>
+                        </div>
+                    </div>
+                    <div id="portalview" class="PortalView">
+                        <div class="panel drop-shadow" style="background: #fff;float: left;width: 100%;">
+                            <div class="panel-content" style="padding:0px;float:left;width: 100%;">
+                                <div class="dx-viewport">
+                                    <div class="demo-container">
+                                        <div id="GratisListGrid" class="SalesAdminApproval_Grid" dx-data-grid="OrderDataGrid" dx-item-alias="SalesAdminApprovalData">
+                                            <div data-options="dxTemplate:{ name:'StatusTemplate' }">
+                                                <a style="float:left;width:150px" ng-style="{'color' : SalesAdminApprovalData.data.Class}">{{SalesAdminApprovalData.data.Status}}</a>
+                                            </div>
+                                            <div data-options="dxTemplate:{ name:'ExternalStatusTemplate' }">
+                                                <a style="float:left;width:150px" ng-style="{'color' : SalesAdminApprovalData.data.ExternalClass}">{{SalesAdminApprovalData.data.ExternalStatus}}</a>
+                                            </div>
+                                            <div id="EnquiryProductInfoId" class="EnquiryProductInfoClass Enquiry_list_height" data-options="dxTemplate: {name: 'EnquiryProductInfo'}" style="float: left;padding-bottom:0px !important;">
+                                                <div class="EnquiryDetailsAccordion" ng-if="ProductInfoSection">
+                                                    <div class="ContainerSection">
+                                                        <div class="conatinerheader headerdataconatiner">
+
+                                                            <div class="NumberConatiner  rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_SrNo}}
+                                                            </div>
+
+                                                            <div class="ItemNameContainer">
+                                                                {{resData.res_ViewInquiryForCustomer_ItemName}}
+                                                            </div>
+                                                            <!--<div class="UOMContainer">
+                        {{resData.res_ViewInquiryForCustomer_UOM}}
+                    </div>-->
+
+                                                            <div class="QuantityControl rightaling">
+                                                                {{resData.res_ViewInquiryForCustomer_Quantity}} <span class="controltagicon"></span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="conatinerbody">
+                                                            <div class="conatinerheader itemrowcontainer" style="height: 56px;" ng-repeat="enquiryProduct in OrderProductList" ng-if="enquiryProduct.IsActive === '1'">
+                                                                <div class="NumberConatiner rightaling">
+                                                                    <!--<i class="fa fa-gift" style="color:green" aria-hidden="true" ng-if="enquiryProduct.ItemType == 31 || enquiryProduct.ItemType == '31'"></i>
+                            <i class="fa fa-google" aria-hidden="true" ng-if="enquiryProduct.ItemType == 30 || enquiryProduct.ItemType == '30'"></i>-->
+                                                                    {{$index + 1}}
+                                                                </div>
+                                                                <div class="ItemNameContainer">
+                                                                    <span style="font-style:italic;padding-right:5px">[{{enquiryProduct.ProductCode}}]</span> {{enquiryProduct.ItemName}}
+                                                                </div>
+
+                                                                <!--<div class="UOMContainer">
+                            {{enquiryProduct.PrimaryUnitOfMeasure}}
+                        </div>-->
+
+                                                                <div class="QuantityControl  rightaling greenText">
+                                                                    {{enquiryProduct.ProductQuantity}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="conatinerfooter" style="position:relative;margin-top: 10px;">
+
+                                                            <div style="float:right;margin-bottom: 10px;">
+                                                                <div class="footerbuttons">
+                                                                    <a class="buttonstext blackolorbtn" ng-click="CloseEnquiryDetailAccordion()">
+                                                                        <i class="fa fa-times fa-icon" aria-hidden="true"></i> {{resData.res_ViewInquiryForCustomer_Close}}
+                                                                    </a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script language="JavaScript">
+
+            // this prevents from typing non-number text, including "e".
+            function isNumber(evt) {
+
+                evt = (evt) ? evt : window.event;
+                let charCode = (evt.which) ? evt.which : evt.keyCode;
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                    evt.preventDefault();
+                } else {
+                    return true;
+                }
+            }
+        </script>
+
+
+    </ion-content>
+</ion-view>

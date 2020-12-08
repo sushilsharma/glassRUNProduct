@@ -1,0 +1,203 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <style>
+            .bin, .item {
+                font-size: 32px;
+                text-align: center;
+                margin: 0 5px;
+            }
+
+            .bin {
+                min-height: 150px;
+                min-width: 150px;
+                float: left;
+                border: 1px solid red;
+                padding: 20px;
+            }
+
+            .item {
+                min-height: 150px;
+                min-width: 150px;
+                background: blue;
+                float: right;
+                transition: all 0.2s ease;
+                color: #fff;
+            }
+
+            .drag {
+                opacity: 0.5;
+            }
+
+            .over {
+                background: red;
+            }
+        </style>
+        <!--<div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+                        <div style="float:left;width:100%">
+
+                            <div style="float:left;width:500px;height:500px;border:1px solid #d5d5d5" droppable drop="handleDrop" class="bin" bin="bin">
+                                <div class="bin" draggable ng-repeat="bin in [1, 2, 3]" bin="bin" id="bin{{ bin }}">{{ bin }}</div>
+                            </div>
+                            <div style="float:left;width:500px;height:500px;border:1px solid #d5d5d5" droppable drop="handleDrop" class="bin" bin="bin">
+                                <div class="item" id="item{{ item }}" ng-repeat="item in [1, 2, 3]" draggable item="item">{{ item }}</div>
+                            </div>
+
+
+                        </div>
+                        <div style="float:left;width:500px;height:500px;border:1px solid #d5d5d5" droppable drop="handleDrop" class="bin" bin="bin">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+
+
+        <style>
+            .list {
+                list-style: none outside none;
+                margin: 10px 0 30px;
+            }
+
+            .item {
+                width: 200px;
+                padding: 5px 10px;
+                margin: 5px 0;
+                border: 2px solid #444;
+                border-radius: 5px;
+                background-color: #EA8A8A;
+                font-size: 1.1em;
+                font-weight: bold;
+                text-align: center;
+                cursor: move;
+            }
+
+
+            /***  Extra ***/
+
+            body {
+                font-family: Verdana, 'Trebuchet ms', Tahoma;
+            }
+
+            .logList {
+                margin-top: 20px;
+                width: 250px;
+                min-height: 200px;
+                padding: 5px 15px;
+                border: 5px solid #000;
+                border-radius: 15px;
+            }
+
+                .logList:before {
+                    content: 'log';
+                    padding: 0 5px;
+                    position: relative;
+                    top: -1.1em;
+                    background-color: #FFF;
+                }
+
+            .container {
+                width: 600px;
+                margin: auto;
+            }
+
+            h2 {
+                text-align: center;
+            }
+
+            .floatleft {
+                float: left;
+            }
+
+            .clear {
+                clear: both;
+            }
+
+            .container {
+                width: 600px;
+                border: 1px solid #CCC;
+                box-shadow: 0 1px 5px #CCC;
+                border-radius: 5px;
+                font-family: verdana;
+                margin: 25px auto;
+            }
+
+                .container header {
+                    background: #f1f1f1;
+                    background-image: -webkit-linear-gradient( top, #f1f1f1, #CCC );
+                    background-image: -ms-linear-gradient( top, #f1f1f1, #CCC );
+                    background-image: -moz-linear-gradient( top, #f1f1f1, #CCC );
+                    background-image: -o-linear-gradient( top, #f1f1f1, #CCC );
+                    box-shadow: 0 1px 2px #888;
+                    padding: 10px;
+                }
+
+                .container h1 {
+                    padding: 0;
+                    margin: 0;
+                    font-size: 16px;
+                    font-weight: normal;
+                    text-shadow: 0 1px 2px white;
+                    color: #888;
+                    text-align: center;
+                }
+
+                .container section {
+                    padding: 10px 30px;
+                    font-size: 12px;
+                    line-height: 175%;
+                    color: #333;
+                }
+        </style>
+
+        <div class="floatleft">
+            <!--<ul ui-sortable="sortableOptions" ng-model="list" class="list">
+                <li ng-repeat="item in list" class="item">
+                    <div>
+                        {{item.text}}
+                    </div>
+                </li>
+            </ul>-->
+
+            <div>
+                <div>
+                    <div class="container">
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Time Picker</label>
+                                <div class="prepend-icon">
+                                    <input type="text" name="timepicker" class="timepicker form-control" placeholder="Choose a time...">
+                                    <i class="icon-clock"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <header><h1>Draggables</h1></header>
+                        <section>
+                            <div draggable="true" ng-repeat="drag_type in drag_types">{{drag_type.name}}</div>
+                        </section>
+                    </div>
+                    <div class="container">
+                        <header><h1>Drop Schtuff Here</h1></header>
+                        <input id="text1" type="text" droppable="true" />
+
+                        <header><h1>Drop Schtuff Here</h1></header>
+                        <input id="text2" type="text"  droppable="true"/>
+                    </div>
+
+                    <button ng-click='sayHi()'>Say hi!</button>
+                    <pre>{{items|json}}</pre>
+                </div>
+            </div>
+        </div>
+
+
+    </ion-content>
+</ion-view>

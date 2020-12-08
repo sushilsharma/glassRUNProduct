@@ -1,0 +1,2017 @@
+﻿<ion-view>
+	<ion-content class="main-content">
+		<link href="../Styles/console_tracker.css" rel="stylesheet">
+		<div class="background-image"></div>
+		<div class="pageview content controltowerpage_ui">
+			<div class="row" ng-if="pageContrlAcessData.ControlTowerSearch !='0'">
+				<div class="col-md-12">
+					<div style="float:left;width:100%">
+						<div>
+							<div style="float: left; width: 100%;">
+								<input type="text" style="width: 100%;padding-left: 10px; height: 36px;padding-right: 11%; border: 1px solid #fff; border-radius: 18px;" placeholder="Search" ng-model="SearchControl.SearchBox">
+							</div>
+							<div ng-if="SearchControl.SearchBox.length>0" ng-click="ClearSearchBox();" style="float: left;padding-left: 8px;padding-top: 8px;background-color: #fff;border-radius: 50%;height: 36px;margin-left: -33px;margin-top: 0px;">
+								<i class="fa fa-times" style="margin-top: 4px;float: left;margin-left: 5px;">
+								</i>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="row" ng-if="pageContrlAcessData.ControlTowerGraph !='0'">
+				<div class="col-md-12">
+					<h3 class="m-t-30 m-b-10"><strong>{{resData.res_ControlTower_Graph}}</strong></h3>
+					<div class="panel" style="background-color: rgba(247, 247, 247, 0.82);z-index: 1; border-radius: 18px !important;height:160px">
+						<div class="panel-content clearfix">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" ng-if="pageContrlAcessData.ControlTowerQuickInformations !='0'">
+				<div class="footerbuttons footerbtnrightborder" style="margin-top: 23px;margin-bottom: 10px;">
+					<a class="buttonstext drop-shadow greencolorbtntext toprefreshbuttons" style="background: white;" ng-click="FilterOrderGrid('Refersh')">
+						<i class="fa fa-refresh"></i>
+					</a>
+				</div>
+				<div class="col-md-11" style="padding-bottom: 10px;" ng-if="false">
+					<div class="widget-infobox control_tower_box" style="padding:0">
+						<a class="infobox border-radius" ng-class="{'redcolortext_informationbox': item.ControlName !== 'TotalOrders','totalordersection' : AttentionNeeded === '0' && item.ControlName === 'TotalOrders', 'attentionneededsection' : AttentionNeeded === '1' && item.ControlName === 'AttentionNeeded'}" ng-repeat="item in InformationBoxList" ng-click="FilterOrderGrid(item.ControlName)" ng-if="InformationBoxRoleWiseAccess(item.ControlName);">
+							<div>
+								<span class="c-primary" ng-if="item.ControlName === 'TotalOrders'">{{TotalOrderCount}}</span>
+								<span class="c-primary" ng-if="item.ControlName !== 'TotalOrders'">{{TotalAttentionOrderCount}}</span>
+							</div>
+							<div class="txt">{{item.Header}}</div>
+						</a>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="formcontrols form-horizontal ng-pristine ng-valid">
+					<div class="col-md-12" style="padding:0px 20px 0px 20px">
+						<div ng-include="'OrderGridView.html'" class="controltower_ordergrid" ng-controller="OrderListController"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="Console_sidebar controltower_sidebar hidden-sm hidden-xs" id="Console_sidebar" style="overflow: hidden;background-color: rgba(1, 38, 37, 0.7);z-index: 1000;margin-top: 20px;border-radius: 18px 0px 0px 18px;">
+			<div class="Console_sidebar_header" style="background: rgba(43, 46, 51, 0.7);position: relative;z-index: 1;padding: 0px 12px 0 0;">
+				<div class="row">
+					<div class="col-md-3">
+						<div style="float:left">
+						</div>
+					</div>
+					<div class="col-md-5" ng-if="pageContrlAcessData.ShowSONumberHeader !='0'">
+						<div style="color: white;  font-size: 16px !important;text-align: center;padding: 10px;">
+							{{resData.res_GridColumn_SalesOrderNumber}}: {{SalesOrderNumber}}
+						</div>
+
+					</div>
+					<div class="col-md-5" style="float:right;width: 355px;">
+						<div style="float:left;width:90%;padding-top: 10px;">
+							<div class="col-md-4" style="width: 92px;padding: 0px;">
+								<div style="background-color:#54aeea;float:left;width:10px;height:10px;margin-right: 5px;margin-top: 5px;">
+
+								</div>
+								<div style="float:left;color:#fff">
+									{{resData.res_ControlTower_ColorIndicatorPlanned}}
+								</div>
+							</div>
+							<div class="col-md-4" style="padding: 0px;width: 100px">
+								<div style="background-color:orange;float:left;width:10px;height:10px;margin-right: 5px;margin-top: 5px;">
+
+								</div>
+								<div style="float:left;color:#fff">
+									{{resData.res_ControlTower_ColorIndicatorInprogress}}
+								</div>
+							</div>
+							<div class="col-md-4" style="padding: 0px;">
+								<div style="background-color:#18c76e;float:left;width:10px;height:10px;margin-right: 5px;margin-top: 5px;">
+
+								</div>
+								<div style="float:left;color:#fff">
+									{{resData.res_ControlTower_ColorIndicatorCompleted}}
+								</div>
+							</div>
+
+						</div>
+						<div style="float:right;width:9%">
+							<a class="buttonstext transpantcolorbtn" style="color: white;font-size: 16px !important;text-align: center;padding: 10px;" ng-click="toggleConsole_sidebar()">
+
+								<i class="fa fa-close" style="padding-left: 5px;"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="inner mCustomScrollbar _mCS_1 mCS-autoHide" style="height: 100%;">
+				<div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+					<div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+						<div class="builder-container">
+
+							<div class="Console_sidebar_body" style="background-color:rgba(43, 46, 51, 0.7);padding: 0 10px 0 0;">
+
+								<div class="row" style="margin: 0px;" ng-if="pageContrlAcessData.CustomerInformation !='0'">
+									<div class="col-md-12" style="padding:0px">
+										<div class="tracker_header_details">
+											<span class="tracker_title">{{resData.res_ControlTower_Customer}}</span> <div class="tracker_value"><span ng-if="pageContrlAcessData.SoldToCode !='0'">[{{SoldToCode}}] - </span> <span>{{SoldToName}}</span></div>
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row" style="margin: 0px;" ng-if="pageContrlAcessData.ShipToDetails !='0'">
+									<div class="col-md-12" style="padding:0px;margin-top:10px">
+										<div class="tracker_header_details" style="padding: 0px 10px;">
+											<span class="tracker_title">{{resData.res_ControlTower_ShipTo}}</span> <div class="tracker_value"><span ng-if="pageContrlAcessData.ShipToCode !='0'">[{{ShipToCode}}] - </span> <span>{{ShipToName}}</span></div>
+										</div>
+										<div class="tracker_header_details" style="padding: 8px 0px 0px 0px;">
+											<span class="tracker_title">{{resData.res_ControlTower_ShipAddress}}</span> <div class="tracker_value"><span>{{ShipToAddress}} </span></div>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row" style="margin: 0px;" ng-if="pageContrlAcessData.OrderDriverNameInformation !='0'">
+									<div class="col-md-12" style="padding:0px">
+										<div class="tracker_header_details">
+											<span class="tracker_title">{{resData.res_ControlTower_DriverName}} :</span>
+											<div class="tracker_value">
+												<span ng-if="OrderDriverName !== null && OrderDriverName !== ''">{{OrderDriverName}}</span>
+												<span class="tobeupdated" ng-if="OrderDriverName === null || OrderDriverName === ''">-</span>
+											</div>
+											<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('OnlineStatus') && OrderDriverName !== null && OrderDriverName !== ''">
+												<div class="OrderGreenSignal" style="margin: 0px !important;margin-top:0px !important;">
+
+												</div>
+												<span style="float: left;margin-left: 28px;margin-top: -19px;color: green;">Online</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row" style="margin: 0px;" ng-if="pageContrlAcessData.OrderTruckPlateNumberInformation !='0'">
+									<div class="col-md-12" style="padding:0px">
+										<div class="tracker_header_details">
+											<span class="tracker_title">{{resData.res_ControlTower_PlateNumber}} :</span>
+											<div class="tracker_value">
+												<span ng-if="OrderTruckPlateNumber !== null && OrderTruckPlateNumber !== ''">{{OrderTruckPlateNumber}}</span>
+												<span class="tobeupdated" ng-if="OrderTruckPlateNumber === null || OrderTruckPlateNumber === ''">-</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row" style="margin: 0px;" ng-if="pageContrlAcessData.SalesOrderDetails !='0'">
+									<div class="col-md-12" style="padding:0px">
+										<div class="table table-hover" style="background: rgba(0,0,0,0.25) !important;float:left">
+											<div class="conatinerheader headerdataconatiner" style="color:#fff; padding: 10px 10px;">
+												<div class="col-md-2" ng-if="LoadRepeaterByConfiguration('OrderNumber')">{{resData.res_ControlTower_ASNNumber}}</div>
+												<div class="col-md-2" ng-if="LoadRepeaterByConfiguration('Status')">{{resData.res_ControlTower_Status}}</div>
+												<div class="col-md-2 document_alingment" ng-show="false" ng-if="LoadRepeaterByConfiguration('OnlineStatus')">{{resData.res_ControlTower_OnlineOffline}}</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('CheckList')">{{resData.res_ControlTower_CheckList}}</div>
+												<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('POD')">{{resData.res_ControlTower_POD}}</div>
+												<div class="col-md-2 document_alingment">{{resData.res_OrderList_eInvoiceNumber}}</div>
+												<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('PaymentInvoice')">{{resData.res_GridColumn_PaymentInvoice}}</div>
+												<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('ReturnsNotice')">{{resData.res_ControlTower_ReturnsNotice}}</div>
+												<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('LorryReceipt')">{{resData.res_ControlTower_LorryReceipt}}</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('Documents')">
+													&nbsp;
+												</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('Feedback')">{{resData.res_ControlTower_Feedback}}</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('SurveyComments')">{{resData.res_ControlTower_Comments}}</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('OrderFeedback')">{{resData.res_GridColumn_SalesOrderFeedback}}</div>
+
+											</div>
+											<div class="conatinerheader itemrowcontainer" style="background: none !important;color:#fff;padding: 10px 10px;" ng-repeat="item in ASNDetailList | filter: {OrderId: LoadedOrderId}">
+												<div class="col-md-2" style="cursor:pointer" ng-click="LoadWorkFlowActivityLog(item)" ng-if="LoadRepeaterByConfiguration('OrderNumber')">
+													{{item.OrderNumber}}
+												</div>
+												<div class="col-md-2" ng-if="LoadRepeaterByConfiguration('Status')">
+													<span ng-style="{'color' : item.Class}">{{item.Status}}</span>
+												</div>
+												<div class="col-md-2 document_alingment" ng-show="false" ng-if="LoadRepeaterByConfiguration('OnlineStatus')">
+													<div class="OrderGreenSignal">
+
+													</div>
+												</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('CheckList')">
+													<div ng-repeat="document in item.OrderDocumentList | filter:{ DocumentType: 'CheckList' }" ng-if="$index === 0">
+														<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+													</div>
+												</div>
+
+												<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('POD')">
+													<div ng-if="$index === 0 && item.POD!= 0">
+														<a ng-click="DownloadDocument(item.OrderDocumentId,item.DocumentType,item.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+													</div>
+													<div class="document_alingment" ng-if="item.POD === 0">
+														-
+													</div>
+												</div>
+
+												<div class="col-md-2 document_alingment" >
+													<div ng-if="$index === 0 && item.eInvoiceNumber!= null">
+														<a ng-click="DownloadDocument(item.eInvoiceNumber,322,'PDF')">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+													</div>
+													<div class="document_alingment" ng-if="item.eInvoiceNumber === null">
+														-
+													</div>
+												</div>
+
+												<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('PaymentInvoice')">
+													<div ng-repeat="document in item.OrderDocumentList | filter:{ DocumentType: 'PaymentInvoice' }" ng-if="$index === 0">
+														<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+													</div>
+													<div class="document_alingment" ng-if="item.OrderDocumentList.length === 0">
+														-
+													</div>
+												</div>
+
+												<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('ReturnsNotice')">
+													<div ng-repeat="document in item.OrderDocumentList | filter:{ DocumentType: 'ReturnsNotice' }" ng-if="$index === 0">
+														<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+													</div>
+												</div>
+												<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('LorryReceipt')">
+													<div ng-repeat="document in item.OrderDocumentList | filter:{ DocumentType: 'LorryReceipt' }" ng-if="$index === 0">
+														<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+													</div>
+												</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('Documents')">
+													<a ng-click="LoadOrderDocument()" style="color: #7fc0f9;text-decoration: underline;cursor:pointer">{{resData.res_ControlTower_Docs}}</a>
+												</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('Feedback') && item.Survey===1">
+													<span class="smiley_icon" ng-if="item.Survey=1">
+														<img src="../Images/SmileyImages/noComment.png" />
+													</span>
+
+												</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('Feedback') && item.Survey===2">
+
+													<span class="smiley_icon">
+														<img src="../Images/SmileyImages/satisfied.png" />
+													</span>
+
+												</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('Feedback') && item.Survey===3">
+
+													<span class="smiley_icon">
+														<img src="../Images/SmileyImages/verySatisfied.png" />
+													</span>
+
+												</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('Feedback') && item.Survey===4">
+
+													<span class="smiley_icon">
+														<img src="../Images/SmileyImages/notSatisfied.png" />
+													</span>
+												</div>
+
+
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('Feedback') && item.Survey===5">
+
+													<span class="smiley_icon">
+														<img src="../Images/SmileyImages/verySatisfied.png" />
+													</span>
+												</div>
+
+
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('Feedback') && (item.Survey==='' || item.Survey==='undefined' || item.Survey===undefined || item.Survey==='null'|| item.Survey===null || item.Survey==='0' || item.Survey===0)">
+													&nbsp;
+												</div>
+
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('SurveyComments') && (item.Survey!=='' && item.Survey!=='undefined' && item.Survey!==undefined && item.Survey!=='null' && item.Survey!==null && item.Survey!=='0' && item.Survey!==0)">
+													<a ng-click="OpenSurveyCommentsConfirmation(item.SurveyComments)" style="color: #7fc0f9;text-decoration: underline;cursor:pointer">{{resData.res_ControlTower_Comments}}</a>
+												</div>
+
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('SurveyComments') && (item.Survey==='' || item.Survey==='undefined' || item.Survey===undefined || item.Survey==='null'|| item.Survey===null || item.Survey==='0' || item.Survey===0)">
+													&nbsp;
+												</div>
+
+												<div class="col-md-3 document_alingment" ng-if="pageContrlAcessData.DeliveryConfirmationByDriver !='0'" ng-show="IsShowDeliveryConfirmationButton">
+													<a ng-click="LoadDeliveryConfirmationDetails(item.OrderId)" style="color: #7fc0f9;text-decoration: underline;cursor:pointer">{{resData.res_ControlTower_DeliveryConfirmationByDriver}}</a>
+												</div>
+												<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('OrderFeedback')">
+													<a ng-click="OpenOrderFeedbackViewCodePopup()" style="color: #7fc0f9;text-decoration: underline;cursor:pointer">{{resData.res_AddRoleAccess_Add}}</a>
+												</div>
+											</div>
+										</div>
+										<div style="float: left;width: 100%;padding: 10px 15px;" ng-if="ASNDetailList.length > 1">
+											<a ng-click="LoadSalesOrderNumberInformation()" class="viewalllink">{{resData.res_ControlTower_ViewAll}}</a>
+										</div>
+
+									</div>
+								</div>
+
+								<div class="row" style="margin: 0px;" ng-if="(CurrentState ==='740' || CurrentState ===740) ">
+									<div class="col-md-12" style="padding:0px;margin-top:10px">
+										<div class="tracker_header_details" style="padding: 0px 10px;">
+											<span class="tracker_title">{{resData.res_ControlTower_RejectionReasonCode}} : </span> <div class="tracker_value"><span>{{RejectionReasonCode}}</span></div>
+										</div>
+										<div class="tracker_header_details" style="padding: 8px 0px 0px 0px;">
+											<span class="tracker_title">{{resData.res_ControlTower_RejectionComment}} : </span> <div class="tracker_value"><span>{{RejectionComment}} </span></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row" style="margin: 0px;" ng-if="pageContrlAcessData.MooringInformation !='0'">
+									<div class="col-md-12" style="padding:0px">
+										<div class="table table-hover">
+											<div id="demo" class="EnquiryDetailsAccordion" style="color:#fff">
+												<div class="ContainerSection" style="background: rgba(0,0,0,0.25) !important;">
+													<div class="conatinerbody IsPeddingRequired">
+
+
+														<div class="conatinerheader itemrowcontainer" style="background: none;height: auto;color:#fff;padding: 10px 10px;">
+															<div class="col-md-3 Name_Spacing">
+																<div>{{resData.res_ControlTower_Mooring}}</div>
+																<div class="tracker_base_information">{{resData.res_ControlTower_TestData}}</div>
+																<div class="tracker_base_information">{{resData.res_ControlTower_TestData}}</div>
+															</div>
+															<div class="col-md-1 Status_Spacing document_alingment">
+																<div>
+																	<span class="product_status">
+																		<i class="fa fa-check"></i>
+																	</span>
+																</div>
+
+																<div style="display:none">
+																	<span class="product_status">
+																		<i class="fa fa-exclamation"></i>
+																	</span>
+																</div>
+
+
+															</div>
+															<div class="col-md-3 Collection_Spacing">
+																<div class="Product_StartEndTime_UI">
+
+																	<div class="product_time_section_box">
+																		<div class="traker_product_startend_main_section">
+																			<div class="Product_Total_Time">
+																				<span class="product_total_label">{{resData.res_ControlTower_TotalTime}}</span>
+																				<span class="product_total_value">{{resData.res_ControlTower_001512}}</span>
+																			</div>
+																		</div>
+																		<div class="traker_product_startendtime_main_section">
+
+																			<div class="tracker_start_date_section">
+																				<div class="tracker_start_date_time">{{resData.res_ControlTower_062618}}</div>
+																				<div class="tracker_start_date">{{resData.res_ControlTower_20022019}}</div>
+																				<div class="tracker_start_date_label">{{resData.res_ControlTower_Start}}</div>
+																			</div>
+																			<div class="tracker_start_date_section tracker_end_date_section">
+																				<div class="tracker_start_date_time">{{resData.res_ControlTower_062618}}</div>
+																				<div class="tracker_start_date">{{resData.res_ControlTower_20022019}}</div>
+																				<div class="tracker_start_date_label">{{resData.res_ControlTower_End}}</div>
+																			</div>
+																		</div>
+
+																	</div>
+
+																</div>
+															</div>
+															<div class="col-md-3 Delivery_Spacing">
+															</div>
+															<div class="col-md-1 Document_Spacing">
+																-
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+
+								<div class="row" style="margin: 0px;" ng-if="pageContrlAcessData.ProductInformation !='0'">
+									<div class="col-md-12" style="padding:0px">
+										<div class="table table-hover">
+
+											<div id="demo" class="EnquiryDetailsAccordion" style="margin: 15px 0px;color:#fff">
+												<div class="product_section_box ContainerSection" style="background: rgba(0,0,0,0.25) !important;">
+													<div class="conatinerheader headerdataconatiner" ng-if="OrderProductList.length > 0" style="color:#fff; padding: 10px 10px;border-bottom: 1px solid #191818;">
+
+														<div class="col-md-3" ng-if="LoadRepeaterByConfiguration('ProductName')">
+															{{resData.res_ViewInquiryForCustomer_ItemName}}
+														</div>
+														<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('ProductStatus')">
+															&nbsp;
+														</div>
+														<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('UOMColumn')">{{resData.res_ControlTower_UOM}}</div>
+														<div class="col-md-1  document_alingment" ng-if="LoadRepeaterByConfiguration('ProductQuantityColumn')">{{resData.res_ControlTower_Qty}}</div>
+
+														<div class="col-md-2 document_alingment" style="word-wrap:break-word !important" ng-if="LoadRepeaterByConfiguration('CollectionProductQuantity')">{{resData.res_ControlTower_CollectedQuantity}}</div>
+
+
+
+														<div class="col-md-2" ng-if="LoadRepeaterByConfiguration('CollectionSection')">
+															<div class="Product_StartEndTime_UI">
+																<span class="product_time_section_box">{{resData.res_ControlTower_Collection}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-2 document_alingment" style="word-wrap:break-word !important" ng-if="LoadRepeaterByConfiguration('DeliveredProductQuantity')">{{resData.res_ControlTower_DeliveredQuantity}}</div>
+
+														<div class="col-md-2 document_alingment" style="word-wrap:break-word !important" ng-if="LoadRepeaterByConfiguration('PriceColumn')">{{resData.res_ControlTower_Price}}</div>
+
+														<div class="col-md-2 document_alingment" style="word-wrap:break-word !important" ng-if="LoadRepeaterByConfiguration('TotalPriceColumn')">{{resData.res_ControlTower_TotalPrice}}</div>
+
+														<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('CollectionStartDate')">
+															<div class="Product_StartEndTime_UI">
+																<span class="product_time_section_box">{{resData.res_ControlTower_CollectionStart}}</span>
+															</div>
+														</div>
+														<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('CollectionEndDate')">
+															<div class="Product_StartEndTime_UI">
+																<span class="product_time_section_box">{{resData.res_ControlTower_CollectionEnd}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('DeliveryStartDate')">
+															<div class="Product_StartEndTime_UI">
+																<span class="product_time_section_box">{{resData.res_ControlTower_DeilveryStart}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('DeliveryEndDate')">
+															<div class="Product_StartEndTime_UI">
+																<span class="product_time_section_box">{{resData.res_ControlTower_DeilveryEnd}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-2" ng-if="LoadRepeaterByConfiguration('DeliverySection')">
+															<div class="Product_StartEndTime_UI">
+																<span class="product_time_section_box">{{resData.res_ControlTower_Deilvery}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-1 document_alingment" ng-if="LoadRepeaterByConfiguration('ProductDocuments') && $index === 0" ng-repeat="enquiryProduct in OrderProductList | filter: myFilter">
+															<div ng-repeat="document in enquiryProduct.OrderDocumentList">
+																{{document.DocumentType}}
+															</div>
+															<div ng-if="enquiryProduct.OrderDocumentList.length === 0 || enquiryProduct.OrderDocumentList === undefined">{{resData.res_ControlTower_Docs}}</div>
+														</div>
+													</div>
+													<div class="conatinerbody">
+														<div class="conatinerheader itemrowcontainer" ng-repeat="enquiryProduct in OrderProductList | filter: myFilter" ng-class="{'IsPeddingRequired':IsPeddingRequired == true}" style="background: none;border-bottom: 1px solid #191818;height: auto;color:#fff;padding: 10px 10px;">
+
+															<div class="col-md-3 Name_Spacing">
+																<!--<div ng-if="LoadRepeaterByConfiguration('ProductName')" ng-click="LoadFeedBackForProduct(enquiryProduct.ProductCode)">
+																	<span ng-if="LoadRepeaterByConfiguration('ProductCode')">[{{enquiryProduct.ProductCode}}] - </span><span> {{enquiryProduct.ItemName}}</span>
+																</div>-->
+																<span style="font-style:italic;">
+																	<i class="fa fa-gift" style="color:#0bd626;float: left;margin-right: 5px;" aria-hidden="true" ng-if="enquiryProduct.ItemType == 31 || enquiryProduct.ItemType == '31'"></i>
+																	<i class="fa fa-google" style="color: #29abe2;float: left;margin-right: 5px;" aria-hidden="true" ng-if="enquiryProduct.ItemType == 30 || enquiryProduct.ItemType == '30'"></i>
+																</span>
+
+																<div ng-if="LoadRepeaterByConfiguration('ProductName') && LoadRepeaterByConfiguration('OrderFeedback') === false">
+																	<span ng-if="LoadRepeaterByConfiguration('ProductCode')">[{{enquiryProduct.ProductCode}}] - </span><span> {{enquiryProduct.ItemName}}</span>
+																</div>
+
+																<a ng-if="LoadRepeaterByConfiguration('ProductName') && LoadRepeaterByConfiguration('OrderFeedback') === true" ng-click="LoadFeedBackForProduct(enquiryProduct.ProductCode)" style="color: #7fc0f9;text-decoration: underline;cursor:pointer">
+																	<span ng-if="LoadRepeaterByConfiguration('ProductCode')">[{{enquiryProduct.ProductCode}}] - </span><span> {{enquiryProduct.ItemName}}</span>
+																</a>
+																<div class="tracker_base_information">
+																	<span ng-if="LoadRepeaterByConfiguration('ProductSectionQuantity')"> {{enquiryProduct.ProductQuantity | number : 0}} {{enquiryProduct.PrimaryUnitOfMeasure}}</span>
+																</div>
+																<div class="tracker_base_information" ng-if="LoadRepeaterByConfiguration('ProductUnitPrice')">
+																	<span ng-if="enquiryProduct.UnitPrice !== '' && enquiryProduct.UnitPrice !== null && enquiryProduct.UnitPrice !== undefined">{{resData.res_CurrencyCode}}</span>{{enquiryProduct.UnitPrice |  number : 2}} /<span ng-if="LoadRepeaterByConfiguration('ProductUOM')">{{enquiryProduct.PrimaryUnitOfMeasure}}</span>
+																</div>
+																<div class="tracker_base_information" ng-if="LoadRepeaterByConfiguration('ProductPrice')">
+																	{{resData.res_CurrencyCode}}{{enquiryProduct.ItemPrices |  number : 2}}
+																</div>
+																<div class="tracker_base_information" ng-if="LoadRepeaterByConfiguration('ItemTotalDeposite') && CheckForDeposite(enquiryProduct.ItemTotalDepositeAmount)">
+																	{{resData.res_GridColumn_ItemTotalDeposite}} : {{resData.res_CurrencyCode}}{{enquiryProduct.ItemTotalDepositeAmount |  number : 2}}
+																</div>
+															</div>
+															<div class="col-md-1 Status_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('ProductStatus')">
+																<div ng-if="enquiryProduct.SignalValue === '1'">
+																	<span class="product_status productsignal_green">
+																		<i class="fa fa-check"></i>
+																	</span>
+																</div>
+
+																<div ng-if="enquiryProduct.SignalValue === '2'">
+																	<span class="product_status productsignal_green">
+																		<i class="fa fa-exclamation"></i>
+																	</span>
+																</div>
+
+																<div ng-if="enquiryProduct.SignalValue === '3'">
+																	<span class="product_status productsignal_green">
+																		<i class="fa fa-times"></i>
+																	</span>
+																</div>
+
+																<div ng-if="enquiryProduct.SignalValue === '0' || enquiryProduct.SignalValue === undefined  || enquiryProduct.SignalValue === null">
+																	<span class="product_status productsignal_black">
+																		<i class="fa fa-check"></i>
+																	</span>
+																</div>
+
+															</div>
+
+															<div class="col-md-1 Status_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('UOMColumn')">
+																{{enquiryProduct.PrimaryUnitOfMeasure}}
+															</div>
+
+															<div class="col-md-1 Status_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('ProductQuantityColumn')">
+																<span>{{enquiryProduct.ProductQuantity |  number : 0}} </span>
+															</div>
+
+
+															<div class="col-md-2 Status_Spacing document_alingment" ng-class="LoadProductQuantityColor(enquiryProduct.ProductQuantity,enquiryProduct.CollectionPlannedQuantity,enquiryProduct.CollectionDeliveredQuantity)" ng-if="LoadRepeaterByConfiguration('CollectionProductQuantity')">
+																<span ng-if="enquiryProduct.CollectionDeliveredQuantity !== '0'">{{enquiryProduct.CollectionDeliveredQuantity |  number : 0}} </span>
+																<span ng-if="enquiryProduct.CollectionDeliveredQuantity === '0'">
+																	<span class="tobeupdated">To be updated</span>
+																</span>
+																/
+																<span ng-if="enquiryProduct.CollectionPlannedQuantity !== '0'">{{enquiryProduct.CollectionPlannedQuantity |  number : 0}} </span>
+																<span ng-if="enquiryProduct.CollectionPlannedQuantity === '0'">{{enquiryProduct.ProductQuantity |  number : 0}}</span>
+															</div>
+
+															<div class="col-md-2 Collection_Spacing" ng-if="LoadRepeaterByConfiguration('CollectionSection')">
+																<div class="Product_StartEndTime_UI">
+
+																	<div class="product_time_section_box" ng-if="enquiryProduct.PlannedCollectionDate !== undefined && enquiryProduct.PlannedCollectionDate !== '1900-01-01T00:00:00'" ng-class="LoadClassNameForTime(enquiryProduct.PlannedCollectionDate,enquiryProduct.ActualCollectionDate)">
+																		<div class="traker_product_startend_main_section">
+																			<div class="Product_Total_Time">
+																				<span style="display:none" class="product_total_label">{{resData.res_ControlTower_TotalTime}}</span>
+																				<span class="product_total_value">{{LoadProductTimeStatus(enquiryProduct.PlannedCollectionDate,enquiryProduct.ActualCollectionDate)}}</span>
+																			</div>
+																		</div>
+																		<div class="traker_product_startendtime_main_section">
+
+																			<div class="tracker_start_date_section">
+
+																				<div class="tracker_start_date_time">
+																					<span ng-if="enquiryProduct.ActualCollectionDate !== undefined">
+																						{{enquiryProduct.ActualCollectionDate | date:'HH:mm:ss'}}
+																					</span>
+																					<span ng-if="enquiryProduct.ActualCollectionDate === undefined">
+																						<span class="tobeupdated">To be updated</span>
+																					</span>
+																				</div>
+																				<div class="tracker_start_date">
+																					<span ng-if="enquiryProduct.ActualCollectionDate !== undefined">
+																						{{enquiryProduct.ActualCollectionDate | date:'dd/MM/yyyy'}}
+																					</span>
+																					<span ng-if="enquiryProduct.ActualCollectionDate === undefined" style="display:none">
+																						<span class="tobeupdated">To be updated</span>
+																					</span>
+																				</div>
+																				<div class="tracker_start_date_time">
+																					{{resData.res_ControlTower_Product_Status_Actual}}
+																				</div>
+																				<div style="display:none" class="tracker_start_date_label">{{resData.res_ControlTower_Start}}</div>
+																			</div>
+																			<div class="tracker_start_date_section tracker_end_date_section">
+
+																				<div class="tracker_start_date_time">
+																					<span ng-if="enquiryProduct.PlannedCollectionDate !== undefined">
+																						{{enquiryProduct.PlannedCollectionDate | date:'HH:mm:ss'}}
+																					</span>
+																					<span ng-if="enquiryProduct.PlannedCollectionDate === undefined">
+																						-
+																					</span>
+																				</div>
+
+																				<div class="tracker_start_date">
+																					<span ng-if="enquiryProduct.PlannedCollectionDate !== undefined">
+																						{{enquiryProduct.PlannedCollectionDate | date:'dd/MM/yyyy'}}
+																					</span>
+																					<span ng-if="enquiryProduct.PlannedCollectionDate === undefined" style="display:none">
+																						-
+																					</span>
+																				</div>
+																				<div class="tracker_start_date_time">
+																					{{resData.res_ControlTower_Product_Status_Plan}}
+																				</div>
+																				<div style="display:none" class="tracker_start_date_label">{{resData.res_ControlTower_End}}</div>
+																			</div>
+																		</div>
+																		<div class="traker_product_startend_main_section" style="display:none">
+																			<div class="Product_Total_Time">
+																				<span class="product_total_value">{{enquiryProduct.OrderCollectionTime}}</span>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="Status_Spacing document_alingment" ng-if="enquiryProduct.PlannedCollectionDate === undefined || enquiryProduct.PlannedCollectionDate === '1900-01-01T00:00:00'">
+																		<span class="tobeupdated">To be planned</span>
+																	</div>
+																</div>
+															</div>
+
+															<div class="col-md-2 Status_Spacing document_alingment" ng-class="LoadProductQuantityColor(enquiryProduct.ProductQuantity,enquiryProduct.DeliveryPlannedQuantity,enquiryProduct.DeliveryDeliveredQuantity)" ng-if="LoadRepeaterByConfiguration('DeliveredProductQuantity')">
+																<span ng-if="enquiryProduct.DeliveryDeliveredQuantity !== '0'">{{enquiryProduct.DeliveryDeliveredQuantity |  number : 0}} </span>
+																<span ng-if="enquiryProduct.DeliveryDeliveredQuantity === '0'">
+																	<span class="tobeupdated">To be updated</span>
+																</span>
+																/
+																<span ng-if="enquiryProduct.DeliveryPlannedQuantity !== '0'"> {{enquiryProduct.DeliveryPlannedQuantity |  number : 0}} </span>
+																<span ng-if="enquiryProduct.DeliveryPlannedQuantity === '0'">{{enquiryProduct.ProductQuantity |  number : 0}}</span>
+															</div>
+
+															<div class="col-md-2 Status_Spacing document_alingment" style="word-wrap:break-word !important" ng-if="LoadRepeaterByConfiguration('PriceColumn')">
+																{{resData.res_CurrencyCode}}{{enquiryProduct.UnitPrice |  number : 2}}
+															</div>
+
+															<div class="col-md-2 Status_Spacing document_alingment" style="word-wrap:break-word !important" ng-if="LoadRepeaterByConfiguration('TotalPriceColumn')">
+																{{resData.res_CurrencyCode}}{{enquiryProduct.ItemPrices |  number : 2}}
+															</div>
+
+
+															<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('CollectionStartDate')">
+																<div class="Product_StartEndTime_UI">
+																	<span class="fullwidth" ng-if="enquiryProduct.PlannedCollectionDate !== undefined">
+																		{{enquiryProduct.PlannedCollectionDate | date:'dd/MM/yyyy HH:mm'}}
+																	</span>
+																	<span class="fullwidth" ng-if="enquiryProduct.PlannedCollectionDate === undefined">
+																		-
+																	</span>
+
+																</div>
+															</div>
+
+															<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('CollectionEndDate')">
+																<div class="Product_StartEndTime_UI">
+
+																	<span class="fullwidth" ng-if="enquiryProduct.ActualCollectionDate !== undefined">
+																		{{enquiryProduct.ActualCollectionDate | date:'dd/MM/yyyy HH:mm'}}
+																	</span>
+																	<span class="fullwidth" ng-if="enquiryProduct.ActualCollectionDate === undefined">
+																		-
+																	</span>
+																</div>
+															</div>
+
+															<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('DeliveryStartDate')">
+																<div class="Product_StartEndTime_UI">
+																	<span class="fullwidth" ng-if="enquiryProduct.PlannedDeliveryDate !== undefined">
+																		{{enquiryProduct.PlannedDeliveryDate | date:'dd/MM/yyyy HH:mm'}}
+																	</span>
+																	<span class="fullwidth" ng-if="enquiryProduct.PlannedDeliveryDate === undefined">
+																		-
+																	</span>
+
+																</div>
+															</div>
+
+															<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('DeliveryEndDate')">
+																<div class="Product_StartEndTime_UI">
+
+																	<span class="fullwidth" ng-if="enquiryProduct.ActualDeliveryDate !== undefined">
+																		{{enquiryProduct.ActualDeliveryDate | date:'dd/MM/yyyy HH:mm'}}
+																	</span>
+																	<span class="fullwidth" ng-if="enquiryProduct.ActualDeliveryDate === undefined">
+																		-
+																	</span>
+																</div>
+															</div>
+
+
+
+
+															<div class="col-md-2 Delivery_Spacing" ng-if="LoadRepeaterByConfiguration('DeliverySection')">
+																<div class="Product_StartEndTime_UI">
+																	<div class="product_time_section_box" ng-if="enquiryProduct.PlannedDeliveryDate !== undefined && enquiryProduct.PlannedDeliveryDate !== '1900-01-01T00:00:00'" ng-class="LoadClassNameForTime(enquiryProduct.PlannedDeliveryDate,enquiryProduct.ActualDeliveryDate)">
+																		<div class="traker_product_startend_main_section">
+																			<div class="Product_Total_Time">
+																				<span style="display:none" class="product_total_label">{{resData.res_ControlTower_TotalTime}}</span>
+																				<span class="product_total_value">{{LoadProductTimeStatus(enquiryProduct.PlannedDeliveryDate,enquiryProduct.ActualDeliveryDate)}}</span>
+																			</div>
+																		</div>
+																		<div class="traker_product_startendtime_main_section">
+
+																			<div class="tracker_start_date_section">
+
+																				<div class="tracker_start_date_time">
+																					<span ng-if="enquiryProduct.ActualDeliveryDate !== undefined">
+																						{{enquiryProduct.ActualDeliveryDate | date:'HH:mm:ss'}}
+																					</span>
+																					<span ng-if="enquiryProduct.ActualDeliveryDate === undefined">
+																						<span class="tobeupdated">To be updated</span>
+																					</span>
+																				</div>
+																				<div class="tracker_start_date">
+																					<span ng-if="enquiryProduct.ActualDeliveryDate !== undefined">
+																						{{enquiryProduct.ActualDeliveryDate | date:'dd/MM/yyyy'}}
+																					</span>
+																					<span ng-if="enquiryProduct.ActualDeliveryDate === undefined" style="display:none">
+																						<span class="tobeupdated">To be updated</span>
+																					</span>
+																				</div>
+																				<div class="tracker_start_date_time">
+																					{{resData.res_ControlTower_Product_Status_Actual}}
+																				</div>
+																				<div style="display:none" class="tracker_start_date_label">{{resData.res_ControlTower_Start}}</div>
+																			</div>
+																			<div class="tracker_start_date_section tracker_end_date_section">
+
+																				<div class="tracker_start_date_time">
+																					<span ng-if="enquiryProduct.PlannedDeliveryDate !== undefined">
+																						{{enquiryProduct.PlannedDeliveryDate | date:'HH:mm:ss'}}
+																					</span>
+																					<span ng-if="enquiryProduct.PlannedDeliveryDate === undefined">
+																						-
+																					</span>
+																				</div>
+																				<div class="tracker_start_date">
+																					<span ng-if="enquiryProduct.PlannedDeliveryDate !== undefined">
+																						{{enquiryProduct.PlannedDeliveryDate | date:'dd/MM/yyyy'}}
+																					</span>
+																					<span ng-if="enquiryProduct.PlannedDeliveryDate === undefined" style="display:none">
+																						-
+																					</span>
+																				</div>
+																				<div class="tracker_start_date_time">
+																					{{resData.res_ControlTower_Product_Status_Plan}}
+																				</div>
+																				<div style="display:none" class="tracker_start_date_label">{{resData.res_ControlTower_End}}</div>
+																			</div>
+																		</div>
+																		<div class="traker_product_startend_main_section" style="display:none">
+																			<div class="Product_Total_Time">
+																				<span class="product_total_value">{{enquiryProduct.OrderDeliveryTime}}</span>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="Status_Spacing document_alingment" ng-if="enquiryProduct.PlannedDeliveryDate === undefined || enquiryProduct.PlannedDeliveryDate === '1900-01-01T00:00:00'">
+																		<span class="tobeupdated">To be planned</span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-1 Document_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('ProductDocuments')">
+																<div ng-repeat="document in enquiryProduct.OrderDocumentList">
+																	<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+																</div>
+																<div ng-if="enquiryProduct.OrderDocumentList.length === 0 || enquiryProduct.OrderDocumentList === undefined">
+																	-
+																</div>
+															</div>
+														</div>
+
+														<div class="conatinerheader itemrowcontainer" ng-repeat="enquiryProduct in OrderProductList | filter: { IsPackingItem: '1' }" ng-class="{'IsPeddingRequired':IsPeddingRequired == true}" style="background: none;height: auto;color:#fff;padding: 10px 10px;">
+
+															<div class="col-md-3 WoodenPallet_Name_Spacing">
+																<div ng-if="LoadRepeaterByConfiguration('ProductName')">
+																	<span ng-if="LoadRepeaterByConfiguration('ProductCode')">[{{enquiryProduct.ProductCode}}] - </span><span> {{enquiryProduct.ItemName}}</span>
+																</div>
+																<div class="tracker_base_information">
+																	<span ng-if="LoadRepeaterByConfiguration('ProductSectionQuantity')"> {{enquiryProduct.ProductQuantity}}</span>
+																</div>
+																<div class="tracker_base_information" ng-if="LoadRepeaterByConfiguration('ProductUnitPrice')">
+																	<span ng-if="enquiryProduct.UnitPrice !== '' && enquiryProduct.UnitPrice !== null && enquiryProduct.UnitPrice !== undefined">{{resData.res_CurrencyCode}}</span>{{enquiryProduct.UnitPrice |  number : 2}} /<span ng-if="LoadRepeaterByConfiguration('ProductUOM')">{{enquiryProduct.PrimaryUnitOfMeasure}}</span>
+																</div>
+																<div class="tracker_base_information" style="display:none">
+																	{{resData.res_CurrencyCode}}{{enquiryProduct.ItemPrices |  number : 2}}
+																</div>
+															</div>
+
+															<div class="col-md-1 WoodenPallet_Status_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('ProductStatus')">
+																<div>
+																	<span class="product_status">
+																		-
+																	</span>
+																</div>
+
+
+															</div>
+
+															<div class="col-md-1 WoodenPallet_Status_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('UOMColumn')">
+																{{enquiryProduct.PrimaryUnitOfMeasure}}
+															</div>
+
+
+															<div class="col-md-1 WoodenPallet_Status_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('ProductQuantityColumn')">
+																<span>{{enquiryProduct.ProductQuantity |  number : 0}} </span>
+															</div>
+
+															<div class="col-md-2 WoodenPallet_Status_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('CollectionProductQuantity')" ng-class="LoadProductQuantityColor(enquiryProduct.ProductQuantity,enquiryProduct.CollectionPlannedQuantity,enquiryProduct.CollectionDeliveredQuantity)">
+																<!--<span ng-if="enquiryProduct.CollectionDeliveredQuantity !== '0'">{{enquiryProduct.CollectionDeliveredQuantity |  number : 0}} </span>
+																<span ng-if="enquiryProduct.CollectionDeliveredQuantity === '0'"><span class="tobeupdated">N/A</span></span>
+																/
+																<span ng-if="enquiryProduct.CollectionPlannedQuantity !== '0'">{{enquiryProduct.CollectionPlannedQuantity |  number : 0}} </span>
+																<span ng-if="enquiryProduct.CollectionPlannedQuantity === '0'">{{enquiryProduct.ProductQuantity |  number : 0}}</span>-->
+																<span><span class="tobeupdated">N/A</span></span>
+															</div>
+
+															<div class="col-md-2 WoodenPallet_Status_Spacing document_alingment" style="padding-top: 15px;" ng-if="LoadRepeaterByConfiguration('CollectionSection')">
+																<div class="Product_StartEndTime_UI">
+																	<div class="product_time_section_box" ng-if="enquiryProduct.PlannedCollectionDate !== undefined && enquiryProduct.PlannedCollectionDate !== '1900-01-01T00:00:00'" ng-class="LoadClassNameForTime(enquiryProduct.PlannedCollectionDate,enquiryProduct.ActualCollectionDate)">
+																		<div class="traker_product_startend_main_section">
+																			<div class="Product_Total_Time">
+																				<span style="display:none" class="product_total_label">{{resData.res_ControlTower_TotalTime}}</span>
+																				<span class="product_total_value">{{LoadProductTimeStatus(enquiryProduct.PlannedCollectionDate,enquiryProduct.ActualCollectionDate)}}</span>
+																			</div>
+																		</div>
+																		<div class="traker_product_startendtime_main_section">
+
+																			<div class="tracker_start_date_section">
+
+																				<div class="tracker_start_date_time">
+																					<span ng-if="enquiryProduct.ActualCollectionDate !== undefined">
+																						{{enquiryProduct.ActualCollectionDate | date:'HH:mm:ss'}}
+																					</span>
+																					<span ng-if="enquiryProduct.ActualCollectionDate === undefined">
+																						<span class="tobeupdated">To be updated</span>
+																					</span>
+																				</div>
+																				<div class="tracker_start_date">
+																					<span ng-if="enquiryProduct.ActualCollectionDate !== undefined">
+																						{{enquiryProduct.ActualCollectionDate | date:'dd/MM/yyyy'}}
+																					</span>
+																					<span ng-if="enquiryProduct.ActualCollectionDate === undefined" style="display:none">
+																						<span class="tobeupdated">To be updated</span>
+																					</span>
+																				</div>
+																				<div class="tracker_start_date_time">
+																					{{resData.res_ControlTower_Product_Status_Actual}}
+																				</div>
+																				<div style="display:none" class="tracker_start_date_label">{{resData.res_ControlTower_Start}}</div>
+																			</div>
+																			<div class="tracker_start_date_section tracker_end_date_section">
+
+																				<div class="tracker_start_date_time">
+																					<span ng-if="enquiryProduct.PlannedCollectionDate !== undefined">
+																						{{enquiryProduct.PlannedCollectionDate | date:'HH:mm:ss'}}
+																					</span>
+																					<span ng-if="enquiryProduct.PlannedCollectionDate === undefined">
+																						-
+																					</span>
+																				</div>
+																				<div class="tracker_start_date">
+																					<span ng-if="enquiryProduct.PlannedCollectionDate !== undefined">
+																						{{enquiryProduct.PlannedCollectionDate | date:'dd/MM/yyyy'}}
+																					</span>
+																					<span ng-if="enquiryProduct.PlannedCollectionDate === undefined" style="display:none">
+																						-
+																					</span>
+																				</div>
+																				<div class="tracker_start_date_time">
+																					{{resData.res_ControlTower_Product_Status_Plan}}
+																				</div>
+																				<div style="display:none" class="tracker_start_date_label">{{resData.res_ControlTower_End}}</div>
+																			</div>
+																		</div>
+																		<div class="traker_product_startend_main_section" style="display:none">
+																			<div class="Product_Total_Time">
+																				<span class="product_total_value">{{enquiryProduct.OrderCollectionTime}}</span>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="" ng-if="enquiryProduct.PlannedCollectionDate === undefined || enquiryProduct.PlannedCollectionDate === '1900-01-01T00:00:00'">
+																		<span class="tobeupdated">To be planned</span>
+																	</div>
+																</div>
+															</div>
+
+															<div class="col-md-2 WoodenPallet_Status_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('DeliveredProductQuantity')" ng-class="LoadProductQuantityColor(enquiryProduct.ProductQuantity,enquiryProduct.CollectionPlannedQuantity,enquiryProduct.CollectionDeliveredQuantity)">
+																<!--<span ng-if="enquiryProduct.DeliveryDeliveredQuantity !== '0'">{{enquiryProduct.DeliveryDeliveredQuantity |  number : 0}} </span>
+																<span ng-if="enquiryProduct.DeliveryDeliveredQuantity === '0'"><span class="tobeupdated">N/A</span></span>
+																/
+																<span ng-if="enquiryProduct.DeliveryPlannedQuantity !== '0'"> {{enquiryProduct.DeliveryPlannedQuantity |  number : 0}} </span>
+																<span ng-if="enquiryProduct.DeliveryPlannedQuantity === '0'">{{enquiryProduct.ProductQuantity |  number : 0}}</span>-->
+																<span><span class="tobeupdated">N/A</span></span>
+															</div>
+
+															<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('CollectionStartDate')">
+																-
+															</div>
+															<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('CollectionEndDate')">
+																-
+															</div>
+
+															<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('DeliveryStartDate')">
+																-
+															</div>
+
+															<div class="col-md-2 document_alingment" ng-if="LoadRepeaterByConfiguration('DeliveryEndDate')">
+																-
+															</div>
+
+															<div class="col-md-2 WoodenPallet_Status_Spacing document_alingment" style="word-wrap:break-word !important" ng-if="LoadRepeaterByConfiguration('PriceColumn')">
+																-
+															</div>
+
+															<div class="col-md-2 WoodenPallet_Status_Spacing document_alingment" style="word-wrap:break-word !important" ng-if="LoadRepeaterByConfiguration('TotalPriceColumn')">
+																-
+															</div>
+
+
+
+
+															<div class="col-md-2 WoodenPallet_Status_Spacing document_alingment" style="padding-top: 15px;" ng-if="LoadRepeaterByConfiguration('DeliverySection')">
+																<div class="Product_StartEndTime_UI">
+																	<div class="product_time_section_box" ng-if="enquiryProduct.PlannedDeliveryDate !== undefined && enquiryProduct.PlannedDeliveryDate !== '1900-01-01T00:00:00'" ng-class="LoadClassNameForTime(enquiryProduct.PlannedDeliveryDate,enquiryProduct.ActualDeliveryDate)">
+																		<div class="traker_product_startend_main_section">
+																			<div class="Product_Total_Time">
+																				<span style="display:none" class="product_total_label">{{resData.res_ControlTower_TotalTime}}</span>
+																				<span class="product_total_value">{{LoadProductTimeStatus(enquiryProduct.PlannedDeliveryDate,enquiryProduct.ActualDeliveryDate)}}</span>
+																			</div>
+																		</div>
+																		<div class="traker_product_startendtime_main_section">
+
+																			<div class="tracker_start_date_section">
+
+																				<div class="tracker_start_date_time">
+																					<span ng-if="enquiryProduct.ActualDeliveryDate !== undefined">
+																						{{enquiryProduct.ActualDeliveryDate | date:'HH:mm:ss'}}
+																					</span>
+																					<span ng-if="enquiryProduct.ActualDeliveryDate === undefined">
+																						<span class="tobeupdated">To be updated</span>
+																					</span>
+																				</div>
+																				<div class="tracker_start_date">
+																					<span ng-if="enquiryProduct.ActualDeliveryDate !== undefined">
+																						{{enquiryProduct.ActualDeliveryDate | date:'dd/MM/yyyy'}}
+																					</span>
+																					<span ng-if="enquiryProduct.ActualDeliveryDate === undefined" style="display:none">
+																						<span class="tobeupdated">To be updated</span>
+																					</span>
+																				</div>
+																				<div class="tracker_start_date_time">
+																					{{resData.res_ControlTower_Product_Status_Actual}}
+																				</div>
+																				<div class="tracker_start_date_label" style="display:none">{{resData.res_ControlTower_Start}}</div>
+																			</div>
+																			<div class="tracker_start_date_section tracker_end_date_section">
+
+																				<div class="tracker_start_date_time">
+																					<span ng-if="enquiryProduct.PlannedDeliveryDate !== undefined">
+																						{{enquiryProduct.PlannedDeliveryDate | date:'HH:mm:ss'}}
+																					</span>
+																					<span ng-if="enquiryProduct.PlannedDeliveryDate === undefined">
+																						-
+																					</span>
+																				</div>
+																				<div class="tracker_start_date">
+																					<span ng-if="enquiryProduct.PlannedDeliveryDate !== undefined">
+																						{{enquiryProduct.PlannedDeliveryDate | date:'dd/MM/yyyy'}}
+																					</span>
+																					<span ng-if="enquiryProduct.PlannedDeliveryDate === undefined" style="display:none">
+																						-
+																					</span>
+																				</div>
+																				<div class="tracker_start_date_time">
+																					{{resData.res_ControlTower_Product_Status_Plan}}
+																				</div>
+																				<div class="tracker_start_date_label" style="display:none">{{resData.res_ControlTower_End}}</div>
+																			</div>
+																		</div>
+
+																		<div class="traker_product_startend_main_section" style="display:none">
+																			<div class="Product_Total_Time">
+																				<span class="product_total_value">{{enquiryProduct.OrderDeliveryTime}}</span>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="" ng-if="enquiryProduct.PlannedDeliveryDate === undefined || enquiryProduct.PlannedDeliveryDate === '1900-01-01T00:00:00'">
+																		<span class="tobeupdated">To be planned</span>
+																	</div>
+																</div>
+															</div>
+
+															<div class="col-md-1 Document_Spacing document_alingment" ng-if="LoadRepeaterByConfiguration('ProductDocuments')">
+																<div ng-repeat="document in enquiryProduct.OrderDocumentList">
+																	<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+																</div>
+																<div ng-if="enquiryProduct.OrderDocumentList.length === 0 || enquiryProduct.OrderDocumentList === undefined">
+																	-
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+
+								<div class="row" style="margin: 0px;" ng-if="pageContrlAcessData.UnmooringInformation !='0'">
+									<div class="col-md-12" style="padding:0px">
+										<div class="table table-hover">
+											<div id="demo" class="EnquiryDetailsAccordion" style="color:#fff">
+												<div class="ContainerSection" style="background: rgba(0,0,0,0.25) !important;">
+													<div class="conatinerbody IsPeddingRequired">
+
+
+														<div class="conatinerheader itemrowcontainer" style="background: none;height: auto;color:#fff;padding: 10px 10px;">
+															<div class="col-md-3 Name_Spacing">
+																<div>{{resData.res_ControlTower_Unmooring}}</div>
+																<div class="tracker_base_information">{{resData.res_ControlTower_TestData}}</div>
+																<div class="tracker_base_information">{{resData.res_ControlTower_TestData}}</div>
+															</div>
+															<div class="col-md-1 Status_Spacing document_alingment">
+																<div>
+																	<span class="product_status">
+																		<i class="fa fa-check"></i>
+																	</span>
+																</div>
+
+																<div style="display:none">
+																	<span class="product_status">
+																		<i class="fa fa-exclamation"></i>
+																	</span>
+																</div>
+
+
+															</div>
+															<div class="col-md-3 Collection_Spacing">
+																<div class="Product_StartEndTime_UI">
+
+																	<div class="product_time_section_box">
+																		<div class="traker_product_startend_main_section">
+																			<div class="Product_Total_Time">
+																				<span class="product_total_label">{{resData.res_ControlTower_TotalTime}}</span>
+																				<span class="product_total_value">{{resData.res_ControlTower_001512}}</span>
+																			</div>
+																		</div>
+																		<div class="traker_product_startendtime_main_section">
+
+																			<div class="tracker_start_date_section">
+																				<div class="tracker_start_date_time">{{resData.res_ControlTower_062618}}</div>
+																				<div class="tracker_start_date">{{resData.res_ControlTower_20022019}}</div>
+																				<div class="tracker_start_date_label">{{resData.res_ControlTower_Start}}</div>
+																			</div>
+																			<div class="tracker_start_date_section tracker_end_date_section">
+																				<div class="tracker_start_date_time">{{resData.res_ControlTower_062618}}</div>
+																				<div class="tracker_start_date">{{resData.res_ControlTower_20022019}}</div>
+																				<div class="tracker_start_date_label">{{resData.res_ControlTower_End}}</div>
+																			</div>
+																		</div>
+
+																	</div>
+
+																</div>
+															</div>
+															<div class="col-md-3 Delivery_Spacing">
+															</div>
+															<div class="col-md-1 Document_Spacing">
+																-
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+
+								<div style="float:left;width:100%;margin-top:15px;display:none">
+									<h3 class="alert" style="background-color:#29292a;margin-top: 0px;color: white;margin-bottom: 0px;"><b>{{resData.res_ControlTower_Tracker}}</b> ( {{resData.res_GridColumn_OrderNumber}}: {{OrderNumber}} )</h3>
+								</div>
+
+								<div class="row" style="margin-top:15px" ng-if="pageContrlAcessData.TrackerPageTimeline !='0'">
+									<div class="col-md-12">
+
+										<div style="padding-left:25px;">
+											<div class="timeline">
+												<div class="timeline_item" ng-repeat="item in WorkflowActivityLogData" ng-class="{'timeline_green': item.ActivityStartTime !== undefined && item.ActivityStartTime !== '1900-01-01T00:00:00' && item.ActivityEndTime !== undefined && item.ActivityEndTime !== '1900-01-01T00:00:00', 'timeline_orange' : item.ActivityStartTime !== undefined && item.ActivityStartTime !== '1900-01-01T00:00:00' && (item.ActivityEndTime === undefined || item.ActivityEndTime === '1900-01-01T00:00:00'), 'timeline_blue' : (item.ActivityStartTime === undefined || item.ActivityStartTime === '1900-01-01T00:00:00') && (item.ActivityEndTime === undefined || item.ActivityEndTime === '1900-01-01T00:00:00'), 'timeline_childitem' : item.IsParent === '0'}">
+
+													<div class="timeline_icon timeline_icon_success" ng-if="item.IsParent === '1'"><i class="fa {{item.IconName}}"></i></div>
+													<div class="timeline_icon timeline_icon_success childStep" ng-if="item.IsParent === '0'"></div>
+
+													<div class="timeline_content header_font_color font-header"><strong>{{item.WorkFlowCurrentActivityName}}</strong></div>
+													<div class="byuserName" ng-if="item.IsUserNameAvailable !== '0'">
+														<span ng-if="item.Username !== '' && item.Username !== undefined">{{resData.res_ControlTower_Bylabel}} : {{item.Username}}</span>
+													</div>
+													<div class="timeline_content" style="padding-top: 0px;display:none" ng-if="item.WorkFlowActivityLogId == 0"><div class="txt" style="color: white;">{{resData.res_ControlTower_NA}}</div></div>
+
+													<div style="float:left;width:100%;margin-top: 2px;">
+														<div id="deliveryInfo">
+															<div class="timeline_content1" style="float:left;width:auto !important;margin-right:10px">
+																<span style="float:left;width:100%" ng-if="item.IsStartDateAvailable !== '0'">
+																	<span ng-if="item.IsEndDateAvailable !== '0'">{{resData.res_ControlTower_StartDateLabel}}:</span>
+																	<span ng-if="item.IsEndDateAvailable === '0'">{{resData.res_ControlTower_DateLabel}}:</span>
+																	<span ng-if="item.ActivityStartTime !=='1900-01-01T00:00:00'">{{item.ActivityStartTime | date:'dd/MM/yyyy HH:mm'}}</span>
+																	<span class="tobeupdated" ng-if="item.ActivityStartTime ==='1900-01-01T00:00:00'">To be updated</span>
+																</span>
+																<br>
+																<span style="float:left;width:100%" ng-if="item.IsEndDateAvailable !== '0'">
+																	{{resData.res_ControlTower_EndDateLabel}}:
+																	<span ng-if="item.ActivityEndTime !=='1900-01-01T00:00:00'">{{item.ActivityEndTime | date:'dd/MM/yyyy HH:mm'}}</span>
+																	<span class="tobeupdated" ng-if="item.ActivityEndTime ==='1900-01-01T00:00:00'">To be updated</span>
+																</span>
+															</div>
+															<div class="trackerpage_pipe_color" ng-if="item.ActivityStartTime !=='1900-01-01T00:00:00' && item.ActivityEndTime !=='1900-01-01T00:00:00' && item.IsEndDateAvailable !== '0'">
+																{{resData.res_ControlTower_TotalTime}}: {{DateDifferenceStartDateAndEndDate(item.ActivityStartTime,item.ActivityEndTime)}}
+															</div>
+														</div>
+													</div>
+
+													<!--ng-if="item.WorkFlowActivityLogId > 0"-->
+													<div style="float:left;width:100%">
+														<div id="collectionInfo" ng-if="item.WorkFlowCurrentStatusCode == '120'">
+															<div class="timeline_content1">
+																<span ng-if="item.IsEndDateAvailable !== '0'">
+																	{{resData.res_ControlTower_ActualDate}}:
+																	<span ng-if="item.CollectionInfoList[0].Actual !=='1900-01-01T00:00:00'">{{item.CollectionInfoList[0].Actual | date:'dd/MM/yyyy HH:mm'}}</span>
+																	<span class="tobeupdated" ng-if="item.CollectionInfoList[0].Actual ==='1900-01-01T00:00:00' || item.CollectionInfoList === undefined">To be updated</span>
+																</span>
+																<br>
+																<span ng-if="item.IsStartDateAvailable !== '0'">
+																	{{resData.res_ControlTower_PlannedDate}}:
+																	<span ng-if="item.CollectionInfoList[0].Planned !=='1900-01-01T00:00:00'">{{item.CollectionInfoList[0].Planned | date:'dd/MM/yyyy HH:mm'}}</span>
+																	<span class="tobeupdated" ng-if="item.CollectionInfoList[0].Planned ==='1900-01-01T00:00:00' || item.CollectionInfoList === undefined">To be updated</span>
+																</span>
+															</div>
+															
+															<div class="timeline_content1">
+																<div style="display:none">
+																	<h4><strong class="towerstep_heading font-header">{{resData.res_ControlTower_CollectionInformation}}</strong></h4>
+																</div>
+																<span>{{resData.res_ControlTower_PlateNumber}}: {{item.CollectionInfoList[0].TruckPlateNumber}}</span>
+																<br>
+																<span>{{resData.res_ControlTower_Name}}: {{item.CollectionInfoList[0].Name}}</span>
+																<br>
+																<span>{{resData.res_ControlTower_MobileNumber}}: {{item.CollectionInfoList[0].MobileNumber}}</span>
+																<br>
+																<span>{{resData.res_ControlTower_EmailId}}: {{item.CollectionInfoList[0].EmailId}}</span>
+
+															</div>
+														</div>
+													</div>
+													<!--ng-if="item.WorkFlowActivityLogId > 0"-->
+													<div style="float:left;width:100%">
+														<div id="deliveryInfo" ng-if="item.WorkFlowCurrentStatusCode == '121'">
+															<div class="timeline_content1" style="float: left;width: auto !important;margin-right: 10px;">
+																<span ng-if="item.IsEndDateAvailable !== '0'">
+																	{{resData.res_ControlTower_ActualDate}}:
+																	<span ng-if="item.DeliveryInfoList[0].Actual !=='1900-01-01T00:00:00'">{{item.DeliveryInfoList[0].Actual | date:'dd/MM/yyyy HH:mm'}}</span>
+																	<span class="tobeupdated" ng-if="item.DeliveryInfoList[0].Actual ==='1900-01-01T00:00:00' || item.DeliveryInfoList === undefined">To be updated</span>
+																</span>
+																<br>
+																<span ng-if="item.IsStartDateAvailable !== '0'">
+																	{{resData.res_ControlTower_PlannedDate}}:
+																	<span ng-if="item.DeliveryInfoList[0].Planned !=='1900-01-01T00:00:00'">{{item.DeliveryInfoList[0].Planned | date:'dd/MM/yyyy HH:mm'}}</span>
+																	<span class="tobeupdated" ng-if="item.DeliveryInfoList[0].Planned ==='1900-01-01T00:00:00' || item.DeliveryInfoList === undefined">To be updated</span>
+																</span>
+															</div>
+															<div class="trackerpage_pipe_color" ng-if="item.ActivityStartTime !=='1900-01-01T00:00:00' && item.ActivityEndTime !=='1900-01-01T00:00:00' && item.IsEndDateAvailable !== '0'">
+																{{resData.res_ControlTower_Delayed_By}}: {{DateDifferenceDelayed_By(item.DeliveryInfoList[0].Actual,item.DeliveryInfoList[0].Planned)}}
+															</div>
+															<div class="timeline_content1">
+																<div style="display:none">
+																	<h4><strong class="towerstep_heading font-header">{{resData.res_ControlTower_DeliveryInformation}}</strong></h4>
+																</div>
+																<span>{{resData.res_ControlTower_PlateNumber}}: {{item.DeliveryInfoList[0].TruckPlateNumber}}</span>
+																<br>
+																<span>{{resData.res_ControlTower_Name}}: {{item.DeliveryInfoList[0].Name}}</span>
+																<br>
+																<span>{{resData.res_ControlTower_MobileNumber}}: {{item.DeliveryInfoList[0].MobileNumber}}</span>
+																<br>
+																<span>{{resData.res_ControlTower_EmailId}}: {{item.DeliveryInfoList[0].EmailId}}</span>
+															</div>
+														</div>
+													</div>
+
+													<div style="float:left;width:100%">
+														<div id="deliveryInfo" ng-if="item.WorkFlowCurrentStatusCode == '122'">
+															<div class="timeline_content1">
+
+																<div class="controltower_fullwidth">
+																	{{resData.res_ControlTower_Transporter}} :
+																	<span ng-if="OrderTransporterName !== null && OrderTransporterName !== ''">{{OrderTransporterName}}</span>
+																	<span class="tobeupdated" ng-if="OrderTransporterName === null || OrderTransporterName === ''">To be updated</span>
+																</div>
+
+																<div class="controltower_fullwidth">
+																	{{resData.res_ControlTower_DriverName}} :
+																	<span ng-if="OrderDriverName !== null && OrderDriverName !== ''">{{OrderDriverName}}</span>
+																	<span class="tobeupdated" ng-if="OrderDriverName === null || OrderDriverName === ''">To be updated</span>
+																</div>
+																<div class="controltower_fullwidth">
+																	{{resData.res_ControlTower_PlateNumber}} :
+																	<span ng-if="OrderTruckPlateNumber !== null && OrderTruckPlateNumber !== ''">{{OrderTruckPlateNumber}}</span>
+																	<span class="tobeupdated" ng-if="OrderTruckPlateNumber === null || OrderTruckPlateNumber === ''">To be updated</span>
+																</div>
+
+																<div class="controltower_fullwidth">
+																	{{resData.res_ControlTower_TruckSize}} :
+																	<span ng-if="OrderTruckSize !== null && OrderTruckSize !== ''">{{OrderTruckSize}}</span>
+																	<span class="tobeupdated" ng-if="OrderTruckSize === null || OrderTruckSize === ''">To be updated</span>
+																</div>
+
+															</div>
+														</div>
+													</div>
+
+													<div ng-if="item.WorkFlowActivityLogId > 0">
+														<div class="row">
+															<div class="col-md-12 control_tower_logs">
+
+																<div class="panel-content" style="margin-bottom: 0px;float:left;width:100%" ng-if="item.EmailLogList.length > 0">
+																	<table class="table" style="float:left;width:100%" ng-if="item.IsNotificationLogAvailable=='1'">
+																		<tr ng-repeat="log in item.EmailLogList | limitTo : 3">
+																			<td style="float:left;width: 35px;padding-left:0px !important"><i class="fa fa-envelope"></i></td>
+																			<td style="float:left;width: 120px;white-space:normal">{{log.LogDate | date:'dd/MM/yyyy HH:mm'}}</td>
+																			<td style="float:left;width: 75px;">{{log.Source}}</td>
+																			<td style="float:left;width: 160px;">{{log.RecipientTo}}</td>
+																			<td style="float:left;width: auto;">{{log.LogDescription | htmlToPlaintext | limitTo: 65 }}{{log.LogDescription.length > 65 ? '...' : ''}}</td>
+
+																		</tr>
+																	</table>
+																</div>
+																<div ng-if="item.EmailLogList.length > 3" style="float:left">
+																	<a class="seemorelink" ng-click="LoadAllLog(item.EmailLogList,'Email',item.WorkFlowCurrentActivityName)">{{resData.res_ControlTower_SeeMore}}</a>
+																</div>
+																<div style="clear:both"></div>
+																<div class="panel-content" style="margin-bottom: 0px;float:left;width:100%" ng-if="item.LogList.length > 0">
+																	<table class="table" style="float:left;width:100%" ng-if="item.IsActivityLogAvailable=='1'">
+
+																		<tr ng-repeat="log in item.LogList | limitTo : 3">
+																			<td style="float:left;width: 35px;padding-left:0px !important"><i class="fa fa-file-text-o"></i></td>
+																			<td style="float:left;width: 120px;white-space:normal">{{log.LogDate | date:'dd/MM/yyyy HH:mm'}}</td>
+																			<td style="float:left;width: 75px;">{{log.Source}}</td>
+																			<td style="float:left;width: auto;">{{log.LogDescription | htmlToPlaintext | limitTo: 100 }}{{log.LogDescription.length > 100 ? '...' : ''}}</td>
+																		</tr>
+
+																	</table>
+
+																</div>
+																<div ng-if="item.LogList.length > 3" style="float:left">
+																	<a class="seemorelink" ng-click="LoadAllLog(item.LogList,'Activity',item.WorkFlowCurrentActivityName)">{{resData.res_ControlTower_SeeMore}}</a>
+																</div>
+															</div>
+														</div>
+
+
+													</div>
+												</div>
+
+
+											</div>
+
+
+											<div class="row">
+												<div class="col-md-12">
+													<br>
+												</div>
+											</div>
+											<div class="row">
+
+												<div class="col-md-12" style="height:50px;color: white;font-size: 16px !important;">
+													&nbsp;
+												</div>
+
+												<div class="col-md-12" style="height:200px;color: white;font-size: 16px !important;display:none">
+													<div style="padding: 0 20px 0 20px;">
+														<h4><strong>{{resData.res_ControlTower_Survey}}</strong></h4>
+													</div>
+													<div style="padding: 0 20px 0 20px;">
+														<h4><strong>{{resData.res_ControlTower_Rating}}</strong></h4>
+													</div>
+													<div style="padding: 0 20px 0 20px;">
+														<h4><strong>{{resData.res_ControlTower_Feedback}}</strong></h4>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12" style="height:20px">
+													<br>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script id="OrderDocumentUpload.html" type="text/ng-template">
+			<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height: 650px !important;width: 120vh !important;">
+
+				<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+					<h1 class="title">{{resData.res_ControlTower_AdditionalDocument}}</h1>
+					<button class="button button-clear button-primary" ng-click="CloseOrderDocumentUploadPopup()"><i class="fa fa-times" style="color:black"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="hidden" class="padding IonicPopupHeight" style="min-height:650px !important;height: 650px;">
+					<div class="list">
+						<div class="customlistcontrolview">
+							<div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+
+								<div ng-if="pageContrlAcessData.ControlTowerAddMiscellaneousDocument !='0'">
+									<div class="columnfulldata  margintopdata">
+										<div class="labelname reasonlable">
+											{{resData.res_ControlTower_DocumentType}}
+										</div>
+										<div class="labelcontrol">
+											<div>
+												<div class="section_width_100 margin_bottom_10">
+													<div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+														<input id="ItemListAutoCompleteBox_value" type="text" class="green_border_textbox" placeholder="Search Document Type" ng-class="{'open_panel': showItembox}" ng-model="SearchControl.InputItem" ng-disabled="disableInput" ng-focus="onFocusHandler()" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="ItemInputSelecteChangeEvent(SearchControl.InputItem)" />
+														<span class="textbox_down_angle">
+															<a ng-click="ShowItemListBox()">
+																<i class="fa fa-angle-down icon_size_20" ng-hide="showItembox === true"></i>
+															</a>
+															<a ng-click="ClearItemInputSearchbox()" class="remove_ion_icon">
+																<i class="icons-office-52" ng-if="showItembox"></i>
+															</a>
+														</span>
+														<div id="ItemListAutoCompleteBox_dropdown" ng-if="showItembox" class="angucomplete-dropdown autocompltedropdown ScrollbarUI" style="">
+															<div class="angucomplete-searching" ng-if="searching" ng-bind="textSearching" style="">{{resData.res_CreateInquiryPage_Searching}}</div>
+															<div class="angucomplete-searching no_resultfound" ng-if="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+															<div class="angucomplete-row" ng-repeat="result in (filteredItems = (OrderDocumentList | multipleTags:SearchControl.FilterAutoCompletebox))" key-navigation="" ng-mouseenter="hoverRow($index)" ng-click="inputDocumentType_Click(result.LookUpId)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+																<div class="angucomplete-title" style="">
+																	{{result.Name}}
+																</div>
+															</div>
+															<div class="angucomplete-searching add_new_item_btn" style="display:none">
+																<a class="add_new_item_btn_text" ng-click="AddNewDocumentType()">
+																	{{resData.res_ControlTower_AddNewDocumentType}}
+																</a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="columnfulldata margintopdata" ng-if="pageContrlAcessData.ControlTowerDocumentFormat !='0'">
+										<div class="labelname reasonlable">
+											{{resData.res_ControlTower_DocumentFormat}}
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											{{FileUploadJSON.SelectFileFormat}}
+										</div>
+									</div>
+									<div class="columnfulldata margintopdata" ng-if="pageContrlAcessData.ControlTowerDocumentSize !='0'">
+										<div class="labelname reasonlable">
+											{{resData.res_ControlTower_DocumentSize}}
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											{{FileUploadJSON.SelectFileSize}} {{resData.res_ControlTower_DocumentSizeType}}
+										</div>
+									</div>
+									<div class="columnfulldata  margintopdata">
+										<div class="labelname reasonlable">
+											{{resData.res_ControlTower_DocumentDescription}}
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											<input id="inputDocumentDescription" ng-model="MiscellaneousOrderDocumentJSON.DocumentDescription" class="form-control form-white " placeholder="Document Description" name="Input" md-input="" />
+										</div>
+									</div>
+									<div class="columnfulldata  margintopdata">
+										<div class="labelname reasonlable">
+											{{resData.res_ControlTower_Upload}}
+										</div>
+										<div class="labelcontrol" style="position:relative;margin-top: 5px;">
+											<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+												<div class="form-control" data-trigger="fileinput">
+													<i class="glyphicon glyphicon-file fileinput-exists"></i>
+													<span class="fileinput-filename">{{FileUploadJSON.FileName}}</span>
+												</div>
+												<span class="input-group-addon btn btn-default btn-file">
+													<span class="fileinput-new">Choose...</span>
+													<span class="fileinput-exists">Change</span>
+													<input type="file" id="fileUpload" ng-file-select="onFileSelect($files)" ng-file-name="FileUploadJSON.FileName" ng-file-extension="FileUploadJSON.FileFormat" ng-file-base64="FileUploadJSON.FileSrc" />
+												</span>
+											</div>
+										</div>
+										<div class="popupfooter" style="border-top: none !important;width: 10%;margin-top: 4px;">
+											<div class="popupbtnstyle" style="border-top: none !important;">
+
+												<div class="popupbuttonstyle">
+													<a class="btn btn-success btn-square" ng-click="AddMiscellaneousDocument()">
+														{{resData.res_ControlTower_Add}}
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="columnfulldata  margintopdata">
+									<div class="ContainerSection">
+										<div class="conatinerheader item_row_container headerdataconatiner" style="border-bottom: 1px solid #d5d5d5;">
+											<div class="popup_documnet_Type">
+												{{resData.res_ControlTower_DocumentType}}
+											</div>
+											<div class="popup_documnet_Description">
+												{{resData.res_ControlTower_DocumentDescription}}
+											</div>
+											<div class="popup_documnet_icon">
+												{{resData.res_ControlTower_Link}}
+											</div>
+											<div class="popup_documnet_icon">
+												{{resData.res_ControlTower_Action}}
+											</div>
+										</div>
+										<div class="conatinerbody">
+
+
+											<div class="conatinerheader itemrow_container" style="height: auto;" ng-repeat="item in MiscellaneousOrderDocumentList">
+												<div class="popup_documnet_Type">
+													{{item.DocumentTypeName}}
+												</div>
+												<div class="popup_documnet_Description" ng-if="item.DocumentDescription !== undefined && item.DocumentDescription !== null && item.DocumentDescription !== ''">
+													{{item.DocumentDescription}}
+												</div>
+												<div class="popup_documnet_Description" ng-if="item.DocumentDescription === undefined || item.DocumentDescription === null || item.DocumentDescription === ''">
+													-
+												</div>
+												<div class="popup_documnet_icon">
+													<a ng-click="DownloadDocument(item.OrderDocumentId,item.DocumentTypeId,item.DocumentFormat)">
+														<i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i>
+													</a>
+													<!--<a download="{{item.FileName}}" href="data:application/octet-stream;base64,{{item.FileSrc}}"><i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i></a>-->
+												</div>
+												<div class="popup_documnet_icon">
+													<!--<a ng-click="RemoveAddedDocument(item.MiscellaneousDocumentId)">
+														<i class="fa fa-trash" style="color:red;font-size:16px">
+														</i>
+													</a>-->
+													<a ng-click="OpenDocWarningConfirmation(item.MiscellaneousDocumentId)">
+														<i class="fa fa-trash" style="color:red;font-size:16px">
+														</i>
+													</a>
+
+												</div>
+											</div>
+
+											<div ng-repeat="item in ASNDetailList | filter: {OrderId: LoadedOrderId}">
+												<div class="conatinerheader itemrow_container" style="height: auto;" ng-if="LoadRepeaterByConfiguration('CheckList')" ng-repeat="document in item.OrderDocumentList | filter:{ DocumentType: 'CheckList' }" ng-if="$index !== 0">
+													<div>
+														<div class="popup_documnet_Type">
+															{{document.DocumentType}}
+														</div>
+														<div class="popup_documnet_Description" ng-if="document.DocumentDescription !== null && document.DocumentDescription !== ''">
+															{{document.DocumentDescription}}
+														</div>
+														<div class="popup_documnet_Description" ng-if="document.DocumentDescription === null || document.DocumentDescription === ''">
+															-
+														</div>
+														<div class="popup_documnet_Description">
+															<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+														</div>
+													</div>
+												</div>
+
+												<div class="conatinerheader itemrow_container" style="height: auto;" ng-if="LoadRepeaterByConfiguration('POD')" ng-repeat="document in item.OrderDocumentList | filter:{ DocumentType: 'POD' }" ng-if="$index !== 0">
+													<div>
+														<div class="popup_documnet_Type">
+															{{document.DocumentType}}
+														</div>
+														<div class="popup_documnet_Description" ng-if="document.DocumentDescription !== null && document.DocumentDescription !== ''">
+															{{document.DocumentDescription}}
+														</div>
+														<div class="popup_documnet_Description" ng-if="document.DocumentDescription === null || document.DocumentDescription === ''">
+															-
+														</div>
+														<div class="popup_documnet_icon">
+															<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+														</div>
+													</div>
+
+												</div>
+
+												<div class="conatinerheader itemrow_container" style="height: auto;" ng-if="LoadRepeaterByConfiguration('ReturnsNotice')" ng-repeat="document in item.OrderDocumentList | filter:{ DocumentType: 'ReturnsNotice' }" ng-if="$index !== 0">
+													<div>
+														<div class="popup_documnet_Type">
+															{{document.DocumentType}}
+														</div>
+														<div class="popup_documnet_Description" ng-if="document.DocumentDescription !== null && document.DocumentDescription !== ''">
+															{{document.DocumentDescription}}
+														</div>
+														<div class="popup_documnet_Description" ng-if="document.DocumentDescription === null || document.DocumentDescription === ''">
+															-
+														</div>
+														<div class="popup_documnet_icon">
+															<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+														</div>
+													</div>
+
+												</div>
+
+												<div class="conatinerheader itemrow_container" style="height: auto;" ng-if="LoadRepeaterByConfiguration('LorryReceipt')" ng-repeat="document in item.OrderDocumentList | filter:{ DocumentType: 'LorryReceipt' }" ng-if="$index !== 0">
+													<div>
+														<div class="popup_documnet_Type">
+															{{document.DocumentType}}
+														</div>
+														<div class="popup_documnet_Description" ng-if="document.DocumentDescription !== null && document.DocumentDescription !== ''">
+															{{document.DocumentDescription}}
+														</div>
+														<div class="popup_documnet_Description" ng-if="document.DocumentDescription === null || document.DocumentDescription === ''">
+															-
+														</div>
+														<div class="popup_documnet_icon">
+															<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+														</div>
+													</div>
+
+												</div>
+
+												<div class="conatinerheader itemrow_container" style="height: auto" ng-repeat="document in item.OrderDocumentList" ng-if="document.DocumentType !== 'CheckList' && document.DocumentType !== 'POD' && document.DocumentType !== 'ReturnsNotice' && document.DocumentType !== 'LorryReceipt'">
+
+													<div class="popup_documnet_Type">
+														{{document.DocumentType}}
+													</div>
+													<div class="popup_documnet_Description" ng-if="document.DocumentDescription !== null && document.DocumentDescription !== ''">
+														{{document.DocumentDescription}}
+													</div>
+													<div class="popup_documnet_Description" ng-if="document.DocumentDescription === null || document.DocumentDescription === ''">
+														-
+													</div>
+													<div class="popup_documnet_icon">
+														<a ng-click="DownloadDocument(document.OrderDocumentId,document.DocumentType,document.DocumentFormat)">  <i class='fa fa-file-pdf-o' style='font-size: 20px; color: red;' aria-hidden='true'></i> </a>
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</ion-content>
+				<ion-footer-bar align-title="left" class="popupfooter" ng-if="pageContrlAcessData.ControlTowerAddMiscellaneousDocument !='0'">
+					<div class="popupbtnstyle">
+
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square" ng-click="SaveMiscellaneousOrderDocument()">
+								{{resData.res_GridConfigurationPage_Save}}
+							</a>
+						</div>
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square redclosebtn" ng-click="CloseOrderDocumentUploadPopup()">
+								{{resData.res_ControlTower_Close}}
+							</a>
+						</div>
+					</div>
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+		<script id="OrderLog.html" type="text/ng-template">
+			<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height: 700px !important;width: 180vh !important;">
+
+				<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+					<h1 class="title">Log ({{logSubHeaderTitle}})</h1>
+					<button class="button button-clear button-primary" ng-click="CloseOrderLogPopup()"><i class="fa fa-times" style="color: black;"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="hidden" class="padding IonicPopupHeight">
+					<div class="list">
+						<div class="customlistcontrolview">
+							<div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+
+								<div class="columnfulldata  margintopdata">
+									<div class="ContainerSection">
+										<div class="conatinerheader item_row_container headerdataconatiner" style="border-bottom: 1px solid #d5d5d5;">
+											<div class="popup_log_Type">
+												{{resData.res_ControlTower_LogType}}
+											</div>
+											<div class="popup_log_date">
+												{{resData.res_ControlTower_Date}}
+											</div>
+											<div class="popup_log_source" style="width:10% !important">
+												{{resData.res_ControlTower_Source}}
+											</div>
+											<div class="popup_log_source" ng-if="logType === 'Email'">
+												{{resData.res_ControlTower_To}}
+											</div>
+											<div class="popup_log_Description" style="width:35% !important">
+												{{resData.res_ControlTower_Title}}
+											</div>
+										</div>
+										<div class="conatinerbody" style="margin-top: 10px;">
+											<div class="conatinerheader item_row_container" style="height: auto;" ng-repeat="item in OrderLogList">
+												<div class="popup_log_Type">
+													<i ng-if="logType === 'Email'" class="fa fa-envelope"></i>
+													<i ng-if="logType === 'Activity'" class="fa fa-file-text-o"></i>
+												</div>
+												<div class="popup_log_date">
+													{{item.LogDate | date:'dd/MM/yyyy HH:mm'}}
+												</div>
+												<div class="popup_log_source" style="width:10% !important">
+													{{item.Source}}
+												</div>
+												<div class="popup_log_source" ng-if="logType === 'Email'">
+													<span ng-hide="item.RecipientTo ==''">{{item.RecipientTo}}</span>
+													<span ng-show="item.RecipientTo ==''">-</span>
+												</div>
+												<div class="popup_log_Description" style="width:35% !important">
+													{{item.LogDescription}}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</ion-content>
+				<ion-footer-bar align-title="left" class="popupfooter">
+					<div class="popupbtnstyle">
+
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square redclosebtn" ng-click="CloseOrderLogPopup()">
+								{{resData.res_ControlTower_Close}}
+							</a>
+						</div>
+					</div>
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+
+		<script id="FeedbackView/OrderFeedbackView.html" type="text/ng-template">
+			<ion-modal-view class="confirmationmsgmodalview eventmappingcss bgcolorheaderandfooter" style="min-height: 800px !important;width: 90% !important;top: 50px !important;">
+				<ion-header-bar class="bar bar-header bar-positive">
+					<h1 class="title">{{resData.res_OrderFeedback_AddFeedback}}</h1>
+					<button class="button button-clear button-primary" ng-click="OpenWarningConfirmation()"><i class="icons-office-52"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="hidden" class="padding IonicPopupHeight" style="overflow: hidden;">
+					<div class="list">
+						<div class="customlistcontrolview" style="height: 750px;">
+
+							<div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+								<div class="columnfulldata  margintopdata">
+
+									<div ng-include="'../FeedbackView/OrderFeedbackView.html'" ng-controller="OrderFeedbackViewController" style="height: 750px;"></div>
+
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</ion-content>
+
+				<ion-footer-bar align-title="left" class="popupfooter">
+
+					<div class="popupbtnstyle">
+
+
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square redclosebtn" ng-click="OpenWarningConfirmation()">
+								<i class="fa fa-times"></i> {{resData.res_OrderFeedback_Close}}
+							</a>
+						</div>
+					</div>
+
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+		<script id="WarningMessage.html" type="text/ng-template">
+			<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+				<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+					<h1 class="title">{{resData.res_OrderFeedback_CloseFeedbackWarning}}</h1>
+					<button class="button button-clear button-primary" ng-click="CloseWarningConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="false" class="popioncontainer">
+					<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+						{{resData.res_OrderFeedback_CloseFeedbackWarningMessage}}
+					</div>
+				</ion-content>
+				<ion-footer-bar class="popupfooter">
+
+					<div class="popupbtnstyle">
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square" ng-click="WarningYes()">
+								{{resData.res_OrderFeedback_Yes}}
+							</a>
+							<a class="btn btn-success btn-square" ng-click="CloseWarningConfirmation()">
+								{{resData.res_OrderFeedback_No}}
+							</a>
+						</div>
+
+
+					</div>
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+		<script id="DocWarningMessage.html" type="text/ng-template">
+			<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+				<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+					<h1 class="title">{{resData.res_OrderFeedback_CloseDocWarningTitle}}</h1>
+					<button class="button button-clear button-primary" ng-click="CloseDocWarningConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="false" class="popioncontainer">
+					<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+						{{resData.res_OrderFeedback_CloseDocWarningMessage}}
+					</div>
+				</ion-content>
+				<ion-footer-bar class="popupfooter">
+
+					<div class="popupbtnstyle">
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square" ng-click="DocWarningYes()">
+								{{resData.res_OrderFeedback_Yes}}
+							</a>
+							<a class="btn btn-success btn-square redclosebtn" ng-click="CloseDocWarningConfirmation()">
+								{{resData.res_OrderFeedback_No}}
+							</a>
+						</div>
+
+
+					</div>
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+		<script id="templates/ShowRPMQuantity.html" type="text/ng-template">
+			<ion-modal-view class="CreateInquirySmallModalView CreateInquiryModalView bgcolorheaderandfooter">
+				<ion-header-bar class="bar bar-header bar-positive">
+					<h1 class="title">View RPM Collection </h1>
+					<button class="button button-clear button-primary" ng-click="CloseViewRPMQuantitypopup()"><i class="fa fa-times"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="hidden" class="padding">
+					<div class="list">
+						<div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+							<div class="table-scrollable">
+								<div class="col-lg-12">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th class="srno"> Sr. No. </th>
+												<th> Item Code </th>
+												<th> Item Name </th>
+												<th> UOM </th>
+												<th> RPM Quantity </th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="product in ViewReturnPakageMaterialListData">
+												<td class="srno"> {{$index + 1}} </td>
+												<td> {{product.ProductCode}} </td>
+												<td> {{product.ItemName}} </td>
+												<td> {{product.PrimaryUnitOfMeasure}} </td>
+												<td> {{product.ProductQuantity | currency: CurrencyFormatCode}} </td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</ion-content>
+				<ion-footer-bar align-title="left" class="bar-assertive">
+
+					<div style="float:left;width:100%">
+						<div class="buttons rightbtn" ng-click="CloseViewRPMQuantitypopup()">
+							<button class="button btn btn-default">Close</button>
+						</div>
+					</div>
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+		<script id="templates/AddNotesForObject.html" type="text/ng-template">
+			<ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:500px !important">
+				<ion-header-bar class="bar bar-header bar-positive">
+					<h1 class="title">{{resData.res_ViewInquiryForCustomer_Note}}</h1>
+					<button class="button button-clear button-primary" ng-click="CloseAddNotesModalPopup()"><i class="fa fa-times"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="hidden" class="padding IonicPopupHeight">
+					<div class="list">
+						<div class="customlistcontrolview">
+
+							<div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+								<div class="columnfulldata  margintopdata">
+
+									<div class="labelname" style="width:70px">
+										{{resData.res_ViewInquiryForCustomer_Note}} :
+									</div>
+									<div class="labelcontrol viewNote" style="width: 85%;text-align:justify">
+										<span ng-bind-html="NoteVariable.NoteText"></span>
+									</div>
+
+
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</ion-content>
+
+				<ion-footer-bar align-title="left" class="popupfooter">
+
+					<div class="popupbtnstyle">
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square redclosebtn" ng-click="CloseAddNotesModalPopup()">
+								Close
+							</a>
+						</div>
+					</div>
+
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+
+
+		<div class="modal-backdrop active" ng-if="DeliveryConfirmationPopup">
+			<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height: 650px !important;width: 120vh !important;">
+
+				<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+					<h1 class="title">{{resData.res_ControlTower_HeaderDeliveryConfirmation}}</h1>
+					<button class="button button-clear button-primary" ng-click="CloseDeliveryConfirmationPopup()"><i class="fa fa-times" style="color:black"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="hidden" class="padding IonicPopupHeight" style="min-height:650px !important;height: 650px;">
+					<div class="list">
+						<div class="customlistcontrolview">
+							<div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+
+								<div>
+
+									<div class="columnfulldata margintopdata" ng-if="pageContrlAcessData.ControlTowerDeliveryConfirmartionOrderNumber !='0'">
+										<div class="labelname reasonlable" style="width:340px !important">
+											{{resData.res_ControlTower_OrderNumber}}
+
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											{{OrderNumber}}
+										</div>
+									</div>
+									<div class="columnfulldata margintopdata" ng-if="pageContrlAcessData.ControlTowerDeliveryConfirmartionTransporterName !='0'">
+										<div class="labelname reasonlable" style="width:340px !important">
+											{{resData.res_ControlTower_TransporterName}} :
+
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											{{TransporterName}}
+										</div>
+									</div>
+									<div class="columnfulldata  margintopdata" ng-if="pageContrlAcessData.ControlTowerDeliveryConfirmartionDriverName !='0'">
+										<div class="labelname reasonlable" style="width:340px !important">
+											{{resData.res_ControlTower_DriverName}} :
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											{{DriverName}}
+										</div>
+									</div>
+
+									<div class="columnfulldata  margintopdata" ng-if="pageContrlAcessData.ControlTowerDeliveryConfirmartionPlateNumber !='0'">
+										<div class="labelname reasonlable" style="width:340px !important">
+
+											{{resData.res_ControlTower_PlateNumber}} :
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											{{PlateNumber}}
+										</div>
+									</div>
+
+									<div class="columnfulldata  margintopdata" ng-if="pageContrlAcessData.ControlTowerDeliveryConfirmartionSoldTo !='0'">
+										<div class="labelname reasonlable" style="width:340px !important">
+											{{resData.res_ControlTower_SoldTo}} :
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											{{SoldToName}}
+										</div>
+									</div>
+
+
+									<div class="columnfulldata  margintopdata" ng-if="pageContrlAcessData.ControlTowerDeliveryConfirmartionShipTo !='0'">
+										<div class="labelname reasonlable" style="width:340px !important">
+											{{resData.res_ControlTower_ShipTo}} :
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											{{ShipToName}}
+										</div>
+									</div>
+
+
+									<div class="columnfulldata  margintopdata" ng-if="pageContrlAcessData.ControlTowerDeliveryConfirmartionActualDate !='0'">
+										<div class="labelname reasonlable" style="width:340px !important">
+											{{resData.res_ControlTower_ActualDate}} <span style="Color:red">*</span>:
+										</div>
+										<div class="labelcontrol" style="margin-top: 5px;">
+											<!--<input type="text" id="PromisedDate" autocomplete="off" ng-model="SelectedActualDate.ActualDateForSelected" placeholder="Please Select Date" ng-click="BindActualDateFrom()" name="datepicker" class="form-control form-white datetimepicker" style="width:89% !important;">
+											<i class="icon-calendar" style="float: right;right: 0;left: auto; margin-right: 10px; margin-top: 10px;"></i>-->
+
+
+											<input ng-mouseover="InitializeDatePicker()" autocomplete="off" type="text" ng-model='SelectedActualDate.ActualDateForSelected' name="datepicker" class="form-control form-white datetimepicker  paymentDate" style="width:89% !important;">
+											<i class="icon-calendar" style="float: right;right: 0;left: auto;margin-right: 45px;margin-top: 10px;"></i>
+										</div>
+									</div>
+
+
+
+
+									<div class="columnfulldata  margintopdata" style="width:90% !important" ng-if="pageContrlAcessData.ControlTowerDeliveryConfirmartionReasonCode !='0'">
+										<div class="labelname reasonlable">
+											{{resData.res_ControlTower_PleaseChooseReasonCode}} : <span style="Color:red">*</span> :
+										</div>
+										<div class="labelcontrol">
+											<select class="form-control"
+													ng-model="ReasonCodeJson.ReasonCode" ng-options="obj.ReasonCodeId as obj.ReasonName for obj in ReasonCodeList">
+												<option value="">Select</option>
+											</select>
+										</div>
+									</div>
+
+
+
+									<div class="columnfulldata  margintopdata" style="width:88% !important" ng-if="pageContrlAcessData.ControlTowerDeliveryConfirmartionReasonCodeDescription !='0'">
+
+										<div class="labelname reasonlable" style="width: 341px;">
+											{{resData.res_ControlTower_ReasonDescription}} :
+										</div>
+										<div class="labelcontrol">
+											<textarea type="text" class="form-control form-white" rows="4" cols="50" ng-model="ReasonCodeJson.ReasonDescription"></textarea>
+										</div>
+									</div>
+
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+
+				</ion-content>
+
+
+
+				<ion-footer-bar align-title="left" class="bar-assertive">
+
+
+
+					<div class="popupbtnstyle">
+
+						<div class="popupbuttonstyle" ng-if="pageContrlAcessData.ControlTowerSaveDeliveryConfirmationDetails !='0'">
+							<a class="btn btn-success btn-square" ng-click="SaveDeliveryConfirmationDetails()">
+								{{resData.res_ControlTowerDeliveryConfirmation_Submit}}
+							</a>
+						</div>
+						<div class="popupbuttonstyle" ng-if="pageContrlAcessData.ControlTowerCloseDeliveryConfirmationPopup !='0'">
+							<a class="btn btn-success btn-square redclosebtn" ng-click="CloseDeliveryConfirmationPopup()">
+								{{resData.res_ControlTowerDeliveryConfirmation_Cancel}}
+							</a>
+						</div>
+					</div>
+				</ion-footer-bar>
+
+
+
+
+			</ion-modal-view>
+		</div>
+
+
+
+
+
+		<script id="SurveyComments.html" type="text/ng-template">
+			<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+				<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+					<h1 class="title">{{resData.res_ControlTower_Comments}}</h1>
+					<button class="button button-clear button-primary" ng-click="CloseSurveyCommentsConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+				</ion-header-bar>
+				<ion-content scroll="false" class="popioncontainer">
+					<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+						{{SurveyComments}}
+					</div>
+				</ion-content>
+				<ion-footer-bar class="popupfooter">
+
+					<div class="popupbtnstyle">
+						<div class="popupbuttonstyle">
+							<a class="btn btn-success btn-square redclosebtn" ng-click="CloseSurveyCommentsConfirmation()">
+								Close
+							</a>
+						</div>
+
+
+					</div>
+				</ion-footer-bar>
+			</ion-modal-view>
+		</script>
+
+
+	</ion-content>
+</ion-view>

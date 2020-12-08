@@ -1,0 +1,251 @@
+﻿<ion-view id="SOListControllerHtml" view-title="{{resData.res_Orders_TitleOrders}}">
+    <ion-content has-bouncing="false" style="overflow-y: hidden;">
+        <!-- Add Resources on Page Added by Vinod Yadav 20192019 -->
+
+        <div class="pageview" style="overflow:hidden">
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+                    <link href="Styles/OnlineShopUI.css" rel="stylesheet">
+
+                    <style type="text/css">
+                        ion-nav-bar {
+                            display: none
+                        }
+
+                        /*.has-header {
+                            top: 0px;
+                        }*/
+
+                        .CreateInquiryMainSection {
+                            height: 100vh;
+                            position: relative
+                        }
+                    </style>
+                    <div id="ProductSummaryView" style="width: 30%; margin: auto;margin-top: 18px;" class="ProductCatalogue ngIncludeItem" ng-class="{'ShowProductInfo': showproductlist === false }">
+                        <div class="ProductCatalogueInnerView">
+                            <div class="ProductCatalogueHeader">
+                                <div class="HeaderBackButton" ng-click="BackScreenView()">
+                                    <i class="fa fa-angle-left"></i>
+                                </div>
+                                <div class="HeaderTitle">
+                                    <div class="HeaderTitleName">{{resData.res_TruckDetails_ConfirmTruckOut}}</div>
+                                    <div class="HeaderTitleRemark">
+                                        {{resData.res_TruckDetails_for}} {{PlateNumber}})
+                                    </div>
+
+                                </div>
+                                <div class="HeaderShoppingCart">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            <div class="ProductInfoView">
+                                <div class="ProductPriceView">
+                                    <div class="Enquiryproductpriceanddetails">
+                                        <div class="ProductCountAndPrice">
+                                            {{resData.res_TruckDetails_Driver}} {{DriverName}}
+                                        </div>
+                                        <div class="ProductCountAndPrice">
+                                            {{resData.res_TruckDetails_LicenseNumber}} {{LicenseNumber}}
+                                        </div>
+                                        <div class="ProductCountAndPrice">
+                                            {{resData.res_TruckDetails_Carrier}}  {{CarrierName}}
+                                        </div>
+                                        <div class="full_width_view enquiryinfodetails" style="margin-top: 20px;">
+                                            <div class="full_width_view enquirysummarydetails">
+                                                <i class="fa fa-file filedocumentorder"></i>
+                                            </div>
+                                            <div class="full_width_view enquirysummarydetails" style="color: #fff;margin-top: 4px;font-size: 20px;">
+                                                Orders On {{PlateNumber}}
+                                            </div>
+                                            <div class="full_width_view enquirysummarydetails" style="margin-top: 3px;">{{resData.res_TruckDetails_Checkthedetailsoftheordersonthetruck}}</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div style="float:left;width:100%;padding:10px;background-color: rgba(1,38,37,0.9)">
+                                <div style="float:left;width:100%;padding: 10px;border-bottom:1px solid #ddd">
+                                    <div style="float:left;width:100%">
+                                        <span style="float: left;padding-top: 4px;">{{resData.res_TruckDetails_TruckInTime}}</span>
+                                        <span style="font-size: 20px;padding-left: 10px;">{{TruckInDataTime  | date: "dd/MM/yyyy HH:mm:ss"}}</span>
+                                    </div>
+                                </div>
+                                <div style="float:left;width:100%;padding: 10px;">
+                                    <div style="float:left;width:100%">
+                                        <span style="float: left;padding-top: 4px;">{{resData.res_TruckDetails_CurrentTime}}</span>
+                                        <span style="font-size: 20px;padding-left: 10px;">{{CurrentTime | date: "dd/MM/yyyy HH:mm:ss"}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div set-heightcustomcontainer="" class="CreateInquiryMainSection" style="overflow-y: auto;padding-bottom: 315px;">
+
+                            <div class="ProductInformationSection">
+                                <div class="ItemSearchControl" style="display:none;">
+                                    <input ng-model="SoListSearchValue.search" placeholder="Search" style="border: 2px solid #d5d5d5 !important;">
+
+                                    <span class="productsearchicon" ng-click="ClearSearchList();">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+
+                                <div class="productinfosectionview" style="padding: 10px;padding-top:0px;margin-top: 10px;margin-bottom:20px;">
+                                    <!--<div class="ProductHeading" style="text-align: right;font-weight: 300 !important;">
+                                    <i class="fa fa-refresh"></i>
+                                </div>-->
+
+                                    <div class="ProductListControl" style="border-radius: 32px;padding:0px" ng-repeat="AsnItem in OrderList" ng-click="LoadProduct(AsnItem.OrderId)">
+
+                                        <div class="SelectedProductImageSection" style="display:none">
+                                            <div class="odrerselectedcircle" ng-if="bindCust.IsSelected !== true">
+                                                &nbsp;
+                                            </div>
+                                            <div class="greeorderselectedcircle" ng-if="bindCust.IsSelected === true">
+                                                <div class="greewhiteorderselectedcircle">
+                                                    <i class="fa fa-check"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ProductDetails SelectedProductDetails" style="padding: 8px;padding-top: 10px;margin-left: 18px;">
+                                            <div class="ProductName" style="font-size: 18px;" ng-class="{'selectedordertext':bindCust.IsSelected === true}">
+                                                {{AsnItem.OrderNumber}}
+                                            </div>
+                                            <div class="SelectedProductPrice" style="margin-top: 5px;">
+                                                <!--<span class="productselectedquantity">Ship To: {{AsnItem.DeliveryLocationBranchName}}</span>-->
+                                                <span class="productselectedquantity">Ship To: {{AsnItem.DeliverylocationName}}</span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div style="float:left;width:100%" ng-click="ConfirmTruckOutDetails();">
+                                    <div class="ProductRecommendations" style="width: 30%;bottom: 20px;">
+                                        <span class="product_angel_fa product_angle_view"><i class="fa fa-check"></i></span>
+                                        <span class="product_recommendation">{{resData.res_TruckDetails_Confirmation}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ProductDetailsInfoUI" style="margin-top: 30px;" id="productdetails" ng-if="showproductlist">
+                        <div id="ProductSummaryView" style="width: 30%; margin: auto;margin-top: 18px;" class="ProductCatalogue ngIncludeItem ShowProductInfo">
+                            <div class="ProductCatalogueInnerView">
+                                <div class="ProductCatalogueHeader" style="background-color: inherit;">
+                                    <div class="HeaderBackButton" ng-click="CloseProductPopupList()">
+                                        <i class="fa fa-times"></i>
+                                    </div>
+                                    <div class="HeaderTitle">
+                                        <div class="HeaderTitleName">{{resData.res_TruckDetails_ProductList}}</div>
+                                        <div class="HeaderTitleRemark">
+                                            {{SelectOrderNumber}}
+                                        </div>
+
+                                    </div>
+                                    <div class="HeaderShoppingCart">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                                <div class="ProductInfoView" style="background-color: inherit;">
+                                    <div class="ProductPriceView">
+                                        <div class="Enquiryproductpriceanddetails" style="background-color: inherit;">
+
+                                            <div class="full_width_view enquiryinfodetails" style="margin-top: 20px;">
+                                                <div class="full_width_view enquirysummarydetails">
+                                                    <i class="fa fa-file filedocumentorder"></i>
+                                                </div>
+                                                <div class="full_width_view enquirysummarydetails" style="color: #fff;margin-top: 4px;font-size: 20px;">
+                                                    {{OrderProductList.length}} Products
+                                                </div>
+                                                <div class="full_width_view enquirysummarydetails" style="margin-top: 3px;" ng-if="false">{{resData.res_TruckDetails_ShipTo1111057}}</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div style="float:left;width:100%;padding:0px;">
+                                    <div class="ItemSearchControl">
+                                        <input ng-model="SoListSearchValue.ProductSearch" class="ProductSearchBar" style="color: #012625 !important;" placeholder="Search">
+
+                                        <span class="productsearchicon" style="top:180px !important;" ng-click="ClearSearchList();">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div set-heightcustomcontainer="" class="CreateInquiryMainSection" style="overflow-y: auto;    padding-bottom: 170px;background-color: inherit;">
+
+                                <div class="ProductInformationSection">
+
+                                    <div class="productinfosectionview" style="padding: 0px;padding-top:0px;margin-top: 4px;">
+
+                                        <div class="ProductListControl" style="border-radius: 0px;padding:0px;background-color: rgba(1,38,37,0.5);    margin-bottom: 15px;" ng-repeat="item in OrderProductList | filter : SoListSearchValue.ProductSearch">
+                                            <div class="ProductDetails SelectedProductDetails" style="width: 100%;padding: 8px;padding-top: 10px;margin-left: 18px;
+">
+                                                <div class="ProductName" style="font-size: 18px;color: #fff;" ng-class="{'selectedordertext':bindCust.IsSelected === true}">
+                                                    [{{item.ProductCode}}] - {{item.ProductName}}
+                                                </div>
+                                                <div class="SelectedProductPrice" style="margin-top: 5px;color: rgba(256,256,256,0.6);">
+                                                    <span class="productselectedquantity">QTY : {{item.Quantity}}</span>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script id="AlertMessagesPopUp.html" type="text/ng-template">
+                        <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                            <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                                <h1 class="title"> {{resData.res_TruckDetails_ConfirmTruckIn}}</h1>
+                                <button class="button button-clear button-primary" ng-click="CloseAlertMessagesPopUp()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+                            </ion-header-bar>
+                            <ion-content scroll="false" class="popioncontainer">
+                                <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                                    {{ErrorMessage}}
+                                </div>
+                            </ion-content>
+                            <ion-footer-bar class="popupfooter">
+
+                                <div class="popupbtnstyle">
+                                    <div class="popupbuttonstyle">
+                                        <a class="btn btn-success btn-square" ng-click="SaveTruckOutDetails()">
+                                            {{resData.res_Orders_Ok}}
+                                        </a>
+                                        <a class="btn btn-success btn-square" ng-click="CloseAlertMessagesPopUp()">
+                                            {{resData.res_Orders_Cancel}}
+                                        </a>
+                                    </div>
+
+
+                                </div>
+                            </ion-footer-bar>
+                        </ion-modal-view>
+                    </script>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+
+</ion-view>

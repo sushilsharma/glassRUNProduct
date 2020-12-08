@@ -1,0 +1,696 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+
+        <div class="row fixheaderbox" style="margin:auto !important">
+
+            <div class="fixheaderbackground">
+                <div class="col-md-6 col-sm-2 halfbox nopaddingleft">
+                    <div class="widget widget-stats purple-bg">
+                        <div class="col-lg-6 creditlimitsection">
+                            <div class="stats-title textalingcenter paddingfordetails">{{resData.res_CreateInquiryPage_TotalCreditLimit}}</div>
+                            <div class="stats-number textalingcenter paddingfordetails">
+                                <span class="bigcurrencyimg">
+                                    ₫
+                                </span>{{CreditLimit  === null ? "0" : CreditLimit  | currency: "EUR"}}
+                            </div>
+                        </div>
+                        <div class="sepratorline">
+                            &nbsp;
+                        </div>
+                        <div class="stats-desc paddingfordetails col-lg-6 creditlimitsection">
+                            <div class="stats-title textalingcenter">{{resData.res_CreateInquiryPage_AvailableCredit}}</div>
+
+                            <div class="stats-number textalingcenter">
+                                <span class="bigcurrencyimg">
+                                    ₫
+                                </span>{{AvailableCreditLimit  === null ? "0" : AvailableCreditLimit-totalorderamount | currency: "EUR"}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-2 halfbox secondbox nopaddingright">
+                    <div class="widget widget-stats" style="min-height:55px;" ng-class="{'red-bg' : EmptiesCss === true, 'red-bgForEmpties' : EmptiesCss === false}">
+                        <div class="col-lg-12">
+                            <div ng-show="EmptiesCss" style="text-transform: none !important;" class="stats-title textalingcenter paddingfordetails">You can order for {{ActualEmpties.toString().replace("-", "") | currency: "EUR"}} more empties before you exhaust your empties limit.</div>
+                            <div ng-hide="EmptiesCss" style="text-transform: none !important;" class="stats-title textalingcenter paddingfordetails">You have {{ActualEmpties.toString().replace("-", "") | currency: "EUR"}} empties overdue for returns. Please arrange to return the empties or deposit ( ₫ {{(ActualEmpties * EmptiesAmount).toString().replace("-", "") | currency: "EUR"}} ) to ensure your order gets processed.</div>
+                        </div>
+                        <!--<div class="col-lg-6">
+                            <div class="stats-title textalingcenter paddingfordetails">Empties Limit</div>
+                            <div class="stats-number textalingcenter paddingfordetails">{{EmptiesLimit  === null ? "0" : EmptiesLimit | currency: "EUR"}}</div>
+                        </div>
+                        <div class="sepratorline">
+                            &nbsp;
+                        </div>
+                        <div class="stats-desc paddingfordetails col-lg-6">
+                            <div class="stats-title textalingcenter">Actual Empties</div>
+                            <div class="stats-number textalingcenter">{{ActualEmpties  === null ? "0" : ActualEmpties | currency: "EUR"}}</div>
+                        </div>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="pageview">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+
+                        <div class="CreateOrderView scrollablecontainer">
+
+                            <div class="row">
+                                <div class="panel fullwithwithoutpadding">
+                                    <div class="panel-header bg-primary">
+                                        <h3>{{resData.res_CreateInquiryPage_CreateEnquiry}}</h3>
+                                    </div>
+
+                                    <div class="panel-content fullwithwithoutpadding">
+
+                                        <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+                                            <div class="ibox float-e-margins">
+                                                <div id="demo6" class="ibox-content collapse in">
+
+
+                                                    <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                        <div class="table-scrollable">
+
+                                                            <div class="col-lg-12 nopadding">
+                                                                <span class="sectionheader">{{resData.res_CreateInquiryPage_ShipToLocation}}</span>
+
+                                                                <div class="row m-t-10">
+                                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 deliverylocation" ng-repeat="deliverylocation in bindDeliverylocation" ng-click="getDeliverylocationSelectValue(deliverylocation.DeliveryLocationId)">
+                                                                        <div class="panel" ng-class="{'greenbg' : deliverylocation.IsDeliveryLocationSelected}">
+                                                                            <div class="panel-content widget-info">
+                                                                                <div class="row">
+                                                                                    <div class="left">
+                                                                                        <i class="fa fa-industry bg-green"></i>
+                                                                                    </div>
+                                                                                    <div class="right">
+                                                                                        <p class="number">{{deliverylocation.DeliveryLocationName}}</p>
+                                                                                        <p class="number" ng-if="deliverylocation.DisplayName !== '' && deliverylocation.DisplayName !== undefined&& deliverylocation.DisplayName !== null">Warehouse : {{deliverylocation.DisplayName}}</p>
+                                                                                        <p class="text">Capacity : {{deliverylocation.Capacity | number : 0}}</p>
+                                                                                    </div>
+                                                                                    <div class="rightaling">
+                                                                                        <i ng-class="{'fa fa-check' : deliverylocation.IsDeliveryLocationSelected}"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="disabletextbox">
+                                                                <input class="textboxwithoutborder" id="AddEnterEvent" ng-esc="CloseAddTruckControl()" tabindex="0" type="text" ng-keypress="AddNewTruckFunction($event)">
+                                                                <input class="textboxwithoutborder" id="RemoveEnterEvent" type="text">
+                                                            </div>
+
+                                                            <div class="col-lg-12 nopadding">
+                                                                <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px;">
+                                                                    <div class="columnfulldata  margintopdata">
+                                                                        <div class="labelname">{{resData.res_CreateInquiryPage_OrderDate}}</div>
+                                                                        <div class="labelcontrol labeltext">
+                                                                            <b>{{ordermanagement.OrderDate | date:'dd/MM/yyyy HH:mm:ss'}}</b>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px;" ng-hide="IsSelfCollect">
+                                                                    <div class="columnfulldata  margintopdata">
+                                                                        <div class="labelname">{{resData.res_CreateInquiryPage_ProposedDeliveryDate}}</div>
+
+                                                                        <div class="labelcontrol labeltext">
+                                                                            {{ProposedDate}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px;">
+                                                                    <div class="columnfulldata  margintopdata">
+                                                                        <div class="labelname">{{resData.res_CreateInquiryPage_SchedulingDate}}</div>
+
+                                                                        <div class="labelcontrol" style="margin-top: -3px;">
+
+                                                                            <div class="prepend-icon">
+                                                                                <input type="text" name="datepicker" onkeypress="return false;" ng-model="ordermanagement.RequestDate" class="customdate-picker form-control" placeholder="Select a Request date...">
+                                                                                <i class="icon-calendar"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="borderedTable" style="float: left;width:100%;padding: 0px 15px;">
+                                                        <div class="table-scrollable">
+
+                                                            <div class="col-lg-12 nopadding" ng-hide="IsSelfCollect">
+                                                                <span class="sectionheader">{{resData.res_CreateInquiryPage_TransportVehicle}}</span>
+
+                                                                <div class="row m-t-10">
+                                                                    <div class="widget-infobox transportvehicleinfo">
+                                                                        <div class="infobox" ng-class="{'greenbg' : objTruckSize.Selected}" ng-repeat="objTruckSize in bindTruckSize | orderBy:'TruckCapacityWeight/1'" ng-click="getSelectValue(objTruckSize.TruckSizeId)" style="cursor: pointer">
+                                                                            <div class="left">
+                                                                                <i class="fa fa-truck bg-blue"></i>
+                                                                            </div>
+                                                                            <div class="right">
+                                                                                <div>
+                                                                                    <span class="pull-left">{{objTruckSize.TruckSize}}</span> <span class="checkicon">
+
+                                                                                        <i ng-class="{'fa fa-check' : objTruckSize.Selected}"></i>
+                                                                                    </span>
+
+                                                                                </div>
+                                                                                <div class="txt">Pallet : {{objTruckSize.TruckCapacityPalettes}}</div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+
+
+                                                                </div>
+
+
+
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                        <div class="table-scrollable">
+                                                            <div class="col-lg-6" style="margin-bottom: 10px;padding: 0px;" ng-hide="IsSelfCollect">
+
+                                                                <span class="sectionheader">{{resData.res_CreateInquiryPage_LoadAnalysis}}</span>
+
+                                                                <div class="progressbarcontainers">
+
+
+
+                                                                    <div class="palettesfullview">
+                                                                        <div class="labelview">
+                                                                            Pallet Space :({{PalettesCorrectWeight | number:2}}/{{buindingPalettes.length}})
+                                                                            <!--No. of Palettes :({{(buindingPalettes | filter:width=100).length}}/{{buindingPalettes.length}})-->
+                                                                        </div>
+                                                                        <div class="controlview">
+                                                                            <div class="palattes">
+                                                                                <div class="palatesui" ng-repeat="palettes in buindingPalettes" ng-style="{'width' : PalettesWidth.width}">
+                                                                                    <div class="progress progress-bar-thin">
+                                                                                        <div class="progress-bar progress-bar-success progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="{{palettes.PalettesWidth}}" ng-style="{'width' : palettes.PalettesWidth + '%'}" style="width: {{palettes.PalettesWidth}}%">
+                                                                                            <span class="sr-only"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="capacity">
+                                                                        <div class="capacityfullview">
+                                                                            <div class="labelview">{{resData.res_CreateInquiryPage_Weight}}</div>
+                                                                            <div class="controlview">
+                                                                                <div class="progress progress-striped active progress-bar-large" ng-class="{'blankweight' : TruckCapacityFullInPercentage === 0}">
+                                                                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width' : TruckCapacityFullInPercentage + '%' }" style="width:{{TruckCapacityFullInPercentage}}%">
+                                                                                        <span class="sr-only">{{TruckCapacityFullInPercentage}} % Complete (warning)</span>
+                                                                                        {{TruckCapacityFullInTone | number : 2}}/{{TruckCapacityInTone}} Ton
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 receivingcapacity" ng-hide="IsSelfCollect">
+
+                                                                <span class="sectionheader">
+                                                                    {{resData.res_CreateInquiryPage_ReceivingLocationBalanceCapacity}}<span ng-if="ReceivingLocationCapacityDate !== ''">(</span>{{ReceivingLocationCapacityDate}}<span ng-if="ReceivingLocationCapacityDate !== ''">)</span>
+                                                                </span>
+
+
+
+                                                                <div class="columnfulldata  margintopdata receivinglocationcapacitybalance">
+                                                                    <div class="labelname" style="width: 196px;">{{resData.res_CreateInquiryPage_Availablecapacityinpallet}}</div>
+
+                                                                    <div class="labelcontrol labeltext" style="width: 80px;">
+                                                                        {{DeliveryLocationCapacity-(DeliveryUsedCapacity+tempDeliveryUsedCapacity) | number:0}}/{{DeliveryLocationCapacity | number:0}}
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div style="color:red;float: left;" class="labelview" ng-if="ValidationErrorReceivingLocation !== ''">({{ValidationErrorReceivingLocation}})</div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="borderedTable" style="float: left;width:100%;">
+                                                        <div class="table-scrollable">
+
+                                                            <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+                                                                <div class="row m-t-10 gratisorderbtn">
+                                                                    <a class="btn btn-success btn-square" style="float: right;" ng-click="OpenViewGratisOrderControl()">{{resData.res_CreateInquiryPage_AddGratisOrder}}</a>
+                                                                </div>
+                                                                <span class="sectionheader">{{resData.res_CreateInquiryPage_ItemSelection}}</span>
+
+
+
+                                                            </div>
+                                                            <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+                                                                <div class="collg4">
+                                                                    <div class="labeldata">{{resData.res_CreateInquiryPage_Item}}</div>
+                                                                    <div class="itemcontrols">
+                                                                        <div class="padded-row" style="position: relative;width: 100%;">
+                                                                            <div id="ItemListAutoCompleteBox" input-class="form-control form-control-small">
+                                                                                <div class="angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}" style="">
+                                                                                    <input id="ItemListAutoCompleteBox_value" placeholder="Search Item by: Name or Code" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="predicates.InputItem" ng-disabled="disableInput" type="text" ng-focus="onFocusHandler()" class="form-control form-control-small ng-valid-maxlength ng-dirty ng-valid-parse ng-touched ng-not-empty" ng-blur="hideResults($event)" arrow-selector="" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(predicates.InputItem)" style="border: 1px solid #bec1c3;">
+                                                                                    <div id="ItemListAutoCompleteBox_dropdown" ng-show="showItembox" class="angucomplete-dropdown" style="">
+                                                                                        <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching" style="">{{resData.res_CreateInquiryPage_Searching}}</div>
+                                                                                        <div class="angucomplete-searching" ng-show="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                                        <div class="angucomplete-row" ng-repeat="result in (filteredItems = (bindallproduct | multipleTags:predicates.FilterAutoCompletebox))" ng-if="result.ItemCode !== WoodenPalletCode" key-navigation="" ng-click="getItemPrice(result)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+                                                                                            <div class="angucomplete-title" style="">
+                                                                                                {{result.ItemNameCode}}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <a class="clearautosearchbox" ng-hide="IsItemEdit" ng-click="ClearAutoSearchbox()">
+                                                                                <i class="fa fa-times"></i>
+                                                                            </a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="collg4" style="width:12%">
+                                                                    <div class="labeldata">{{resData.res_CreateInquiryPage_Allocation}}</div>
+                                                                    <div class="itemcontrols" style="margin-top: 10px;">
+                                                                        {{Allocation=='NA' ? 'N/A' : Allocation}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="collg4" style="width:12%">
+                                                                    <div class="labeldata">{{resData.res_CreateInquiryPage_Price}}</div>
+                                                                    <div class="itemcontrols" style="margin-top: 10px;">
+                                                                        <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{ItemPrices  | currency: "EUR"}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="collg4" style="width:12%">
+                                                                    <div class="labeldata">{{resData.res_CreateInquiryPage_UOM}}</div>
+                                                                    <div class="itemcontrols" style="margin-top: 10px;">
+                                                                        {{UOM}}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="collg4">
+                                                                    <div class="labeldata">{{resData.res_CreateInquiryPage_Quantity}}</div>
+                                                                    <div class="itemcontrols">
+
+                                                                        <input id="inputItemsQty" class="form-control form-white" ng-enter="addProducts(ordermanagement.itemsName,ordermanagement.inputItemsQty,0,32,0,'')" onkeypress='return validateQty(event);' type="number" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="collg4" style="display:none">
+                                                                    <div class="labeldata">{{resData.res_CreateInquiryPage_Nooftruck}}</div>
+                                                                    <div class="itemcontrols">
+
+                                                                        <input id="inputItemsQty" type="number" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                                <div class="collgbtn">
+                                                                    <div class="labeldata">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                    <div style="float:left">
+                                                                        <a class="btn btn-default" ng-click="addProducts(ordermanagement.itemsName,ordermanagement.inputItemsQty,0,32,0,'')"><i class="fa fa-plus"></i></a>
+                                                                        <a ng-show="IsItemEdit" class="btn btn-default" ng-click="ClearItem()"><i class="icons-office-52"></i></a>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="srno">{{resData.res_CreateInquiryPage_SrNo}}</th>
+                                                                        <th>{{resData.res_CreateInquiryPage_ItemCode}}</th>
+                                                                        <th>{{resData.res_CreateInquiryPage_ItemName}}</th>
+                                                                        <th>{{resData.res_CreateInquiryPage_UOM}}</th>
+                                                                        <th>{{resData.res_CreateInquiryPage_Quantity}}</th>
+                                                                        <th>{{resData.res_CreateInquiryPage_Price}}</th>
+
+                                                                        <th> </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody ng-repeat="orderdata in OrderData" ng-if='orderdata.OrderGUID == CurrentOrderGuid'>
+                                                                    <tr ng-repeat="product in orderdata.OrderProductList | filter: myFilter" ng-if='product.IsActive==true || product.IsActive==1'>
+                                                                        <td class="srno"> {{$index +1}} <i class="fa fa-gift" style="color:green" aria-hidden="true" ng-show="product.ItemType == 31 || product.ItemType == '31'"></i> <i class="fa fa-google" aria-hidden="true" ng-show="product.ItemType == 30 || product.ItemType == '30'"></i> </td>
+                                                                        <td> {{product.ProductCode}} </td>
+                                                                        <td> {{product.ItemName}} </td>
+                                                                        <td> {{product.PrimaryUnitOfMeasure}} </td>
+                                                                        <td> {{product.ProductQuantity | currency: "EUR"}} </td>
+                                                                        <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{product.ItemPrices | currency: "EUR" }} </td>
+
+                                                                        <td class="text-right">
+                                                                            <a class="edit btn btn-sm btn-default" ng-if="product.GratisOrderId==0 || product.GratisOrderId=='0'" ng-hide="product.ProductCode == WoodenPalletCode || product.ItemType == 31 || product.ItemType =='31'" ng-click="EditProduct(product.OrderGUID,product.ItemId,product.EnquiryProductGUID)"><i class="icon-note"></i></a>
+                                                                            <a class="delete btn btn-sm btn-danger" ng-hide="product.ProductCode == WoodenPalletCode || product.ItemType == 31 || product.ItemType == '31'" ng-click="RemoveInquiryItem(product.OrderGUID,product.ItemId,product.GratisOrderId)"><i class="icons-office-52"></i></a>
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr ng-repeat="product in orderdata.OrderProductList | filter: { ProductCode: WoodenPalletCode }" ng-if='product.IsActive==true || product.IsActive==1'>
+                                                                        <td class="srno"> {{orderdata.OrderProductList.length}} <i class="fa fa-gift" aria-hidden="true" ng-show="product.ItemType == 31 || product.ItemType == '31'"></i> <i class="fa fa-google" aria-hidden="true" ng-show="product.ItemType == 30 || product.ItemType == '30'"></i> </td>
+                                                                        <td> {{product.ProductCode}} </td>
+                                                                        <td> {{product.ItemName}} </td>
+                                                                        <td> {{product.PrimaryUnitOfMeasure}} </td>
+                                                                        <td> {{product.ProductQuantity | currency: "EUR"}} </td>
+                                                                        <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{product.ItemPrices | currency: "EUR" }} </td>
+
+                                                                        <td class="text-right">
+                                                                            <a class="edit btn btn-sm btn-default" ng-if="product.GratisOrderId==0 || product.GratisOrderId=='0'" ng-hide="product.ProductCode == WoodenPalletCode || product.ItemType == 31 || product.ItemType =='31'" ng-click="EditProduct(product.OrderGUID,product.ItemId,product.EnquiryProductGUID)"><i class="icon-note"></i></a>
+                                                                            <a class="delete btn btn-sm btn-danger" ng-hide="product.ProductCode == WoodenPalletCode || product.ItemType == 31 || product.ItemType == '31'" ng-click="RemoveInquiryItem(product.OrderGUID,product.ItemId,product.GratisOrderId)"><i class="icons-office-52"></i></a>
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td> </td>
+                                                                        <td>  </td>
+                                                                        <td>  </td>
+                                                                        <td>  </td>
+                                                                        <td> Total Tax ({{ItemTaxInPec}} %)</td>
+                                                                        <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span> {{calcTotalTax(orderdata.OrderGUID)| currency: "EUR"}} </td>
+                                                                        <td class="text-right"></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td> </td>
+                                                                        <td>  </td>
+                                                                        <td>  </td>
+                                                                        <td>  </td>
+                                                                        <td>{{resData.res_CreateInquiryPage_TotalDeposit}}</td>
+                                                                        <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span> {{calcTotalDepositeAmount(orderdata.OrderGUID)| currency: "EUR"}} </td>
+                                                                        <td class="text-right"></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td> </td>
+                                                                        <td>  </td>
+                                                                        <td>  </td>
+                                                                        <td>  </td>
+                                                                        <td>{{resData.res_CreateInquiryPage_Total}}</td>
+                                                                        <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span> {{((calcTotalAmount(orderdata.OrderGUID) + calcTotalTax(orderdata.OrderGUID)) + calcTotalDepositeAmount(orderdata.OrderGUID))  | currency: "EUR"}} </td>
+                                                                        <td class="text-right"></td>
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="totalamountdiv" style="color:#5b5b5b;margin-top:5px;display:none">
+                                                                <span>{{resData.res_CreateInquiryPage_Total}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_CreateInquiryPage_75}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="weather-highlighted weatherapprovebth">
+                                                            <div class="groupbtn last-column">
+
+                                                                <div style="width:100%;float:right">
+                                                                    <div class="col-sm-2 singlebtn col-md-2" style="float:right">
+                                                                        <a ng-click="ClearAllItem()" class="btn btn-success btn-square">{{resData.res_CreateInquiryPage_ClearItem}}</a>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="fabbutton">
+
+            <ion-fab class="firstfab" bottom="" left="">
+                <a ng-click="OpenModalpopup()" class="carticon MobileView">
+                    <i class="fa fa-shopping-cart bg-blue"></i>
+                </a>
+            </ion-fab>
+
+            <ion-fab class="thirdfab" bottom="" left="" ng-show="IsPromotion">
+                <a ng-click="AddInquiry()" class="carticon">
+                    <i class="fa fa-plus bg-blue"></i>
+                </a>
+            </ion-fab>
+
+            <ion-fab class="secondfab" bottom="" left="">
+                <a ng-click="ViewInquiry()" class="carticon">
+                    <i class="fa fa-truck bg-blue"></i>
+                </a>
+            </ion-fab>
+
+        </div>
+
+
+        <script id="templates/reasoncodepopup.html" type="text/ng-template">
+            <ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:300px !important">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Reason Code</h1>
+                    <button class="button button-clear button-primary" ng-click="ClosReasoncodepopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding">
+                    <div class="list">
+                        <div class="customlistcontrolview">
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+                                    <div class="labelname reasonlable">
+                                        Please choose reason code :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <select class="form-control"
+                                                ng-model="ReasonCodeJson.ReasonCode" ng-options="obj.ReasonCodeId as obj.ReasonName for obj in ReasonCodeList">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+                                <div class="columnfulldata  margintopdata">
+
+                                    <div class="labelname reasonlable">
+                                        Description :
+                                    </div>
+                                    <div class="labelcontrol">
+                                        <textarea type="text" class="form-control form-white" rows="4" cols="50" ng-model="ReasonCodeJson.ReasonDescription"></textarea>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ion-content>
+
+                <ion-footer-bar align-title="left" class="popupfooter">
+
+                    <div class="popupbtnstyle">
+
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="SaveReasonCode()">
+                                Save
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="ClosReasoncodepopup()">
+                                Close
+                            </a>
+                        </div>
+                    </div>
+
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+        <script id="ViewGratisOrder.html" type="text/ng-template">
+            <ion-modal-view class="DetailModalViewScreen bgcolorheaderandfooter">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <h1 class="title">Gratis Order</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseViewGratisOrderControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="hidden" class="padding">
+                    <div class="list">
+
+                        
+
+                        <div class="customlistview" style="border: 1px solid #d5d5d5;cursor: pointer" ng-repeat="AssociatedOrder in AssociatedOrderList" ng-if="!AssociatedOrder.IsSelected" ng-click="AddAssociatedOrder(AssociatedOrder.OrderId)">
+                            <div class="paddingcontainer">
+                                <div class="listviewContainer">
+
+                                    <span class="listviewtitle">
+                                        {{AssociatedOrder.OrderType}} : {{AssociatedOrder.SalesOrderNumber}}
+                                    </span>
+                                </div>
+                                <div class="listviewContainer">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="srno"> Sr. No. </th>
+                                                <th> Item Code </th>
+                                                <th> Item Name </th>
+                                                <th> Desc 1 </th>
+                                                <th> Desc 2 </th>
+                                                <th> UOM </th>
+                                                <th> Quantity </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr ng-repeat="orderProduct in AssociatedOrder.OrderProductsList">
+                                                <td class="srno"> {{$index +1}} </td>
+                                                <td> {{orderProduct.ProductCode}} </td>
+                                                <td> {{orderProduct.ItemName}} </td>
+                                                <td> {{orderProduct.Description1}} </td>
+                                                <td> {{orderProduct.Description2}} </td>
+                                                <td> {{orderProduct.UOM}} </td>
+                                                <td> {{orderProduct.ProductQuantity | currency: "EUR"}} </td>
+
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+
+        <script id="AddTruck.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{AddTruckHeaderMessage}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseAddTruckControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        {{AddTruckBodymessage}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar class="popupfooter">
+
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle" ng-hide="EnquiryId>0">
+                            <a class="btn btn-success btn-square" ng-click="AddTruck()">
+                                Add new truck
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="CloseAddFinalize()">
+                                Finalize
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="CloseAddTruckControl()">
+                                Edit Order
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+        <script id="RemoveGratisOrder.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{RemoveGratisOrderHeaderMessage}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseRemoveGratisOrderControl()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        {{RemoveGratisOrderBodymessage}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar class="popupfooter">
+
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="YesRemoveGratisOrderControl()">
+                                Yes
+                            </a>
+                        </div>
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square redclosebtn" ng-click="CloseRemoveGratisOrderControl()">
+                                No
+                            </a>
+                        </div>
+
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+
+        <script id="WarningMessage.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                    <h1 class="title">{{warningTitle}}</h1>
+                    <!--<button class="button button-clear button-primary" ng-click="CloseRemoveGratisOrderControl()"><i class="fa fa-times"></i></button>-->
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+                        {{warningMessage}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar class="popupfooter">
+
+                    <div class="popupbtnstyle">
+                        <div class="popupbuttonstyle">
+                            <a class="btn btn-success btn-square" ng-click="CloseWarningMessageControl()">
+                                Yes
+                            </a>
+                        </div>
+
+
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+
+    </ion-content>
+</ion-view>
+

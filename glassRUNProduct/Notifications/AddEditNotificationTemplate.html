@@ -1,0 +1,215 @@
+﻿<ion-view>
+	<ion-content class="main-content" style="overflow-y:hidden">
+
+		<link href="Styles/jquery-ui.css" rel="stylesheet" />
+		<div id="bussinessruleui" class="pageview" style="margin-bottom: 50px">
+			<div class="row">
+				<div class="col-md-12 ruleEnginePage" style="margin-bottom:100px">
+					<div class="nav-tabs2">
+						<div class="tab-content">
+							<!--Loading Grid and view workflow section-->
+							<div class="tab-pane" ng-class="{'active': FirstTab}">
+								<div class="panel-content bussinessrule">
+									<div class="row">
+										<div class="formcontrols form-horizontal ng-pristine ng-valid">
+											<div class="col-md-12 bussinessrightpanel">
+												<div class="col-md-12">
+													<h2><b>{{resData.res_Notification_Title}}</b> </h2>
+
+												</div>
+												<div class="col-md-12">
+													<div style="float:left;width:100%;margin-bottom: 20px;">
+														<div class="footerbuttons" style="margin: 0px;">
+															<a class="buttonstext bggreencolorbtn" ng-click="AddNewNotification();">
+																{{resData.res_Notification_AddButtonName}}
+															</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div id="EventTamplateGrid" class="Company_Grid" style="height: 70vh;" dx-data-grid="EventTamplateGrid" dx-item-alias="EventTamplateGridData">
+
+														<!--<div data-options="dxTemplate: {name: 'Edit'}">
+															<a style="float:left;width:100px" class="greenbgfont approvebtn"> Edit </a>
+														</div>-->
+
+
+													</div>
+													<!--<div id="ViewUserGrid" kendo-grid="Grid" k-options="ViewUserGrid" k-rebind="ViewUserGrid"></div>-->
+												</div>
+												<div class="col-md-12" style="display:none">
+													<div ng-repeat="ruleEngineType in RulesEngineType" class="ruletypetext">
+														<div class="ruleicon">
+															<i class="fa fa-angle-right"></i>
+														</div>
+														<div class="ruleName">
+															<a ng-click="LoadRuleTypeToCreateNewRule(ruleEngineType.Code, ruleEngineType.Name)">
+																{{ruleEngineType.DescriptionText}}
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--Loading Page for add and edit workflow-->
+							<!--Loading Page for add and edit workflow step-->
+							<div class="tab-pane" ng-class="{'active': ThirdTab}">
+								<div class="panel-content bussinessrule">
+									<div class="row">
+										<div class="formcontrols form-horizontal ng-pristine ng-valid">
+											<div class="col-md-12 rulesjs">
+												<div ng-include="'Notifications/AddNotificationTemplate.html'" ng-controller="AddNotificationController"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</ion-content>
+
+
+	<script id="templates/DeleteConfirmation.html" type="text/ng-template">
+		<ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:200px !important">
+			<ion-header-bar class="bar bar-header bar-positive">
+				<h1 class="title">{{resData.res_GridConfiguration_DeleteConfirmation_Header}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseDeleteConfirmationModalPopup()"><i class="icons-office-52"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="hidden" class="padding IonicPopupHeight">
+				<div class="list">
+					<div class="customlistcontrolview">
+
+						<div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+							<div class="columnfulldata  margintopdata">
+
+								<div>
+									{{resData.res_WorkflowPage_Cancel}}
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+
+	<script id="templates/DeleteConfirmationMessage.html" type="text/ng-template">
+		<ion-modal-view class="confirmationmsgmodalview bgcolorheaderandfooter" style="min-height:200px !important">
+			<ion-header-bar class="bar bar-header bar-positive">
+				<h1 class="title">{{resData.res_GridConfiguration_DeleteConfirmation_Header}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseDeleteConfirmationModalPopup()"><i class="icons-office-52"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="hidden" class="padding IonicPopupHeight">
+				<div class="list">
+					<div class="customlistcontrolview">
+
+						<div class="col-lg-12" style="margin-bottom: 0px;padding: 0px;">
+							<div class="columnfulldata  margintopdata">
+
+								<div>
+									{{resData.res_GridConfiguration_DeleteConfirmation_Message}}
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</ion-content>
+
+			<ion-footer-bar align-title="left" class="popupfooter">
+
+				<div class="popupbtnstyle">
+
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="DeleteWorkFlow()">
+							<i class="fa fa-check"></i> {{resData.res_GridConfigurationPage_Confirm}}
+						</a>
+					</div>
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square redclosebtn" ng-click="CloseDeleteConfirmationMessageModalPopup()">
+							<i class="fa fa-times"></i>  {{resData.res_GridConfigurationPage_Close}}
+						</a>
+					</div>
+				</div>
+
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+	<script id="WarningMessage.html" type="text/ng-template">
+		<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+			<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+				<h1 class="title">{{resData.res_CreateNotification_Warning}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="false" class="popioncontainer">
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+					{{resData.res_CreateNotification_WarningMessage}}
+				</div>
+			</ion-content>
+			<ion-footer-bar class="popupfooter">
+
+				<div class="popupbtnstyle">
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="AddYesNotification()">
+							Yes
+						</a>
+						<a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+							No
+						</a>
+					</div>
+
+
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+
+
+
+
+
+	<script id="WarningDeleteMessage.html" type="text/ng-template">
+		<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+			<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+				<h1 class="title">{{resData.res_CreateNotification_Warning}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseDeleteNotificationConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="false" class="popioncontainer">
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+					{{resData.res_CreateNotification_NotificationWarningMessage}}
+				</div>
+			</ion-content>
+			<ion-footer-bar class="popupfooter">
+
+				<div class="popupbtnstyle">
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="DeleteYes()">
+							Yes
+						</a>
+						<a class="btn btn-success btn-square" ng-click="CloseDeleteNotificationConfirmation()">
+							No
+						</a>
+					</div>
+
+
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+
+</ion-view>

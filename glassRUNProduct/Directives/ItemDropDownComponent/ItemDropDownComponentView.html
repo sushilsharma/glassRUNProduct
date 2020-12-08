@@ -1,0 +1,26 @@
+﻿<div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input id="ItemListAutoCompleteBox_value" type="text" class="green_border_textbox" placeholder="{{resData.res_CreateInquiryPage_SearchItemPlaceholder}}" ng-class="{'open_panel': showItembox}" ng-model="inputItem" ng-model-options="{debounce : 1000}" ng-disabled="isDisabled" ng-focus="onFocusHandler()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="ItemInputSelecteChangeEvent(inputItem)" />
+    <span class="textbox_down_angle">
+        <a ng-click="pageContrlAcessData.ItemSectionVisibility === '1' || ShowItemListBox()">
+            <i class="fa fa-angle-down icon_size_20" ng-hide="showItembox === true"></i>
+        </a>
+        <a ng-click="pageContrlAcessData.ItemSectionVisibility === '1' || ClearItemInputSearchbox()" class="remove_ion_icon">
+            <i class="icons-office-52" ng-if="showItembox"></i>
+        </a>
+    </span>
+    <div id="ItemListAutoCompleteBox_dropdown" ng-if="showItembox" class="angucomplete-dropdown autocompltedropdown ScrollbarUI" style="">
+        <div class="angucomplete-searching" ng-if="searching" ng-bind="textSearching" style="">{{resData.res_CreateInquiryPage_Searching}}</div>
+        <div class="angucomplete-searching no_resultfound" ng-if="foundItemResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+        <div class="angucomplete-row" ng-repeat="result in bindAllProduct" ng-if="!IsSelfCollect?result.ItemCode !== WoodenPalletCode:RoleName==='CustomerService'? (result.ItemCode !== WoodenPalletCode || result.ItemCode === WoodenPalletCode):result.ItemCode !== WoodenPalletCode" key-navigation="" ng-click="GetItemSelected(result)" ng-mouseenter="hoverRow($index)" ng-class="{'autocompleteboxselectedrow':$index == selectedRow}" style="">
+            <div class="angucomplete-title" style="">
+                {{result.ItemNameCode}}
+            </div>
+        </div>
+
+        <div class="angucomplete-searching add_new_item_btn" ng-if="foundItemResult && pageContrlAcessData.AddItemInMaster !='0'">
+            <a ng-click="OpenModalPopupToAddNewItem()" class="add_new_item_btn_text">
+                {{resData.res_createinquirypage_Add_New_Item}}
+            </a>
+        </div>
+    </div>
+</div>

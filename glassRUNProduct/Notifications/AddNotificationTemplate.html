@@ -1,0 +1,348 @@
+﻿<div class="col-md-12" style="padding:0px">
+	<style type="text/css">
+		.GridColumnWithBorder_AddCompany {
+			float: left;
+			width: 38%;
+			padding: 0px 20px;
+			border-right: 2px dashed #d5d5d5;
+			height: 36px;
+			padding-top: 5px;
+		}
+	</style>
+	<style>
+
+		.ta-editor {
+			height: 306px !important;
+		}
+        .selectedYes {
+            width: 17px;
+            font-size: 14px;
+            margin-right: 6px;
+            color: #39b54a !important;
+            cursor: pointer;
+        }
+
+        .col-md-6 {
+            padding-left: 0px;
+        }
+
+        .selectedNo {
+            width: 17px;
+            font-size: 14px;
+            margin-right: 6px;
+            color: #19211b;
+            cursor: pointer;
+        }
+
+        .transpantcolorbtn {
+            border: 1px solid black;
+            border-radius: 15px;
+            color: black;
+            font-size: 18px;
+        }
+
+        .ActionButtons {
+            float: right;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .dropdown-multiselect {
+            height: 25px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-8" style="border-right:1px dashed #d5d5d5">
+            <div class="col-md-12" style="margin: 0px;">
+                <div class="col-md-12" style="padding: 0px;margin: 0px;">
+                    <h2><b>{{NotificationHeader}}</b> </h2>
+                    <a class="createinquirybtn_solidbg card_Section aling_float_right space_right border_icon_color_green" style="cursor:pointer!important;margin-top: -36px!important;" ng-click="Save(true)">
+                        <span class="icon_text">{{resData.res_AddNotification_BtnName}}</span>
+                    </a>
+                </div>
+
+                <div class="col-md-12 addnotification" style="padding: 0px;margin: 0px;">
+                    <div class="row">
+                        <div ng-if="pageContrlAcessData.EventMasterId !='0'">
+                            <div class="col-md-6">
+                                <div class="section_width_100  margin_bottom_10">
+                                    <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                        {{resData.res_AddNotification_EventMaster}} <span style="color:red;"> * </span>
+                                    </span>
+                                    <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                        <select class="dropdown-toggle btn btn-default" ng-model="NotificationTypeMasterinfo.EventMasterId" ng-change="GetEventMapingvariablesbyEventmasterId(NotificationTypeMasterinfo.EventMasterId)" ng-options="Eventdetails.Id as Eventdetails.Name for Eventdetails in EventMasterList" ng-disabled="pageContrlAcessData.EventMasterId =='0' || pageContrlAcessData.EventMasterId =='1' || disableControl">
+                                            <option value="">Select
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="pageContrlAcessData.NotificationTypeMasterId !='0'">
+
+                            <div class="col-md-6">
+                                <div class="section_width_100 margin_bottom_10">
+                                    <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                        {{resData.res_AddNotification_NotificationType}} <span style="color:red;"> * </span>
+                                    </span>
+                                    <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                        <select class="dropdown-toggle btn btn-default"  ng-model="NotificationTypeMasterinfo.NotificationTypeMasterId" ng-change="NotificationtypeChang(NotificationTypeMasterinfo.NotificationTypeMasterId)" ng-options="NotificationTypeMaster.Id as NotificationTypeMaster.Name for NotificationTypeMaster in NotificationTypeMasterList" ng-disabled="pageContrlAcessData.NotificationTypeMasterId =='0' || pageContrlAcessData.NotificationTypeMasterId =='1' || disableControl">
+                                            <option value="">Select
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div ng-if="pageContrlAcessData.Role !='0'">
+                            <div class="col-md-6">
+                                <div class="section_width_100 margin_bottom_10">
+                                    <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                        {{resData.res_AddNotification_Role}} <span style="color:red;"> * </span>
+                                    </span>
+
+                                    <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                        <div class="form-group MultiSelectControl" style="width: 100%;margin-left:5px ;margin-top:10px" ng-class="{'disablemultiselectcontrol' : pageContrlAcessData.Role =='0' || pageContrlAcessData.Role =='1'} || disableControl">
+                                            <div ng-dropdown-multiselect="" options="RoleMasterList" selected-model="SelectRoleMasterList" checkboxes="false" extra-settings="SortByListSetting" events="ObjectRoleMasterEvent"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="pageContrlAcessData.UserId !='0'">
+                            <div class="col-md-6" style="margin-top: -19px;">
+                                <input class="form-white" type="checkbox" ng-model="NotificationTypeMasterinfo.IsSpecific" style="margin-top:10%;padding-left: 16px;" /> {{resData.res_AddNotification_IsSpecific}}
+
+                            </div>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+
+                    <div style="clear:both"></div>
+                    <div class="row">
+                        <div ng-if="pageContrlAcessData.UserId !='0'">
+                            <div class="col-md-6">
+                                <div class="section_width_100 margin_bottom_10">
+                                    <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                        {{resData.res_AddNotification_User}}
+                                    </span>
+                                    <div class="grMasterPagecontrol grcontrolwidth" style="width: 100%;">
+                                        <div class="form-group MultiSelectControl" style="width: 100%;margin-left:5px ;margin-top:10px" ng-class="{'disablemultiselectcontrol' : pageContrlAcessData.UserId =='0' || pageContrlAcessData.UserId =='1'} || disableControl">
+                                            <div ng-dropdown-multiselect="" options="LoginDetailsList" selected-model="SelectLoginDetailsList" checkboxes="false" extra-settings="SortByListSetting" events="ObjectUserSelectEvent"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div class="row" ng-hide="hideEmailtextbox">
+                        <div ng-if="pageContrlAcessData.CustomEmailID !='0'" ng-hide="hideEmailidtextboxes">
+                            <div class="col-md-6">
+                                <div class="section_width_100 margin_bottom_10">
+                                    <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                        <span ng-if="txtHeaderName===true"> {{resData.res_AddNotification_MobileNo}}</span>
+                                        <span ng-if="txtHeaderName===false"> {{resData.res_AddNotification_EmailId}}</span>
+                                    </span>
+                                    <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                        <input class="green_border_textbox" ng-keypress="filterValue($event)" ng-model="NotificationTypeMasterinfo.CustomEmailID" ng-if="txtHeaderName===true" placeholder="{{resData.res_AddNotification_MobileNo}}" style="border: 1px solid #d5d5d5 !important;" ng-readonly="pageContrlAcessData.CustomEmailID =='0' || pageContrlAcessData.CustomEmailID =='1'" />
+
+                                        <input class="green_border_textbox" ng-keypress="filterValue($event)" ng-model="NotificationTypeMasterinfo.CustomEmailID" ng-if="txtHeaderName===false" placeholder="{{resData.res_AddNotification_EmailId}}" style="border: 1px solid #d5d5d5 !important;" ng-readonly="pageContrlAcessData.CustomEmailID =='0' || pageContrlAcessData.CustomEmailID =='1'" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="pageContrlAcessData.RecipientType !='0'" ng-hide="hideRecipientType">
+                            <div class="col-md-6">
+                                <div class="section_width_100 margin_bottom_10">
+                                    <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                        {{resData.res_AddNotification_EmailToType}} <span style="color:red;"> * </span>
+                                    </span>
+                                    <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                        <select class="dropdown-toggle btn btn-default" ng-model="NotificationTypeMasterinfo.RecipientType" ng-options="EmailToType.Id as EmailToType.Name for EmailToType in EmailToType" ng-disabled="pageContrlAcessData.RecipientType =='0' || pageContrlAcessData.RecipientType =='1' || disableControl">
+                                            <option value="">Select
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section_width_100">
+                        <a class="createinquirybtn_solidbg card_Section bg_green_color" ng-click="AddUserEmailToType()" style="float:right;padding: 7px 20px;">
+                            {{resData.res_AddNotification_BtnAdd}}
+                        </a>
+                    </div>
+                    <div class="section_width_100">
+                        <table class="table table-striped">
+                            <thead ng-show="UserEmailInfo.length > 0">
+                                <tr>
+                                    <th>
+                                        {{resData.res_AddNotification_RowHeaderRole}}
+                                    </th>
+                                    <th>
+                                        {{resData.res_AddNotification_IsSpecific}}
+                                    </th>
+                                    <th>
+                                        {{resData.res_AddNotification_RowHeaderUser}}
+                                    </th>
+                                    <th>
+                                        {{resData.res_AddNotification_RowHeaderEmail}}
+                                    </th>
+                                    <th>
+                                        {{resData.res_AddNotification_RowHeaderType}}
+                                    </th>
+                                    <th style="float:none;text-align:right">
+                                        {{resData.res_AddNotification_RowHeaderAction}}
+                                    </th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="userinfo in UserEmailInfo">
+                                    <td>{{userinfo.RoleName}}</td>
+                                    <td>{{userinfo.IsSpecific}}</td>
+                                    <td>{{userinfo.UserName}}</td>
+                                    <td>{{userinfo.Email}}</td>
+                                    <td>{{userinfo.EmailTypeName}}</td>
+                                    <td style="float:none;text-align:right">
+                                        <a ng-click="RemoveAddedEmailRecipient(userinfo.CurrentGuid)">
+                                            {{resData.res_AddNotification_BtnRemove}}
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="clear:both"></div>
+
+
+				
+					<event-Document event-document-list="EventDocumentList" document-type-list="DocumentTypeList" res-data="resData" ></event-Document>
+					
+
+					<div style="clear:both"></div>
+					<div style="clear:both"></div>
+
+                    <div class="row">
+                        <div class="col-md-6" ng-if="pageContrlAcessData.Subject !='0'" ng-hide="hidesubjectcolumn">
+                            <div class="section_width_100 margin_bottom_10">
+                                <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                    {{resData.res_AddNotification_Subject}} <span style="color:red;"> * </span>
+                                </span>
+                                <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                    <input class="green_border_textbox" ng-model="NotificationTypeMasterinfo.NotificationTitle" style="border: 1px solid #d5d5d5 !important;" ng-readonly="pageContrlAcessData.Subject =='0' || pageContrlAcessData.Subject =='1'" />
+                                  <!--  <textarea ng-model="NotificationTypeMasterinfo.NotificationTitle" ></textarea>-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="section_width_100 margin_bottom_10" ">
+                            <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">{{resData.res_AddNotification_Subject}}</span>
+                            <div class="section_width_100 margin_top_bottom_5 position_relative">
+                                <div text-angular ng-model="notificationtypemasterinfo.notificationtitle" name="emailheader-editor" ta-text-editor-class="border-around " ta-html-editor-class="border-around" class="borderaround smallheight_notrequired"></div>
+                            </div>
+
+                        </div>-->
+                        <div class="col-md-6" style="display:none;">
+                            <div class="section_width_100 margin_bottom_10">
+                                <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">
+                                    {{resData.res_AddNotification_Priority}}
+                                </span>
+                                <div class="section_width_100 margin_top_bottom_5 position_relative angucomplete-holder angucomplete-dropdown-visible">
+                                    <select class="dropdown-toggle btn btn-default" ng-model="NotificationTypeMasterinfo.EventMasterId" ng-options="Eventdetails.Id as Eventdetails.Name for Eventdetails in EventMasterList">
+                                        <option value="">Select
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="pageContrlAcessData.BodyContent !='0'">
+                        <div class="row" ng-hide="hideEmailbodytextbox">
+                            <div class="section_width_100 margin_bottom_10" ">
+                                <span class="section_width_100 padding_left_15 margin_top_bottom_5 aling_float_left">{{resData.res_AddNotification_EmailBody}} <span style="color:red;"> * </span></span>
+                                <div class="section_width_100 margin_top_bottom_5 position_relative">
+                                    <div text-angular ng-model="NotificationTypeMasterinfo.BodyContent" name="EmailHeader-editor" ng-readonly="pageContrlAcessData.BodyContent =='0' || pageContrlAcessData.BodyContent =='1'" ta-text-editor-class="border-around " ta-html-editor-class="border-around" class="BorderAround smallheight_NotRequired"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section_width_100">
+                        <div class="TwoSection padding_top_bottom_10">
+                            <div class="Left_Third_Aling">
+                                <a class="createinquirybtn_solidbg card_Section dark_blue space_left aling_float_left" style="cursor:pointer!important;" ng-click="Save(false)">
+                                    <i class="fa fa-clone white"></i> <span class="icon_text white_text">{{resData.res_AddNotification_BtnSave}}</span>
+                                </a>
+                            </div>
+                            <div class=" Right_Third_Aling">
+                                <!--ng-click="OpenProductCatalogModalPopup()"-->
+                                <a class="createinquirybtn_solidbg card_Section aling_float_right space_right border_icon_color_green" style="cursor:pointer!important;" ng-click="Clear()">
+									<i class="fa fa-clone white"></i><span class="icon_text">{{resData.res_AddNotification_BtnClear}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="bussinessrulerightpaneldetails" style="margin:0px">
+                <div class="col-md-12 ruletypeheading">
+                    <div class="col-md-8">
+                        <h2>
+                            <b>{{resData.res_AddNotification_AvailableVariables}}</b>
+                        </h2>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="clearbtn" style="float:right;">
+                            <button type="button" style="margin-top:0px" ng-click="BackView()" class="btn btn-default">{{resData.res_AddNotification_BtnBack}}</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12 removepadding" style="border:0px" ng-repeat="Variables in ItemList">
+                        <div class="bussinessdetailsLable" style="width: 80%;">
+                            <span class="underlinetextbox">#{{Variables.PropertyName}}#</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 removepadding" style="margin-top: 10px;padding-bottom: 0px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+		
+
+        <!-- <div class="col-md-12 ActionButtons" style="border-top: 1px solid rgb(213, 213, 213); padding-top: 14px;" ng-if="IsControlVisible">
+
+             <div class="col-md-6" style="display: flex; justify-content: flex-start">
+                 <div class="footerbuttons" style="margin: 0px;margin-right: 12px;">
+                     <a class="buttonstext transpantcolorbtn" ng-click="BackView();">
+                         <i class="fa fa-repeat"></i>
+                     </a>
+                 </div>
+             </div>
+             <div class="col-md-6" style="display: flex; justify-content: flex-end">
+                 <div class="footerbuttons" style="margin: 0px;margin-right: 12px;">
+                     <a class="buttonstext transpantcolorbtn" ng-click="BackView();">
+                         Cancel
+                     </a>
+                 </div>
+
+                 <div class="footerbuttons" style="margin: 0px;">
+                     <a class="buttonstext bggreencolorbtn" ng-click="SaveWorkFlow();">
+                         Save
+                     </a>
+                 </div>
+             </div>
+         </div>-->
+    </div>
+
+</div>

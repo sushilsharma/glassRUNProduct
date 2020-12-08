@@ -1,0 +1,276 @@
+﻿<ion-view>
+	<ion-content class="main-content">
+		<style>
+			.treeSelection {
+				background-color: green;
+				color: #fff;
+			}
+
+			.highlighted {
+				background: yellow;
+				position: relative;
+				top: -3px;
+			}
+
+			.dropdown-multiselect {
+				height: auto;
+			}
+
+			.btn-group > .btn:first-child {
+				padding-left: 20px;
+			}
+
+
+			.itemrowcontainer:nth-child(even) {
+				margin-top: 15px;
+			}
+
+			.gray_border_textbox {
+				border: 1px solid #cdcfd2;
+			}
+
+			.autocompltedropdown {
+				border: 1px solid #cdcfd2 !important;
+			}
+
+			.ui-autocomplete {
+				z-index: 100000 !important;
+				background-color: #fff;
+				width: 366px !important;
+				padding: 0px;
+				border: 1px solid #d5d5d5;
+				height: auto !important;
+				max-height: 200px !important;
+				overflow-y: auto;
+			}
+
+			.ui-menu-item {
+				padding: 0px !important;
+				border-bottom: 1px solid #d5d5d5;
+			}
+
+			.ui-menu-item-wrapper {
+				padding: 5px 15px !important;
+				font-size: 14px !important;
+				border: 0px;
+			}
+
+			.check_control {
+				float: left;
+				width: 25px;
+				text-align: left;
+				position: relative;
+				left: -5px;
+			}
+
+			.wrapper {
+				width: 100%;
+				position: relative;
+			}
+
+				.wrapper .selected-items-box {
+					cursor: pointer;
+					border: solid 1px #c7c7c7;
+					padding: 10px;
+					background-color: #e2dfdf;
+					color: #000;
+				}
+
+			.selected-items-box .items-list {
+				list-style-type: none;
+				width: 100%;
+				padding: 0;
+				margin: 0;
+			}
+
+				.selected-items-box .items-list li {
+					display: inline;
+				}
+
+			.wrapper .list {
+				height: 218px;
+				overflow-y: auto;
+				overflow-x: hidden;
+				border-left: solid 1px #C7C6C7;
+				border-right: solid 1px #C7C6C7;
+				border-bottom: solid 1px #C7C6C7;
+				z-index: 100;
+				position: relative;
+				width: 100%;
+			}
+
+			.list .items-list {
+				list-style-type: none;
+				width: 100%;
+				padding: 0;
+				margin: 0;
+			}
+
+				.list .items-list li {
+					margin: 0;
+					width: 100%;
+					padding: 0;
+					border-bottom: solid 1px #C7C6C7;
+					padding: 5px;
+					background-color: #fff;
+				}
+		</style>
+		<div class="pageview">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="nav-tabs2">
+						<ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+							<li class="active" ng-class="{'active': ViewTab}">
+								<a ng-click="ViewForm()" class="">
+									<tab-heading>
+										<i class="fa fa-eye"></i>{{resData.res_EmailDynamicColumn_View}}
+									</tab-heading>
+								</a>
+							</li>
+							<li class="" ng-class="{'active': AddTab}">
+								<a>
+									<tab-heading>
+										<i class="fa fa-plus"></i>{{resData.res_EmailDynamicColumn_Add}}
+									</tab-heading>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane" ng-class="{'active': AddTab}">
+								<div class="panel-content">
+									<div class="row">
+										<div class="formcontrols form-horizontal ng-pristine ng-valid" style="padding-bottom: 51px!important;">
+
+
+
+											<div class="col-lg-12">
+												<div class="col-lg-6">
+													<div class="columnfulldata  margintopdata">
+														<div class="labelname reasonlable">
+															Parent Activity
+														</div>
+														<div class="labelcontrol">
+
+															<select class="form-control" style="margin:0px !important" ng-model="RoleWiseStatus.RoleMasterId"
+																	ng-options="obj.RoleMasterId as obj.RoleName for obj in RoleMasterList">
+																<option value="">Select</option>
+															</select>
+
+															<!--<input id="ParentActivity" auto-complete type="text" ng-model="ActivityJSON.ParentActivity" class="form-control" />-->
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+
+
+
+
+
+
+
+											<div class="col-lg-12" style="float: left;width: 100%; margin-top: 20px;margin-bottom: 30px;margin-left: 295px;">
+												<div class="col-lg-3" style="width: 72%;">
+													<div class="wrapper">
+														<div class="selected-items-box">
+															Select Possible Previous Steps
+															<span class="dropdown-icon"></span>
+														</div>
+														<div class="list" style="height: 450px;">
+															<ul class="items-list">
+																<li ng-repeat="subActivity in PreviousSubActivityList" style="float: left;padding-top:0px;padding-bottom:0px">
+																	<div style="float:left;width:40%">
+																		<!--<input type="checkbox" ng-model="subActivity.IsPossiblePreviousSelected" ng-click="DisableActivityListCheckbox('Previous', subActivity.ActivityId)" ng-disabled="ActivityJSON.IsSystemDefined || subActivity.IsDisabled" />-->
+																		<span>{{subActivity.ActivityName}} - ({{subActivity.StatusCode}})</span>
+																	</div>
+																	<div style="float:left;width:30%;border-left:1px solid #d5d5d5;padding-left: 10px;">
+																		<div ng-repeat="culture in subActivity.CultureList" style="float:left;padding-top:5px;padding-bottom:5px; width:100%">
+																			<input type="text" ng-model="culture.ResourceValue" placeholder={{culture.Name}} style="float:left;width:100%" />
+																		</div>
+																		<div>
+																			&nbsp;
+																		</div>
+																	</div>
+																	<div style="    float: left;    width: 25%;    border-left: 1px solid #d5d5d5;    padding-left: 70px;    margin-top: 24px;">
+
+																		<input id="subActivity{{subActivity.ActivityId}}" colorpicker="hex" ng-click="SetColorPickerBox(subActivity.ActivityId)" style="background-color:{{subActivity.Class}}" class="form-control" ng-model="subActivity.Class" type="text" />
+																	</div>
+																</li>
+															</ul>
+														</div>
+
+
+
+
+													</div>
+												</div>
+
+											</div>
+
+											<div class="ActionButtons" ng-hide="ActivityJSON.IsSystemDefined">
+												<div class="clearbtn">
+													<button type="button" ng-click="Clear()" class="btn btn-default">Clear</button>
+												</div>
+												<div class="successbtn">
+													<button type="button" ng-click="RoleWiseStatusDetail()" class="btn btn-success">Save</button>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane active" ng-class="{'active': ViewTab}">
+								<div class="panel-content">
+									<div class="row">
+										<div class="formcontrols form-horizontal ng-pristine ng-valid">
+											<div class="col-md-12">
+												<div id="ActivityGrid" class="SalesAdminApproval_Grid SalesAdminApprovalConfigurationGrid" dx-data-grid="ActivityGrid" dx-item-alias="ActivityGridData">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+
+	<script id="WarningMessage.html" type="text/ng-template">
+		<ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+
+			<ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+				<h1 class="title">{{resData.res_AddCompany_Warning}}</h1>
+				<button class="button button-clear button-primary" ng-click="CloseDeleteConfirmation()"><i class="fa fa-times" style="color:#000 !important;"></i></button>
+			</ion-header-bar>
+			<ion-content scroll="false" class="popioncontainer">
+				<div class="messagebody" style="margin-left: 15px;font-weight: 500;">
+					{{resData.res_AddCompany_DeleteWarning}}
+				</div>
+			</ion-content>
+			<ion-footer-bar class="popupfooter">
+
+				<div class="popupbtnstyle">
+					<div class="popupbuttonstyle">
+						<a class="btn btn-success btn-square" ng-click="DeleteActivity()">
+							{{resData.res_AddCompany_DeleteYes}}
+						</a>
+						<a class="btn btn-success btn-square" ng-click="CloseDeleteConfirmation()">
+							{{resData.res_AddCompany_DeleteNo}}
+						</a>
+					</div>
+
+
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+</ion-view>

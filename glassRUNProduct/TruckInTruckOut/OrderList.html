@@ -1,0 +1,204 @@
+﻿<ion-view id="SOListControllerHtml" class="solistviewpage" view-title="{{resData.res_Orders_TitleOrders}}">
+    <!-- Add Resources on Page Added by Vinod Yadav 20192019 -->
+    <ion-content has-bouncing="false" style="overflow-y: hidden;">
+        <link href="Styles/OnlineShopUI.css" rel="stylesheet">
+        <style type="text/css">
+            ion-nav-bar {
+                display: none
+            }
+
+            .has-header {
+                top: 0px;
+            }
+        </style>
+        <div id="ProductSummaryView" class="ProductCatalogue ngIncludeItem ShowProductInfo">
+            <div class="ProductCatalogueInnerView">
+                <div class="ProductCatalogueHeader">
+                    <div class="HeaderBackButton" ng-click="BackScreenView()">
+                        <i class="fa fa-angle-left"></i>
+                    </div>
+                    <div class="HeaderTitle">
+                        <div class="HeaderTitleName">
+                            {{EnterTruckPlateNumber}}
+                        </div>
+                        <div class="HeaderTitleRemark">
+                            {{EnterTruckDriverName}}
+                        </div>
+
+                    </div>
+                    <div class="HeaderShoppingCart">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="ProductInfoView">
+                    <div class="ProductPriceView">
+                        <div class="Enquiryproductpriceanddetails">
+
+                            <div class="full_width_view enquiryinfodetails" style="margin-top: 20px;">
+                                <div class="full_width_view enquirysummarydetails">
+                                    <i class="fa fa-file filedocumentorder"></i>
+                                </div>
+                                <div class="full_width_view enquirysummarydetails" style="color: #fff;margin-top: 4px;font-size: 20px;">{{resData.res_OrderList_OrderList}}</div>
+                                <div class="full_width_view enquirysummarydetails" style="margin-top: 3px;">{{resData.res_OrderList_Selecttheordersallottedtothetruck}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div set-heightcustomcontainer="" class="CreateInquiryMainSection" style="overflow-y: auto;padding-bottom: 185px;">
+
+                <div class="ProductInformationSection">
+                    <div class="ItemSearchControl">
+                        <input ng-model="SoListSearchValue.search" placeholder="Search">
+
+                        <span class="productsearchicon" ng-click="ClearSearchList();">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="productinfosectionview" style="padding: 10px;padding-top:0px;margin-top: 4px;">
+                        <div class="ProductHeading" style="text-align: right;font-weight: 300 !important;">
+                            <i class="fa fa-refresh"></i>
+                        </div>
+
+                        <div class="ProductListControl" style="border-radius: 32px;padding:0px" ng-click="OrderSelected(bindCust.OrderNumber)" ng-class="{'completedso': bindCust.IsSelected==true}" ng-repeat="bindCust in BinAsnInfos | filter : SoListSearchValue.search  | orderBy : 'SortingIndex'">
+
+                            <div class="SelectedProductImageSection">
+                                <div class="odrerselectedcircle" ng-if="bindCust.IsSelected !== true">
+                                    &nbsp;
+                                </div>
+                                <div class="greeorderselectedcircle" ng-if="bindCust.IsSelected === true">
+                                    <div class="greewhiteorderselectedcircle">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ProductDetails SelectedProductDetails" style="padding: 8px;padding-top: 10px;margin-left: 18px;">
+                                <div class="ProductName" style="font-size: 18px;" ng-class="{'selectedordertext':bindCust.IsSelected === true}">
+                                    {{bindCust.OrderNumber}}
+                                </div>
+                                <div class="SelectedProductPrice" style="margin-top: 5px;">
+                                    <span class="productselectedquantity">Ship To: {{bindCust.LocationName}}</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div style="float:left;width:100%" ng-click="SaveCollectedOrder();">
+                <div class="ProductRecommendations">
+                    <span class="product_angel_fa product_angle_view"><i class="fa fa-check"></i></span>
+                    <span class="product_recommendation">{{resData.res_OrderList_Confirmation}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-content-scroll" style="display:none">
+            <div class="landing-homepage">
+                <div class="landing-wrapper">
+
+                    <div set-heightcustomcontainer="" class="socontainer">
+                        <div class="solistcards">
+
+                            <div class="search">
+                                <div class="search" method="post" action="index.html" style="width: 83% !important;float: left !important;">
+                                    <input type="search" name="q" ng-model="SoListSearchValue.search" style="padding-left: 24px;" placeholder="Search by SO" autocomplete="off">
+                                    <a class="static-search-close" ng-click="ClearSearchList();">{{resData.res_OrderList_x}}</a>
+                                </div>
+                                <div style="width: 10% !important;float: right;margin: 9px;margin-top: 1px;font-size: 30px;color: white;" ng-click="SaveCollectedOrder();">
+                                    <i class="fa fa-save"></i>
+                                </div>
+                            </div>
+
+
+                            <div set-height="" class="solistcontainer" when-scroll-ends="loadMoreOrders();">
+                                <div class="solistcard" ng-class="{'completedso': bindCust.IsSelected==true}" ng-repeat="bindCust in BinAsnInfos | filter : SoListSearchValue.search  | orderBy : 'SortingIndex'">
+
+
+
+                                    <div style="padding: 10px;" ng-click="OrderSelected(bindCust.OrderNumber)">
+
+                                        <div class="rows">
+
+                                            <div class="columnsecond " style="margin-left: 4px; font-size: 18px;">
+                                                <label> {{resData.res_TruckDetails_SO}} {{bindCust.OrderNumber}}</label>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="rows">
+                                            <div class="columnfirst">
+                                                <i class="fa fa-map-marker"></i>
+                                            </div>
+                                            <div class="columnsecond locationlist">{{bindCust.TotalNumberOfItems}}</div>
+                                        </div>
+
+                                        <div class="rows">
+                                            <div class="columnfirst">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                            <div class="columnsecond">{{bindCust.PlanCollectionDate| date:'dd/MM/yyyy HH:mm'}}</div>
+                                            <div class="columnsecond"></div>
+                                        </div>
+
+
+
+                                        <div class="rows">
+                                            <div class="columnfirst">
+                                                <i class="fa fa-map-marker"></i>
+                                            </div>
+                                            <div class="columnsecond locationlist">{{bindCust.BranchPlantName}}</div>
+                                        </div>
+
+                                        <div class="rows">
+                                            <div class="columnfirst">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                            <div class="columnsecond">{{bindCust.PlanDeliveryDate | date:'dd/MM/yyyy HH:mm'}}</div>
+                                            <div class="columnsecond"></div>
+                                        </div>
+
+                                        <div class="rows">
+                                            <div class="columnfirst">
+                                                <i class="fa fa-map-marker"></i>
+                                            </div>
+                                            <div class="columnsecond locationlist">{{bindCust.LocationName}}</div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar ng-class="{'hidefooter': hideBar,'showfooter': !hideBar }" style="display:none" align-title="left" class="bar-assertive">
+
+        <div class="footer-menu footer-menu-dark">
+            <a class="footer-menu-item  active-footer-item">
+
+                <img src="img/glassrun154.png">
+
+            </a>
+
+            <a class="footer-menu-item disrptivelogo"> <img style="float:right" src="img/DisrptivLogotransp.png"><span style="float:right">{{resData.res_OrderList_Poweredby}}</span>  </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+
+
+

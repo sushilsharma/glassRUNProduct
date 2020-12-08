@@ -1,0 +1,57 @@
+﻿<div class="col-lg-6" style="margin-bottom: 10px;padding: 0px;">
+    <span class="sectionheader">{{resData.res_CreateInquiryPage_LoadAnalysis}}</span>
+    <div class="progressbarcontainers">
+        <div class="palettesfullview">
+            <div class="labelview">
+                {{resData.res_CreateInquiryPage_PalletSpace}} :({{PalettesCorrectWeight | number:2}}/{{buindingPalettes.length}})
+            </div>
+            <div class="controlview">
+                <div class="palattes">
+                    <div class="palatesui" ng-repeat="palettes in buindingPalettes" ng-style="{'width' : PalettesWidth.width}">
+                        <div class="progress progress-bar-thin">
+                            <div class="progress-bar progress-bar-success progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="{{palettes.PalettesWidth}}" ng-style="{'width' : palettes.PalettesWidth + '%'}" style="width: {{palettes.PalettesWidth}}%">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="capacity">
+            <div class="capacityfullview">
+                <div class="labelview">{{resData.res_CreateInquiryPage_Weight}}</div>
+                <div class="controlview">
+                    <div class="progress progress-striped active progress-bar-large" ng-class="{'blankweight' : TruckCapacityFullInPercentage === 0}">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width' : TruckCapacityFullInPercentage + '%' }" style="width:{{TruckCapacityFullInPercentage}}%">
+                            <span class="sr-only">{{TruckCapacityFullInPercentage}} % Complete (warning)</span>
+                            {{TruckCapacityFullInTone | number : 2}}/{{TruckCapacityInTone}} Ton
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-6 receivingcapacity">
+    <span class="sectionheader">
+        <!--{{resData.res_CreateInquiryPage_ReceivingLocationBalanceCapacity}}<span ng-if="ReceivingLocationCapacityField.BySelectedDate !== ''">(</span>{{ReceivingLocationCapacityField.BySelectedDate}}<span ng-if="ReceivingLocationCapacityField.BySelectedDate !== ''">)</span>-->
+        <!--<span ng-bind="LoadEmptiesMessage(resData.res_CreateInquiryPage_ReceivingLocationBalanceCapacityNew, (DeliveryLocationCapacity | :0),''"></span>-->
+
+        <!--{{resData.res_CreateInquiryPage_ReceivingLocationBalanceCapacityNew}}-->
+        
+        <span ng-bind="LoadEmptiesMessage(resData.res_CreateInquiryPage_ReceivingLocationBalanceCapacityNew,(DeliveryLocationCapacity.toString().replace('-', '') | number: 0))"></span>
+
+    </span>
+    <div class="columnfulldata  margintopdata receivinglocationcapacitybalance">
+        <div class="labelname" style="width: 196px;">{{resData.res_CreateInquiryPage_Availablecapacityinpallet}}</div>
+
+        <div class="labelcontrol labeltext" style="width: 150px;">
+            <!--{{DeliveryLocationCapacity-(DeliveryUsedCapacity+tempDeliveryUsedCapacity) | number:0}}/{{DeliveryLocationCapacity | number:0}}-->
+
+            {{DeliveryLocationCapacity-(DeliveryUsedCapacity+tempDeliveryUsedCapacity) | number:0}}
+        </div>
+
+        <div style="color:red;float: left;" class="labelview" ng-if="ValidationErrorReceivingLocation !== ''">({{ValidationErrorReceivingLocation}})</div>
+    </div>
+</div>

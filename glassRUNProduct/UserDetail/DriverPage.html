@@ -1,0 +1,403 @@
+﻿<style type="text/css">
+    .GridColumnWithBorder_AddCompany {
+        float: left;
+        width: 22%;
+        padding: 0px 20px;
+        border-right: 2px dashed #d5d5d5;
+        height: 36px;
+        padding-top: 5px;
+    }
+
+    .GridColumnWithBorder_AddCompany_data {
+        height: 45px !important;
+        padding-top: 12px !important;
+    }
+
+    .GridColumnWithBorder_Adddocument_data {
+        height: 55px !important;
+        padding-top: 12px !important;
+    }
+</style>
+<ion-view>
+    <ion-content class="main-content">
+
+        <div class="pageview">
+
+
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+                    <div class="nav-tabs2">
+                        <ul class="nav nav-tabs " ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+                            <li class="active" ng-class="{'active': ViewTab}">
+                                <a ng-click="ViewForm()" class="">
+                                    <tab-heading>
+                                        <i class="fa fa-eye"></i>{{resData.res_UserDetail_View}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                            <li class="" ng-class="{'active': AddTab}">
+                                <a ng-click="AddForm()">
+                                    <tab-heading>
+                                        <i class="fa fa-plus"></i>{{resData.res_UserDetail_Add}}
+                                    </tab-heading>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" style="margin-bottom: 60px;">
+                            <div class="tab-pane" ng-class="{'active': AddTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                                            <div class="tabcontainerbox" ng-class="{'activetab': FirstTab}">
+                                                <div class="panel-content">
+                                                    <div style="float:left;width:15%">
+                                                        <div class="md-card-content" ng-if="pageContrlAcessData.DriverProfilePhoto !== '0'">
+                                                            <div class="uk-margin-bottom uk-text-center campusVendorProduct uk-position-relative">
+                                                                <div class="user_heading_avatar productImages fileinput fileinput-new" style="float: none" data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail">
+                                                                        <img class="" ng-src="{{'data:image/jpg;base64,'+UserDetailObject.UserProfilePicture}}">
+                                                                    </div>
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                                                    <div class="user_avatar_controls">
+                                                                        <div class="cameraiconcss">
+                                                                            <span class="btn-file">
+                                                                                <span class="fileinput-new" style="margin-left: 11px;position: relative;top: 10px;">
+                                                                                    <i class="fa fa-camera" style="font-size:16px">
+                                                                                    </i>
+                                                                                </span>
+                                                                                <span class="fileinput-exists" style="margin-left: 11px;position: relative;top: 10px;">
+                                                                                    <i class="fa fa-camera" style="font-size:16px">
+                                                                                    </i>
+                                                                                </span>
+
+                                                                                <input type="file" id="fileUpload" ng-file-extension="FileUploadJSON.FileFormat" ng-file-select="onFileSelect($files)" ng-file-allowsize="UserDetailObject.AllowFileSize" ng-file-allowextension="UserDetailObject.AllowFileFormat" ng-file-base64="UserDetailObject.UserProfilePicture" />
+
+                                                                            </span>
+                                                                        </div>
+
+                                                                        <a id="btn2" class="btn-file fileinput-exists" ng-click="ClearUploadProfileImage()" ng-hide="CheckFileUploaded()" style="display: inline">
+                                                                            <div class="deleteiconcss">
+                                                                                <div style="margin-left: 11px;position: relative;top: 10px;">
+                                                                                    <i class="fa fa-times" style="font-size: 20px;">
+                                                                                    </i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div style="float:left;width:100%;margin-top: 12px;">
+                                                                {{resData.res_DriverPage_FileType}} : ({{UserDetailObject.AllowFileFormat}})
+                                                            </div>
+                                                            <div style="float:left;width:100%">
+                                                                {{resData.res_DriverPage_FileSize}} : ({{UserDetailObject.AllowFileSize}} MB)
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div style="float:left;width:85%">
+
+                                                        <div class="fullwidth" ng-if="pageContrlAcessData.CompanyTypeDropDown !='0'  && UserDetailObject.LoginId =='0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Parent Type :
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-12">
+                                                                        <ul>
+                                                                            <li style="display:inline;float: left !important;width: 25%;" ng-repeat="CompanyType in CompanyTypeList" ng-click="ClickOnCompanyTypeRadioButton(UserDetailObject.ReferenceType)">
+                                                                                <span>{{CompanyType.Name}} </span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fullwidth" ng-if="UserDetailObject.LoginId =='0' && pageContrlAcessData.TransporterListDropDown !== '0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <span ng-repeat="CompanyType in CompanyTypeList" ng-if="CompanyType.Name === 'Transporter'"> Select  {{CompanyType.Name}} :</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+
+                                                                    <div class="rowsection" style="margin-bottom: 0px !important;">
+
+                                                                        <div class="UseFull_Space">
+                                                                            <div class="section_width_100 position_relative angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+                                                                                <input type="text" class="gray_border_textbox" placeholder="Please select" ng-readonly="IsDisableTransporter"
+                                                                                       ng-class="{'open_panel green_border_textbox': SearchCompanyControl.showbox, 'green_border_textbox': SearchCompanyControl.Input.length > 0}"
+                                                                                       ng-model="SearchCompanyControl.Input" ng-focus="onFocusHandler()"
+                                                                                       ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off"
+                                                                                       autocomplete="off" ng-change="InputSelecteChangeEvent(SearchCompanyControl)" />
+                                                                                <span class="textbox_down_angle" ng-hide="IsDisableTransporter">
+                                                                                    <a ng-click="ShowListBox(SearchCompanyControl)">
+                                                                                        <i class="fa fa-angle-down icon_size_20" ng-hide="SearchCompanyControl.IsSearchInputFilled === true"></i>
+                                                                                    </a>
+                                                                                    <a ng-click="ClearInputSearchbox(SearchCompanyControl)" class="remove_ion_icon">
+                                                                                        <i class="icons-office-52" ng-show="SearchCompanyControl.IsSearchInputFilled"></i>
+                                                                                    </a>
+                                                                                </span>
+                                                                                <div ng-show="SearchCompanyControl.showbox" class="autocompltedropdown ScrollbarUI" style="">
+                                                                                    <div class="angucomplete-searching no_resultfound" ng-show="SearchCompanyControl.foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+                                                                                    <div class="angucomplete-row" ng-repeat="result in (filteredItems = (LoadedCompanyList | multipleTags:SearchCompanyControl.FilterAutoCompletebox))"
+                                                                                         key-navigation="" ng-mouseenter="hoverRow($index)"
+                                                                                         ng-click="SelectedCompanyFromDropDown(SearchCompanyControl ,result)"
+                                                                                         ng-class="{'autocompleteboxselectedrow':$index == SearchCompanyControl.selectedRow}" style="">
+                                                                                        <div class="angucomplete-title" style="">
+                                                                                            {{result.Name}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fullwidth" ng-if="UserDetailObject.LoginId !='0'  && pageContrlAcessData.TransporterListDropDown !== '0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <span ng-repeat="CompanyType in CompanyTypeList" ng-if="CompanyType.Name === 'Transporter'"> Select  {{CompanyType.Name}} :</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <input class="form-control form-white" ng-model="UserDetailObject.CompanyName" placeholder="Name" ng-readonly="true" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fullwidth" ng-if="pageContrlAcessData.Name !== '0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Name <span class="mandentorymark">*</span> :
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <input class="form-control form-white" ng-model="UserDetailObject.Name" placeholder="Name" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fullwidth" ng-if="UserDetailObject.LoginId =='0' && pageContrlAcessData.RoleMasterId !== '0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Select Role <span class="mandentorymark">*</span> :
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+
+                                                                    <select class="form-control" style="margin:0px !important" ng-model="UserDetailObject.RoleMasterId"
+                                                                            ng-options="obj.RoleMasterId as obj.RoleName for obj in RoleMasterList">
+                                                                        <option value="">Select</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fullwidth" ng-if="UserDetailObject.LoginId !='0' && pageContrlAcessData.RoleMasterId !== '0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Select Role :
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+
+                                                                    <input class="form-control form-white" ng-model="UserDetailObject.RoleName" placeholder="RoleName" ng-readonly="true" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fullwidth" ng-if="pageContrlAcessData.UserName !== '0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    User Name <span class="mandentorymark">*</span> :
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <input class="form-control form-white" ng-model="UserDetailObject.UserName" placeholder="User Name" ng-keydown="$event.keyCode != 32 ? $event:$event.preventDefault()" ng-readonly="UserDetailObject.LoginId !='0'" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fullwidth" ng-if="UserDetailObject.LoginId =='0' && pageContrlAcessData.Password !== '0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Password <span class="mandentorymark">*</span> :
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <input class="form-control form-white" type="password" ng-model="UserDetailObject.Password" placeholder="Password" />
+                                                                    <span style="float: left; width: 100%;font-size: 12px;">Password length should be between 8-20 characters</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fullwidth" ng-if="pageContrlAcessData.LicenseType !='0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    License Type:
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+
+                                                                    <select class="form-control" style="margin:0px !important" ng-model="UserDetailObject.LicenseType"
+                                                                            ng-options="obj.LookUpId as obj.Name for obj in LicenseTypeList">
+                                                                        <option value="">Select</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fullwidth" ng-if="false">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    License Number :
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+
+                                                                    <select class="form-control" style="margin:0px !important" ng-model="UserDetailObject.RoleMasterId"
+                                                                            ng-options="obj.RoleMasterId as obj.RoleName for obj in RoleMasterList">
+                                                                        <option value="">Select</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fullwidth" ng-if="pageContrlAcessData.DefaultLanguage !='0'">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Language:
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+
+                                                                    <select class="form-control" style="margin:0px !important" ng-model="UserDetailObject.DefaultLanguage"
+                                                                            ng-options="obj.LookUpId as obj.Name for obj in LanguageList">
+                                                                        <option value="">Select</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="fullwidth" ng-show="UserDetailObject.RoleMasterId == 8" ng-if="pageContrlAcessData.LicenseNumber !='0'">
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        License Number <span ng-show="UserDetailObject.RoleMasterId == 8" class="mandentorymark">*</span> :
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <input class="form-control form-white" type="text" ng-model="UserDetailObject.LicenseNumber" placeholder="License Number" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div style="float:left;width:100%" ng-if="pageContrlAcessData.ContactTypeDropDown !='0'">
+                                                            <contact-Information contact-information-list="UserDetailObject.ContactInformationList" contact-type-list="ContactTypeList" res-data="resData" ng-if='LoadDirective'></contact-Information>
+                                                        </div>
+
+                                                        <div style="float:left;width:100%" ng-if="pageContrlAcessData.DocumentTypeDropDown !='0'">
+                                                            <document-Information document-information-list="UserDetailObject.DocumentInformationList" document-type-list="DocumentTypeList" res-data="resData" ng-if='LoadDirective'></document-Information>
+
+                                                        </div>
+
+
+                                                        <div class="ActionButtons">
+                                                            <div class="clearbtn">
+                                                                <a ng-click="ClearInitalizeUserDetail()" class="btn btn-default">Clear</a>
+                                                            </div>
+                                                            <div class="successbtn">
+                                                                <a ng-click="SaveForLogin()" class="btn btn-success">Save</a>
+                                                            </div>
+                                                            <div class="successbtn" style="margin-left: 5px;display:none">
+                                                                <a ng-click="SaveAndLoadUserAccess()" class="btn btn-success">
+                                                                    <span style="float:left">
+                                                                        Save & Add User Access
+                                                                    </span>
+                                                                    <span class="angleicon">
+                                                                        <i class="fa fa-angle-right icon">
+                                                                        </i>
+                                                                    </span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tabcontainerbox" ng-class="{'activetab': SecondTab}" style="margin-bottom: 50px;">
+                                                <div>
+
+                                                    <page-Access-Component according-by="UserWise" role-id="UserDetailObject.RoleMasterId" user-id="UserDetailObject.LoginId" res-data="resData" ng-if='LoadPageAcessComponent'></page-Access-Component>
+
+
+                                                </div>
+                                                <div class="ActionButtons">
+                                                    <div class="clearbtn" style="margin-left: 5px;">
+                                                        <a ng-click="BackView()" class="btn btn-default">
+                                                            <span style="float:left" class="angleicon">
+                                                                <i class="fa fa-angle-left icon">
+                                                                </i>
+                                                            </span>
+                                                            <span style="float:right;margin-left: 10px;">
+                                                                Back
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="clearbtn">
+                                                        <a ng-click="ClearAccessControl()" class="btn btn-default">Clear</a>
+                                                    </div>
+                                                    <div class="successbtn">
+                                                        <a ng-click="SaveAccessControl()" class="btn btn-success">Save</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane active" ng-class="{'active': ViewTab}">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="formcontrols form-horizontal ng-pristine ng-valid">
+
+                                            <div class="col-md-12">
+                                                <login-Grid-Component updatelogin="EditLogin(LoginId)" res-data="resData" ng-if='LoadDirectiveForLoginGrid'></login-Grid-Component>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </ion-content>
+</ion-view>

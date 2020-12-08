@@ -1,0 +1,414 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-stable">
+
+            <ion-nav-buttons side="right" style="display:block;">
+
+                <div class="topbar">
+                    
+                    <div class="header-right">
+                        <ul class="header-menu nav navbar-nav">
+                            <!-- BEGIN USER DROPDOWN -->
+                            <li class="dropdown" id="language-header">
+                                
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a data-target="#" data-lang="en"><img src="../../../assets/global/images/flags/usa.png" alt="flag-english"> <span>{{resData.res_Menu_English}}</span></a>
+                                    </li>
+                                    <li>
+                                        <a data-target="#" data-lang="es"><img src="../../../assets/global/images/flags/spanish.png" alt="flag-english"> <span>{{resData.res_Menu_Español}}</span></a>
+                                    </li>
+                                    <li>
+                                        <a data-target="#" data-lang="fr"><img src="../../../assets/global/images/flags/french.png" alt="flag-english"> <span>{{resData.res_Menu_Français}}</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END USER DROPDOWN -->
+                            <!-- BEGIN NOTIFICATION DROPDOWN -->
+                            <li class="dropdown" id="notifications-header">
+                                <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <i class="icon-bell"></i>
+                                    <span class="badge badge-danger badge-header" >{{resData.res_Menu_6}}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-header clearfix">
+                                        <p class="pull-left">{{resData.res_Menu_12PendingNotifications}}</p>
+                                    </li>
+                                    <li>
+                                        <ul class="dropdown-menu-list withScroll" data-height="220">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-star p-r-10 f-18 c-orange"></i>{{resData.res_Menu_Stevehaveratedyourphoto}}<span class="dropdown-time">{{resData.res_Menu_Justnow}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-heart p-r-10 f-18 c-red"></i>{{resData.res_Menu_Johnaddedyoutohisfavs}}<span class="dropdown-time">{{resData.res_Menu_15mins}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-file-text p-r-10 f-18"></i>{{resData.res_Menu_Newdocumentavailable}}<span class="dropdown-time">{{resData.res_Menu_22mins}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-picture-o p-r-10 f-18 c-blue"></i>{{resData.res_Menu_Newpictureadded}}<span class="dropdown-time">{{resData.res_Menu_40mins}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-bell p-r-10 f-18 c-orange"></i>{{resData.res_Menu_Meetingin1hour}}<span class="dropdown-time">{{resData.res_Menu_1hour}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-bell p-r-10 f-18"></i>{{resData.res_Menu_Server5overloaded}}<span class="dropdown-time">{{resData.res_Menu_2hours}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-comment p-r-10 f-18 c-gray"></i>{{resData.res_Menu_Billcommentyourpost}}<span class="dropdown-time">{{resData.res_Menu_3hours}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-picture-o p-r-10 f-18 c-blue"></i>{{resData.res_Menu_Newpictureadded}}<span class="dropdown-time">{{resData.res_Menu_2days}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-footer clearfix">
+                                        <a data-target="#" class="pull-left">{{resData.res_Menu_Seeallnotifications}}</a>
+                                        <a data-target="#" class="pull-right">
+                                            <i class="icon-settings"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END NOTIFICATION DROPDOWN -->
+                            <!-- BEGIN MESSAGES DROPDOWN -->
+                            <li class="dropdown" id="messages-header">
+                                <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <i class="icon-paper-plane"></i>
+                                    <span class="badge badge-primary badge-header">{{resData.res_Menu_8}}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-header clearfix">
+                                        <p class="pull-left">{{resData.res_Menu_Youhave8Messages}}</p>
+                                    </li>
+                                    <li class="dropdown-body">
+                                        <ul class="dropdown-menu-list withScroll" data-height="220">
+                                            <li class="clearfix">
+                                                <span class="pull-left p-r-5">
+                                                    
+                                                </span>
+                                                <div class="clearfix">
+                                                    <div>
+                                                        <strong>{{resData.res_Menu_AlexaJohnson}}</strong>
+                                                        <small class="pull-right text-muted">
+                                                            <span class="glyphicon glyphicon-time p-r-5"></span>{{resData.res_Menu_12minsago}}</small>
+                                                    </div>
+                                                    <p>{{resData.res_Menu_Loremipsumdolorsitametconsectetur}}</p>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix">
+                                                <span class="pull-left p-r-5">
+                                                    
+                                                </span>
+                                                <div class="clearfix">
+                                                    <div>
+                                                        <strong>{{resData.res_Menu_JohnSmith}}</strong>
+                                                        <small class="pull-right text-muted">
+                                                            <span class="glyphicon glyphicon-time p-r-5"></span>{{resData.res_Menu_47minsago}}</small>
+                                                    </div>
+                                                    <p>{{resData.res_Menu_Loremipsumdolorsitametconsectetur}}</p>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix">
+                                                <span class="pull-left p-r-5">
+                                                    
+                                                </span>
+                                                <div class="clearfix">
+                                                    <div>
+                                                        <strong>{{resData.res_Menu_BobbyBrown}}</strong>
+                                                        <small class="pull-right text-muted">
+                                                            <span class="glyphicon glyphicon-time p-r-5"></span>{{resData.res_Menu_1hourago}}</small>
+                                                    </div>
+                                                    <p>{{resData.res_Menu_Loremipsumdolorsitametconsectetur}}</p>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix">
+                                                <span class="pull-left p-r-5">
+                                                    
+                                                </span>
+                                                <div class="clearfix">
+                                                    <div>
+                                                        <strong>{{resData.res_Menu_JamesMiller}}</strong>
+                                                        <small class="pull-right text-muted">
+                                                            <span class="glyphicon glyphicon-time p-r-5"></span>{{resData.res_Menu_2daysago}}</small>
+                                                    </div>
+                                                    <p>{{resData.res_Menu_Loremipsumdolorsitametconsectetur}}</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-footer clearfix">
+                                        <a href="mailbox.html" class="pull-left">{{resData.res_Menu_Seeallmessages}}</a>
+                                        <a href="#" class="pull-right">
+                                            <i class="icon-settings"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END MESSAGES DROPDOWN -->
+                            <!-- BEGIN USER DROPDOWN -->
+                            <li class="dropdown" id="user-header">
+                                <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <img src="../../../assets/global/images/avatars/user1.png" alt="user image">
+                                    <span class="username">{{resData.res_Menu_HiJohnDoe}}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a data-target="#"><i class="icon-user"></i><span>{{resData.res_Menu_MyProfile}}</span></a>
+                                    </li>
+                                    <li>
+                                        <a data-target="#"><i class="icon-calendar"></i><span>{{resData.res_Menu_MyCalendar}}</span></a>
+                                    </li>
+                                    <li>
+                                        <a data-target="#"><i class="icon-settings"></i><span>{{resData.res_Menu_AccountSettings}}</span></a>
+                                    </li>
+                                    <li>
+                                        <a data-target="#"><i class="icon-logout"></i><span>{{resData.res_Menu_Logout}}</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END USER DROPDOWN -->
+                            <!-- CHAT BAR ICON -->
+                            <li id="quickview-toggle"><a href="#"><i class="icon-bubbles"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- header-right -->
+                </div>
+            </ion-nav-buttons>
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left" width="190">
+        <section style="opacity: 1;">
+            <!-- BEGIN SIDEBAR -->
+            <div class="sidebar" style="">
+                <div class="logopanel">
+                    <h1>
+                        <a href="#/"></a>
+                    </h1>
+                </div>
+                <div class="sidebar-inner mCustomScrollbar _mCS_40 mCS-autoHide">
+                    <div id="mCSB_40" class="mCustomScrollBox mCS-light-thin mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                        <div id="mCSB_40_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+                            <div class="sidebar-top big-img">
+                                <div class="user-image">
+                                    
+                                    <img src="Images/download.jpg" class="img-responsive img-circle mCS_img_loaded" alt="friend 8">
+                                </div>
+                                <h4>{{resData.res_Menu_BryanRaynolds}}</h4>
+                                <div class="dropdown user-login">
+                                    <button class="btn btn-xs dropdown-toggle btn-rounded" type="button" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" data-delay="300">
+                                        <i class="online"></i><span>{{resData.res_Menu_Available}}</span> <i class="fa fa-angle-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#"><i class="busy"></i><span>{{resData.res_Menu_Busy}}</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="turquoise"></i>
+                                                <span>{{resData.res_Menu_Invisible}}</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="away"></i>
+                                                <span>{{resData.res_Menu_Away}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="menu-title">{{resData.res_Menu_Navigation}}<div class="pull-right menu-settings">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" data-delay="300">
+                                        <i class="icon-settings"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" id="reorder-menu" class="reorder-menu">{{resData.res_Menu_Reordermenu}}</a></li>
+                                        <li><a href="#" id="remove-menu" class="remove-menu">{{resData.res_Menu_Removeelements}}</a></li>
+                                        <li><a href="#" id="hide-top-sidebar" class="hide-top-sidebar">{{resData.res_Menu_Hideuserampsearch}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <ul class="nav nav-sidebar">
+                                <li ng-class="{ active  : isActive('/')}" class=""><a href="#/"><i class="icon-home"></i><span>{{resData.res_Menu_Dashboard}}</span></a></li>
+                                <li class="nav-parent">
+                                    <a href="#"><i class="icon-bulb"></i><span>{{resData.res_Menu_Mailbox}}</span> <span class="fa arrow"></span></a>
+                                    <ul class="children collapse" style="">
+                                        <li ng-class="{ active  : isActive('mailbox.html')}"><a href="mailbox.html">{{resData.res_Menu_Inbox}}</a></li>
+                                        <li ng-class="{ active  : isActive('mailbox.html/#send')}"><a href="mailbox.html#/send">{{resData.res_Menu_SendEmail}}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a href=""><i class="icon-screen-desktop"></i><span>{{resData.res_Menu_UIElements}}</span><span class="fa arrow"></span></a>
+                                    <ul class="children collapse" style="">
+                                        <li ng-class="{ active  : isActive('/ui-buttons')}" class=""><a href="#ui-buttons">{{resData.res_Menu_Buttons}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-components')}" class=""><a href="#ui-components">{{resData.res_Menu_Components}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-tabs')}" class=""><a href="#ui-tabs">{{resData.res_Menu_Tabs}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-animations')}" class=""><a href="#ui-animations">{{resData.res_Menu_AnimationsCSS3}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-icons')}" class=""><a href="#ui-icons">{{resData.res_Menu_Icons}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-portlets')}" class=""><a href="#ui-portlets">{{resData.res_Menu_Portlets}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-nestableList')}" class=""><a href="#ui-nestableList">{{resData.res_Menu_NestableList}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-treeView')}" class=""><a href="#ui-treeView">{{resData.res_Menu_TreeView}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-modals')}" class=""><a href="#ui-modals">{{resData.res_Menu_Modals}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-notifications')}" class=""><a href="#ui-notifications">{{resData.res_Menu_Notifications}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-typography')}" class=""><a href="#ui-typography">{{resData.res_Menu_Typography}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ui-helperClasses')}" class=""><a href="#ui-helperClasses">{{resData.res_Menu_HelperClasses}}</a></li>
+                                    </ul>
+                                </li>
+                                <li ng-class="{ active  : isActive('/layout-api')}" class=""><a href="#layout-api"><i class="icon-layers"></i><span>{{resData.res_Menu_Layouts}}</span></a></li>
+                                <li class="nav-parent nav-active active">
+                                    <a href=""><i class="icon-note"></i><span>{{resData.res_Menu_Forms}}</span><span class="fa arrow active"></span></a>
+                                    <ul class="children collapse" style="display: block;">
+                                        <li ng-class="{ active  : isActive('/forms-elements')}" class="active"><a href="#forms-elements">{{resData.res_Menu_FormsElements}}</a></li>
+                                        <li ng-class="{ active  : isActive('/forms-validation')}" class=""><a href="#forms-validation">{{resData.res_Menu_FormsValidation}}</a></li>
+                                        <li ng-class="{ active  : isActive('/forms-plugins')}" class=""><a href="#forms-plugins">{{resData.res_Menu_AdvancedPlugins}}</a></li>
+                                        <li ng-class="{ active  : isActive('/forms-wizard')}" class="">
+                                            <a href="#forms-wizard">
+                                                <span class="pull-right badge badge-danger">{{resData.res_Menu_low}}</span>
+                                                <span>{{resData.res_Menu_FormWizard}}</span>
+                                            </a>
+                                        </li>
+                                        <li ng-class="{ active  : isActive('/forms-sliders')}" class=""><a href="#forms-sliders">{{resData.res_Menu_Sliders}}</a></li>
+                                        <li ng-class="{ active  : isActive('/forms-editors')}" class=""><a href="#forms-editors">{{resData.res_Menu_TextEditors}}</a></li>
+                                        <li ng-class="{ active  : isActive('/forms-input-masks')}" class=""><a href="#forms-input-masks">{{resData.res_Menu_InputMasks}}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a href=""><i class="fa fa-table"></i><span>{{resData.res_Menu_Tables}}</span><span class="fa arrow"></span></a>
+                                    <ul class="children collapse" style="">
+                                        <li ng-class="{ active  : isActive('/tables-styling')}"><a href="#tables-styling">{{resData.res_Menu_TablesStyling}}</a></li>
+                                        <li ng-class="{ active  : isActive('/tables-dynamic')}"><a href="#tables-dynamic">{{resData.res_Menu_TablesDynamic}}</a></li>
+                                        <li ng-class="{ active  : isActive('/tables-filter')}"><a href="#tables-filter">{{resData.res_Menu_TablesFilter}}</a></li>
+                                        <li ng-class="{ active  : isActive('/tables-editable')}"><a href="#tables-editable">{{resData.res_Menu_TablesEditable}}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a href=""><i class="icon-bar-chart"></i><span>{{resData.res_Menu_Charts}}</span><span class="fa arrow"></span></a>
+                                    <ul class="children collapse" style="">
+                                        <li ng-class="{ active  : isActive('/charts')}"><a href="#/charts">{{resData.res_Menu_Charts}}</a></li>
+                                        <li ng-class="{ active  : isActive('/financial-charts')}"><a href="#/financial-charts">{{resData.res_Menu_FinancialCharts}}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a href=""><i class="icon-picture"></i><span>{{resData.res_Menu_Medias}}</span><span class="fa arrow"></span></a>
+                                    <ul class="children collapse" style="">
+                                        <li ng-class="{ active  : isActive('/medias-croping')}"><a href="#medias-croping">{{resData.res_Menu_ImagesCroping}}</a></li>
+                                        <li ng-class="{ active  : isActive('/medias-sortable')}"><a href="#medias-sortable">{{resData.res_Menu_GallerySortable}}</a></li>
+                                        <li ng-class="{ active  : isActive('/medias-hover')}"><a href="#medias-hover"> <span class="pull-right badge badge-primary">{{resData.res_Menu_12}}</span>{{resData.res_Menu_HoverEffects}}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a href=""><i class="icon-docs"></i><span>{{resData.res_Menu_Pages}}</span><span class="fa arrow"></span></a>
+                                    <ul class="children collapse" style="">
+                                        <li ng-class="{ active  : isActive('/pages-timeline')}"><a href="#pages-timeline">{{resData.res_Menu_Timeline}}</a></li>
+                                        <li ng-class="{ active  : isActive('/pages-blank')}"><a href="#pages-blank">{{resData.res_Menu_BlankPage}}</a></li>
+                                        <li ng-class="{ active  : isActive('/pages-contact')}"><a href="#pages-contact">{{resData.res_Menu_Contact}}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a href=""><i class="icon-user"></i><span>{{resData.res_Menu_User}}</span><span class="fa arrow"></span></a>
+                                    <ul class="children collapse" style="">
+                                        <li ng-class="{ active  : isActive('/user-profile')}"><a href="#user-profile"> <span class="pull-right badge badge-danger">{{resData.res_Menu_Hot}}</span>{{resData.res_Menu_Profile}}</a></li>
+                                        <li ng-class="{ active  : isActive('/user-sessionTimeout')}"><a href="#user-sessionTimeout">{{resData.res_Menu_SessionTimeout}}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a href=""><i class="icon-basket"></i><span>{{resData.res_Menu_eCommerce}}</span><span class="fa arrow"></span></a>
+                                    <ul class="children collapse" style="">
+                                        <li ng-class="{ active  : isActive('/ecom-cart')}"><a href="#ecom-cart">{{resData.res_Menu_ShoppingCart}}</a></li>
+                                        <li ng-class="{ active  : isActive('/ecom-invoice')}"><a href="#ecom-invoice">{{resData.res_Menu_Invoice}}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-parent">
+                                    <a href=""><i class="icon-cup"></i><span>{{resData.res_Menu_Extra}}</span><span class="fa arrow"></span></a>
+                                    <ul class="children collapse" style="">
+                                        <li ng-class="{ active  : isActive('/extra-fullCalendar')}"><a href="#extra-fullCalendar"><span class="pull-right badge badge-primary">{{resData.res_Menu_New}}</span>{{resData.res_Menu_Fullcalendar}}</a></li>
+                                        <li ng-class="{ active  : isActive('/extra-widgets')}"><a href="#extra-widgets">{{resData.res_Menu_Widgets}}</a></li>
+                                        <li ng-class="{ active  : isActive('/extra-slider')}"><a href="#extra-slider">{{resData.res_Menu_Sliders}}</a></li>
+                                        <li ng-class="{ active  : isActive('/extra-google')}"><a href="#extra-google">{{resData.res_Menu_GoogleMaps}}</a></li>
+                                        <li ng-class="{ active  : isActive('/extra-vector')}"><a href="#extra-vector">{{resData.res_Menu_VectorMaps}}</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!-- SIDEBAR WIDGET -->
+                            <div class="sidebar-widgets">
+                                <p class="menu-title widget-title">{{resData.res_Menu_Statistics}}<span class="pull-right"><a href="#" class="hide-widget"> <i class="icons-office-52"></i></a></span></p>
+                                <div class="charts-sidebar progress-chart">
+                                    <div class="sidebar-charts-inner">
+                                        <div class="clearfix">
+                                            <div class="sidebar-chart-title">{{resData.res_Menu_Stat1}}</div>
+                                            <div class="sidebar-chart-number">{{resData.res_Menu_82}}</div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-primary stat1" data-transitiongoal="82"></div>
+                                        </div>
+                                    </div>
+                                    <div class="sidebar-charts-inner">
+                                        <div class="clearfix">
+                                            <div class="sidebar-chart-title">{{resData.res_Menu_Stat2}}</div>
+                                            <div class="sidebar-chart-number">{{resData.res_Menu_43}}</div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-primary stat2" data-transitiongoal="43"></div>
+                                        </div>
+                                    </div>
+                                    <div class="sidebar-charts-inner">
+                                        <div class="clearfix">
+                                            <div class="sidebar-chart-title">{{resData.res_Menu_Stat3}}</div>
+                                            <div class="sidebar-chart-number" id="number-visits">{{resData.res_Menu_93}}</div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-primary stat3" data-transitiongoal="93"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sidebar-footer clearfix" style="">
+                                <a class="pull-left footer-settings" href="#" data-rel="tooltip" data-placement="top" data-original-title="Settings">
+                                    <i class="icon-settings"></i>
+                                </a>
+                                <a class="pull-left toggle_fullscreen" href="#" data-rel="tooltip" data-placement="top" data-original-title="Fullscreen">
+                                    <i class="icon-size-fullscreen"></i>
+                                </a>
+                                <a class="pull-left" href="#" data-rel="tooltip" data-placement="top" data-original-title="Lockscreen">
+                                    <i class="icon-lock"></i>
+                                </a>
+                                <a class="pull-left btn-effect" href="#" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="Logout">
+                                    <i class="icon-power"></i>
+                                </a>
+                            </div>
+                        </div><div id="mCSB_40_scrollbar_vertical" class="mCSB_scrollTools mCSB_40_scrollbar mCS-light-thin mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_40_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 88px; max-height: 388px; top: 306px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div>
+                    </div>
+                </div>
+            </div>
+            <!-- END SIDEBAR -->
+
+        </section>
+    </ion-side-menu>
+</ion-side-menus>
+
+<script id="templates/popover.html" type="text/ng-template">{{resData.res_Menu_ionpopoverviewioncontentdivclasslistaclassitempaddingngclickChangePasswordiclassfafapencilstylecolorrgba00054ispanclasscampusiconlabelChangePasswordspanaaclassitempaddingngclickLogouticlassfafalockstylecolorrgba00054ispanclasscampusiconlabelLogoutspanaaclassitemhrefhttpionicframeworkcomsubmitissuetarget_blankSubmitanIssueaaclassitemhrefhttpsgithubcomdriftycoionictarget_blankGithubRepoadivioncontentionpopoverview}}</script>

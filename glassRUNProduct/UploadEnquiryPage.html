@@ -1,0 +1,1543 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div class="row fixheaderbox" style="margin:auto !important">
+
+            <div class="fixheaderbackground">
+                <div class="col-md-6 col-sm-2 halfbox nopaddingleft">
+                    <div class="widget widget-stats purple-bg">
+
+                        <div class="col-lg-6">
+                            <div class="stats-title textalingcenter paddingfordetails">{{resData.res_UploadEnquiryPage_TotalCreditLimit}}</div>
+                            <div class="stats-number textalingcenter paddingfordetails">
+                                <span class="bigcurrencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_9000}}</div>
+                        </div>
+                        <div class="sepratorline">
+                            &nbsp;
+                        </div>
+                        <div class="stats-desc paddingfordetails col-lg-6">
+                            <div class="stats-title textalingcenter">{{resData.res_UploadEnquiryPage_AvailableCredit}}</div>
+                            <div class="stats-number textalingcenter"><span class="bigcurrencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_6285}}</div>
+                        </div>
+
+                        <div class="stats-progress progress" style="margin: auto !important;    width: 100%;    padding: 0px !important;">
+                            <div style="width: 100%;" class="progress-bar"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-2 halfbox secondbox nopaddingright">
+                    <div class="widget widget-stats red-bg">
+
+                        <div class="col-lg-6">
+                            <div class="stats-title textalingcenter paddingfordetails">{{resData.res_UploadEnquiryPage_EmptiesLimit}}</div>
+                            <div class="stats-number textalingcenter paddingfordetails">{{resData.res_UploadEnquiryPage_500}}</div>
+                        </div>
+                        <div class="sepratorline">
+                            &nbsp;
+                        </div>
+                        <div class="stats-desc paddingfordetails col-lg-6">
+                            <div class="stats-title textalingcenter">{{resData.res_UploadEnquiryPage_ActualEmpties}}</div>
+                            <div class="stats-number textalingcenter">{{resData.res_UploadEnquiryPage_10}}</div>
+                        </div>
+
+                        <div class="stats-progress progress" style="margin: auto !important;    width: 100%;    padding: 0px !important;">
+                            <div style="width: 100%;" class="progress-bar"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="pageview">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+
+                        <div class="CreateOrderView scrollablecontainer">
+
+                            <div class="uploadedinquirylist">
+                                <div class="row">
+                                    <div class="panel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_UploadEnquiryPage_CreateInquiry}}</h3>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+                                                <div class="ibox float-e-margins" ng-repeat="orderdata in OrderData">
+                                                    <div id="demo6" class="ibox-content collapse in">
+
+
+                                                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                            <div class="table-scrollable">
+
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <span class="sectionheader">{{resData.res_UploadEnquiryPage_Customer}}</span>
+
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname labelwithcontrol">{{resData.res_UploadEnquiryPage_SelectCustomer}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                <select class="form-control" style="margin:0px !important">
+                                                                                    <option value="Select">{{resData.res_UploadEnquiryPage_Select}}
+                                                                                    <option value="Customer 1">{{resData.res_UploadEnquiryPage_Customer1}}
+                                                                                    <option value="Customer 2">{{resData.res_UploadEnquiryPage_Customer2}}
+                                                                                    <option value="Customer 3">{{resData.res_UploadEnquiryPage_Customer3}}
+                                                                                    <option value="Customer 4">{{resData.res_UploadEnquiryPage_Customer4}}
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <span class="sectionheader">{{resData.res_UploadEnquiryPage_ShipToLocation}}</span>
+
+                                                                    <div class="row m-t-10">
+                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                            <div class="panel greenbg">
+                                                                                <div class="panel-content widget-info">
+                                                                                    <div class="row">
+                                                                                        <div class="left">
+                                                                                            <i class="fa fa-industry bg-green"></i>
+                                                                                        </div>
+                                                                                        <div class="right">
+                                                                                            <p class="number" data-from="0" data-to="52000">{{resData.res_UploadEnquiryPage_PHUONG1QUAN5TPHCM}}</p>
+                                                                                            <p class="text">{{resData.res_UploadEnquiryPage_Capacity}}</p>
+                                                                                        </div>
+                                                                                        <div class="rightaling">
+                                                                                            <i class="fa fa-check"></i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                            <div class="panel">
+                                                                                <div class="panel-content widget-info">
+                                                                                    <div class="row">
+                                                                                        <div class="left">
+                                                                                            <i class="fa fa-industry bg-blue"></i>
+                                                                                        </div>
+                                                                                        <div class="right">
+                                                                                            <p class="number" data-from="0" data-to="575" data-suffix="k">{{resData.res_UploadEnquiryPage_PHUONG1QUAN5TPHCM}}</p>
+                                                                                            <p class="text">{{resData.res_UploadEnquiryPage_Capacity}}</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                            <div class="panel">
+                                                                                <div class="panel-content widget-info">
+                                                                                    <div class="row">
+                                                                                        <div class="left">
+                                                                                            <i class="fa fa-industry bg-red"></i>
+                                                                                        </div>
+                                                                                        <div class="right">
+                                                                                            <p class="number" data-from="0" data-to="463" data-suffix="k">{{resData.res_UploadEnquiryPage_PHUONG1QUAN5TPHCM}}</p>
+                                                                                            <p class="text">{{resData.res_UploadEnquiryPage_Capacity}}</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">{{resData.res_UploadEnquiryPage_ProposedDeliveryDate}}</div>
+
+                                                                            <div class="labelcontrol labeltext">{{resData.res_UploadEnquiryPage_15092017}}</div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname">{{resData.res_UploadEnquiryPage_SchedulingDate}}</div>
+
+                                                                            <div class="labelcontrol">
+
+                                                                                <div class="prepend-icon">
+                                                                                    <input type="text" name="datepicker" class="date-picker form-control" placeholder="Select a Request date...">
+                                                                                    <i class="icon-calendar"></i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                            <div class="table-scrollable">
+
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <span class="sectionheader">{{resData.res_UploadEnquiryPage_TransportVehicle}}</span>
+
+                                                                    <div class="row m-t-10">
+                                                                        <div class="widget-infobox">
+                                                                            <div class="infobox greenbg">
+                                                                                <div class="left">
+                                                                                    <i class="fa fa-truck bg-blue"></i>
+                                                                                </div>
+                                                                                <div class="right">
+                                                                                    <div>
+                                                                                        <span class="pull-left">{{resData.res_UploadEnquiryPage_2Ton}}</span> <span class="checkicon"><i class="fa fa-check"></i></span>
+
+                                                                                    </div>
+                                                                                    <div class="txt">{{resData.res_UploadEnquiryPage_Pallets5}}</div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="infobox">
+                                                                                <div class="left">
+                                                                                    <i class="fa fa-truck bg-red"></i>
+                                                                                </div>
+                                                                                <div class="right">
+                                                                                    <div class="clearfix">
+                                                                                        <div>
+                                                                                            <span class="c-red pull-left">{{resData.res_UploadEnquiryPage_3Ton}}</span>
+
+                                                                                        </div>
+                                                                                        <div class="txt">{{resData.res_UploadEnquiryPage_Pallets6}}</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="infobox">
+                                                                                <div class="left">
+                                                                                    <i class="fa fa-truck bg-green"></i>
+                                                                                </div>
+                                                                                <div class="right">
+                                                                                    <div class="clearfix">
+                                                                                        <div>
+                                                                                            <span class="c-green pull-left">{{resData.res_UploadEnquiryPage_5Ton}}</span>
+
+                                                                                        </div>
+                                                                                        <div class="txt">{{resData.res_UploadEnquiryPage_Palettes7}}</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="infobox">
+                                                                                <div class="left">
+                                                                                    <i class="fa fa-truck bg-purple"></i>
+                                                                                </div>
+                                                                                <div class="right">
+                                                                                    <div class="clearfix">
+                                                                                        <div>
+                                                                                            <span class="c-primary pull-left">{{resData.res_UploadEnquiryPage_8Ton}}</span>
+
+                                                                                        </div>
+                                                                                        <div class="txt">{{resData.res_UploadEnquiryPage_Palettes9}}</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="infobox">
+                                                                                <div class="left">
+                                                                                    <i class="fa fa-truck bg-orange"></i>
+                                                                                </div>
+                                                                                <div class="right">
+                                                                                    <div class="clearfix">
+                                                                                        <div>
+                                                                                            <span class="c-red pull-left">{{resData.res_UploadEnquiryPage_12Ton}}</span>
+
+                                                                                        </div>
+                                                                                        <div class="txt">{{resData.res_UploadEnquiryPage_Palettes11}}</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="col-lg-4" style="margin-bottom: 0px;padding: 0px; display:none">
+                                                                    <div class="columnfulldata  margintopdata">
+                                                                        <div class="labelname">{{resData.res_UploadEnquiryPage_RPMQuantity}}</div>
+                                                                        <div class="labelcontrol">
+                                                                            <input id="inputRFMQty" class="form-control form-white" placeholder="RFM Quantity" md-input="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                            <div class="table-scrollable">
+                                                                <div class="col-lg-6" style="margin-bottom: 10px;padding: 0px;">
+
+                                                                    <span class="sectionheader">{{resData.res_UploadEnquiryPage_LoadAnalysis}}</span>
+
+                                                                    <div class="progressbarcontainers">
+
+
+
+                                                                        <div class="palettesfullview">
+                                                                            <div class="labelview">{{resData.res_UploadEnquiryPage_NoofPallet}}</div>
+                                                                            <div class="controlview">
+                                                                                <div class="palattes">
+                                                                                    <div class="palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-success progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-success progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-primary progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-primary progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="lastpalatesui palatesui">
+                                                                                        <div class="progress progress-bar-thin">
+                                                                                            <div class="progress-bar progress-bar-primary progress-bar-thin" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                                                                <span class="sr-only"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="capacity">
+                                                                            <div class="capacityfullview">
+                                                                                <div class="labelview">{{resData.res_UploadEnquiryPage_Weight}}</div>
+                                                                                <div class="controlview">
+                                                                                    <div class="progress progress-striped active progress-bar-large">
+                                                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                                                            <span class="sr-only">{{resData.res_UploadEnquiryPage_60Completewarning}}</span>{{resData.res_UploadEnquiryPage_132Ton}}</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 receivingcapacity">
+
+                                                                    <span class="sectionheader">{{resData.res_UploadEnquiryPage_ReceivingLocationBalanceCapacity}}</span>
+
+
+                                                                    <div class="columnfulldata  margintopdata">
+                                                                        <div class="labelname" style="width: 196px;">{{resData.res_UploadEnquiryPage_Availablecapacityinpallet}}</div>
+
+                                                                        <div class="labelcontrol labeltext">{{resData.res_UploadEnquiryPage_1241000}}</div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="borderedTable" style="float: left;width:100%;    padding: 0px 15px;">
+                                                            <div class="table-scrollable">
+                                                                <div class="col-lg-12 nopadding">
+                                                                    <span class="sectionheader">{{resData.res_UploadEnquiryPage_UploadItem}}</span>
+
+                                                                    <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                                                        <div class="columnfulldata  margintopdata">
+                                                                            <div class="labelname labelwithcontrol">{{resData.res_UploadEnquiryPage_SelectFile}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                                                    <div class="form-control" data-trigger="fileinput">
+                                                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i><span class="fileinput-filename"></span>
+                                                                                    </div>
+                                                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                                                        <span class="fileinput-new">{{resData.res_UploadEnquiryPage_Choose}}</span><span class="fileinput-exists">{{resData.res_UploadEnquiryPage_Change}}</span>
+                                                                                        <input type="file" name="...">
+                                                                                    </span>
+                                                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">{{resData.res_UploadEnquiryPage_Remove}}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="borderedTable" style="float: left;width:100%;">
+                                                            <div class="table-scrollable PortalView">
+
+                                                                <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+
+                                                                    <span class="sectionheader">{{resData.res_UploadEnquiryPage_ItemSelection}}</span>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-bottom: 10px;padding: 0px;">
+                                                                    <div class="collg4">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPage_Item}}</div>
+                                                                        <div class="itemcontrols">
+                                                                            <select class="form-control" style="margin:0px !important">
+                                                                                <option value="Select">{{resData.res_UploadEnquiryPage_Select}}
+                                                                                <option value="Affligem Double 300x24B Ctn">{{resData.res_UploadEnquiryPage_AffligemDouble300x24BCtn}}
+                                                                                <option value="Tiger 330x24B Crt Unc">{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}
+                                                                                <option value="Tiger Crystl 330x24B Crt">{{resData.res_UploadEnquiryPage_TigerCrystl330x24BCrt}}
+                                                                                <option value="Tiger Crystl 330x24C Ctn">{{resData.res_UploadEnquiryPage_TigerCrystl330x24CCtn}}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="collg4" style="width:12%">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPage_Allocation}}</div>
+                                                                        <div class="itemcontrols" style="margin-top: 10px;">{{resData.res_UploadEnquiryPage_800}}</div>
+                                                                    </div>
+                                                                    <div class="collg4" style="width:12%">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPage_Price}}</div>
+                                                                        <div class="itemcontrols" style="margin-top: 10px;">
+                                                                            <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_250}}</div>
+                                                                    </div>
+
+                                                                    <div class="collg4" style="width:12%">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPage_UOM}}</div>
+                                                                        <div class="itemcontrols" style="margin-top: 10px;">{{resData.res_UploadEnquiryPage_CR}}</div>
+                                                                    </div>
+
+                                                                    <div class="collg4">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPage_Quantity}}</div>
+                                                                        <div class="itemcontrols">
+
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="collg4" style="display:none">
+                                                                        <div class="labeldata">{{resData.res_UploadEnquiryPage_Nooftruck}}</div>
+                                                                        <div class="itemcontrols">
+
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="collgbtn">
+                                                                        <div class="labeldata">
+                                                                            &nbsp;
+                                                                        </div>
+                                                                        <div style="float:left">
+                                                                            <a class="btn btn-default" ng-click="OpenReasoncodepopup()"><i class="fa fa-plus"></i></a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="srno">{{resData.res_UploadEnquiryPage_SrNo}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPage_ItemCode}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPage_ItemName}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPage_UOM}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPage_Quantity}}</th>
+                                                                            <th>{{resData.res_UploadEnquiryPage_Price}}</th>
+                                                                            <th> </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_UploadEnquiryPage_1}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_0001}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_20}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_250}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_UploadEnquiryPage_2}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_0002}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_AffligemDouble300x24BCtn}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_22}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_260}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_UploadEnquiryPage_3}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_0003}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_TigerCrystl330x24BCrt}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_30}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_200}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno">{{resData.res_UploadEnquiryPage_4}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_0004}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_TigerCrystl330x24CCtn}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                            <td>{{resData.res_UploadEnquiryPage_35}}</td>
+                                                                            <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_280}}</td>
+                                                                            <td class="text-right">
+                                                                                <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                                <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="srno"> &nbsp; </td>
+                                                                            <td> &nbsp; </td>
+                                                                            <td> &nbsp; </td>
+                                                                            <td> &nbsp; </td>
+                                                                            <td class="text-right">{{resData.res_UploadEnquiryPage_TotalPrice}}</td>
+                                                                            <td> <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_UploadEnquiryPage_990}}</td>
+                                                                            <td class="text-right">
+                                                                                &nbsp;
+                                                                            </td>
+
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="totalamountdiv" style="color:#5b5b5b;margin-top:5px;display:none">
+                                                                    <span>{{resData.res_UploadEnquiryPage_Total}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_UploadEnquiryPage_75}}</div>
+                                                            </div>
+
+                                                            <div class="MobileView">
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="labelname">{{resData.res_UploadEnquiryPage_Item}}</div>
+
+                                                                    <div class="labelcontrol">
+                                                                        <select class="form-control">
+                                                                            <option value="Select">{{resData.res_UploadEnquiryPage_Select}}
+                                                                            <option value="Affligem Double 300x24B Ctn">{{resData.res_UploadEnquiryPage_AffligemDouble300x24BCtn}}
+                                                                            <option value="Tiger 330x24B Crt Unc">{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}
+                                                                            <option value="Tiger Crystl 330x24B Crt">{{resData.res_UploadEnquiryPage_TigerCrystl330x24BCrt}}
+                                                                            <option value="Tiger Crystl 330x24C Ctn">{{resData.res_UploadEnquiryPage_TigerCrystl330x24CCtn}}
+                                                                        </select>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="columnhalfdata mobilefullrow" style="width:50%">
+                                                                        <div class="labelname">{{resData.res_UploadEnquiryPage_Allocation}}</div>
+
+                                                                        <div class="labelcontrol labeltext">{{resData.res_UploadEnquiryPage_34}}</div>
+                                                                    </div>
+                                                                    <div class="columnhalfdata mobilefullrow" style="width:50%">
+                                                                        <div class="labelname">{{resData.res_UploadEnquiryPage_Price}}</div>
+                                                                        <div class="labelcontrol labeltext">
+                                                                            <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_40}}</div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="columnhalfdata">
+                                                                        <div class="labelname">{{resData.res_UploadEnquiryPage_Quantity}}</div>
+
+                                                                        <div class="labelcontrol">
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="columnhalfdata">
+                                                                        <div class="labelname">{{resData.res_UploadEnquiryPage_Nooftruck}}</div>
+
+                                                                        <div class="labelcontrol">
+                                                                            <input id="inputItemsQty" class="form-control form-white" placeholder="Quantity" ng-init="inputItemsQty='0'" ng-model="ordermanagement.inputItemsQty" name="Input" ng-change="validatefield('Name','txt')" md-input="">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="columnfulldatawithoutmargin margintopdata">
+                                                                    <div class="addbtnrow">
+                                                                        <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()" style="padding: 10px !important;"><i class="fa fa-plus"></i></a>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row PortalView">
+                                    <div class="panel inquirylistpanel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_UploadEnquiryPage_InquiryList}}</h3>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+
+
+                                                <div class="ibox float-e-margins" ng-repeat="orderdata in OrderData">
+                                                    <div id="demo6" class="ibox-content collapse in">
+
+
+                                                        <div class="panel widget-weather">
+                                                            <div class="panel-header background-primary ui-sortable-handle">
+                                                                <h3>
+                                                                    <i class="icon-30"></i> <strong>{{resData.res_UploadEnquiryPage_Truck1}}</strong>{{resData.res_UploadEnquiryPage_2Ton}}<span style="display:none"> <strong class="sonumber">{{resData.res_UploadEnquiryPage_SO}}</strong>{{resData.res_UploadEnquiryPage_3635}}</span>
+                                                                    <span class="removetruck">
+                                                                        <span class="text-right">
+                                                                            <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                            <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                        </span>
+                                                                    </span>
+                                                                </h3>
+
+                                                                <div class="weather panel-content">
+                                                                    <ul class="weather-forecast clearfix">
+                                                                        <li class="first">
+                                                                            <a id="day-0" class="today-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_CreditLimit}}</strong>
+                                                                                <span class="today-img">
+                                                                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                                                                </span><span class="today-temp-low"><i class="fa fa-check"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-1" class="1-days-day warningcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_ReceivingLocationCapacity}}</strong><span class="1-days-image">
+                                                                                    <i class="fa fa-industry" aria-hidden="true"></i>
+                                                                                </span><span class="1-days-temp-low"><i class="fa fa-exclamation-triangle"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-2" class="2-days-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_Pallet}}</strong>
+                                                                                <span class="2-days-image">
+                                                                                    <i class="fa fa-object-ungroup"></i>
+                                                                                </span>
+                                                                                <span class="2-days-temp-low">{{resData.res_UploadEnquiryPage_44}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-3" href="javascript:;" class="3-days-day successcolor active">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_Weight}}</strong><span class="3-days-image">
+                                                                                    <i class="fa fa-truck" aria-hidden="true"></i>
+                                                                                </span><span class="3-days-temp-low">{{resData.res_UploadEnquiryPage_132Ton}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="last">
+                                                                            <a id="day-4" href="javascript:;" class="4-days-day dangercolor active">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_Stock}}</strong>
+                                                                                <span class="4-days-image">
+                                                                                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                                </span><span class="4-days-temp-low">{{resData.res_UploadEnquiryPage_55}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                            <div class="weather panel-content" style="background-color: rgb(49, 157, 181);">
+                                                                <div class="weather-highlighted">
+                                                                    <div class="day-0 weather-item clearfix active">
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_ShipTo}}</div>
+                                                                                <div class="labelcontrol labeltext">{{resData.res_UploadEnquiryPage_PHUONG1QUAN5TPHCM}}</div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata" style="display:none">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_BranchPlant}}</div>
+
+                                                                                <div class="labelcontrol labeltext">{{resData.res_UploadEnquiryPage_B003}}</div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_ProposedETD}}</div>
+                                                                                <div class="labelcontrol">{{resData.res_UploadEnquiryPage_09142017}}</div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_SpecialRequest}}</div>
+
+                                                                                <div class="labelcontrol">{{resData.res_UploadEnquiryPage_07102017}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="columnfulldata margintopdata" style="margin-top: -1px; display:none">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_LoadNumber}}</div>
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_PlateNumber}}</div>
+
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="weather-location clearfix">
+                                                                    <div class="columnfulldata margintopdata">
+                                                                        <table class="table table-hover">
+                                                                            <thead>
+                                                                                <tr>
+
+                                                                                    <th class="srno">{{resData.res_UploadEnquiryPage_SrNo}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_ItemCode}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_ItemName}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_UOM}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_Quantity}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_Price}}</th>
+                                                                                    <th style="display:none">{{resData.res_UploadEnquiryPage_QuantityInStock}}</th>
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_UploadEnquiryPage_1}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_0001}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_UploadEnquiryPage_30}}</td>
+
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_UploadEnquiryPage_2}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_0001}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_UploadEnquiryPage_30}}</td>
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_UploadEnquiryPage_3}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_0001}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_UploadEnquiryPage_30}}</td>
+
+                                                                                </tr>
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <div class="totalamountdiv">
+                                                                            <span>{{resData.res_UploadEnquiryPage_Total}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_UploadEnquiryPage_75}}</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="weather-highlighted weatherapprovebth">
+                                                                    <div class="groupbtn last-column">
+                                                                        <div style="width:100%;float:right">
+
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-click="OpenRPMQuantitypopup()">{{resData.res_UploadEnquiryPage_SubmitInquiry}}</a> </div>
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve">{{resData.res_UploadEnquiryPage_SaveAsDraft}}</a> </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+
+
+                                                <div class="ibox float-e-margins" ng-repeat="orderdata in OrderData">
+                                                    <div id="demo6" class="ibox-content collapse in">
+
+
+                                                        <div class="panel widget-weather">
+                                                            <div class="panel-header background-primary ui-sortable-handle">
+                                                                <h3>
+                                                                    <i class="icon-30"></i> <strong>{{resData.res_UploadEnquiryPage_Truck1}}</strong>{{resData.res_UploadEnquiryPage_2Ton}}<span style="display:none"> <strong class="sonumber">{{resData.res_UploadEnquiryPage_SO}}</strong>{{resData.res_UploadEnquiryPage_3635}}</span>
+                                                                    <span class="removetruck">
+                                                                        <span class="text-right">
+                                                                            <a class="edit btn btn-sm btn-default" ng-click="OpenReasoncodepopup()"><i class="icon-note"></i></a>
+                                                                            <a class="delete btn btn-sm btn-danger" ng-click="OpenReasoncodepopup()"><i class="icons-office-52"></i></a>
+                                                                        </span>
+                                                                    </span>
+                                                                </h3>
+
+                                                                <div class="weather panel-content">
+                                                                    <ul class="weather-forecast clearfix">
+                                                                        <li class="first">
+                                                                            <a id="day-0" class="today-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_CreditLimit}}</strong>
+                                                                                <span class="today-img">
+                                                                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                                                                </span><span class="today-temp-low"><i class="fa fa-check"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-1" class="1-days-day warningcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_ReceivingLocationCapacity}}</strong><span class="1-days-image">
+                                                                                    <i class="fa fa-industry" aria-hidden="true"></i>
+                                                                                </span><span class="1-days-temp-low"><i class="fa fa-exclamation-triangle"></i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-2" class="2-days-day successcolor active" href="javascript:;">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_Pallet}}</strong>
+                                                                                <span class="2-days-image">
+                                                                                    <i class="fa fa-object-ungroup"></i>
+                                                                                </span>
+                                                                                <span class="2-days-temp-low">{{resData.res_UploadEnquiryPage_44}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="day-3" href="javascript:;" class="3-days-day successcolor active">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_Weight}}</strong><span class="3-days-image">
+                                                                                    <i class="fa fa-truck" aria-hidden="true"></i>
+                                                                                </span><span class="3-days-temp-low">{{resData.res_UploadEnquiryPage_132Ton}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="last">
+                                                                            <a id="day-4" href="javascript:;" class="4-days-day dangercolor active">
+                                                                                <strong>{{resData.res_UploadEnquiryPage_Stock}}</strong>
+                                                                                <span class="4-days-image">
+                                                                                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                                                                                </span><span class="4-days-temp-low">{{resData.res_UploadEnquiryPage_55}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                            <div class="weather panel-content" style="background-color: rgb(49, 157, 181);">
+                                                                <div class="weather-highlighted">
+                                                                    <div class="day-0 weather-item clearfix active">
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_ShipTo}}</div>
+                                                                                <div class="labelcontrol labeltext">{{resData.res_UploadEnquiryPage_PHUONG1QUAN5TPHCM}}</div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata" style="display:none">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_BranchPlant}}</div>
+
+                                                                                <div class="labelcontrol labeltext">{{resData.res_UploadEnquiryPage_B003}}</div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="columnfulldata margintopdata">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_ProposedETD}}</div>
+                                                                                <div class="labelcontrol">{{resData.res_UploadEnquiryPage_09142017}}</div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_SpecialRequest}}</div>
+
+                                                                                <div class="labelcontrol" style="position:relative !important" data-tap-disabled="true">{{resData.res_UploadEnquiryPage_NA}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="columnfulldata margintopdata" style="margin-top: -1px;display:none">
+
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_LoadNumber}}</div>
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="columnhalfdata">
+                                                                                <div class="labelname">{{resData.res_UploadEnquiryPage_PlateNumber}}</div>
+
+                                                                                <div class="labelcontrol labeltext">
+                                                                                    -
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="weather-location clearfix">
+                                                                    <div class="columnfulldata margintopdata">
+                                                                        <table class="table table-hover">
+                                                                            <thead>
+                                                                                <tr>
+
+                                                                                    <th class="srno">{{resData.res_UploadEnquiryPage_SrNo}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_ItemCode}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_ItemName}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_UOM}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_Quantity}}</th>
+                                                                                    <th>{{resData.res_UploadEnquiryPage_Price}}</th>
+                                                                                    <th style="display:none">{{resData.res_UploadEnquiryPage_QuantityInStock}}</th>
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_UploadEnquiryPage_1}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_0001}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_UploadEnquiryPage_30}}</td>
+
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_UploadEnquiryPage_2}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_0001}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_UploadEnquiryPage_30}}</td>
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="srno">{{resData.res_UploadEnquiryPage_3}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_0001}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_CR}}</td>
+                                                                                    <td>{{resData.res_UploadEnquiryPage_20}}</td>
+                                                                                    <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{resData.res_UploadEnquiryPage_25}}</td>
+                                                                                    <td style="display:none">{{resData.res_UploadEnquiryPage_30}}</td>
+
+                                                                                </tr>
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <div class="totalamountdiv">
+                                                                            <span>{{resData.res_UploadEnquiryPage_TotalPrice}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_UploadEnquiryPage_75}}</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="weather-highlighted weatherapprovebth">
+                                                                    <div class="groupbtn last-column">
+                                                                        <div style="width:100%;float:right">
+
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve" ng-click="OpenRPMQuantitypopup()">{{resData.res_UploadEnquiryPage_SubmitInquiry}}</a> </div>
+                                                                            <div class="col-sm-2 singlebtn col-md-2" style="float:right"><a class="btn btn-Approve">{{resData.res_UploadEnquiryPage_SaveAsDraft}}</a> </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="groupbtn last-column">
+                                            <div class="col-lg-12" style="width:100%;float:right;">
+                                                <div class="col-sm-2 col-md-2" style="float:right"> <a class="btn btn-success" ng-click="saveOrder()">{{resData.res_UploadEnquiryPage_Submitallinquiries}}</a></div>
+                                                <div class="col-sm-2 col-md-2" style="float:right"><a class="btn btn-success" ng-click="saveAsDraftOrder()">{{resData.res_UploadEnquiryPage_Saveallasdraft}}</a> </div>
+                                                <div class="col-sm-2 col-md-2" style="float:right;display:none"><a class="btn btn-success" ng-click="OpenAddFeedbackpopup()">{{resData.res_UploadEnquiryPage_AddFeedback}}</a> </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="remainingitemlist">
+
+                                <div class="row">
+                                    <div class="panel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_UploadEnquiryPage_ProductList}}</h3>
+
+
+                                            <div class="Recalculatebtn">
+                                                <a class="btn btn-success btn-square">{{resData.res_UploadEnquiryPage_Recalculate}}</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+                                                <div class="table-scrollable PortalView">
+
+                                                    <ul class="list">
+                                                        <li class="item headeritem">
+                                                            <div class="item1">
+                                                                &nbsp;
+                                                            </div>
+                                                            <div class="item2">
+                                                                <span class="itemname">{{resData.res_UploadEnquiryPage_ItemName}}</span>
+                                                                <span class="itemcode">{{resData.res_UploadEnquiryPage_ItemCode}}</span>
+
+                                                            </div>
+                                                            <div class="item3">{{resData.res_UploadEnquiryPage_UOM}}</div>
+                                                            <div class="item4">{{resData.res_UploadEnquiryPage_Qty}}</div>
+                                                        </li>
+                                                    </ul>
+
+                                                    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+                                                        <li ng-repeat="item in list" class="item" style="cursor:move">
+                                                            <div class="item1">
+                                                                <div ng-if="$index === 1 || $index === 2" class="fa fa-check greenbgfont">  </div>
+
+                                                                <i ng-if="$index === 0 || $index === 4" class="fa fa-exclamation-triangle orangebgfont"></i>
+
+                                                                <i ng-if="$index === 3 || $index === 5" class="fa fa-times redbgfont"></i>
+                                                            </div>
+                                                            <div class="item2">
+                                                                <span class="itemname">{{resData.res_UploadEnquiryPage_Tiger330x24BCrtUnc}}</span>
+                                                                <span class="itemcode">({{item.text}}0000)</span>
+                                                            </div>
+                                                            <div class="item3">{{resData.res_UploadEnquiryPage_CR}}</div>
+                                                            <div class="item4">{{resData.res_UploadEnquiryPage_20}}</div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <script id="templates/modal.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Items</h1>
+                        <button class="button button-clear button-primary" ng-click="modalpopup.hide()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+                            <div class="customlistview" style="border: 1px solid #d5d5d5">
+                                <div class="paddingcontainer">
+                                    <div class="listviewContainer">
+                                        <span class="listviewtitle">
+                                            Affligem Double 300x24B Ctn
+                                        </span>
+                                    </div>
+                                    <div class="listviewContainer">
+                                        <span class="listviewdatafield">
+                                            Item Code : A0001
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Price : <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png" /></span>200
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Quantity : 1000
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            UOM : -
+                                        </span>
+
+                                        <span class="listviewdatafield">
+                                            <span class="text-right">
+                                                <a class="edit btn btn-sm btn-default" href="javascript:;"><i class="icon-note"></i></a>
+                                                <a class="delete btn btn-sm btn-danger" href="javascript:;"><i class="icons-office-52"></i></a>
+                                            </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="customlistview" style="border: 1px solid #d5d5d5">
+                                <div class="paddingcontainer">
+                                    <div class="listviewContainer">
+                                        <span class="listviewtitle">
+                                            Affligem Double 300x24B Ctn
+                                        </span>
+                                    </div>
+                                    <div class="listviewContainer">
+                                        <span class="listviewdatafield">
+                                            Item Code : A0001
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Price : <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png" /></span>200
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            Quantity : 1000
+                                        </span>
+                                        <span class="listviewdatafield">
+                                            UOM : -
+                                        </span>
+
+                                        <span class="listviewdatafield">
+                                            <span class="text-right">
+                                                <a class="edit btn btn-sm btn-default" href="javascript:;"><i class="icon-note"></i></a>
+                                                <a class="delete btn btn-sm btn-danger" href="javascript:;"><i class="icons-office-52"></i></a>
+                                            </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </ion-content>
+                </ion-modal-view>
+            </script>
+
+            <script id="templates/RPMQuantity.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquirySmallModalView CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">RPM Quantity</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseRPMQuantitypopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-5" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Item :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Affligem Double 300x24B Ctn</option>
+                                                <option value="Tiger 330x24B Crt Unc">Tiger 330x24B Crt Unc</option>
+                                                <option value="Tiger Crystl 330x24B Crt">Tiger Crystl 330x24B Crt</option>
+                                                <option value="Tiger Crystl 330x24C Ctn">Tiger Crystl 330x24C Ctn</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            RPM Quantity :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" placeholder="RFM Quantity" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="labeldata">
+                                        &nbsp;
+                                    </div>
+                                    <div style="float:left">
+                                        <a class="btn btn-default" ng-click="OpenReasoncodepopup()"><i class="fa fa-plus"></i></a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="srno"> Sr. No. </th>
+                                            <th> Item Code </th>
+                                            <th> Item Name </th>
+                                            <th> RPM Quantity </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="srno"> 1 </td>
+                                            <td> 0001 </td>
+                                            <td> Tiger 330x24B Crt Unc </td>
+                                            <td> 20 </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td class="srno"> 2 </td>
+                                            <td> 0002 </td>
+                                            <td> Affligem Double 300x24B Ctn </td>
+                                            <td> 22 </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="srno"> 3 </td>
+                                            <td> 0003 </td>
+                                            <td> Tiger Crystl 330x24B Crt </td>
+                                            <td> 30 </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="CloseRPMQuantitypopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="CloseRPMQuantitypopup()">
+                                <button class="button btn btn-default">Reset</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+
+            <script id="templates/reasoncodepopup.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryModalView bgcolorheaderandfooter" style="min-height:200px !important">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Reason Code</h1>
+                        <button class="button button-clear button-primary" ng-click="ClosReasoncodepopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list">
+                            <div class="customlistcontrolview">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname" style="padding-top: 5px; width: 34%;">
+                                            Please choose reason code :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control">
+                                                <option value="Select">Select</option>
+                                                <option value="Reason 1">Reason 1</option>
+                                                <option value="Reason 1">Reason 2</option>
+                                                <option value="Reason 1">Reason 3</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ion-content>
+
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="ClosReasoncodepopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="ClosReasoncodepopup()">
+                                <button class="button btn btn-default redclosebtn">Reset</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+
+
+            <script id="templates/AddFeedback.html" type="text/ng-template">
+                <ion-modal-view class="CreateInquiryMeadiumModalView CreateInquiryModalView bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive">
+                        <h1 class="title">Add Feedback</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseAddFeedbackpopup()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="hidden" class="padding">
+                        <div class="list" style="float:left;width:100%;border:1px solid #d5d5d5;border-bottom:none;margin-bottom:0px">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Inquiry Number :
+                                        </div>
+                                        <div class="labelcontrol" style="margin-top: 6px;">
+                                            INQ0007
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+
+                                        <button type="button" class="btn  btn-square" ng-class="{'btn-success' : FeedbackVariable.OverAll === true, 'btn-default' : FeedbackVariable.OverAll === false}" ng-click="setoverall()">Overall Feedback</button>
+
+                                        <button type="button" class="btn btn-default btn-square" ng-class="{'btn-success' : FeedbackVariable.Specific === true, 'btn-default' : FeedbackVariable.Specific === false}" ng-click="setspecific()">Specific Item</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Item :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Affligem Double 300x24B Ctn</option>
+                                                <option value="Tiger 330x24B Crt Unc">Tiger 330x24B Crt Unc</option>
+                                                <option value="Tiger Crystl 330x24B Crt">Tiger Crystl 330x24B Crt</option>
+                                                <option value="Tiger Crystl 330x24C Ctn">Tiger Crystl 330x24C Ctn</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Quantity :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" placeholder="Quantity" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Feedback :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Good, no complain !</option>
+                                                <option value="Tiger 330x24B Crt Unc">Wrong Invoice !</option>
+                                                <option value="Tiger 330x24B Crt Unc">Driver behavior is in appropriate</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-lg-12" ng-if="FeedbackVariable.Specific">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Feedback :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <select class="form-control" style="margin:0px !important">
+                                                <option value="Select">Select</option>
+                                                <option value="Affligem Double 300x24B Ctn">Missing beer</option>
+                                                <option value="Tiger 330x24B Crt Unc">Damage</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Attachment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                <div class="form-control" data-trigger="fileinput">
+                                                    <i class="glyphicon glyphicon-file fileinput-exists"></i><span class="fileinput-filename"></span>
+                                                </div>
+                                                <span class="input-group-addon btn btn-default btn-file">
+                                                    <span class="fileinput-new">Choose...</span><span class="fileinput-exists">Change</span>
+                                                    <input type="file" name="...">
+                                                </span>
+                                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" ng-if="FeedbackVariable.OverAll">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            Comment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div style="float:left;width:100%;border:1px solid #d5d5d5;">
+                            <div class="col-lg-12">
+                                <div class="col-lg-6" style="margin-bottom: 0px;padding: 0px;">
+                                    <div class="columnfulldata  margintopdata">
+                                        <div class="labelname">
+                                            HVBL Comment :
+                                        </div>
+                                        <div class="labelcontrol">
+                                            <input id="inputRFMQty" class="form-control form-white" type="text" style="height: 75px !important;" placeholder="Comment" md-input="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+
+                        <div style="float:left;width:100%">
+                            <div class="buttons rightbtn resetbutton" ng-click="CloseAddFeedbackpopup()">
+                                <button class="button btn btn-success">Save</button>
+                            </div>
+                            <div class="buttons rightbtn" ng-click="CloseAddFeedbackpopup()">
+                                <button class="button btn btn-default">Reset</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+                </ion-modal-view>
+            </script>
+
+        </div>
+        <!--<div class="fabbutton">
+
+            <ion-fab class="firstfab" bottom="" left="">
+                <a ng-click="OpenModalpopup()" class="carticon MobileView">
+                    <i class="fa fa-shopping-cart bg-blue"></i>
+                </a>
+            </ion-fab>
+
+            <ion-fab class="thirdfab" bottom="" left="">
+                <a ui-sref="ViewCreateInquiry" class="carticon">
+                    <i class="fa fa-plus bg-blue"></i>
+                </a>
+            </ion-fab>
+
+            <ion-fab class="secondfab" bottom="" left="">
+                <a ui-sref="ViewCreateInquiry" class="carticon">
+                    <i class="fa fa-truck bg-blue"></i>
+                </a>
+            </ion-fab>
+
+        </div>-->
+
+
+
+
+    </ion-content>
+</ion-view>

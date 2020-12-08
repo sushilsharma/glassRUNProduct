@@ -1,0 +1,358 @@
+﻿<ion-view>
+    <ion-content scroll="false" overflow-y="hidden" class="main-content">
+        <div class="pageview">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ContainerView">
+                        <div class="CreateOrderView">
+                            <div class="row">
+                                <div class="panel fullwithwithoutpadding">
+                                    <div class="panel-header bg-primary">
+                                        <h3>{{resData.res_UplaodEnquirySTPage_STUpload}}</h3>
+                                    </div>
+
+                                    <div class="panel-content fullwithwithoutpadding">
+                                        <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+                                            <div class="ibox float-e-margins">
+                                                <div id="demo6" class="ibox-content collapse in">
+                                                    <div class="borderedTable" style="float: left;width:100%;padding: 0px 15px;">
+                                                        <div class="table-scrollable">
+                                                            <div class="row">
+                                                                <div class="col-md-12" style="margin-top: 15px;">
+                                                                    <div id="portalview" class="PortalView">
+                                                                        <div ng-hide="isShowMsg">
+                                                                            <div class="uk-width-medium-1-2">
+                                                                                <div class="fileuploadcontrol">
+                                                                                    <input type="file" id="fileUpload" file-model="fileupload.File" class="md-input">
+                                                                                </div>
+
+                                                                                <div class="fileuploadbtn">
+                                                                                    <button type="button" class="btn btn-success" ng-click="UploadFile()">{{resData.res_UplaodEnquirySTPage_Upload}}</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="panel" ng-show="isShowMsg">
+                                                                        <div class="panel-content">
+                                                                            <div class="uk-grid" data-uk-grid-margin="">
+                                                                                <div class="uk-width-medium-1-1">
+                                                                                    <span class="sectionheader">
+                                                                                        {{PopupMessage}}
+                                                                                    </span>
+                                                                                    <div class="parsley-row">
+                                                                                        <button type="button" class="btn btn-success" ng-click="Close()">{{resData.res_UplaodEnquirySTPage_Close}}</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row PortalView" ng-show="IsSubmitInquiryButton">
+                                <div class="panel inquirylistpanel fullwithwithoutpadding">
+                                    <div class="panel-header bg-primary">
+                                        <h3>{{resData.res_UplaodEnquirySTPage_InquiryList}}</h3>
+                                    </div>
+
+                                    <div class="panel-content fullwithwithoutpadding" ng-repeat="ParentJsondata in ParentJson">
+
+                                        <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+
+
+
+                                            <div class="ibox float-e-margins">
+                                                <div id="demo6" class="ibox-content collapse in">
+
+
+                                                    <div class="panel widget-weather">
+                                                        <div class="panel-header background-primary ui-sortable-handle">
+                                                            <h3>
+                                                                <i class="icon-30"></i> <strong>{{resData.res_UplaodEnquirySTPage_Truck}}</strong> ({{ParentJsondata.TruckSize}}) <span style="display:none"> <strong class="sonumber">{{resData.res_UplaodEnquirySTPage_SO}}</strong>{{resData.res_UplaodEnquirySTPage_3635}}</span>
+                                                                <span class="removetruck">
+                                                                    <span class="text-right">
+
+                                                                    </span>
+                                                                </span>
+                                                            </h3>
+
+
+
+                                                        </div>
+
+
+
+                                                        <div class="weather panel-content" style="background-color: rgb(49, 157, 181);">
+                                                            <div class="weather-highlighted">
+                                                                <div class="day-0 weather-item clearfix active">
+
+                                                                    <div class="columnfulldata margintopdata">
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_UplaodEnquirySTPage_FromBranchPlant}}</div>
+                                                                            <div class="labelcontrol labeltext">
+
+                                                                                {{ParentJsondata.FromBranchPlantName}}
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="columnhalfdata" style="display:none">
+                                                                            <div class="labelname">{{resData.res_UplaodEnquirySTPage_BranchPlant}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+
+                                                                                {{ParentJsondata.BranchPlantName}}
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_UplaodEnquirySTPage_ToBranchPlant}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+
+                                                                                {{ParentJsondata.ToBranchPlantName}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="columnfulldata margintopdata">
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_UplaodEnquirySTPage_SpecialRequest}}</div>
+
+                                                                            <div class="labelcontrol">
+                                                                                <!--{{ParentJsondata.RequestDate}}-->
+                                                                                <label style="font-weight: normal !important;" ng-bind="ParentJsondata.RequestDate |  date:'MM/dd/yyyy'"></label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="columnhalfdata" style="display:none">
+                                                                            <div class="labelname">{{resData.res_UplaodEnquirySTPage_ProposedETD}}</div>
+                                                                            <div class="labelcontrol">{{resData.res_UplaodEnquirySTPage_09142017}}</div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="columnfulldata margintopdata" style="margin-top: -1px; display:none">
+
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_UplaodEnquirySTPage_LoadNumber}}</div>
+                                                                            <div class="labelcontrol labeltext">
+                                                                                -
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="columnhalfdata">
+                                                                            <div class="labelname">{{resData.res_UplaodEnquirySTPage_PlateNumber}}</div>
+
+                                                                            <div class="labelcontrol labeltext">
+                                                                                -
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="weather-location clearfix">
+                                                                <div class="columnfulldata margintopdata">
+                                                                    <table class="table table-hover">
+                                                                        <thead>
+                                                                            <tr>
+
+                                                                                <th class="srno">{{resData.res_UplaodEnquirySTPage_SrNo}}</th>
+                                                                                <th>{{resData.res_UplaodEnquirySTPage_ItemCode}}</th>
+                                                                                <th>{{resData.res_UplaodEnquirySTPage_ItemName}}</th>
+                                                                                <th>{{resData.res_UplaodEnquirySTPage_UOM}}</th>
+                                                                                <th>{{resData.res_UplaodEnquirySTPage_Quantity}}</th>
+                                                                                <th>{{resData.res_UplaodEnquirySTPage_Price}}</th>
+                                                                                <th style="display:none">{{resData.res_UplaodEnquirySTPage_QuantityInStock}}</th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="ChildJsondata in ParentJsondata.OrderProductList">
+                                                                                <td class="srno"> {{$index +1}} </td>
+                                                                                <td> {{ChildJsondata.ItemCode}} </td>
+                                                                                <td> {{ChildJsondata.ItemName}} </td>
+                                                                                <td>{{resData.res_UplaodEnquirySTPage_CR}}</td>
+                                                                                <td> {{ChildJsondata.Quantity}} </td>
+                                                                                <td> <span class="currencyimg"><img src="Images/vietnam_vietnamese_dong_currency-256.png"></span>{{ChildJsondata.Amount}} </td>
+                                                                                <td style="display:none">{{resData.res_UplaodEnquirySTPage_30}}</td>
+
+
+                                                                            </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <div class="totalamountdiv" style="display:none">
+                                                                        <span>{{resData.res_UplaodEnquirySTPage_Total}}</span> : <img src="Images/vietnam_vietnamese_dong_currency-256.png">{{resData.res_UplaodEnquirySTPage_75}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="panel" ng-show="isShowErrorRecord">
+                                <div class="panel-content">
+                                    <div class="uk-grid" data-uk-grid-margin="">
+                                        <div class="uk-width-medium-1-1">
+                                            <div class="parsley-row">
+                                                <span class="sectionheader">{{resData.res_UplaodEnquirySTPage_ErrorRecord}}</span>
+                                            </div>
+                                            <table class="table">
+                                                <tr>
+                                                    <th>{{resData.res_UplaodEnquirySTPage_FromBranchPlant}}</th>
+                                                    <th>{{resData.res_UplaodEnquirySTPage_ToBranchPlant}}</th>
+                                                    <th>{{resData.res_UplaodEnquirySTPage_TruckSize}}</th>
+                                                    <th>{{resData.res_UplaodEnquirySTPage_ProductCode}}</th>
+                                                    <th>{{resData.res_UplaodEnquirySTPage_RequestDate}}</th>
+                                                    <th>{{resData.res_UplaodEnquirySTPage_Quantity}}</th>
+                                                    <th>{{resData.res_UplaodEnquirySTPage_Remark}}</th>
+                                                </tr>
+                                                <tr ng-repeat="item in errorRecord">
+                                                    <td>{{item.FromBranchPlant}}</td>
+                                                    <td>{{item.ToBranchPlant}}</td>
+                                                    <td>{{item.TruckSize}}</td>
+                                                    <td>{{item.ItemCode}}</td>
+                                                    <td>{{item.RequestDate | date:'dd/MM/yyyy'}}</td>
+                                                    <td>{{item.Quantity}}</td>
+                                                    <td><p ng-bind-html="item.Remark"></td>
+                                                </tr>
+
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="IsSubmitInquiryButton">
+                                <div class="col-lg-12">
+                                    <div class="groupbtn last-column">
+                                        <div class="col-lg-12" style="width:100%;float:right;">
+                                            <div class="col-sm-2 col-md-2" style="float:right"> <a class="btn btn-success" ng-click="SaveAllInquiry()">{{resData.res_UplaodEnquirySTPage_SubmitallOrder}}</a></div>
+                                            <!--<div class="col-sm-2 col-md-2" style="float:right"><a class="btn btn-success" ng-click="SaveAllAsDraftInquiry()">{{resData.res_UplaodEnquirySTPage_Saveallasdraft}}</a> </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="remainingitemlist" style="display:none">
+
+                                <div class="row">
+                                    <div class="panel fullwithwithoutpadding">
+                                        <div class="panel-header bg-primary">
+                                            <h3>{{resData.res_UplaodEnquirySTPage_ProductList}}</h3>
+                                            <div class="Recalculatebtn">
+                                                <a class="btn btn-success btn-square">{{resData.res_UplaodEnquirySTPage_Recalculate}}</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-content fullwithwithoutpadding">
+                                            <div class="col-lg-12 nopadding margin-bottom-20 tabs-container dashboard-tab-data-box ng-scope">
+                                                <div class="table-scrollable PortalView">
+
+                                                    <ul class="list">
+                                                        <li class="item headeritem">
+                                                            <div class="item1">
+                                                                &nbsp;
+                                                            </div>
+                                                            <div class="item2">
+                                                                <span class="itemname">{{resData.res_UplaodEnquirySTPage_ItemName}}</span>
+                                                                <span class="itemcode">{{resData.res_UplaodEnquirySTPage_ItemCode}}</span>
+                                                            </div>
+                                                            <div class="item3">{{resData.res_UplaodEnquirySTPage_UOM}}</div>
+                                                            <div class="item4">{{resData.res_UplaodEnquirySTPage_Qty}}</div>
+                                                        </li>
+                                                    </ul>
+
+                                                    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+                                                        <li ng-repeat="item in list" class="item" style="cursor:move">
+                                                            <div class="item1">
+                                                                <div ng-if="$index === 1 || $index === 2" class="fa fa-check greenbgfont">  </div>
+                                                                <i ng-if="$index === 0 || $index === 4" class="fa fa-exclamation-triangle orangebgfont"></i>
+                                                                <i ng-if="$index === 3 || $index === 5" class="fa fa-times redbgfont"></i>
+                                                            </div>
+                                                            <div class="item2">
+                                                                <span class="itemname">{{resData.res_UplaodEnquirySTPage_Tiger330x24BCrtUnc}}</span>
+                                                                <span class="itemcode">({{item.text}}0000)</span>
+                                                            </div>
+                                                            <div class="item3">{{resData.res_UplaodEnquirySTPage_CR}}</div>
+                                                            <div class="item4">{{resData.res_UplaodEnquirySTPage_20}}</div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script id="ConfirmationPopuScreen.html" type="text/ng-template">
+                <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+                    <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;">
+                        <h1 class="title">{{PopupVariables.Title}}</h1>
+                        <button class="button button-clear button-primary" ng-click="CloseConfirmationPopuScreen()"><i class="fa fa-times"></i></button>
+                    </ion-header-bar>
+                    <ion-content scroll="false" class="popioncontainer">
+                        <div class="messagebody">
+                            {{PopupVariables.Message}}
+                        </div>
+                    </ion-content>
+
+
+                    <ion-footer-bar align-title="left" class="bar-assertive">
+                        <div class="fullwidthrow">
+                            <div class="buttons modalbtn" ng-click="CloseConfirmationPopuScreen()">
+                                <button class="button btn btn-default">{{PopupVariables.Okbtn}}</button>
+                            </div>
+
+                        </div>
+                    </ion-footer-bar>
+
+                </ion-modal-view>
+            </script>
+        </div>
+        <loading></loading>
+    </ion-content>
+</ion-view>

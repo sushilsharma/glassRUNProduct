@@ -1,0 +1,121 @@
+﻿<ion-view id="SOListControllerHtml" class="solistviewpage" view-title="{{resData.res_TruckDetails_TitleTruckin}}">
+    <!-- Add Resources on Page Added by Vinod Yadav 20192019 -->
+    <ion-content has-bouncing="false" style="overflow-y: hidden;">
+
+        <div class="pageview" style="overflow:hidden">
+
+
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+
+
+                    <link href="Styles/OnlineShopUI.css" rel="stylesheet">
+
+                    <!--<th-spinner theme="'spinner-section'" display="throbber" size="'size-md'"></th-spinner>-->
+
+                    <style type="text/css">
+                        ion-nav-bar {
+                            display: none
+                        }
+
+                        .has-header {
+                            top: 0px;
+                        }
+
+                        .productinfosectionview {
+                            height: 100vh;
+                            position: relative
+                        }
+                    </style>
+
+
+                    <div id="ItemProductCatalogue" style="width: 30%; margin: auto;margin-top: 18px;" class="ProductCatalogue ngIncludeItem ShowProductInfo">
+                        <div class="ProductCatalogueInnerView">
+                            <div class="ProductCatalogueHeader">
+                                <div class="HeaderBackButton" ng-click="BackScreenView()">
+                                    <i class="fa fa-angle-left"></i>
+                                </div>
+                                <div class="HeaderTitle">
+                                    <div class="HeaderTitleName">
+                                        {{truckListTittle}}
+                                    </div>
+                                    <div class="HeaderTitleRemark">{{resData.res_TruckInList_Selectthetruck}}</div>
+
+                                </div>
+                                <div class="HeaderShoppingCart" style="float:right" ng-click="NextScreenView()">
+                                    <!--<i class="fa fa-shopping-cart">
+
+                                    </i>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="CreateInquiryMainSection">
+
+                            <div class="ProductInformationSection">
+                                <div class="ItemSearchControl">
+                                    <input ng-model="SoListSearchValue.search" placeholder="Search" style="border: 2px solid #d5d5d5 !important;">
+                                    <span class="productsearchicon" style="top: 65px !important;">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+
+                                <div set-heightcustomcontainer="" class="productinfosectionview" style="overflow-y:auto;margin-top: 0px;">
+
+
+                                    <div class="ShipTOInfoList ngIncludeItem">
+                                        <div class="ShipToSection">
+                                            <div class="full_width_view" ng-class="completedso" ng-repeat="bindCust in TruckInDeatilsList | filter : { PlateNumber: SoListSearchValue.search }  | orderBy : orderByIsLoaded" ng-click="GetOrderListInTruck(bindCust.TruckInDeatilsId)" style="width: 46% !important;margin-bottom: 10px;margin-right: 4%;">
+                                                <div class="trucksizecontainer">
+
+                                                    <span style="position: absolute;color: #39b54a;" ng-if="bindCust.IsLoadedInTruck == true">
+                                                        <i class="fa fa-check fa-icon" aria-hidden="true"></i>
+                                                    </span>
+
+                                                    <div class="TruckSizeIconSection" style="width: 90px;text-align: center;">
+
+                                                        <div class="TruckSizeImageContainer">
+                                                            <div class="TruckSizeNumber green_color_text" style="display:none">{{resData.res_TruckInList_10T}}</div>
+                                                            <img src="../Images/Truck Dark.png" class="truckSizeImage">
+                                                        </div>
+                                                    </div>
+                                                    <div class="TruckSizeDetailInofrmation" style="width:100%;text-align:center">
+                                                        <div class="ShiptoNameSectionView no_padding_space no_margin_top">
+                                                            <div class="ShipToNameAtBottom green_color_text font_weight_normal truckinfospace">
+                                                                <span>
+                                                                    {{bindCust.PlateNumber}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="TruckSizeDetailInofrmation" style="width:100%;text-align:left">
+                                                        <div class="ShiptoNameSectionView no_padding_space no_margin_top">
+                                                            <div class="ShipToNameAtBottom green_color_text font_weight_normal truckinfospace" style="font-size: 12px;padding-left: 5px !important;">
+                                                                <span>
+                                                                    {{resData.res_TruckDetails_Driver}} {{bindCust.DriverName}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-view>
+
+
+

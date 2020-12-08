@@ -1,0 +1,79 @@
+﻿
+
+<ion-view>
+    <ion-content>
+        <style type="text/css">{{resData.res_AuthenticationUsers_maincontentpagecontentmargintop0pxoverflowinheritpositioninheritpadding0px}}</style>
+
+
+        <div class="sidebar-condensed  account2" style="height:100vh;background: url(Images/H1.png) center;background-size: cover;">
+            <div style="background-color: rgba(0,0,0,0.7);height:100vh;">
+                <div class="container" id="login-block">
+
+
+
+                    <div class="user-img PortalView">
+                        <img src="Images/logo-vbl-intro.png">
+                    </div>
+
+
+                    <div class="user-img MobileView mobilelogo">
+                        <img src="Images/glassRUN245.png" style="width:100%">
+                    </div>
+                    <div class="account-info">
+                        <a class="logo" ng-click="RedirectOnLogin()">
+                            <img src="Images/glassRUN245.png">
+                        </a>
+                    </div>
+
+
+
+                    <div class="account-form">
+                        <div class="form-signin" role="form">
+                            <h3><strong>{{resData.res_AuthenticationUsers_ForgetPassword}}</strong> </h3>
+                            <div class="append-icon">
+                                <input type="text" name="name" id="name" ng-model="Login.Username" class="form-control form-white username" placeholder="Username" required="">
+                                <i class="icon-user"></i>
+                            </div>
+                            <!--<div class="append-icon m-b-20">
+                                <input type="password" name="password" ng-model="Login.Password" ng-keypress="LoginOnEnter($event)" class="form-control form-white password" placeholder="Password" required="">
+                                <i class="icon-lock"></i>
+                            </div>-->
+                            <a class="btn btn-lg btn-dark btn-rounded ladda-button" ng-click="AuthenticationUser(Login.Username)">{{resData.res_AuthenticationUsers_Continue}}</a>
+
+							<a class="btn btn-lg btn-dark btn-rounded ladda-button" ng-click="RedirectOnLogin()">Back</a>
+
+                            <!--<a ng-click="processRequest()"> test</a>-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <script id="ConfirmationPopuScreen.html" type="text/ng-template">
+            <ion-modal-view hide-back-button="false" class="confirmationmsgmodalview bgcolorheaderandfooter">
+                <ion-header-bar class="bar bar-header bar-positive popupheadercolor" style="display: block;border-bottom: 1px solid #cac3c3;">
+                    <h1 class="title">{{PopupVariables.Title}}</h1>
+                    <button class="button button-clear button-primary" ng-click="CloseConfirmationPopup()"><i class="fa fa-times"></i></button>
+                </ion-header-bar>
+                <ion-content scroll="false" class="popioncontainer">
+                    <div class="messagebody">
+                        {{PopupVariables.Message}}
+                    </div>
+                </ion-content>
+                <ion-footer-bar align-title="left" class="bar-assertive">
+                    <div class="fullwidthrow">
+                        <div class="buttons modalbtn" ng-click="CloseConfirmationPopup()">
+                            <a class="buttonstext greencolorbtn" style="display:inline-block;margin-top: -14px;">
+                                <i class="fa fa-check" style="margin-right: 10px;font-size: 18px;font-weight: normal;float:left"></i>
+                                <span style="float:left">{{PopupVariables.Okbtn}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </ion-footer-bar>
+            </ion-modal-view>
+        </script>
+    </ion-content>
+</ion-view>

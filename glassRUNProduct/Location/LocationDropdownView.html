@@ -1,0 +1,27 @@
+﻿<div class="UseFull_Space">
+    <div class="section_width_100 position_relative angucomplete-holder angucomplete-dropdown-visible" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+        <input id="CollectionListAutoCompleteBox_value" type="text" class="gray_border_textbox" placeholder="{{resData.res_CreateInquiryPage_SearchCollectionLocation}}" ng-class="{'open_panel green_border_textbox': showCollectionbox === true, 'green_border_textbox': SearchControl.InputCollection.length > 0 && SearchControl.InputCollection !== '', 'gray_border_box': SearchControl.InputCollection.length === 0 && SearchControl.InputCollection === ''}" arrow-selector-collection="" ng-model="SearchControl.InputCollection" ng-focus="onFocusHandler()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="CollectionInputSelecteChangeEvent(SearchControl.InputCollection)" />
+        <span class="textbox_down_angle">
+            <a ng-click="ShowCollectionListBox()">
+                <i class="fa fa-angle-down icon_size_20" ng-hide="IsCollectionSearchInputFilled === true"></i>
+            </a>
+            <a ng-click="ClearCollectionInputSearchbox()" class="remove_ion_icon">
+                <i class="icons-office-52" ng-show="IsCollectionSearchInputFilled"></i>
+            </a>
+        </span>
+        <div id="CollectionListAutoCompleteBox_dropdown" ng-show="showCollectionbox" class="angucomplete-dropdown autocompltedropdown ScrollbarUI" style="">
+            <div class="angucomplete-searching no_resultfound" ng-show="foundResult">{{resData.res_CreateInquiryPage_Noresultsfound}}</div>
+            <div class="angucomplete-row" ng-repeat="result in (filteredCollection = (LoadedCollectionList | multipleTags:SearchControl.FilterCollectionAutoCompletebox))" key-navigation="" ng-mouseenter="hoverRow($index)" ng-click="SelectedCollection(result.LocationId,result.DeliveryLocationCode,result.DeliveryName,result.DeliveryLocationName)" ng-class="{'autocompleteboxselectedrow':$index == selectedCollectionRow}" style="">
+                <div class="angucomplete-title" style="">
+                    {{result.DeliveryName}} <span ng-if="pageContrlAcessData.CollectionLocationCodeSection !='0' &&   result.DeliveryLocationCode !=''  &&   result.DeliveryLocationCode !=null">({{result.DeliveryLocationCode}})</span>
+                </div>
+            </div>
+			
+            <div class="angucomplete-searching add_new_item_btn" ng-show="foundResult" ng-if="pageContrlAcessData.PickupLocation !='0'">
+                <a ng-click="OpenModalPopupToAddNewLocation('Pick Up')" class="add_new_item_btn_text">
+                    {{resData.res_createinquirypage_Add_New_PickupLocation}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

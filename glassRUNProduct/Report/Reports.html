@@ -1,0 +1,104 @@
+﻿
+<ion-view>
+    <ion-content class="main-content loading_bay_screen_ui" style="overflow: hidden;">
+        <div class="pageview" style="margin-bottom: 50px;">
+            <div class="repots_section">
+                <div class="report_heading_text">
+                    {{resData.res_Delivery_Report}} :
+                </div>
+                <div class="export_to_excel_shipped_order">
+                    <div class="footerbuttons report_control_section" style="margin-left: 0px;">
+                        <div class="reportdeliverydate_label">
+                            {{resData.res_Delivery_Date_Period}} :
+                        </div>
+                        <div class="reportdeliverydate_input">
+                            <div class="year_change_control" ng-click="ShowMonthCalendar()">
+                                <div class="reportdeliveryselecteddate">
+                                    {{SelectParameters.DisplayMonth}} {{SelectParameters.SelectedYear}}
+                                </div>
+                                <div class="report_calendar_icon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="month_year_calendar" ng-if="SelectParameters.ShowMonthCalendar === true">
+                                <div class="year_change_control">
+                                    <div class="report_previousyear" ng-click="SubtractYear()">
+                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="report_selected_month_year">
+                                        <input class="form-control form-white date-picker grid_textbox_control" ng-model="SelectParameters.SelectedYear" />
+                                    </div>
+                                    <div class="report_nextyear" ng-click="AddYear()">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="report_month_selection_Card">
+                                    <div class="report_month_selection_row">
+                                        <div class="report_month_name_section" ng-click="SelectMonth('1')">
+                                            Jan
+                                        </div>
+                                        <div class="report_month_name_section" ng-click="SelectMonth('2')">
+                                            Feb
+                                        </div>
+                                        <div class="report_month_name_section" ng-click="SelectMonth('3')">
+                                            Mar
+                                        </div>
+                                        <div class="report_month_name_section" ng-click="SelectMonth('4')">
+                                            Apr
+                                        </div>
+                                    </div>
+                                    <div class="report_month_selection_row">
+                                        <div class="report_month_name_section" ng-click="SelectMonth('5')">
+                                            May
+                                        </div>
+                                        <div class="report_month_name_section" ng-click="SelectMonth('6')">
+                                            Jun
+                                        </div>
+                                        <div class="report_month_name_section" ng-click="SelectMonth('7')">
+                                            Jul
+                                        </div>
+                                        <div class="report_month_name_section" ng-click="SelectMonth('8')">
+                                            Aug
+                                        </div>
+                                    </div>
+                                    <div class="report_month_selection_row">
+                                        <div class="report_month_name_section" ng-click="SelectMonth('9')">
+                                            Sep
+                                        </div>
+                                        <div class="report_month_name_section" ng-click="SelectMonth('10')">
+                                            Oct
+                                        </div>
+                                        <div class="report_month_name_section" ng-click="SelectMonth('11')">
+                                            Nov
+                                        </div>
+                                        <div class="report_month_name_section" ng-click="SelectMonth('12')">
+                                            Dec
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="footerbuttons report_control_section" style="margin-left: 35px;">
+                        <div class="reportCustomer_label">
+                            {{resData.res_Delivery_Report_Customer}} :
+                        </div>
+                        <div class="reportCustomer_input MultiSelectControl">
+                            <div ng-dropdown-multiselect="" options="CustomerList" selected-model="ProductSelectedList" checkboxes="true" extra-settings="MultiSelectDropdownSetting" translation-texts="ProductTexts"></div>
+                        </div>
+                    </div>
+
+                    <div class="footerbuttons report_control_section" style="margin-left: 35px;">
+                        <a class="buttonstext button_submit_report" ng-click="ExportToExcelSalesAdminApprovalDataDetails()">
+                            <i class="fa fa-file-excel-o fa-icon"></i> {{resData.res_Delivery_Report_Export}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
